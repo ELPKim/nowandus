@@ -153,7 +153,10 @@ const translations = {
         'ex-from-label': '보내는 통화',
         'ex-to-label': '받는 통화',
         'ex-rate-label': '현재 환율:',
-        'ex-popular-title': '주요 통화 환율 (1,000원 기준)'
+        'ex-popular-title': '주요 통화 환율 (1,000원 기준)',
+        'ex-help-btn': '도움말',
+        'ex-help-title': '💡 실시간 환율 이용 안내',
+        'ex-help-text': '본 서비스의 환율 데이터는 <strong>매일 1회 업데이트</strong>되는 고시 환율을 기준으로 합니다. 데이터는 GitHub Actions를 통해 6시간마다 자동으로 점검하여 최신 정보를 유지하도록 설계되었습니다.'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -227,7 +230,10 @@ const translations = {
         'ex-from-label': 'From',
         'ex-to-label': 'To',
         'ex-rate-label': 'Current Rate:',
-        'ex-popular-title': 'Major Rates (Based on 1,000 KRW)'
+        'ex-popular-title': 'Major Rates (Based on 1,000 KRW)',
+        'ex-help-btn': 'Help',
+        'ex-help-title': '💡 Exchange Rate Guide',
+        'ex-help-text': 'Exchange rate data is based on <strong>daily updated rates</strong> provided by the API. The data is automatically checked every 6 hours via GitHub Actions to maintain reliability.'
     }
 };
 
