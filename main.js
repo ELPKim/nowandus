@@ -226,44 +226,25 @@ let partnerCountry = localStorage.getItem('partnerCountry') || 'USA';
 let partnerLocation = localStorage.getItem('partnerLocation') || "New York (JFK)";
 let partnerTimezone = localStorage.getItem('partnerTimezone') || 'America/New_York';
 
-// World News API Logic
-const NEWS_API_KEY = 'YOUR_API_KEY_HERE'; // User will provide this later
-
+// World News Logic (Reading from local static JSON updated by GitHub Actions)
 async function fetchNews(countryName, elementId) {
     const el = document.getElementById(elementId);
     if (!el) return;
     
     el.innerHTML = `<p data-i18n="news-loading">${translations[currentLanguage]['news-loading']}</p>`;
     
-    if (NEWS_API_KEY === 'YOUR_API_KEY_HERE') {
-        el.innerHTML = `<p style="color: var(--accent-color);">API Key가 설정되지 않았습니다. (API Key not set)</p>`;
-        return;
-    }
-
-    // Map country names to ISO codes if needed, but worldnewsapi supports country names or text search
-    // For simplicity, we search by country name in the 'source-countries' parameter
-    // You might need a mapping for accurate results (e.g., South Korea -> kr, USA -> us)
-    const countryMap = {
-        "South Korea": "kr", "USA": "us", "Japan": "jp", "China": "cn", "UK": "gb", 
-        "France": "fr", "Germany": "de", "Canada": "ca", "Australia": "au", "Italy": "it",
-        "Spain": "es", "Switzerland": "ch", "Singapore": "sg", "Taiwan": "tw", "Thailand": "th",
-        "Vietnam": "vn", "Malaysia": "my", "Indonesia": "id", "Philippines": "ph", "UAE": "ae",
-        "Turkey": "tr", "Russia": "ru", "Brazil": "br", "Mexico": "mx", "Argentina": "ar",
-        "New Zealand": "nz", "South Africa": "za"
-    };
-    
-    const countryCode = countryMap[countryName] || "";
-    
     try {
-        const url = `https://api.worldnewsapi.com/search-news?api-key=${NEWS_API_KEY}&source-countries=${countryCode}&language=${currentLanguage === 'ko' ? 'ko' : 'en'}&number=5`;
-        const res = await fetch(url);
-        const data = await res.json();
+        // GitHub Actions가 업데이트하는 정적 JSON 파일 로드
+        const res = await fetch('news-data.json');
+        const allNews = await res.json();
         
-        if (data.news && data.news.length > 0) {
-            el.innerHTML = data.news.map(n => `
+        const newsItems = allNews[countryName] || [];
+        
+        if (newsItems.length > 0) {
+            el.innerHTML = newsItems.map(n => `
                 <div class="news-card" style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: left;">
                     <h4 style="margin: 0 0 10px 0; color: var(--accent-color);">${n.title}</h4>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">${n.text ? n.text.substring(0, 150) + '...' : ''}</p>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">${n.text}</p>
                     <a href="${n.url}" target="_blank" style="color: var(--primary-color); font-weight: bold; text-decoration: none; font-size: 0.85rem;">${translations[currentLanguage]['news-read-more']} →</a>
                 </div>
             `).join('');
