@@ -301,5 +301,5 @@ footer {
 @media (max-width: 600px) {
     h1 { font-size: 2.5rem; }
     .clock-container, .weather-container { flex-direction: column; gap: 20px; }
-    .clock-divider, .weather-divider { transform: rotate(90deg); }
+    .clock-divider, .weather-divider { transform: none; margin: 10px 0; }
 }
