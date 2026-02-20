@@ -55,7 +55,7 @@
                     <span id="countdown-timer"></span>
                     <span data-i18n="countdown-text-after">left!</span>
                 </p>
-                <p class="tz-info"><span data-i18n="timezone-info">Target Timezone:</span> <span id="display-timezone"></span></p>
+                <p class="tz-info"><span data-i18n="timezone-info">Target Location:</span> <span id="display-location"></span></p>
             </div>
             <div class="mini-settings">
                 <button class="settings-btn" onclick="toggleMiniSettings('countdown-settings')" data-i18n="settings-button">Change Date</button>
@@ -65,8 +65,14 @@
                         <input type="datetime-local" id="input-meeting" onchange="saveSettings()">
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label-timezone">Meeting Timezone:</label>
-                        <select id="input-timezone" onchange="saveSettings()">
+                        <label data-i18n="label-country">Country:</label>
+                        <select id="input-country" onchange="updateAirportList()">
+                            <!-- Will be populated by JS -->
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label data-i18n="label-airport">Airport:</label>
+                        <select id="input-airport" onchange="saveSettings()">
                             <!-- Will be populated by JS -->
                         </select>
                     </div>

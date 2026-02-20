@@ -1,3 +1,95 @@
+// Comprehensive Location Data
+const locationData = {
+    "South Korea": [
+        { name: "Incheon Int'l (ICN)", tz: "Asia/Seoul" },
+        { name: "Gimpo Int'l (GMP)", tz: "Asia/Seoul" },
+        { name: "Busan/Gimhae (PUS)", tz: "Asia/Seoul" },
+        { name: "Jeju Int'l (CJU)", tz: "Asia/Seoul" }
+    ],
+    "USA": [
+        { name: "New York (JFK)", tz: "America/New_York" },
+        { name: "Los Angeles (LAX)", tz: "America/Los_Angeles" },
+        { name: "Chicago (ORD)", tz: "America/Chicago" },
+        { name: "Atlanta (ATL)", tz: "America/New_York" },
+        { name: "Dallas (DFW)", tz: "America/Chicago" },
+        { name: "San Francisco (SFO)", tz: "America/Los_Angeles" },
+        { name: "Miami (MIA)", tz: "America/New_York" },
+        { name: "Seattle (SEA)", tz: "America/Los_Angeles" }
+    ],
+    "Japan": [
+        { name: "Tokyo Narita (NRT)", tz: "Asia/Tokyo" },
+        { name: "Tokyo Haneda (HND)", tz: "Asia/Tokyo" },
+        { name: "Osaka Kansai (KIX)", tz: "Asia/Tokyo" },
+        { name: "Fukuoka (FUK)", tz: "Asia/Tokyo" },
+        { name: "Sapporo (CTS)", tz: "Asia/Tokyo" }
+    ],
+    "United Kingdom": [
+        { name: "London Heathrow (LHR)", tz: "Europe/London" },
+        { name: "London Gatwick (LGW)", tz: "Europe/London" },
+        { name: "Manchester (MAN)", tz: "Europe/London" },
+        { name: "Edinburgh (EDI)", tz: "Europe/London" }
+    ],
+    "France": [
+        { name: "Paris Charles de Gaulle (CDG)", tz: "Europe/Paris" },
+        { name: "Paris Orly (ORY)", tz: "Europe/Paris" },
+        { name: "Nice (NCE)", tz: "Europe/Paris" },
+        { name: "Lyon (LYS)", tz: "Europe/Paris" }
+    ],
+    "Germany": [
+        { name: "Frankfurt (FRA)", tz: "Europe/Berlin" },
+        { name: "Munich (MUC)", tz: "Europe/Berlin" },
+        { name: "Berlin (BER)", tz: "Europe/Berlin" },
+        { name: "Hamburg (HAM)", tz: "Europe/Berlin" }
+    ],
+    "Canada": [
+        { name: "Toronto (YYZ)", tz: "America/Toronto" },
+        { name: "Vancouver (YVR)", tz: "America/Vancouver" },
+        { name: "Montreal (YUL)", tz: "America/Toronto" },
+        { name: "Calgary (YYC)", tz: "America/Edmonton" }
+    ],
+    "Australia": [
+        { name: "Sydney (SYD)", tz: "Australia/Sydney" },
+        { name: "Melbourne (MEL)", tz: "Australia/Melbourne" },
+        { name: "Brisbane (BNE)", tz: "Australia/Brisbane" },
+        { name: "Perth (PER)", tz: "Australia/Perth" }
+    ],
+    "China": [
+        { name: "Beijing Capital (PEK)", tz: "Asia/Shanghai" },
+        { name: "Shanghai Pudong (PVG)", tz: "Asia/Shanghai" },
+        { name: "Guangzhou (CAN)", tz: "Asia/Shanghai" },
+        { name: "Shenzhen (SZX)", tz: "Asia/Shanghai" }
+    ],
+    "Singapore": [{ name: "Changi (SIN)", tz: "Asia/Singapore" }],
+    "Taiwan": [{ name: "Taipei Taoyuan (TPE)", tz: "Asia/Taipei" }],
+    "Thailand": [
+        { name: "Bangkok Suvarnabhumi (BKK)", tz: "Asia/Bangkok" },
+        { name: "Phuket (HKT)", tz: "Asia/Bangkok" }
+    ],
+    "Vietnam": [
+        { name: "Ho Chi Minh City (SGN)", tz: "Asia/Ho_Chi_Minh" },
+        { name: "Hanoi (HAN)", tz: "Asia/Ho_Chi_Minh" }
+    ],
+    "United Arab Emirates": [
+        { name: "Dubai (DXB)", tz: "Asia/Dubai" },
+        { name: "Abu Dhabi (AUH)", tz: "Asia/Dubai" }
+    ],
+    "Turkey": [
+        { name: "Istanbul (IST)", tz: "Europe/Istanbul" },
+        { name: "Antalya (AYT)", tz: "Europe/Istanbul" }
+    ],
+    "Brazil": [
+        { name: "Sao Paulo (GRU)", tz: "America/Sao_Paulo" },
+        { name: "Rio de Janeiro (GIG)", tz: "America/Sao_Paulo" }
+    ],
+    "Others": [
+        { name: "UTC/GMT", tz: "UTC" },
+        { name: "India (DEL)", tz: "Asia/Kolkata" },
+        { name: "Italy (FCO)", tz: "Europe/Rome" },
+        { name: "Spain (MAD)", tz: "Europe/Madrid" },
+        { name: "Netherlands (AMS)", tz: "Europe/Amsterdam" }
+    ]
+};
+
 // Translation data
 const translations = {
     'ko': {
@@ -21,8 +113,9 @@ const translations = {
         'settings-button': '날짜 변경',
         'label-anniversary': '기념일:',
         'label-meeting': '다음 만남:',
-        'label-timezone': '만남 장소 시간대:',
-        'timezone-info': '기준 시간대:',
+        'label-country': '나라:',
+        'label-airport': '공항:',
+        'timezone-info': '만남 장소:',
         'change-partner-tz': '시간대 설정',
         'label-partner-timezone': '상대방 시간대:'
     },
@@ -47,8 +140,9 @@ const translations = {
         'settings-button': 'Change Date',
         'label-anniversary': 'Anniversary:',
         'label-meeting': 'Next Meeting:',
-        'label-timezone': 'Meeting Timezone:',
-        'timezone-info': 'Target Timezone:',
+        'label-country': 'Country:',
+        'label-airport': 'Airport:',
+        'timezone-info': 'Meeting Point:',
         'change-partner-tz': 'Set Timezone',
         'label-partner-timezone': "Partner's Timezone:"
     }
@@ -57,7 +151,9 @@ const translations = {
 let currentLanguage = localStorage.getItem('language') || 'ko';
 let anniversaryDate = localStorage.getItem('anniversaryDate') || '2022-01-01';
 let nextMeetingDate = localStorage.getItem('nextMeetingDate') || '2024-12-25T12:00';
-let meetingTimezone = localStorage.getItem('meetingTimezone') || Intl.DateTimeFormat().resolvedOptions().timeZone;
+let meetingCountry = localStorage.getItem('meetingCountry') || 'South Korea';
+let meetingAirport = localStorage.getItem('meetingAirport') || "Incheon Int'l (ICN)";
+let meetingTimezone = localStorage.getItem('meetingTimezone') || 'Asia/Seoul';
 let partnerTimezone = localStorage.getItem('partnerTimezone') || 'America/New_York';
 
 function toggleMiniSettings(id) {
@@ -68,15 +164,39 @@ function toggleMiniSettings(id) {
 function saveSettings() {
     anniversaryDate = document.getElementById('input-anniversary').value;
     nextMeetingDate = document.getElementById('input-meeting').value;
-    meetingTimezone = document.getElementById('input-timezone').value;
+    
+    meetingCountry = document.getElementById('input-country').value;
+    const airportSelect = document.getElementById('input-airport');
+    meetingAirport = airportSelect.options[airportSelect.selectedIndex].text;
+    meetingTimezone = airportSelect.value;
+
     partnerTimezone = document.getElementById('input-partner-timezone').value;
 
     localStorage.setItem('anniversaryDate', anniversaryDate);
     localStorage.setItem('nextMeetingDate', nextMeetingDate);
+    localStorage.setItem('meetingCountry', meetingCountry);
+    localStorage.setItem('meetingAirport', meetingAirport);
     localStorage.setItem('meetingTimezone', meetingTimezone);
     localStorage.setItem('partnerTimezone', partnerTimezone);
 
     updateDisplays();
+}
+
+function updateAirportList() {
+    const country = document.getElementById('input-country').value;
+    const airportSelect = document.getElementById('input-airport');
+    airportSelect.innerHTML = '';
+
+    if (locationData[country]) {
+        locationData[country].forEach(ap => {
+            const opt = document.createElement('option');
+            opt.value = ap.tz;
+            opt.textContent = ap.name;
+            if (ap.name === meetingAirport) opt.selected = true;
+            airportSelect.appendChild(opt);
+        });
+    }
+    saveSettings();
 }
 
 function setLanguage(lang) {
@@ -99,7 +219,7 @@ function updateDisplays() {
     updateDaysTogether();
     updateCountdown();
     updateClocks();
-    document.getElementById('display-timezone').textContent = meetingTimezone;
+    document.getElementById('display-location').textContent = `${meetingCountry}, ${meetingAirport}`;
     document.getElementById('my-tz').textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
     document.getElementById('partner-tz').textContent = partnerTimezone;
 }
@@ -138,23 +258,17 @@ function updateCountdown() {
 
 function updateClocks() {
     const now = new Date();
-    
-    // My Time
     const myOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
     document.getElementById('my-time').textContent = now.toLocaleTimeString([], myOptions);
 
-    // Partner's Time
     const partnerOptions = { 
-        hour: '2-digit', 
-        minute: '2-digit', 
-        second: '2-digit', 
-        hour12: false, 
-        timeZone: partnerTimezone 
+        hour: '2-digit', minute: '2-digit', second: '2-digit', 
+        hour12: false, timeZone: partnerTimezone 
     };
     try {
         document.getElementById('partner-time').textContent = now.toLocaleTimeString([], partnerOptions);
     } catch (e) {
-        document.getElementById('partner-time').textContent = "Error TZ";
+        document.getElementById('partner-time').textContent = "TZ Error";
     }
 }
 
@@ -165,28 +279,34 @@ function convertToUTC(dateStr, tz) {
     return date.getTime() + diff;
 }
 
-function populateTimezones() {
-    const tzs = [
-        "UTC", "Asia/Seoul", "Asia/Tokyo", "Asia/Shanghai", "Asia/Singapore", 
-        "Europe/London", "Europe/Paris", "Europe/Berlin", 
-        "America/New_York", "America/Chicago", "America/Los_Angeles", 
-        "Australia/Sydney", "Pacific/Auckland"
-    ];
+function initializeForm() {
+    const countrySelect = document.getElementById('input-country');
+    countrySelect.innerHTML = '';
     
-    const selects = [document.getElementById('input-timezone'), document.getElementById('input-partner-timezone')];
-    
-    selects.forEach(select => {
-        const currentVal = (select.id === 'input-timezone') ? meetingTimezone : partnerTimezone;
-        if (!tzs.includes(currentVal)) tzs.push(currentVal);
-        
-        tzs.sort().forEach(tz => {
-            const opt = document.createElement('option');
-            opt.value = tz;
-            opt.textContent = tz;
-            if (tz === currentVal) opt.selected = true;
-            select.appendChild(opt);
-        });
+    Object.keys(locationData).sort().forEach(country => {
+        const opt = document.createElement('option');
+        opt.value = country;
+        opt.textContent = country;
+        if (country === meetingCountry) opt.selected = true;
+        countrySelect.appendChild(opt);
     });
+
+    const partnerTzSelect = document.getElementById('input-partner-timezone');
+    partnerTzSelect.innerHTML = '';
+    
+    // Extract all unique timezones from locationData
+    let allTzs = new Set();
+    Object.values(locationData).flat().forEach(ap => allTzs.add(ap.tz));
+    
+    Array.from(allTzs).sort().forEach(tz => {
+        const opt = document.createElement('option');
+        opt.value = tz;
+        opt.textContent = tz;
+        if (tz === partnerTimezone) opt.selected = true;
+        partnerTzSelect.appendChild(opt);
+    });
+
+    updateAirportList();
 }
 
 // Initialization
@@ -194,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('input-anniversary').value = anniversaryDate;
     document.getElementById('input-meeting').value = nextMeetingDate;
     
-    populateTimezones();
+    initializeForm();
     setLanguage(currentLanguage);
     
     setInterval(() => {
