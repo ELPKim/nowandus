@@ -151,12 +151,12 @@ const translations = {
         'cal-help-btn': '도움말',
         'cal-help-title': '💡 공휴일 캘린더 이용 안내',
         'cal-help-text': '공휴일 정보는 메인 페이지 설정 국가 기준입니다. 매주 일요일 자동 업데이트됩니다.',
-        'dict-header': '영단어 사전',
-        'dict-ph': '영단어를 입력하세요...',
+        'dict-header': '단어 사전',
+        'dict-ph': '단어를 입력하세요...',
         'dict-btn': '검색',
-        'dict-loading': '찾는 중...',
-        'dict-not-found': '단어를 찾을 수 없습니다. (영단어만 가능)',
-        'dict-intro': '모르는 영단어가 있다면 검색해보세요!'
+        'dict-loading': '이동 중...',
+        'dict-not-found': '단어를 찾을 수 없습니다.',
+        'dict-intro': '궁금한 단어가 있다면 검색해보세요! (전 세계 언어 지원)'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -231,9 +231,9 @@ const translations = {
         'dict-header': 'Dictionary',
         'dict-ph': 'Enter a word...',
         'dict-btn': 'Search',
-        'dict-loading': 'Searching...',
-        'dict-not-found': 'Word not found. (English only)',
-        'dict-intro': 'Look up any English words you don\'t know!'
+        'dict-loading': 'Redirecting...',
+        'dict-not-found': 'Word not found.',
+        'dict-intro': 'Look up any word you don\'t know! (Supports all languages)'
     }
 };
 
@@ -282,25 +282,14 @@ function toggleDictionary() {
     if (win) win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
 }
 
-async function searchWord() {
+function searchWord() {
     const input = document.getElementById('dict-input');
-    const result = document.getElementById('dict-result');
-    const word = input.value.trim().toLowerCase();
+    const word = input.value.trim();
     if (!word) return;
-    result.innerHTML = `<p data-i18n="dict-loading">${translations[currentLanguage]['dict-loading']}</p>`;
-    try {
-        const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        const entry = data[0];
-        let html = `<div class="dict-word-title">${entry.word}</div><div class="dict-phonetic">${entry.phonetic || ''}</div>`;
-        entry.meanings.slice(0, 2).forEach(m => {
-            html += `<div class="dict-meaning"><div class="dict-part">${m.partOfSpeech}</div><div>${m.definitions[0].definition}</div></div>`;
-        });
-        result.innerHTML = html;
-    } catch (e) {
-        result.innerHTML = `<p data-i18n="dict-not-found">${translations[currentLanguage]['dict-not-found']}</p>`;
-    }
+    
+    // 위키낱말사전(Wiktionary) URL 생성 및 이동
+    const wikiUrl = `https://ko.wiktionary.org/wiki/${encodeURIComponent(word)}`;
+    window.open(wikiUrl, '_blank');
 }
 
 // --- World News Logic ---
