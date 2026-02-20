@@ -126,67 +126,65 @@ const translations = {
         'weather-update-text': '실시간 날씨 정보를 가져오고 있어요...',
         'footer-text': '먼 거리를 사랑으로 채워가는 모든 분들을 응원합니다 ❤️',
         'met-message': '드디어 만났어요!',
-        'days-unit': '일',
-        'hours-unit': '시간',
-        'minutes-unit': '분',
-        'seconds-unit': '초',
+        'days-unit': '일', 'hours-unit': '시간', 'minutes-unit': '분', 'seconds-unit': '초',
         'settings-button': '기록 수정하기',
-        'label-anniversary': '처음 만난 날:',
-        'label-meeting': '다시 만날 날:',
-        'label-country': '나라:',
-        'label-airport': '공항:',
-        'label-location': '위치:',
-        'timezone-info': '우리가 만날 곳:',
-        'change-my-loc': '나의 위치는?',
-        'change-partner-tz': '너의 위치는?',
-        'my-loc-title': '나의 현재 위치',
-        'partner-loc-title': '상대방의 현재 위치',
+        'label-anniversary': '처음 만난 날:', 'label-meeting': '다시 만날 날:', 'label-country': '나라:', 'label-airport': '공항:', 'label-location': '위치:',
+        'timezone-info': '우리가 만날 곳:', 'change-my-loc': '나의 위치는?', 'change-partner-tz': '너의 위치는?',
+        'my-loc-title': '나의 현재 위치', 'partner-loc-title': '상대방의 현재 위치',
         'ps-header': 'Partnership',
         'ps-subtitle': 'Now and Us와 함께 따뜻한 가치를 만들어가요',
-        'ps-label-name': '성함 / 회사명',
-        'ps-label-email': '회신받을 이메일',
-        'ps-label-subject': '문의 제목',
-        'ps-label-message': '문의 내용',
-        'ps-btn': '문의 보내기',
-        'ps-back': '← 메인으로 돌아가기',
-        'ps-name-ph': '이름을 입력해주세요',
-        'ps-subject-ph': '제휴 문의 드립니다',
-        'ps-message-ph': '상세한 내용을 적어주세요',
-        'board-header': 'Customer Center',
+        'ps-label-name': '성함 / 회사명', 'ps-label-email': '회신받을 이메일', 'ps-label-subject': '문의 제목', 'ps-label-message': '문의 내용',
+        'ps-btn': '보내기', 'ps-back': '← 메인으로 돌아가기',
+        'ps-name-ph': '이름을 입력해주세요', 'ps-subject-ph': '제휴 문의 드립니다', 'ps-message-ph': '상세한 내용을 적어주세요',
+        'board-header': '게시판 (Board)',
         'board-subtitle': '더 나은 Now and Us를 위한 여러분의 목소리',
-        'board-login-title': '소리함 입장하기',
-        'board-enter-btn': '입장하기',
-        'board-notice': '* 입력하신 정보로 작성된 글만 볼 수 있습니다.',
-        'board-write-title': '의견 남기기',
-        'board-my-list': '나의 문의 내역'
+        'board-login-title': '소리함 입장하기', 'board-enter-btn': '입장하기', 'board-notice': '* 입력하신 정보로 작성된 글만 볼 수 있습니다.',
+        'board-write-title': '의견 남기기', 'board-my-list': '나의 문의 내역'
     },
     'en': {
-        // ... (existing en translations)
-        'ps-name-ph': 'Enter your name',
-        'ps-subject-ph': 'Inquiry about partnership',
-        'ps-message-ph': 'Please enter detailed information',
-        'board-header': 'Customer Center',
+        'header-title': 'Now and Us',
+        'header-subtitle': 'Distance is just a test of how far love can travel.',
+        'anniversary-title': 'Our Love Journey',
+        'anniversary-text-before': "It has been",
+        'anniversary-text-after': "beautiful days together.",
+        'countdown-title': 'Until We Meet Again',
+        'countdown-text-before': 'Only',
+        'countdown-text-after': 'left until your hug!',
+        'world-clock-title': 'Two Places, One Connection',
+        'my-time-label': 'My Time Here',
+        'partner-time-label': "Your Time There",
+        'weather-title': 'Our Weather Today',
+        'my-weather-label': 'Where I am',
+        'partner-weather-label': 'Where you are',
+        'weather-update-text': 'Fetching live weather updates...',
+        'footer-text': 'Celebrating every mile covered by love ❤️',
+        'met-message': "Finally together!",
+        'days-unit': 'd', 'hours-unit': 'h', 'minutes-unit': 'm', 'seconds-unit': 's',
+        'settings-button': 'Edit Memories',
+        'label-anniversary': 'First Day:', 'label-meeting': 'Next Meeting:', 'label-country': 'Country:', 'label-airport': 'Airport:', 'label-location': 'Location:',
+        'timezone-info': 'Where we meet:', 'change-my-loc': 'Set My Location', 'change-partner-tz': 'Set Partner Location',
+        'my-loc-title': 'My Current Location', 'partner-loc-title': "Partner's Current Location",
+        'ps-header': 'Partnership',
+        'ps-subtitle': 'Let\'s create warm values with Now and Us',
+        'ps-label-name': 'Name / Company', 'ps-label-email': 'Reply Email', 'ps-label-subject': 'Subject', 'ps-label-message': 'Inquiry Details',
+        'ps-btn': 'Send', 'ps-back': '← Back to Main',
+        'ps-name-ph': 'Enter your name', 'ps-subject-ph': 'Inquiry about partnership', 'ps-message-ph': 'Please enter detailed information',
+        'board-header': 'Board',
         'board-subtitle': 'Your voice for a better Now and Us',
-        'board-login-title': 'Enter Feedback Box',
-        'board-enter-btn': 'Enter',
-        'board-notice': '* You can only see posts created with your info.',
-        'board-write-title': 'Leave an Opinion',
-        'board-my-list': 'My Inquiry History'
+        'board-login-title': 'Enter Feedback Box', 'board-enter-btn': 'Enter', 'board-notice': '* You can only see posts created with your info.',
+        'board-write-title': 'Leave an Opinion', 'board-my-list': 'My Inquiry History'
     }
 };
 
 let currentLanguage = localStorage.getItem('language') || 'ko';
 let anniversaryDate = localStorage.getItem('anniversaryDate') || '2022-01-01';
 let nextMeetingDate = localStorage.getItem('nextMeetingDate') || '2024-12-25T12:00';
-
 let meetingCountry = localStorage.getItem('meetingCountry') || 'South Korea';
 let meetingAirport = localStorage.getItem('meetingAirport') || "Seoul/Incheon (ICN)";
 let meetingTimezone = localStorage.getItem('meetingTimezone') || 'Asia/Seoul';
-
 let myCountry = localStorage.getItem('myCountry') || 'South Korea';
 let myLocation = localStorage.getItem('myLocation') || "Seoul/Gimpo (GMP)";
 let myTimezone = localStorage.getItem('myTimezone') || 'Asia/Seoul';
-
 let partnerCountry = localStorage.getItem('partnerCountry') || 'USA';
 let partnerLocation = localStorage.getItem('partnerLocation') || "New York (JFK)";
 let partnerTimezone = localStorage.getItem('partnerTimezone') || 'America/New_York';
@@ -211,111 +209,60 @@ async function fetchWeather(lat, lon, elementId) {
         const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
         const data = await response.json();
         const weather = data.current_weather;
-        const temp = Math.round(weather.temperature);
-        const code = weather.weathercode;
-        
-        const desc = getWeatherDescription(code);
-        const icon = getWeatherIcon(code);
-        
         const el = document.getElementById(elementId);
-        if (el) {
-            el.innerHTML = `
-                <div class="temp">${temp}°C</div>
-                <div class="desc">${icon} ${desc}</div>
-            `;
+        if (el && weather) {
+            el.innerHTML = `<div class="temp">${Math.round(weather.temperature)}°C</div><div class="desc">${getWeatherIcon(weather.weathercode)} ${getWeatherDescription(weather.weathercode)}</div>`;
         }
-    } catch (e) {
-        const el = document.getElementById(elementId);
-        if (el) el.textContent = "---";
-    }
+    } catch (e) { if(document.getElementById(elementId)) document.getElementById(elementId).textContent = "---"; }
 }
 
 function getWeatherIcon(code) {
-    if (code <= 1) return "☀️";
-    if (code <= 3) return "☁️";
-    if (code <= 48) return "🌫️";
-    if (code <= 67) return "🌧️";
-    if (code <= 77) return "❄️";
-    if (code <= 82) return "🌦️";
-    if (code <= 99) return "⛈️";
-    return "✨";
+    if (code <= 1) return "☀️"; if (code <= 3) return "☁️"; if (code <= 48) return "🌫️"; if (code <= 67) return "🌧️"; if (code <= 77) return "❄️"; if (code <= 82) return "🌦️";
+    return "⛈️";
 }
 
 function getWeatherDescription(code) {
-    const descs = {
-        0: "Clear", 1: "Mainly Clear", 2: "Partly Cloudy", 3: "Overcast",
-        45: "Fog", 48: "Fog", 51: "Drizzle", 61: "Rain", 71: "Snow", 95: "Storm"
-    };
+    const descs = { 0: "Clear", 1: "Mainly Clear", 2: "Partly Cloudy", 3: "Overcast", 45: "Fog", 51: "Drizzle", 61: "Rain", 71: "Snow", 95: "Storm" };
     return descs[code] || "Cloudy";
 }
 
 async function updateWeather() {
     const myData = locationData[myCountry]?.find(l => l.name === myLocation);
     if (myData && document.getElementById('my-weather-info')) fetchWeather(myData.lat, myData.lon, 'my-weather-info');
-
     const partnerData = locationData[partnerCountry]?.find(l => l.name === partnerLocation);
     if (partnerData && document.getElementById('partner-weather-info')) fetchWeather(partnerData.lat, partnerData.lon, 'partner-weather-info');
 }
 
 function updateDisplays() {
-    if (document.getElementById('days-together')) updateDaysTogether();
-    if (document.getElementById('countdown-timer')) updateCountdown();
-    if (document.getElementById('my-time')) updateClocks();
+    if (document.getElementById('days-together')) {
+        const diff = Math.floor((new Date().getTime() - new Date(anniversaryDate).getTime()) / (1000 * 3600 * 24));
+        document.getElementById('days-together').textContent = Math.max(0, diff);
+    }
+    if (document.getElementById('countdown-timer')) {
+        const targetUTC = new Date(nextMeetingDate).getTime() + (new Date().getTime() - new Date(new Date().toLocaleString('en-US', { timeZone: meetingTimezone })).getTime());
+        const remaining = targetUTC - new Date().getTime();
+        const timer = document.getElementById('countdown-timer');
+        if (remaining > 0) {
+            const d = Math.floor(remaining / (1000 * 60 * 60 * 24));
+            const h = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((remaining % (1000 * 60)) / 1000);
+            const units = translations[currentLanguage];
+            timer.textContent = `${d}${units['days-unit']} ${h}${units['hours-unit']} ${m}${units['minutes-unit']} ${s}${units['seconds-unit']}`;
+        } else { timer.textContent = translations[currentLanguage]['met-message']; }
+    }
+    if (document.getElementById('my-time')) {
+        const now = new Date();
+        document.getElementById('my-time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: myTimezone });
+        if(document.getElementById('partner-time')) {
+            try { document.getElementById('partner-time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: partnerTimezone }); } 
+            catch (e) { document.getElementById('partner-time').textContent = "TZ Error"; }
+        }
+    }
     updateWeather();
-    
-    const dLoc = document.getElementById('display-location');
-    if (dLoc) dLoc.textContent = `${meetingCountry}, ${meetingAirport}`;
-    
-    const myTzEl = document.getElementById('my-tz');
-    if (myTzEl) myTzEl.textContent = `${myCountry}, ${myLocation}`;
-    
-    const pTzEl = document.getElementById('partner-tz');
-    if (pTzEl) pTzEl.textContent = `${partnerCountry}, ${partnerLocation}`;
-}
-
-function updateDaysTogether() {
-    const today = new Date();
-    const anniv = new Date(anniversaryDate);
-    const diff = Math.floor((today.getTime() - anniv.getTime()) / (1000 * 3600 * 24));
-    const el = document.getElementById('days-together');
-    if (el) el.textContent = Math.max(0, diff);
-}
-
-function updateCountdown() {
-    const targetUTC = convertToUTC(nextMeetingDate, meetingTimezone);
-    const remaining = targetUTC - new Date().getTime();
-    const timer = document.getElementById('countdown-timer');
-    if (!timer) return;
-
-    if (remaining > 0) {
-        const d = Math.floor(remaining / (1000 * 60 * 60 * 24));
-        const h = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((remaining % (1000 * 60)) / 1000);
-        const units = translations[currentLanguage];
-        timer.textContent = `${d}${units['days-unit']} ${h}${units['hours-unit']} ${m}${units['minutes-unit']} ${s}${units['seconds-unit']}`;
-    } else {
-        timer.textContent = translations[currentLanguage]['met-message'];
-    }
-}
-
-function updateClocks() {
-    const now = new Date();
-    const myEl = document.getElementById('my-time');
-    if (myEl) myEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: myTimezone });
-    
-    const pEl = document.getElementById('partner-time');
-    if (pEl) {
-        try {
-            pEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: partnerTimezone });
-        } catch (e) { pEl.textContent = "TZ Error"; }
-    }
-}
-
-function convertToUTC(dateStr, tz) {
-    const date = new Date(dateStr);
-    const invDate = new Date(date.toLocaleString('en-US', { timeZone: tz }));
-    return date.getTime() + (date.getTime() - invDate.getTime());
+    if(document.getElementById('display-location')) document.getElementById('display-location').textContent = `${meetingCountry}, ${meetingAirport}`;
+    if(document.getElementById('my-tz')) document.getElementById('my-tz').textContent = `${myCountry}, ${myLocation}`;
+    if(document.getElementById('partner-tz')) document.getElementById('partner-tz').textContent = `${partnerCountry}, ${partnerLocation}`;
 }
 
 function toggleMiniSettings(id) {
@@ -326,28 +273,24 @@ function toggleMiniSettings(id) {
 function saveSettings() {
     if (document.getElementById('input-anniversary')) anniversaryDate = document.getElementById('input-anniversary').value;
     if (document.getElementById('input-meeting')) nextMeetingDate = document.getElementById('input-meeting').value;
-    
     const airportSelect = document.getElementById('input-airport');
     if (airportSelect && airportSelect.selectedIndex >= 0) {
         meetingCountry = document.getElementById('input-country').value;
         meetingAirport = airportSelect.options[airportSelect.selectedIndex].text;
         meetingTimezone = airportSelect.value;
     }
-
     const myLocSelect = document.getElementById('input-my-location');
     if (myLocSelect && myLocSelect.selectedIndex >= 0) {
         myCountry = document.getElementById('input-my-country').value;
         myLocation = myLocSelect.options[myLocSelect.selectedIndex].text;
         myTimezone = myLocSelect.value;
     }
-
     const partnerLocSelect = document.getElementById('input-partner-location');
     if (partnerLocSelect && partnerLocSelect.selectedIndex >= 0) {
         partnerCountry = document.getElementById('input-partner-country').value;
         partnerLocation = partnerLocSelect.options[partnerLocSelect.selectedIndex].text;
         partnerTimezone = partnerLocSelect.value;
     }
-
     localStorage.setItem('anniversaryDate', anniversaryDate);
     localStorage.setItem('nextMeetingDate', nextMeetingDate);
     localStorage.setItem('meetingCountry', meetingCountry);
@@ -359,7 +302,6 @@ function saveSettings() {
     localStorage.setItem('partnerCountry', partnerCountry);
     localStorage.setItem('partnerLocation', partnerLocation);
     localStorage.setItem('partnerTimezone', partnerTimezone);
-
     updateDisplays();
 }
 
@@ -416,7 +358,6 @@ function initializeForm() {
     const cSelect = document.getElementById('input-country');
     const myCSelect = document.getElementById('input-my-country');
     const pCSelect = document.getElementById('input-partner-country');
-    
     [cSelect, myCSelect, pCSelect].forEach(select => {
         if (!select) return;
         select.innerHTML = '';
@@ -429,10 +370,7 @@ function initializeForm() {
             select.appendChild(opt);
         });
     });
-
-    updateAirportList();
-    updateMyCityList();
-    updatePartnerLocationList();
+    updateAirportList(); updateMyCityList(); updatePartnerLocationList();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -440,6 +378,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('input-meeting')) document.getElementById('input-meeting').value = nextMeetingDate;
     initializeForm();
     setLanguage(currentLanguage);
-    setInterval(() => { updateCountdown(); updateClocks(); }, 1000);
-    setInterval(updateWeather, 30 * 60 * 1000);
+    setInterval(() => { updateDisplays(); }, 1000);
 });
