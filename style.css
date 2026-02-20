@@ -5,6 +5,11 @@
     --bg-color: #fff0f3;
     --text-color: #4a4a4a;
     --white: #ffffff;
+    
+    /* Category Specific Colors */
+    --anniversary-accent: #ef476f; /* Rose Pink */
+    --countdown-accent: #f78c6b;   /* Sunset Coral */
+    --clock-accent: #8e7dbe;       /* Soft Lavender */
 }
 
 body {
@@ -127,11 +132,28 @@ main {
 
 .category h2 {
     font-size: 1.5rem;
-    color: var(--accent-color);
     border-bottom: 2px solid var(--secondary-color);
     padding-bottom: 10px;
     margin-bottom: 25px;
 }
+
+/* Category Specific Overrides */
+#anniversary-section h2 { color: var(--anniversary-accent); border-color: #ffccd5; }
+#anniversary-section #days-together { color: var(--anniversary-accent); }
+#anniversary-section .settings-btn { color: var(--anniversary-accent); border-color: var(--anniversary-accent); }
+#anniversary-section .settings-btn:hover { background-color: var(--anniversary-accent); color: white; }
+
+#countdown-section h2 { color: var(--countdown-accent); border-color: #ffe5d9; }
+#countdown-section #countdown-timer { color: var(--countdown-accent); }
+#countdown-section .settings-btn { color: var(--countdown-accent); border-color: var(--countdown-accent); }
+#countdown-section .settings-btn:hover { background-color: var(--countdown-accent); color: white; }
+#countdown-section #display-location { color: var(--countdown-accent); font-weight: bold; }
+
+#world-clock-section h2 { color: var(--clock-accent); border-color: #e2cfea; }
+#world-clock-section .time-display { color: var(--clock-accent); }
+#world-clock-section .settings-btn { color: var(--clock-accent); border-color: var(--clock-accent); }
+#world-clock-section .settings-btn:hover { background-color: var(--clock-accent); color: white; }
+#world-clock-section .tz-label { color: var(--clock-accent); }
 
 .main-stat {
     font-size: 1.2rem;
@@ -140,7 +162,6 @@ main {
 
 #days-together, #countdown-timer {
     font-weight: 900;
-    color: var(--accent-color);
     font-size: 2.2rem;
     display: block;
     margin: 10px 0;
@@ -163,14 +184,14 @@ main {
 .time-display {
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--accent-color);
     font-family: monospace;
 }
 
 .tz-label {
     font-size: 0.8rem;
-    opacity: 0.6;
+    opacity: 0.8;
     margin-top: 5px;
+    font-weight: 500;
 }
 
 .clock-divider {
@@ -186,23 +207,20 @@ main {
 
 .settings-btn {
     background-color: var(--white);
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
     padding: 8px 20px;
     border-radius: 25px;
+    border: 2px solid;
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: bold;
     transition: all 0.3s ease;
     display: inline-block;
-    box-shadow: 0 2px 5px rgba(255, 143, 163, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .settings-btn:hover {
-    background-color: var(--primary-color);
-    color: var(--white);
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(255, 143, 163, 0.4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .mini-form {
@@ -221,10 +239,13 @@ main {
 .input-group label {
     font-size: 0.85rem;
     font-weight: bold;
-    color: var(--accent-color);
     display: block;
     margin-bottom: 5px;
 }
+
+#anniversary-section label { color: var(--anniversary-accent); }
+#countdown-section label { color: var(--countdown-accent); }
+#world-clock-section label { color: var(--clock-accent); }
 
 .input-group input, .input-group select {
     width: 100%;
