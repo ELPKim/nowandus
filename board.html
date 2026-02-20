@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Center - Now and Us</title>
+    
+    <!-- Favicon 통일 -->
+    <link rel="icon" type="image/png" href="favicon1.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        .board-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        .login-box, .write-box {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .post-list {
+            text-align: left;
+            margin-top: 30px;
+        }
+        .post-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 10px;
+        }
+        .post-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid var(--secondary-color);
+            border-radius: 12px;
+            box-sizing: border-box;
+        }
+        .btn-action {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #board-content { display: none; }
+    </style>
+</head>
+<body>
+    <div class="background-decor">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+
+    <header>
+        <div class="language-switcher">
+            <button onclick="setLanguage('ko')">KR</button>
+            <button onclick="setLanguage('en')">EN</button>
+        </div>
+        <h1 data-i18n="board-header">Customer Center</h1>
+        <p data-i18n="board-subtitle">더 나은 Now and Us를 위한 여러분의 목소리</p>
+    </header>
+
+    <main class="board-container">
+        <!-- 로그인 구역 -->
+        <div id="login-section" class="login-box">
+            <h3 data-i18n="board-login-title">소리함 입장하기</h3>
+            <input type="text" id="user-nickname" class="input-field" data-i18n-ph="ps-name-ph" placeholder="닉네임">
+            <input type="password" id="user-pw" class="input-field" placeholder="비밀번호 (글 확인용)">
+            <button onclick="loginToBoard()" class="btn-action" data-i18n="board-enter-btn">입장하기</button>
+            <p style="font-size: 0.8rem; color: #888; margin-top: 15px;" data-i18n="board-notice">* 입력하신 정보로 작성된 글만 볼 수 있습니다.</p>
+        </div>
+
+        <!-- 게시판 본문 (로그인 후 노출) -->
+        <div id="board-content">
+            <div class="write-box">
+                <h3 data-i18n="board-write-title">의견 남기기</h3>
+                <form id="feedback-form" action="https://formspree.io/f/xaqddjla" method="POST" onsubmit="return handlePostSubmit(event)">
+                    <input type="hidden" name="nickname" id="hidden-nickname">
+                    <input type="text" name="title" id="post-title" class="input-field" placeholder="제목" required>
+                    <textarea name="message" id="post-message" class="input-field" style="height: 150px;" placeholder="관리자에게 하고 싶은 말을 적어주세요." required></textarea>
+                    <button type="submit" class="btn-action" data-i18n="ps-btn">글 등록하기</button>
+                </form>
+            </div>
+
+            <div class="post-list">
+                <h3 data-i18n="board-my-list">나의 문의 내역</h3>
+                <div id="my-posts">
+                    <!-- 글 목록이 여기에 표시됨 -->
+                </div>
+            </div>
+            
+            <button onclick="logoutBoard()" class="settings-btn" style="width: 100%; margin-top: 20px;">로그아웃 (Logout)</button>
+        </div>
+
+        <a href="index.html" class="back-link" data-i18n="ps-back">← 메인으로 돌아가기</a>
+    </main>
+
+    <script src="main.js"></script>
+    <script>
+        let loggedInUser = null;
+
+        function loginToBoard() {
+            const nick = document.getElementById('user-nickname').value;
+            const pw = document.getElementById('user-pw').value;
+            if(!nick || !pw) return alert("닉네임과 비밀번호를 입력해주세요.");
+            
+            loggedInUser = { nick, pw };
+            document.getElementById('hidden-nickname').value = nick;
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('board-content').style.display = 'block';
+            loadMyPosts();
+        }
+
+        function logoutBoard() {
+            loggedInUser = null;
+            document.getElementById('login-section').style.display = 'block';
+            document.getElementById('board-content').style.display = 'none';
+        }
+
+        function handlePostSubmit(e) {
+            const title = document.getElementById('post-title').value;
+            const message = document.getElementById('post-message').value;
+            
+            // 로컬 저장 (사용자 확인용)
+            const posts = JSON.parse(localStorage.getItem('nowandus_board') || '[]');
+            posts.push({
+                user: loggedInUser.nick,
+                pw: loggedInUser.pw,
+                title: title,
+                message: message,
+                date: new Date().toLocaleString()
+            });
+            localStorage.setItem('nowandus_board', JSON.stringify(posts));
+            
+            // Formspree 전송은 폼의 기본 동작으로 실행됨
+            alert("의견이 소중하게 전달되었습니다!");
+            setTimeout(loadMyPosts, 500); 
+            return true;
+        }
+
+        function loadMyPosts() {
+            const listContainer = document.getElementById('my-posts');
+            const posts = JSON.parse(localStorage.getItem('nowandus_board') || '[]');
+            const myPosts = posts.filter(p => p.user === loggedInUser.nick && p.pw === loggedInUser.pw);
+            
+            if(myPosts.length === 0) {
+                listContainer.innerHTML = '<p style="text-align:center; color:#888;">작성된 글이 없습니다.</p>';
+                return;
+            }
+
+            listContainer.innerHTML = myPosts.reverse().map(p => `
+                <div class="post-item">
+                    <div class="post-header">
+                        <span>${p.user}</span>
+                        <span>${p.date}</span>
+                    </div>
+                    <div class="post-title">${p.title}</div>
+                    <div style="margin-top:10px; font-size:0.95rem; line-height:1.5;">${p.message}</div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
