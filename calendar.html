@@ -122,13 +122,15 @@
 
             el.innerHTML = holidays.map(h => {
                 const isPast = h.date < today;
+                // 현지 명칭과 영어 명칭이 다른 경우에만 병기, 같으면 하나만 표시
+                const displayName = h.localName === h.name ? h.name : `${h.localName} (${h.name})`;
+                
                 return `
                     <div class="holiday-card" style="background: white; padding: 15px 20px; border-radius: 15px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; opacity: ${isPast ? '0.5' : '1'};">
-                        <div style="text-align: left;">
-                            <div style="font-weight: bold; color: var(--text-color);">${currentLanguage === 'ko' ? h.localName : h.name}</div>
-                            <div style="font-size: 0.8rem; color: #999;">${h.name !== h.localName ? h.name : ''}</div>
+                        <div style="text-align: left; flex: 1; padding-right: 10px;">
+                            <div style="font-weight: bold; color: var(--text-color); font-size: 1rem; line-height: 1.4;">${displayName}</div>
                         </div>
-                        <div style="font-weight: 900; color: var(--primary-color); font-size: 0.95rem;">${h.date.replace(/-/g, '.')}</div>
+                        <div style="font-weight: 900; color: var(--primary-color); font-size: 0.95rem; white-space: nowrap;">${h.date.replace(/-/g, '.')}</div>
                     </div>
                 `;
             }).join('');
