@@ -1,4 +1,4 @@
-// Final Comprehensive Worldwide Location Data
+// Comprehensive Worldwide Location Data (Full Expansion)
 const locationData = {
     "South Korea": [
         { name: "Seoul/Incheon (ICN)", tz: "Asia/Seoul", lat: 37.4602, lon: 126.4407 },
@@ -16,25 +16,27 @@ const locationData = {
         { name: "San Francisco (SFO)", tz: "America/Los_Angeles", lat: 37.6213, lon: -122.3790 },
         { name: "Seattle (SEA)", tz: "America/Los_Angeles", lat: 47.4502, lon: -122.3088 },
         { name: "El Paso (ELP)", tz: "America/Denver", lat: 31.8066, lon: -106.3778 },
-        { name: "Miami (MIA)", tz: "America/New_York", lat: 25.7959, lon: -80.2870 },
-        { name: "Las Vegas (LAS)", tz: "America/Los_Angeles", lat: 36.0840, lon: -115.1537 },
         { name: "Honolulu (HNL)", tz: "Pacific/Honolulu", lat: 21.3156, lon: -157.9242 },
-        { name: "Boston (BOS)", tz: "America/New_York", lat: 42.3656, lon: -71.0096 }
+        { name: "Miami (MIA)", tz: "America/New_York", lat: 25.7959, lon: -80.2870 },
+        { name: "Washington (IAD)", tz: "America/New_York", lat: 38.9531, lon: -77.4565 }
     ],
     "Japan": [
         { name: "Tokyo Narita (NRT)", tz: "Asia/Tokyo", lat: 35.7720, lon: 140.3929 },
         { name: "Tokyo Haneda (HND)", tz: "Asia/Tokyo", lat: 35.5494, lon: 139.7798 },
         { name: "Osaka (KIX)", tz: "Asia/Tokyo", lat: 34.4320, lon: 135.2304 },
         { name: "Fukuoka (FUK)", tz: "Asia/Tokyo", lat: 33.5859, lon: 130.4507 },
-        { name: "Sapporo (CTS)", tz: "Asia/Tokyo", lat: 42.7752, lon: 141.6923 }
+        { name: "Sapporo (CTS)", tz: "Asia/Tokyo", lat: 42.7752, lon: 141.6923 },
+        { name: "Okinawa (OKA)", tz: "Asia/Tokyo", lat: 26.2064, lon: 127.6465 }
     ],
     "China": [
         { name: "Beijing (PEK)", tz: "Asia/Shanghai", lat: 40.0799, lon: 116.6031 },
         { name: "Shanghai (PVG)", tz: "Asia/Shanghai", lat: 31.1443, lon: 121.8083 },
-        { name: "Guangzhou (CAN)", tz: "Asia/Shanghai", lat: 23.3924, lon: 113.2988 }
+        { name: "Guangzhou (CAN)", tz: "Asia/Shanghai", lat: 23.3924, lon: 113.2988 },
+        { name: "Shenzhen (SZX)", tz: "Asia/Shanghai", lat: 22.6393, lon: 113.8107 },
+        { name: "Chengdu (CTU)", tz: "Asia/Shanghai", lat: 30.5785, lon: 103.9471 }
     ],
-    "United Kingdom": [
-        { name: "London Heathrow (LHR)", tz: "Europe/London", lat: 51.4700, lon: -0.4543 },
+    "UK": [
+        { name: "London (LHR)", tz: "Europe/London", lat: 51.4700, lon: -0.4543 },
         { name: "Manchester (MAN)", tz: "Europe/London", lat: 53.3588, lon: -2.2727 },
         { name: "Edinburgh (EDI)", tz: "Europe/London", lat: 55.9508, lon: -3.3615 }
     ],
@@ -58,7 +60,21 @@ const locationData = {
         { name: "Melbourne (MEL)", tz: "Australia/Melbourne", lat: -37.6690, lon: 144.8410 },
         { name: "Brisbane (BNE)", tz: "Australia/Brisbane", lat: -27.3942, lon: 153.1218 }
     ],
+    "Italy": [{ name: "Rome (FCO)", tz: "Europe/Rome", lat: 41.8003, lon: 12.2389 }],
+    "Spain": [{ name: "Madrid (MAD)", tz: "Europe/Madrid", lat: 40.4983, lon: -3.5676 }],
+    "Switzerland": [{ name: "Zurich (ZRH)", tz: "Europe/Zurich", lat: 47.4582, lon: 8.5555 }],
     "Singapore": [{ name: "Singapore (SIN)", tz: "Asia/Singapore", lat: 1.3644, lon: 103.9915 }],
+    "Taiwan": [{ name: "Taipei (TPE)", tz: "Asia/Taipei", lat: 25.0797, lon: 121.2342 }],
+    "Thailand": [{ name: "Bangkok (BKK)", tz: "Asia/Bangkok", lat: 13.6900, lon: 100.7501 }],
+    "Vietnam": [{ name: "Ho Chi Minh (SGN)", tz: "Asia/Ho_Chi_Minh", lat: 10.8185, lon: 106.6588 }],
+    "Malaysia": [{ name: "Kuala Lumpur (KUL)", tz: "Asia/Kuala_Lumpur", lat: 2.7456, lon: 101.7072 }],
+    "Indonesia": [{ name: "Jakarta (CGK)", tz: "Asia/Jakarta", lat: -6.1256, lon: 106.6559 }],
+    "Philippines": [{ name: "Manila (MNL)", tz: "Asia/Manila", lat: 14.5086, lon: 121.0194 }],
+    "UAE": [{ name: "Dubai (DXB)", tz: "Asia/Dubai", lat: 25.2532, lon: 55.3657 }],
+    "Turkey": [{ name: "Istanbul (IST)", tz: "Europe/Istanbul", lat: 41.2753, lon: 28.7519 }],
+    "Russia": [{ name: "Moscow (SVO)", tz: "Europe/Moscow", lat: 55.9726, lon: 37.4146 }],
+    "Brazil": [{ name: "Sao Paulo (GRU)", tz: "America/Sao_Paulo", lat: -23.4356, lon: -46.4731 }],
+    "Mexico": [{ name: "Mexico City (MEX)", tz: "America/Mexico_City", lat: 19.4361, lon: -99.0719 }],
     "Others": [{ name: "UTC/GMT", tz: "UTC", lat: 0, lon: 0 }]
 };
 
@@ -66,35 +82,34 @@ const translations = {
     'ko': {
         'header-title': 'Now and Us',
         'header-subtitle': '멀리 있어도 마음은 곁에, 장거리 연애를 위한 따뜻한 기록',
-        'anniversary-title': 'Time Since We Met',
-        'anniversary-text-before': 'We\'ve been in love for',
-        'anniversary-text-after': 'days.',
-        'countdown-title': 'Until We Meet Again',
-        'countdown-text-before': 'Only',
-        'countdown-text-after': 'left!',
-        'world-clock-title': 'Our Times',
-        'my-time-label': 'My Time',
-        'partner-time-label': 'Partner\'s Time',
-        'weather-title': 'Our Weather',
-        'my-weather-label': 'My Weather',
-        'partner-weather-label': 'Partner\'s Weather',
-        'weather-update-text': 'Updating live based on your locations...',
-        'footer-text': 'Made with ❤️ for long-distance lovers',
-        'met-message': 'Finally together!',
-        'days-unit': 'd', 'hours-unit': 'h', 'minutes-unit': 'm', 'seconds-unit': 's',
-        'settings-button': 'Change Date',
-        'label-anniversary': 'Anniversary:', 'label-meeting': 'Next Meeting:', 'label-country': 'Country:', 'label-airport': 'Airport:', 'label-location': 'Location:',
-        'timezone-info': 'Target Location:', 'change-my-loc': 'Set My Location', 'change-partner-tz': 'Set Partner Location',
-        'my-loc-title': 'My Location', 'partner-loc-title': 'Partner\'s Location',
+        'anniversary-title': '함께한 시간',
+        'anniversary-text-before': '우리가 사랑한 지 어느덧',
+        'anniversary-text-after': '일이 되었어요.',
+        'countdown-title': '다시 마주 보게 될 날',
+        'countdown-text-before': '설레는 마음으로',
+        'countdown-text-after': '만남을 기다려요.',
+        'world-clock-title': '다른 공간, 연결된 시간',
+        'my-time-label': '나의 시간',
+        'partner-time-label': '상대방의 시간',
+        'weather-title': '우리의 오늘 날씨',
+        'my-weather-label': '내가 있는 곳',
+        'partner-weather-label': '네가 있는 곳',
+        'weather-update-text': '실시간 날씨 정보를 가져오는 중...',
+        'footer-text': '먼 거리를 사랑으로 채워가는 모든 분들을 응원합니다 ❤️',
+        'met-message': '드디어 만났어요!',
+        'days-unit': '일', 'hours-unit': '시간', 'minutes-unit': '분', 'seconds-unit': '초',
+        'settings-button': '수정하기',
+        'label-anniversary': '처음 만난 날:', 'label-meeting': '다시 만날 날:', 'label-country': '나라:', 'label-airport': '공항:', 'label-location': '위치:',
+        'timezone-info': '만남 장소:', 'change-my-loc': '나의 위치 설정', 'change-partner-tz': '상대방 위치 설정',
+        'my-loc-title': '나의 현재 위치', 'partner-loc-title': '상대방 현재 위치',
         'ps-header': 'Partnership',
         'ps-subtitle': 'Now and Us와 함께 따뜻한 가치를 만들어가요',
         'ps-label-name': '성함 / 회사명', 'ps-label-email': '회신받을 이메일', 'ps-label-subject': '문의 제목', 'ps-label-message': '문의 내용',
         'ps-btn': '보내기', 'ps-back': '← 메인으로 돌아가기',
         'ps-name-ph': '이름을 입력해주세요', 'ps-subject-ph': '제휴 문의 드립니다', 'ps-message-ph': '상세한 내용을 적어주세요',
-        'board-header': 'Board',
+        'board-header': '게시판 (Board)',
         'board-subtitle': '우리의 소중한 이야기와 의견을 남겨주세요',
-        'board-write-title': '새 글 남기기',
-        'board-my-list': '게시글 목록'
+        'board-write-title': '새 글 남기기', 'board-my-list': '게시글 목록'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -105,20 +120,20 @@ const translations = {
         'countdown-title': 'Until We Meet Again',
         'countdown-text-before': 'Only',
         'countdown-text-after': 'left!',
-        'world-clock-title': 'Two Places, One Connection',
-        'my-time-label': 'My Time Here',
-        'partner-time-label': "Your Time There",
-        'weather-title': 'Our Weather Today',
+        'world-clock-title': 'Our Times',
+        'my-time-label': 'My Time',
+        'partner-time-label': "Partner's Time",
+        'weather-title': 'Our Weather',
         'my-weather-label': 'Where I am',
         'partner-weather-label': 'Where you are',
         'weather-update-text': 'Fetching live weather updates...',
         'footer-text': 'Celebrating every mile covered by love ❤️',
         'met-message': "Finally together!",
         'days-unit': 'd', 'hours-unit': 'h', 'minutes-unit': 'm', 'seconds-unit': 's',
-        'settings-button': 'Edit Memories',
+        'settings-button': 'Edit',
         'label-anniversary': 'First Day:', 'label-meeting': 'Next Meeting:', 'label-country': 'Country:', 'label-airport': 'Airport:', 'label-location': 'Location:',
-        'timezone-info': 'Where we meet:', 'change-my-loc': 'Set My Location', 'change-partner-tz': 'Set Partner Location',
-        'my-loc-title': 'My Current Location', 'partner-loc-title': "Partner's Current Location",
+        'timezone-info': 'Meeting At:', 'change-my-loc': 'Set My Location', 'change-partner-tz': 'Set Partner Location',
+        'my-loc-title': 'My Location', 'partner-loc-title': "Partner's Location",
         'ps-header': 'Partnership',
         'ps-subtitle': 'Let\'s create warm values with Now and Us',
         'ps-label-name': 'Name / Company', 'ps-label-email': 'Reply Email', 'ps-label-subject': 'Subject', 'ps-label-message': 'Inquiry Details',
@@ -126,8 +141,7 @@ const translations = {
         'ps-name-ph': 'Enter your name', 'ps-subject-ph': 'Inquiry about partnership', 'ps-message-ph': 'Please enter detailed information',
         'board-header': 'Board',
         'board-subtitle': 'Your voice for a better Now and Us',
-        'board-write-title': 'Leave an Opinion',
-        'board-my-list': 'Inquiry History'
+        'board-write-title': 'Leave an Opinion', 'board-my-list': 'Inquiry History'
     }
 };
 
