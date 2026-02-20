@@ -8,21 +8,25 @@
 </head>
 <body>
     <header>
-        <h1>LDR Love</h1>
-        <p>A space for long-distance couples</p>
+        <div class="language-switcher">
+            <button onclick="setLanguage('ko')">KR</button>
+            <button onclick="setLanguage('en')">EN</button>
+        </div>
+        <h1 data-i18n="header-title">LDR Love</h1>
+        <p data-i18n="header-subtitle">A space for long-distance couples</p>
     </header>
     <main>
         <section id="anniversary">
-            <h2>Our Journey</h2>
-            <p>We've been in love for <span id="days-together"></span> days.</p>
+            <h2 data-i18n="anniversary-title">Our Journey</h2>
+            <p><span data-i18n="anniversary-text-before">We've been in love for</span> <span id="days-together"></span> <span data-i18n="anniversary-text-after">days.</span></p>
         </section>
         <section id="countdown">
-            <h2>Until We Meet Again</h2>
-            <p>Only <span id="countdown-timer"></span> left!</p>
+            <h2 data-i18n="countdown-title">Until We Meet Again</h2>
+            <p><span data-i18n="countdown-text-before">Only</span> <span id="countdown-timer"></span> <span data-i18n="countdown-text-after">left!</span></p>
         </section>
     </main>
     <footer>
-        <p>Made with ❤️ for long-distance lovers</p>
+        <p data-i18n="footer-text">Made with ❤️ for long-distance lovers</p>
     </footer>
     <script src="main.js"></script>
 </body>
