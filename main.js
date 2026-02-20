@@ -224,10 +224,29 @@ let userId = localStorage.getItem('userId') || ('user_' + Math.random().toString
 localStorage.setItem('userId', userId);
 let localComments = JSON.parse(localStorage.getItem('comments')) || [];
 
+const MSG_EXPIRATION_HOURS = 24; // 메시지 유지 시간 (24시간)
+
 function toggleComments() {
     const panel = document.getElementById('comment-panel');
     panel.style.display = panel.style.display === 'none' ? 'flex' : 'none';
-    if (panel.style.display === 'flex') scrollToBottom();
+    if (panel.style.display === 'flex') {
+        cleanOldMessages(); // 열 때마다 오래된 메시지 정리
+        scrollToBottom();
+    }
+}
+
+function cleanOldMessages() {
+    const now = new Date().getTime();
+    const expirationMs = MSG_EXPIRATION_HOURS * 60 * 60 * 1000;
+    
+    // 24시간이 지나지 않은 메시지만 남기기
+    localComments = localComments.filter(c => {
+        const msgDate = new Date(c.date).getTime();
+        return (now - msgDate) < expirationMs;
+    });
+    
+    localStorage.setItem('comments', JSON.stringify(localComments));
+    if (!isFirebaseActive) renderLocalComments();
 }
 
 function addComment() {
