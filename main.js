@@ -225,35 +225,33 @@ localStorage.setItem('userId', userId);
 let localComments = JSON.parse(localStorage.getItem('comments')) || [];
 
 const MSG_EXPIRATION_HOURS = 24; // 메시지 유지 시간 (24시간)
+let lastSentTime = 0; // 도배 방지를 위한 마지막 전송 시간 기록
+const COOLDOWN_MS = 3000; // 3초 쿨타임
 
 function toggleComments() {
     const panel = document.getElementById('comment-panel');
     panel.style.display = panel.style.display === 'none' ? 'flex' : 'none';
     if (panel.style.display === 'flex') {
-        cleanOldMessages(); // 열 때마다 오래된 메시지 정리
+        cleanOldMessages(); 
         scrollToBottom();
     }
 }
 
-function cleanOldMessages() {
-    const now = new Date().getTime();
-    const expirationMs = MSG_EXPIRATION_HOURS * 60 * 60 * 1000;
-    
-    // 24시간이 지나지 않은 메시지만 남기기
-    localComments = localComments.filter(c => {
-        const msgDate = new Date(c.date).getTime();
-        return (now - msgDate) < expirationMs;
-    });
-    
-    localStorage.setItem('comments', JSON.stringify(localComments));
-    if (!isFirebaseActive) renderLocalComments();
-}
-
 function addComment() {
+    const now = Date.now();
     const input = document.getElementById('comment-input');
     const text = input.value.trim();
+    
     if (!text) return;
 
+    // 1. 도배 방지 (쿨타임 체크)
+    if (now - lastSentTime < COOLDOWN_MS) {
+        const remaining = Math.ceil((COOLDOWN_MS - (now - lastSentTime)) / 1000);
+        alert(currentLanguage === 'ko' ? `${remaining}초 후에 다시 보낼 수 있어요.` : `Wait ${remaining}s before sending again.`);
+        return;
+    }
+
+    // 2. 욕설 필터링
     if (checkProfanity(text)) {
         alert(translations[currentLanguage]['alert-profanity']);
         input.value = '';
@@ -266,6 +264,8 @@ function addComment() {
         date: new Date().toISOString(),
         lang: currentLanguage
     };
+
+    lastSentTime = now; // 전송 시간 업데이트
 
     if (isFirebaseActive) {
         db.collection("messages").add({ ...msg, timestamp: firebase.firestore.FieldValue.serverTimestamp() });
