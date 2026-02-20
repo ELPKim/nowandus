@@ -27,15 +27,33 @@
     </header>
 
     <main style="max-width: 1000px; margin: 0 auto; padding: 40px 20px;">
+        <div style="text-align: right; margin-bottom: 20px;">
+            <button onclick="toggleHelp()" data-i18n="news-help-btn" style="background: var(--clock-accent); color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 0.85rem; opacity: 0.9; transition: opacity 0.3s;">도움말</button>
+        </div>
+
+        <div id="news-help-box" style="display: none; background: #fdf2f5; border: 2px dashed var(--clock-accent); padding: 25px; border-radius: 20px; margin-bottom: 30px; text-align: left; animation: fadeIn 0.5s;">
+            <h3 data-i18n="news-help-title" style="margin-top: 0; color: var(--clock-accent); font-size: 1.1rem;">💡 세계 뉴스 이용 안내</h3>
+            <p data-i18n="news-help-text" style="margin-bottom: 0; line-height: 1.7; color: #555; font-size: 0.95rem;"></p>
+        </div>
+
+        <div class="news-controls" style="margin-bottom: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <div class="select-box" style="background: rgba(255,255,255,0.7); padding: 15px 25px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 10px;">
+                <label data-i18n="news-label-my" style="font-weight: bold; color: var(--primary-color);">나의 나라</label>
+                <select id="select-my-country" onchange="fetchNews(this.value, 'my-country-news')" style="padding: 8px 15px; border-radius: 10px; border: 2px solid var(--secondary-color); outline: none; font-family: inherit; cursor: pointer;"></select>
+            </div>
+            <div class="select-box" style="background: rgba(255,255,255,0.7); padding: 15px 25px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 10px;">
+                <label data-i18n="news-label-partner" style="font-weight: bold; color: var(--clock-accent);">상대방 나라</label>
+                <select id="select-partner-country" onchange="fetchNews(this.value, 'partner-country-news')" style="padding: 8px 15px; border-radius: 10px; border: 2px solid #e2cfea; outline: none; font-family: inherit; cursor: pointer;"></select>
+            </div>
+        </div>
+
         <div class="news-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
             <div class="news-section">
-                <h2 data-i18n="news-label-my" style="color: var(--primary-color); margin-bottom: 20px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px;">나의 나라 소식</h2>
                 <div id="my-country-news">
                     <!-- News items will be injected here -->
                 </div>
             </div>
             <div class="news-section">
-                <h2 data-i18n="news-label-partner" style="color: var(--clock-accent); margin-bottom: 20px; border-bottom: 2px solid #e2cfea; padding-bottom: 10px;">상대방 나라 소식</h2>
                 <div id="partner-country-news">
                     <!-- News items will be injected here -->
                 </div>
@@ -56,12 +74,38 @@
 
     <script src="main.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Give a small delay to ensure language and locations are loaded from localStorage
-            setTimeout(() => {
+        function toggleHelp() {
+            const el = document.getElementById('news-help-box');
+            if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+        }
+
+        async function initNewsPage() {
+            try {
+                const res = await fetch('news-data.json');
+                const allNews = await res.json();
+                const availableCountries = Object.keys(allNews).sort();
+                
+                const mySelect = document.getElementById('select-my-country');
+                const partnerSelect = document.getElementById('select-partner-country');
+                
+                availableCountries.forEach(country => {
+                    const opt1 = new Option(country, country);
+                    const opt2 = new Option(country, country);
+                    if (country === myCountry) opt1.selected = true;
+                    if (country === partnerCountry) opt2.selected = true;
+                    mySelect.add(opt1);
+                    partnerSelect.add(opt2);
+                });
+                
                 fetchNews(myCountry, 'my-country-news');
                 fetchNews(partnerCountry, 'partner-country-news');
-            }, 100);
+            } catch (e) {
+                console.error("Failed to load country list", e);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(initNewsPage, 100);
         });
     </script>
     <style>
