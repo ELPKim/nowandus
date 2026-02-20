@@ -13,7 +13,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, push, onValue, update, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        // Cloudflare 빌드 시 Secret 변수로 자동 교체됨
         const firebaseConfig = {
             apiKey: "__FIREBASE_API_KEY__", 
             authDomain: "nowandus-84652.firebaseapp.com",
@@ -38,13 +37,16 @@
     <style>
         .board-container { max-width: 800px; margin: 30px auto; padding: 20px; }
         .write-section { background: white; padding: 25px; border-radius: 20px; margin-bottom: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .post-card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; text-align: left; border: 1px solid #eee; }
+        .post-card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; text-align: left; border: 1px solid #eee; transition: all 0.3s; }
+        .post-card:hover { border-color: var(--primary-color); }
         .post-header { display: flex; justify-content: space-between; font-size: 0.8rem; color: #999; margin-bottom: 10px; }
         .post-title { font-weight: bold; font-size: 1.1rem; color: var(--accent-color); cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
         .post-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #eee; font-size: 0.95rem; line-height: 1.6; }
         .admin-reply { margin-top: 15px; padding: 15px; background: #fff0f3; border-radius: 10px; color: var(--accent-color); border-left: 4px solid var(--primary-color); }
         .admin-panel { margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 10px; border: 1px solid #ddd; }
         .secret-badge { font-size: 0.7rem; background: #f1f1f1; padding: 2px 8px; border-radius: 10px; color: #888; }
+        .input-row { display: flex; gap: 10px; margin-bottom: 10px; }
+        .input-row input { flex: 1; }
     </style>
 </head>
 <body>
@@ -58,34 +60,35 @@
             <button onclick="setLanguage('ko')">KR</button>
             <button onclick="setLanguage('en')">EN</button>
         </div>
-        <h1 data-i18n="board-header">Board</h1>
+        <h1 data-i18n="board-header">게시판 (Board)</h1>
         <p data-i18n="board-subtitle">우리의 소중한 이야기와 의견을 남겨주세요</p>
     </header>
 
     <main class="board-container">
         <div class="write-section">
-            <h3 data-i18n="board-write-title">새 글 남기기</h3>
-            <div style="display:flex; gap:10px; margin-bottom:10px;">
-                <input type="text" id="post-nick" class="input-field" placeholder="닉네임">
-                <input type="password" id="post-pw" class="input-field" placeholder="비밀번호">
+            <h3 data-i18n="board-write-title" style="margin-top:0; color:var(--primary-color);">새 글 남기기</h3>
+            <div class="input-row">
+                <input type="text" id="post-nick" class="input-field" placeholder="닉네임 (Nickname)">
+                <input type="password" id="post-pw" class="input-field" placeholder="비밀번호 (Password)">
             </div>
-            <input type="text" id="post-title" class="input-field" placeholder="제목을 입력하세요">
-            <textarea id="post-msg" class="input-field" style="height: 100px;" placeholder="내용을 입력하세요. 관리자와 작성자만 볼 수 있습니다."></textarea>
-            <button onclick="submitPost()" class="btn-action">등록하기</button>
+            <input type="text" id="post-title" class="input-field" placeholder="제목을 입력하세요 (Title)">
+            <textarea id="post-msg" class="input-field" style="height: 100px;" placeholder="내용을 입력하세요. 관리자와 본인만 볼 수 있는 비밀글로 보호됩니다."></textarea>
+            <button onclick="submitPost()" class="btn-action" data-i18n="ps-btn">등록하기</button>
         </div>
 
+        <h3 data-i18n="board-my-list" style="text-align:left; color:var(--accent-color); margin-left:10px;">게시글 목록</h3>
         <div id="posts-list">
-            <p style="text-align:center; color:#999;">데이터를 불러오는 중...</p>
+            <p style="text-align:center; color:#999; padding:40px;">불러오는 중...</p>
         </div>
 
         <div style="margin-top: 50px; text-align:center;">
-            <button onclick="toggleAdminPanel()" style="background:none; border:none; color:#eee; cursor:pointer; font-size:0.7rem;">Admin</button>
+            <button onclick="toggleAdminPanel()" style="background:none; border:none; color:#eee; cursor:pointer; font-size:0.7rem;">Admin Access</button>
             <div id="admin-login-ui" style="display:none; margin-top:10px;">
-                <input type="password" id="admin-master-pw" class="input-field" style="width:200px;" placeholder="Admin PW" onchange="verifyAdmin()">
+                <input type="password" id="admin-master-pw" class="input-field" style="width:200px;" placeholder="Master Password" onchange="verifyAdmin()">
             </div>
         </div>
 
-        <a href="index.html" class="back-link" data-i18n="ps-back" style="display:block; margin-top:30px;">← 메인으로 돌아가기</a>
+        <a href="index.html" class="back-link" data-i18n="ps-back" style="display:block; margin-top:30px; text-align:center;">← 메인으로 돌아가기</a>
     </main>
 
     <script src="main.js"></script>
@@ -98,17 +101,18 @@
             const title = document.getElementById('post-title').value;
             const msg = document.getElementById('post-msg').value;
 
-            if(!nick || !pw || !title || !msg) return alert("빈칸을 모두 채워주세요.");
+            if(!nick || !pw || !title || !msg) return alert(currentLanguage === 'ko' ? "모든 항목을 입력해주세요." : "Please fill in all fields.");
 
             if(window.dbPush) {
                 window.dbPush(window.dbRef(window.db, 'posts'), {
                     nick, pw, title, msg, timestamp: Date.now(), reply: ""
                 }).then(() => {
-                    alert("등록되었습니다.");
-                    location.reload();
+                    alert(currentLanguage === 'ko' ? "성공적으로 등록되었습니다." : "Successfully posted.");
+                    document.getElementById('post-title').value = "";
+                    document.getElementById('post-msg').value = "";
                 });
             } else {
-                alert("Firebase 연결 설정이 필요합니다.");
+                alert("Firebase Error: Check configuration.");
             }
         }
 
@@ -117,7 +121,10 @@
             window.dbOnValue(window.dbRef(window.db, 'posts'), (snapshot) => {
                 const data = snapshot.val();
                 const list = document.getElementById('posts-list');
-                if(!data) { list.innerHTML = "<p style='text-align:center; color:#999;'>글이 없습니다.</p>"; return; }
+                if(!data) { 
+                    list.innerHTML = `<p style='text-align:center; color:#999; padding:40px;'>${currentLanguage === 'ko' ? '아직 작성된 글이 없습니다.' : 'No posts yet.'}</p>`; 
+                    return; 
+                }
 
                 const items = Object.entries(data).reverse();
                 list.innerHTML = items.map(([id, p]) => `
@@ -125,16 +132,16 @@
                         <div class="post-header"><span>👤 ${p.nick}</span><span>${new Date(p.timestamp).toLocaleDateString()}</span></div>
                         <div class="post-title" onclick="unlockPost('${id}', '${p.pw}')">
                             <span>${p.title}</span>
-                            <span class="secret-badge">🔒 비밀글</span>
+                            <span class="secret-badge">🔒 ${currentLanguage === 'ko' ? '비밀글' : 'Secret'}</span>
                         </div>
                         <div class="post-content" id="msg-${id}">
-                            <div style="white-space:pre-wrap;">${p.msg}</div>
-                            ${p.reply ? `<div class="admin-reply"><strong>답변:</strong> ${p.reply}</div>` : ''}
+                            <div style="white-space:pre-wrap; margin-bottom:15px;">${p.msg}</div>
+                            ${p.reply ? `<div class="admin-reply"><strong>${currentLanguage === 'ko' ? '답변' : 'Reply'}:</strong> ${p.reply}</div>` : ''}
                             ${isSystemAdmin ? `
                                 <div class="admin-panel">
                                     <textarea id="reply-text-${id}" class="input-field" placeholder="답변 내용">${p.reply || ''}</textarea>
                                     <button onclick="saveReply('${id}')" class="settings-btn">답변 저장</button>
-                                    <button onclick="deletePost('${id}')" style="color:red; background:none; border:none; margin-left:10px; cursor:pointer;">삭제</button>
+                                    <button onclick="deletePost('${id}')" style="color:red; background:none; border:none; margin-left:10px; cursor:pointer; font-size:0.8rem;">삭제</button>
                                 </div>
                             ` : ''}
                         </div>
@@ -144,10 +151,17 @@
         }
 
         function unlockPost(id, correctPw) {
-            if(isSystemAdmin) { document.getElementById(`msg-${id}`).style.display = 'block'; return; }
-            const pw = prompt("비밀번호를 입력하세요:");
-            if(pw === correctPw) document.getElementById(`msg-${id}`).style.display = 'block';
-            else if(pw !== null) alert("틀렸습니다.");
+            if(isSystemAdmin) { 
+                const el = document.getElementById(`msg-${id}`);
+                el.style.display = el.style.display === 'block' ? 'none' : 'block';
+                return; 
+            }
+            const pw = prompt(currentLanguage === 'ko' ? "작성 시 설정한 비밀번호를 입력하세요:" : "Enter the password you set:");
+            if(pw === correctPw) {
+                document.getElementById(`msg-${id}`).style.display = 'block';
+            } else if(pw !== null) {
+                alert(currentLanguage === 'ko' ? "비밀번호가 틀렸습니다." : "Incorrect password.");
+            }
         }
 
         function toggleAdminPanel() {
@@ -156,22 +170,28 @@
         }
 
         function verifyAdmin() {
+            // 관리자 비밀번호: admin1234 (필요시 변경하세요)
             if(document.getElementById('admin-master-pw').value === "admin1234") {
-                isSystemAdmin = true; alert("관리자 인증 성공"); loadPosts();
+                isSystemAdmin = true; 
+                alert("관리자 모드가 활성화되었습니다."); 
+                loadPosts();
             }
         }
 
         function saveReply(id) {
             const txt = document.getElementById(`reply-text-${id}`).value;
-            window.dbUpdate(window.dbRef(window.db, `posts/${id}`), { reply: txt }).then(() => alert("답변 완료"));
+            window.dbUpdate(window.dbRef(window.db, `posts/${id}`), { reply: txt })
+                .then(() => alert(currentLanguage === 'ko' ? "답변이 저장되었습니다." : "Reply saved."));
         }
 
         function deletePost(id) {
-            if(confirm("정말 삭제할까요?")) window.dbRemove(window.dbRef(window.db, `posts/${id}`));
+            if(confirm(currentLanguage === 'ko' ? "정말 이 글을 삭제할까요?" : "Delete this post?")) {
+                window.dbRemove(window.dbRef(window.db, `posts/${id}`));
+            }
         }
 
         window.addEventListener('load', () => {
-            setTimeout(loadPosts, 1500);
+            setTimeout(loadPosts, 1000);
         });
     </script>
 </body>
