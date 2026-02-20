@@ -125,8 +125,29 @@
                 </div>
             </div>
             <div class="mini-settings">
-                <button class="settings-btn" onclick="toggleMiniSettings('clock-settings')" data-i18n="change-partner-tz">Set Partner Timezone</button>
-                <div id="clock-settings" class="mini-form" style="display: none;">
+                <div class="settings-group">
+                    <button class="settings-btn" onclick="toggleMiniSettings('my-clock-settings')" data-i18n="change-my-loc">Set My Location</button>
+                    <button class="settings-btn" onclick="toggleMiniSettings('partner-clock-settings')" data-i18n="change-partner-tz">Set Partner Location</button>
+                </div>
+                
+                <div id="my-clock-settings" class="mini-form" style="display: none;">
+                    <h4 data-i18n="my-loc-title">My Location</h4>
+                    <div class="input-group">
+                        <label data-i18n="label-country">Country:</label>
+                        <select id="input-my-country" onchange="updateMyCityList()">
+                            <!-- Will be populated by JS -->
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label data-i18n="label-location">Location:</label>
+                        <select id="input-my-location" onchange="saveSettings()">
+                            <!-- Will be populated by JS -->
+                        </select>
+                    </div>
+                </div>
+
+                <div id="partner-clock-settings" class="mini-form" style="display: none;">
+                    <h4 data-i18n="partner-loc-title">Partner's Location</h4>
                     <div class="input-group">
                         <label data-i18n="label-country">Country:</label>
                         <select id="input-partner-country" onchange="updatePartnerLocationList()">

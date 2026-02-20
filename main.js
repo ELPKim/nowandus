@@ -26,44 +26,27 @@ const locationData = {
         { name: "Tokyo Haneda (HND)", tz: "Asia/Tokyo", lat: 35.5494, lon: 139.7798 },
         { name: "Osaka (KIX)", tz: "Asia/Tokyo", lat: 34.4320, lon: 135.2304 },
         { name: "Fukuoka (FUK)", tz: "Asia/Tokyo", lat: 33.5859, lon: 130.4507 },
-        { name: "Sapporo (CTS)", tz: "Asia/Tokyo", lat: 42.7752, lon: 141.6923 },
-        { name: "Okinawa (OKA)", tz: "Asia/Tokyo", lat: 26.2064, lon: 127.6465 }
+        { name: "Sapporo (CTS)", tz: "Asia/Tokyo", lat: 42.7752, lon: 141.6923 }
     ],
     "United Kingdom": [
         { name: "London Heathrow (LHR)", tz: "Europe/London", lat: 51.4700, lon: -0.4543 },
         { name: "London Gatwick (LGW)", tz: "Europe/London", lat: 51.1537, lon: -0.1821 },
-        { name: "Manchester (MAN)", tz: "Europe/London", lat: 53.3588, lon: -2.2727 },
-        { name: "Edinburgh (EDI)", tz: "Europe/London", lat: 55.9508, lon: -3.3615 }
+        { name: "Manchester (MAN)", tz: "Europe/London", lat: 53.3588, lon: -2.2727 }
     ],
     "France": [
         { name: "Paris (CDG)", tz: "Europe/Paris", lat: 49.0097, lon: 2.5479 },
         { name: "Paris Orly (ORY)", tz: "Europe/Paris", lat: 48.7262, lon: 2.3652 },
-        { name: "Nice (NCE)", tz: "Europe/Paris", lat: 43.6653, lon: 7.2150 },
-        { name: "Lyon (LYS)", tz: "Europe/Paris", lat: 45.7256, lon: 5.0811 }
+        { name: "Nice (NCE)", tz: "Europe/Paris", lat: 43.6653, lon: 7.2150 }
     ],
     "Germany": [
         { name: "Frankfurt (FRA)", tz: "Europe/Berlin", lat: 50.0379, lon: 8.5622 },
         { name: "Munich (MUC)", tz: "Europe/Berlin", lat: 48.3537, lon: 11.7750 },
-        { name: "Berlin (BER)", tz: "Europe/Berlin", lat: 52.3667, lon: 13.5033 },
-        { name: "Hamburg (HAM)", tz: "Europe/Berlin", lat: 53.6304, lon: 9.9882 }
-    ],
-    "Canada": [
-        { name: "Toronto (YYZ)", tz: "America/Toronto", lat: 43.6777, lon: -79.6248 },
-        { name: "Vancouver (YVR)", tz: "America/Vancouver", lat: 49.1967, lon: -123.1815 },
-        { name: "Montreal (YUL)", tz: "America/Toronto", lat: 45.4657, lon: -73.7455 },
-        { name: "Calgary (YYC)", tz: "America/Edmonton", lat: 51.1139, lon: -114.0203 }
+        { name: "Berlin (BER)", tz: "Europe/Berlin", lat: 52.3667, lon: 13.5033 }
     ],
     "Australia": [
         { name: "Sydney (SYD)", tz: "Australia/Sydney", lat: -33.9399, lon: 151.1753 },
         { name: "Melbourne (MEL)", tz: "Australia/Melbourne", lat: -37.6690, lon: 144.8410 },
-        { name: "Brisbane (BNE)", tz: "Australia/Brisbane", lat: -27.3942, lon: 153.1218 },
-        { name: "Perth (PER)", tz: "Australia/Perth", lat: -31.9385, lon: 115.9672 }
-    ],
-    "China": [
-        { name: "Beijing (PEK)", tz: "Asia/Shanghai", lat: 40.0799, lon: 116.6031 },
-        { name: "Shanghai (PVG)", tz: "Asia/Shanghai", lat: 31.1443, lon: 121.8083 },
-        { name: "Guangzhou (CAN)", tz: "Asia/Shanghai", lat: 23.3924, lon: 113.2988 },
-        { name: "Shenzhen (SZX)", tz: "Asia/Shanghai", lat: 22.6393, lon: 113.8107 }
+        { name: "Brisbane (BNE)", tz: "Australia/Brisbane", lat: -27.3942, lon: 153.1218 }
     ],
     "Singapore": [{ name: "Changi (SIN)", tz: "Asia/Singapore", lat: 1.3644, lon: 103.9915 }],
     "Others": [{ name: "UTC/GMT", tz: "UTC", lat: 0, lon: 0 }]
@@ -99,7 +82,11 @@ const translations = {
         'label-country': '나라:',
         'label-airport': '공항:',
         'label-location': '위치:',
-        'timezone-info': '우리가 만날 곳:'
+        'timezone-info': '우리가 만날 곳:',
+        'change-my-loc': '나의 위치는?',
+        'change-partner-tz': '너의 위치는?',
+        'my-loc-title': '나의 현재 위치',
+        'partner-loc-title': '상대방의 현재 위치'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -129,7 +116,11 @@ const translations = {
         'label-country': 'Country:',
         'label-airport': 'Airport:',
         'label-location': 'Location:',
-        'timezone-info': 'Where we meet:'
+        'timezone-info': 'Where we meet:',
+        'change-my-loc': 'Set My Location',
+        'change-partner-tz': 'Set Partner Location',
+        'my-loc-title': 'My Current Location',
+        'partner-loc-title': "Partner's Current Location"
     }
 };
 
@@ -140,6 +131,10 @@ let nextMeetingDate = localStorage.getItem('nextMeetingDate') || '2024-12-25T12:
 let meetingCountry = localStorage.getItem('meetingCountry') || 'South Korea';
 let meetingAirport = localStorage.getItem('meetingAirport') || "Incheon (ICN)";
 let meetingTimezone = localStorage.getItem('meetingTimezone') || 'Asia/Seoul';
+
+let myCountry = localStorage.getItem('myCountry') || 'South Korea';
+let myLocation = localStorage.getItem('myLocation') || "Seoul/Gimpo (GMP)";
+let myTimezone = localStorage.getItem('myTimezone') || 'Asia/Seoul';
 
 let partnerCountry = localStorage.getItem('partnerCountry') || 'USA';
 let partnerLocation = localStorage.getItem('partnerLocation') || "New York (JFK)";
@@ -190,28 +185,17 @@ function getWeatherIcon(code) {
 function getWeatherDescription(code) {
     const descs = {
         0: "Clear", 1: "Mainly Clear", 2: "Partly Cloudy", 3: "Overcast",
-        45: "Fog", 48: "Depositing Rime Fog", 51: "Light Drizzle",
-        61: "Slight Rain", 71: "Slight Snow", 95: "Thunderstorm"
+        45: "Fog", 48: "Fog", 51: "Drizzle", 61: "Rain", 71: "Snow", 95: "Storm"
     };
     return descs[code] || "Cloudy";
 }
 
 async function updateWeather() {
-    // 1. Get My Location Weather (Auto-detect)
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(pos => {
-            fetchWeather(pos.coords.latitude, pos.coords.longitude, 'my-weather-info');
-        }, () => {
-            // Fallback to SEOUL if denied
-            fetchWeather(37.5665, 126.9780, 'my-weather-info');
-        });
-    }
+    const myData = locationData[myCountry]?.find(l => l.name === myLocation);
+    if (myData) fetchWeather(myData.lat, myData.lon, 'my-weather-info');
 
-    // 2. Get Partner Location Weather
     const partnerData = locationData[partnerCountry]?.find(l => l.name === partnerLocation);
-    if (partnerData) {
-        fetchWeather(partnerData.lat, partnerData.lon, 'partner-weather-info');
-    }
+    if (partnerData) fetchWeather(partnerData.lat, partnerData.lon, 'partner-weather-info');
 }
 
 function updateDisplays() {
@@ -220,15 +204,8 @@ function updateDisplays() {
     updateClocks();
     updateWeather();
     
-    const myTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    let myLocationLabel = myTz;
-    for (const [country, locations] of Object.entries(locationData)) {
-        const match = locations.find(loc => loc.tz === myTz);
-        if (match) { myLocationLabel = `${country}, ${match.name.split(' (')[0]}`; break; }
-    }
-    
     document.getElementById('display-location').textContent = `${meetingCountry}, ${meetingAirport}`;
-    document.getElementById('my-tz').textContent = myLocationLabel;
+    document.getElementById('my-tz').textContent = `${myCountry}, ${myLocation}`;
     document.getElementById('partner-tz').textContent = `${partnerCountry}, ${partnerLocation}`;
 }
 
@@ -257,7 +234,7 @@ function updateCountdown() {
 
 function updateClocks() {
     const now = new Date();
-    document.getElementById('my-time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+    document.getElementById('my-time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: myTimezone });
     try {
         document.getElementById('partner-time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: partnerTimezone });
     } catch (e) { document.getElementById('partner-time').textContent = "TZ Error"; }
@@ -277,39 +254,71 @@ function toggleMiniSettings(id) {
 function saveSettings() {
     anniversaryDate = document.getElementById('input-anniversary').value;
     nextMeetingDate = document.getElementById('input-meeting').value;
+    
+    // Meeting Location
     meetingCountry = document.getElementById('input-country').value;
     const airportSelect = document.getElementById('input-airport');
     if (airportSelect.selectedIndex >= 0) {
         meetingAirport = airportSelect.options[airportSelect.selectedIndex].text;
         meetingTimezone = airportSelect.value;
     }
+
+    // My Location
+    myCountry = document.getElementById('input-my-country').value;
+    const myLocSelect = document.getElementById('input-my-location');
+    if (myLocSelect.selectedIndex >= 0) {
+        myLocation = myLocSelect.options[myLocSelect.selectedIndex].text;
+        myTimezone = myLocSelect.value;
+    }
+
+    // Partner Location
     partnerCountry = document.getElementById('input-partner-country').value;
     const partnerLocSelect = document.getElementById('input-partner-location');
     if (partnerLocSelect.selectedIndex >= 0) {
         partnerLocation = partnerLocSelect.options[partnerLocSelect.selectedIndex].text;
         partnerTimezone = partnerLocSelect.value;
     }
+
     localStorage.setItem('anniversaryDate', anniversaryDate);
     localStorage.setItem('nextMeetingDate', nextMeetingDate);
     localStorage.setItem('meetingCountry', meetingCountry);
     localStorage.setItem('meetingAirport', meetingAirport);
     localStorage.setItem('meetingTimezone', meetingTimezone);
+    localStorage.setItem('myCountry', myCountry);
+    localStorage.setItem('myLocation', myLocation);
+    localStorage.setItem('myTimezone', myTimezone);
     localStorage.setItem('partnerCountry', partnerCountry);
     localStorage.setItem('partnerLocation', partnerLocation);
     localStorage.setItem('partnerTimezone', partnerTimezone);
+
     updateDisplays();
 }
 
 function updateAirportList() {
     const country = document.getElementById('input-country').value;
-    const airportSelect = document.getElementById('input-airport');
-    airportSelect.innerHTML = '';
+    const select = document.getElementById('input-airport');
+    select.innerHTML = '';
     if (locationData[country]) {
         locationData[country].forEach(ap => {
             const opt = document.createElement('option');
             opt.value = ap.tz; opt.textContent = ap.name;
             if (ap.name === meetingAirport) opt.selected = true;
-            airportSelect.appendChild(opt);
+            select.appendChild(opt);
+        });
+    }
+    saveSettings();
+}
+
+function updateMyCityList() {
+    const country = document.getElementById('input-my-country').value;
+    const select = document.getElementById('input-my-location');
+    select.innerHTML = '';
+    if (locationData[country]) {
+        locationData[country].forEach(ap => {
+            const opt = document.createElement('option');
+            opt.value = ap.tz; opt.textContent = ap.name;
+            if (ap.name === myLocation) opt.selected = true;
+            select.appendChild(opt);
         });
     }
     saveSettings();
@@ -317,14 +326,14 @@ function updateAirportList() {
 
 function updatePartnerLocationList() {
     const country = document.getElementById('input-partner-country').value;
-    const locSelect = document.getElementById('input-partner-location');
-    locSelect.innerHTML = '';
+    const select = document.getElementById('input-partner-location');
+    select.innerHTML = '';
     if (locationData[country]) {
         locationData[country].forEach(ap => {
             const opt = document.createElement('option');
             opt.value = ap.tz; opt.textContent = ap.name;
             if (ap.name === partnerLocation) opt.selected = true;
-            locSelect.appendChild(opt);
+            select.appendChild(opt);
         });
     }
     saveSettings();
@@ -332,19 +341,24 @@ function updatePartnerLocationList() {
 
 function initializeForm() {
     const countries = Object.keys(locationData).sort();
-    const countrySelect = document.getElementById('input-country');
-    const partnerCountrySelect = document.getElementById('input-partner-country');
-    [countrySelect, partnerCountrySelect].forEach(select => {
+    const cSelect = document.getElementById('input-country');
+    const myCSelect = document.getElementById('input-my-country');
+    const pCSelect = document.getElementById('input-partner-country');
+    
+    [cSelect, myCSelect, pCSelect].forEach(select => {
         select.innerHTML = '';
         countries.forEach(country => {
             const opt = document.createElement('option');
             opt.value = country; opt.textContent = country;
             if (select.id === 'input-country' && country === meetingCountry) opt.selected = true;
+            if (select.id === 'input-my-country' && country === myCountry) opt.selected = true;
             if (select.id === 'input-partner-country' && country === partnerCountry) opt.selected = true;
             select.appendChild(opt);
         });
     });
+
     updateAirportList();
+    updateMyCityList();
     updatePartnerLocationList();
 }
 
@@ -354,5 +368,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeForm();
     setLanguage(currentLanguage);
     setInterval(() => { updateCountdown(); updateClocks(); }, 1000);
-    setInterval(updateWeather, 30 * 60 * 1000); // 30 mins weather sync
+    setInterval(updateWeather, 30 * 60 * 1000);
 });
