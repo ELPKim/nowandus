@@ -40,11 +40,16 @@
         <div class="circle circle-2"></div>
     </div>
 
-    <header>
+    <header style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-bottom-left-radius: 50% 20px; border-bottom-right-radius: 50% 20px; box-shadow: 0 4px 15px rgba(255, 143, 163, 0.3); position: relative; color: white;">
         <div class="language-switcher">
             <button onclick="setLanguage('ko')">KR</button>
             <button onclick="setLanguage('en')">EN</button>
         </div>
+        <h1 data-i18n="privacy-link" style="font-size: 2.5rem;">개인정보처리방침</h1>
+        <p data-i18n="header-subtitle">멀리 있어도 마음은 곁에, 장거리 연애를 위한 따뜻한 기록</p>
+        <nav class="content-nav" style="margin-top: 25px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding-bottom: 20px;">
+            <a href="news.html" data-i18n="news-header" class="nav-content-link" style="background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 10px 25px; border-radius: 25px; font-weight: bold; border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(5px); transition: all 0.3s; font-size: 0.9rem;">세계 뉴스</a>
+        </nav>
     </header>
 
     <main class="policy-container">
