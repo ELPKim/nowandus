@@ -212,7 +212,10 @@ const translations = {
         'news-load-more': 'Load More',
         'news-loading': 'Loading news...',
         'news-no-data': 'Could not load news.',
-        'news-read-more': 'Read More'
+        'news-read-more': 'Read More',
+        'news-help-btn': 'Help',
+        'news-help-title': '💡 World News Guide',
+        'news-help-text': 'World news is automatically displayed based on the countries you set in the <strong>[Our Times]</strong> section on the main page. You can also manually change countries in the dropdown menus below to see news from other regions.'
     }
 };
 
