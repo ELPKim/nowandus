@@ -80,6 +80,32 @@
     <script src="main.js"></script>
     <script>
         let exchangeData = null;
+        const currencyNames = {
+            "KRW": "대한민국 원 (South Korea)",
+            "USD": "미국 달러 (USA)",
+            "JPY": "일본 엔 (Japan)",
+            "EUR": "유로 (European Union)",
+            "CNY": "중국 위안 (China)",
+            "GBP": "영국 파운드 (UK)",
+            "CAD": "캐나다 달러 (Canada)",
+            "AUD": "호주 달러 (Australia)",
+            "VND": "베트남 동 (Vietnam)",
+            "TWD": "대만 달러 (Taiwan)",
+            "THB": "태국 바트 (Thailand)",
+            "SGD": "싱가포르 달러 (Singapore)",
+            "PHP": "필리핀 페소 (Philippines)",
+            "MYR": "말레이시아 링깃 (Malaysia)",
+            "IDR": "인도네시아 루피아 (Indonesia)",
+            "HKD": "홍콩 달러 (Hong Kong)",
+            "CHF": "스위스 프랑 (Switzerland)",
+            "RUB": "러시아 루블 (Russia)",
+            "BRL": "브라질 헤알 (Brazil)",
+            "MXN": "멕시코 페소 (Mexico)",
+            "AED": "아랍에미리트 디르함 (UAE)",
+            "TRY": "터키 리라 (Turkey)",
+            "ZAR": "남아프리카 랜드 (South Africa)",
+            "NZD": "뉴질랜드 달러 (New Zealand)"
+        };
 
         async function initExchangePage() {
             try {
@@ -92,8 +118,9 @@
                 const currencies = Object.keys(exchangeData.conversion_rates).sort();
                 
                 currencies.forEach(cur => {
-                    const opt1 = new Option(cur, cur);
-                    const opt2 = new Option(cur, cur);
+                    const fullName = currencyNames[cur] ? `${cur} - ${currencyNames[cur]}` : cur;
+                    const opt1 = new Option(fullName, cur);
+                    const opt2 = new Option(fullName, cur);
                     if (cur === 'KRW') opt1.selected = true;
                     if (cur === 'USD') opt2.selected = true;
                     fromSelect.add(opt1);
