@@ -16,6 +16,28 @@
         <p data-i18n="header-subtitle">A space for long-distance couples</p>
     </header>
     <main>
+        <section id="settings-toggle">
+            <button onclick="toggleSettings()" data-i18n="settings-button">Settings</button>
+        </section>
+
+        <section id="settings" style="display: none;">
+            <h2 data-i18n="settings-title">Set Your Dates</h2>
+            <div class="input-group">
+                <label data-i18n="label-anniversary">Anniversary:</label>
+                <input type="date" id="input-anniversary" onchange="saveSettings()">
+            </div>
+            <div class="input-group">
+                <label data-i18n="label-meeting">Next Meeting:</label>
+                <input type="datetime-local" id="input-meeting" onchange="saveSettings()">
+            </div>
+            <div class="input-group">
+                <label data-i18n="label-timezone">Meeting Timezone:</label>
+                <select id="input-timezone" onchange="saveSettings()">
+                    <!-- Will be populated by JS -->
+                </select>
+            </div>
+        </section>
+
         <section id="anniversary">
             <h2 data-i18n="anniversary-title">Our Journey</h2>
             <p><span data-i18n="anniversary-text-before">We've been in love for</span> <span id="days-together"></span> <span data-i18n="anniversary-text-after">days.</span></p>
@@ -23,6 +45,7 @@
         <section id="countdown">
             <h2 data-i18n="countdown-title">Until We Meet Again</h2>
             <p><span data-i18n="countdown-text-before">Only</span> <span id="countdown-timer"></span> <span data-i18n="countdown-text-after">left!</span></p>
+            <p class="tz-info"><span data-i18n="timezone-info">Target Timezone:</span> <span id="display-timezone"></span></p>
         </section>
     </main>
     <footer>

@@ -1,9 +1,3 @@
-// Set the date of the anniversary
-const anniversaryDate = new Date('2022-01-01');
-
-// Set the date of the next meeting
-const nextMeetingDate = new Date('2024-12-25');
-
 // Translation data
 const translations = {
     'ko': {
@@ -20,7 +14,13 @@ const translations = {
         'days-unit': '일',
         'hours-unit': '시간',
         'minutes-unit': '분',
-        'seconds-unit': '초'
+        'seconds-unit': '초',
+        'settings-button': '설정 변경',
+        'settings-title': '날짜 설정',
+        'label-anniversary': '기념일:',
+        'label-meeting': '다음 만남:',
+        'label-timezone': '만남 장소 시간대:',
+        'timezone-info': '기준 시간대:'
     },
     'en': {
         'header-title': 'LDR Love',
@@ -36,11 +36,39 @@ const translations = {
         'days-unit': 'd',
         'hours-unit': 'h',
         'minutes-unit': 'm',
-        'seconds-unit': 's'
+        'seconds-unit': 's',
+        'settings-button': 'Settings',
+        'settings-title': 'Set Your Dates',
+        'label-anniversary': 'Anniversary:',
+        'label-meeting': 'Next Meeting:',
+        'label-timezone': 'Meeting Timezone:',
+        'timezone-info': 'Target Timezone:'
     }
 };
 
 let currentLanguage = localStorage.getItem('language') || 'ko';
+let anniversaryDate = localStorage.getItem('anniversaryDate') || '2022-01-01';
+let nextMeetingDate = localStorage.getItem('nextMeetingDate') || '2024-12-25T12:00';
+let meetingTimezone = localStorage.getItem('meetingTimezone') || Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+function toggleSettings() {
+    const settings = document.getElementById('settings');
+    settings.style.display = settings.style.display === 'none' ? 'block' : 'none';
+}
+
+function saveSettings() {
+    anniversaryDate = document.getElementById('input-anniversary').value;
+    nextMeetingDate = document.getElementById('input-meeting').value;
+    meetingTimezone = document.getElementById('input-timezone').value;
+
+    localStorage.setItem('anniversaryDate', anniversaryDate);
+    localStorage.setItem('nextMeetingDate', nextMeetingDate);
+    localStorage.setItem('meetingTimezone', meetingTimezone);
+
+    updateDaysTogether();
+    updateCountdown();
+    document.getElementById('display-timezone').textContent = meetingTimezone;
+}
 
 function setLanguage(lang) {
     currentLanguage = lang;
@@ -61,21 +89,40 @@ function setLanguage(lang) {
 
 function updateDaysTogether() {
     const today = new Date();
-    const differenceInTime = today.getTime() - anniversaryDate.getTime();
+    const anniv = new Date(anniversaryDate);
+    const differenceInTime = today.getTime() - anniv.getTime();
     const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
-    document.getElementById('days-together').textContent = differenceInDays;
+    document.getElementById('days-together').textContent = Math.max(0, differenceInDays);
 }
 
 function updateCountdown() {
     const today = new Date();
-    const differenceInTime = nextMeetingDate.getTime() - today.getTime();
+    
+    // Create the target date in the specified timezone
+    const targetDateStr = nextMeetingDate; // e.g., "2024-12-25T12:00"
+    const targetDate = new Date(targetDateStr);
+    
+    // Convert to target timezone time
+    // We use Intl.DateTimeFormat to find the offset between current user and target TZ
+    const targetInTZ = new Date(targetDate.toLocaleString('en-US', { timeZone: meetingTimezone }));
+    const nowInTZ = new Date(new Date().toLocaleString('en-US', { timeZone: meetingTimezone }));
+    
+    const differenceInTime = targetDate.getTime() - today.getTime();
+    
+    // Since Date objects are UTC-based internally, we just need to compare them directly
+    // but the input from datetime-local is "local to the browser".
+    // Let's assume the user input is meant for the TARGET timezone.
+    
+    const targetUTC = convertToUTC(targetDateStr, meetingTimezone);
+    const remaining = targetUTC - today.getTime();
+
     const timerElement = document.getElementById('countdown-timer');
 
-    if (differenceInTime > 0) {
-        const days = Math.floor(differenceInTime / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((differenceInTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((differenceInTime % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((differenceInTime % (1000 * 60)) / 1000);
+    if (remaining > 0) {
+        const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
 
         const d = translations[currentLanguage]['days-unit'];
         const h = translations[currentLanguage]['hours-unit'];
@@ -88,8 +135,42 @@ function updateCountdown() {
     }
 }
 
+// Helper to convert local input date (as if it was in target TZ) to UTC timestamp
+function convertToUTC(dateStr, tz) {
+    const date = new Date(dateStr);
+    const invDate = new Date(date.toLocaleString('en-US', { timeZone: tz }));
+    const diff = date.getTime() - invDate.getTime();
+    return date.getTime() + diff;
+}
+
+function populateTimezones() {
+    const select = document.getElementById('input-timezone');
+    // Common timezones - in a real app you might want a full list
+    const tzs = [
+        "UTC", "Asia/Seoul", "America/New_York", "Europe/London", "Europe/Paris", 
+        "Asia/Tokyo", "Australia/Sydney", "America/Los_Angeles", "Asia/Shanghai"
+    ];
+    
+    // Add current one if not in list
+    if (!tzs.includes(meetingTimezone)) tzs.push(meetingTimezone);
+    
+    tzs.sort().forEach(tz => {
+        const opt = document.createElement('option');
+        opt.value = tz;
+        opt.textContent = tz;
+        if (tz === meetingTimezone) opt.selected = true;
+        select.appendChild(opt);
+    });
+}
+
 // Update the counters when the page loads
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize inputs
+    document.getElementById('input-anniversary').value = anniversaryDate;
+    document.getElementById('input-meeting').value = nextMeetingDate;
+    document.getElementById('display-timezone').textContent = meetingTimezone;
+    
+    populateTimezones();
     setLanguage(currentLanguage);
     
     // Update the countdown every second
