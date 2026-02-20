@@ -83,8 +83,12 @@
 
         async function initNewsPage() {
             try {
-                const res = await fetch('news-data.json');
-                const allNews = await res.json();
+                // main.js의 fetchNews에서 사용하는 캐시를 활용하기 위해 첫 호출 시점에 데이터를 채웁니다.
+                if (!window.cachedNewsData) {
+                    const res = await fetch('news-data.json');
+                    window.cachedNewsData = await res.json();
+                }
+                const allNews = window.cachedNewsData;
                 const availableCountries = Object.keys(allNews).sort();
                 
                 const mySelect = document.getElementById('select-my-country');
@@ -99,10 +103,14 @@
                     partnerSelect.add(opt2);
                 });
                 
+                // 캐시가 채워졌으므로 fetchNews는 추가 네트워크 요청 없이 데이터를 표시합니다.
                 fetchNews(myCountry, 'my-country-news');
                 fetchNews(partnerCountry, 'partner-country-news');
             } catch (e) {
                 console.error("Failed to load country list", e);
+                const msg = translations[currentLanguage]['news-no-data'];
+                document.getElementById('my-country-news').innerHTML = `<p>${msg}</p>`;
+                document.getElementById('partner-country-news').innerHTML = `<p>${msg}</p>`;
             }
         }
 

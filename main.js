@@ -399,24 +399,36 @@ function searchWord() {
 }
 
 // --- World News Logic ---
+let cachedNewsData = null;
+
 async function fetchNews(countryName, elementId) {
     const el = document.getElementById(elementId);
     if (!el) return;
     el.innerHTML = `<p>${translations[currentLanguage]['news-loading']}</p>`;
     try {
-        const res = await fetch('news-data.json');
-        const allNews = await res.json();
-        const newsItems = allNews[countryName] || [];
+        if (!cachedNewsData) {
+            const res = await fetch('news-data.json');
+            cachedNewsData = await res.json();
+        }
+        
+        // "Others" 처리: 데이터에 없으면 일반 월드 뉴스나 빈 배열 처리
+        const newsItems = cachedNewsData[countryName] || cachedNewsData["Others"] || [];
+        
         if (newsItems.length > 0) {
             el.innerHTML = newsItems.map(n => `
                 <div class="news-card" style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: left;">
-                    <h4 style="margin: 0 0 10px 0; color: var(--accent-color);">${n.title}</h4>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">${n.text}</p>
+                    <h4 style="margin: 0 0 10px 0; color: var(--accent-color);">${n.title || ''}</h4>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">${n.text || ''}</p>
                     <a href="${n.url}" target="_blank" style="color: var(--primary-color); font-weight: bold; text-decoration: none; font-size: 0.85rem;">${translations[currentLanguage]['news-read-more']} →</a>
                 </div>
             `).join('');
-        } else { el.innerHTML = `<p>${translations[currentLanguage]['news-no-data']}</p>`; }
-    } catch (e) { el.innerHTML = `<p>${translations[currentLanguage]['news-no-data']}</p>`; }
+        } else { 
+            el.innerHTML = `<p>${translations[currentLanguage]['news-no-data']}</p>`; 
+        }
+    } catch (e) { 
+        console.error("News fetch error:", e);
+        el.innerHTML = `<p>${translations[currentLanguage]['news-no-data']}</p>`; 
+    }
 }
 
 // --- Global Functions ---

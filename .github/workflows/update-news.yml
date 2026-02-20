@@ -2,7 +2,7 @@ name: Update World News
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # 6시간마다 실행
+    - cron: '0 0 * * *'  # 매일 00:00 UTC에 한 번만 실행 (API 할당량 준수)
   workflow_dispatch:      # 수동 실행 버튼 추가
 
 jobs:

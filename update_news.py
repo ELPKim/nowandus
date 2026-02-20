@@ -13,23 +13,30 @@ COUNTRIES = {
     "Spain": "es", "Switzerland": "ch", "Singapore": "sg", "Taiwan": "tw", "Thailand": "th",
     "Vietnam": "vn", "Malaysia": "my", "Indonesia": "id", "Philippines": "ph", "UAE": "ae",
     "Turkey": "tr", "Russia": "ru", "Brazil": "br", "Mexico": "mx", "Argentina": "ar",
-    "New Zealand": "nz", "South Africa": "za"
+    "New Zealand": "nz", "South Africa": "za",
+    "Others": "" # 빈 문자열은 특정 국가 제한 없이 검색
 }
 
 def fetch_country_news(country_code, lang):
     if not API_KEY:
         return []
     
-    url = f"https://api.worldnewsapi.com/search-news?api-key={API_KEY}&source-countries={country_code}&language={lang}&number=5"
+    url = f"https://api.worldnewsapi.com/search-news?api-key={API_KEY}&language={lang}&number=5"
+    if country_code:
+        url += f"&source-countries={country_code}"
+    else:
+        # Others의 경우 전 세계 최신 뉴스를 가져오기 위해 정렬 기준 추가
+        url += "&sort=publish-time&sort-direction=desc"
+
     try:
         response = requests.get(url)
         if response.status_code == 200:
             return response.json().get('news', [])
         else:
-            print(f"Error fetching news for {country_code}: {response.status_code}")
+            print(f"Error fetching news for {country_code or 'Others'}: {response.status_code}")
             return []
     except Exception as e:
-        print(f"Exception for {country_code}: {e}")
+        print(f"Exception for {country_code or 'Others'}: {e}")
         return []
 
 def main():
@@ -48,6 +55,8 @@ def main():
         # 데이터 경량화를 위해 필요한 필드만 저장
         filtered_news = []
         for n in news_items:
+            if not n.get('title'):
+                continue
             filtered_news.append({
                 'title': n.get('title'),
                 'text': n.get('text')[:200] if n.get('text') else "",
