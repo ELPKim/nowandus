@@ -166,7 +166,16 @@ const translations = {
         'welcome-f5': '🌍 <b>확장 기능</b>: 세계 뉴스, 환율, 공휴일 정보를 제공합니다.',
         'welcome-f6': '📖 <b>단어 사전</b>: 궁금한 단어는 위키 사전으로 바로 검색하세요.',
         'welcome-hide': '오늘 하루 보지 않기',
-        'welcome-close': '닫기'
+        'welcome-close': '닫기',
+        'lounge-header': '글로벌 라운지',
+        'lounge-subtitle': '장거리 연애의 모든 고민과 응원을 나누는 공간',
+        'rule-1': 'Respect Everyone (상호 존중): 타인에 대한 비난은 금지됩니다.',
+        'rule-2': 'Protect Privacy (개인정보 보호): 개인정보 노출에 주의해 주세요.',
+        'rule-3': 'Warm Support (따뜻한 응원): 장거리 연애를 함께 응원해요.',
+        'cat-all': 'All',
+        'cat-greeting': '인사 (Greeting)',
+        'cat-support': '응원 (Support)',
+        'cat-advice': '조언 (Advice)'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -253,7 +262,16 @@ const translations = {
         'welcome-f5': '🌍 <b>More Features</b>: Explore World News, Exchange Rates, and Holidays.',
         'welcome-f6': '📖 <b>Dictionary</b>: Look up any word instantly with Wiktionary.',
         'welcome-hide': 'Don\'t show again today',
-        'welcome-close': 'Close'
+        'welcome-close': 'Close',
+        'lounge-header': 'Global Lounge',
+        'lounge-subtitle': 'A space to share all the concerns and support of long-distance relationships',
+        'rule-1': 'Respect Everyone: No hate speech or harassment.',
+        'rule-2': 'Protect Privacy: Keep your personal info safe.',
+        'rule-3': 'Warm Support: Cheer each other on!',
+        'cat-all': 'All',
+        'cat-greeting': 'Greeting',
+        'cat-support': 'Support',
+        'cat-advice': 'Advice'
     }
 };
 
