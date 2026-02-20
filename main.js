@@ -271,8 +271,23 @@ function updateDisplays() {
     updateDaysTogether();
     updateCountdown();
     updateClocks();
+    
+    // Automatic local timezone detection
+    const myTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    let myLocationLabel = myTz; // Default to TZ ID
+    
+    // Try to find a friendly name from our location database
+    for (const [country, locations] of Object.entries(locationData)) {
+        const match = locations.find(loc => loc.tz === myTz);
+        if (match) {
+            // Use translation-friendly format if needed, or just standard
+            myLocationLabel = `${country}, ${match.name.split(' (')[0]}`;
+            break;
+        }
+    }
+    
     document.getElementById('display-location').textContent = `${meetingCountry}, ${meetingAirport}`;
-    document.getElementById('my-tz').textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    document.getElementById('my-tz').textContent = myLocationLabel;
     document.getElementById('partner-tz').textContent = `${partnerCountry}, ${partnerLocation}`;
 }
 
