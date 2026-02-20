@@ -23,39 +23,87 @@
         <h1 data-i18n="header-title">Nowandus</h1>
         <p data-i18n="header-subtitle">A space for long-distance couples</p>
     </header>
+
     <main>
-        <section id="settings-toggle">
-            <button onclick="toggleSettings()" data-i18n="settings-button">Settings</button>
+        <!-- Category 1: Time Since We Met -->
+        <section id="anniversary-section" class="card category">
+            <h2 data-i18n="anniversary-title">Time Since We Met</h2>
+            <div class="display-area">
+                <p class="main-stat">
+                    <span data-i18n="anniversary-text-before">We've been in love for</span>
+                    <span id="days-together"></span>
+                    <span data-i18n="anniversary-text-after">days.</span>
+                </p>
+            </div>
+            <div class="mini-settings">
+                <button class="icon-btn" onclick="toggleMiniSettings('anniversary-settings')">⚙️ <span data-i18n="settings-button">Change Date</span></button>
+                <div id="anniversary-settings" class="mini-form" style="display: none;">
+                    <div class="input-group">
+                        <label data-i18n="label-anniversary">Anniversary:</label>
+                        <input type="date" id="input-anniversary" onchange="saveSettings()">
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="settings" style="display: none;">
-            <h2 data-i18n="settings-title">Set Your Dates</h2>
-            <div class="input-group">
-                <label data-i18n="label-anniversary">Anniversary:</label>
-                <input type="date" id="input-anniversary" onchange="saveSettings()">
-            </div>
-            <div class="input-group">
-                <label data-i18n="label-meeting">Next Meeting:</label>
-                <input type="datetime-local" id="input-meeting" onchange="saveSettings()">
-            </div>
-            <div class="input-group">
-                <label data-i18n="label-timezone">Meeting Timezone:</label>
-                <select id="input-timezone" onchange="saveSettings()">
-                    <!-- Will be populated by JS -->
-                </select>
-            </div>
-        </section>
-
-        <section id="anniversary" class="card">
-            <h2 data-i18n="anniversary-title">Our Journey</h2>
-            <p class="main-stat"><span data-i18n="anniversary-text-before">We've been in love for</span> <span id="days-together"></span> <span data-i18n="anniversary-text-after">days.</span></p>
-        </section>
-        <section id="countdown" class="card">
+        <!-- Category 2: Time Until We Meet -->
+        <section id="countdown-section" class="card category">
             <h2 data-i18n="countdown-title">Until We Meet Again</h2>
-            <p class="main-stat"><span data-i18n="countdown-text-before">Only</span> <span id="countdown-timer"></span> <span data-i18n="countdown-text-after">left!</span></p>
-            <p class="tz-info"><span data-i18n="timezone-info">Target Timezone:</span> <span id="display-timezone"></span></p>
+            <div class="display-area">
+                <p class="main-stat">
+                    <span data-i18n="countdown-text-before">Only</span>
+                    <span id="countdown-timer"></span>
+                    <span data-i18n="countdown-text-after">left!</span>
+                </p>
+                <p class="tz-info"><span data-i18n="timezone-info">Target Timezone:</span> <span id="display-timezone"></span></p>
+            </div>
+            <div class="mini-settings">
+                <button class="icon-btn" onclick="toggleMiniSettings('countdown-settings')">⚙️ <span data-i18n="settings-button">Change Date</span></button>
+                <div id="countdown-settings" class="mini-form" style="display: none;">
+                    <div class="input-group">
+                        <label data-i18n="label-meeting">Next Meeting:</label>
+                        <input type="datetime-local" id="input-meeting" onchange="saveSettings()">
+                    </div>
+                    <div class="input-group">
+                        <label data-i18n="label-timezone">Meeting Timezone:</label>
+                        <select id="input-timezone" onchange="saveSettings()">
+                            <!-- Will be populated by JS -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category 3: Local Times -->
+        <section id="world-clock-section" class="card category">
+            <h2 data-i18n="world-clock-title">Our Times</h2>
+            <div class="clock-container">
+                <div class="clock-box">
+                    <h3 data-i18n="my-time-label">My Time</h3>
+                    <div id="my-time" class="time-display">--:--:--</div>
+                    <div id="my-tz" class="tz-label">---</div>
+                </div>
+                <div class="clock-divider">✈️</div>
+                <div class="clock-box">
+                    <h3 data-i18n="partner-time-label">Partner's Time</h3>
+                    <div id="partner-time" class="time-display">--:--:--</div>
+                    <div id="partner-tz" class="tz-label">---</div>
+                </div>
+            </div>
+            <div class="mini-settings">
+                <button class="icon-btn" onclick="toggleMiniSettings('clock-settings')">⚙️ <span data-i18n="change-partner-tz">Set Partner Timezone</span></button>
+                <div id="clock-settings" class="mini-form" style="display: none;">
+                    <div class="input-group">
+                        <label data-i18n="label-partner-timezone">Partner's Timezone:</label>
+                        <select id="input-partner-timezone" onchange="saveSettings()">
+                            <!-- Will be populated by JS -->
+                        </select>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
+
     <footer>
         <p data-i18n="footer-text">Made with ❤️ for long-distance lovers</p>
     </footer>
