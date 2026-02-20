@@ -100,8 +100,14 @@
                 <button class="settings-btn" onclick="toggleMiniSettings('clock-settings')" data-i18n="change-partner-tz">Set Partner Timezone</button>
                 <div id="clock-settings" class="mini-form" style="display: none;">
                     <div class="input-group">
-                        <label data-i18n="label-partner-timezone">Partner's Timezone:</label>
-                        <select id="input-partner-timezone" onchange="saveSettings()">
+                        <label data-i18n="label-country">Country:</label>
+                        <select id="input-partner-country" onchange="updatePartnerLocationList()">
+                            <!-- Will be populated by JS -->
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label data-i18n="label-location">Location:</label>
+                        <select id="input-partner-location" onchange="saveSettings()">
                             <!-- Will be populated by JS -->
                         </select>
                     </div>

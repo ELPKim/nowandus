@@ -1,117 +1,82 @@
 // Comprehensive Location Data
 const locationData = {
     "South Korea": [
-        { name: "Incheon Int'l (ICN)", tz: "Asia/Seoul" },
-        { name: "Gimpo Int'l (GMP)", tz: "Asia/Seoul" },
-        { name: "Busan/Gimhae (PUS)", tz: "Asia/Seoul" },
-        { name: "Jeju Int'l (CJU)", tz: "Asia/Seoul" },
-        { name: "Daegu (TAE)", tz: "Asia/Seoul" },
-        { name: "Cheongju (CJJ)", tz: "Asia/Seoul" },
-        { name: "Gwangju (KWJ)", tz: "Asia/Seoul" },
-        { name: "Ulsan (USN)", tz: "Asia/Seoul" }
+        { name: "Incheon (ICN)", tz: "Asia/Seoul" },
+        { name: "Seoul/Gimpo (GMP)", tz: "Asia/Seoul" },
+        { name: "Busan (PUS)", tz: "Asia/Seoul" },
+        { name: "Jeju (CJU)", tz: "Asia/Seoul" },
+        { name: "Daegu (TAE)", tz: "Asia/Seoul" }
     ],
     "USA": [
-        { name: "Atlanta (ATL)", tz: "America/New_York" },
         { name: "New York (JFK)", tz: "America/New_York" },
-        { name: "New York (LGA)", tz: "America/New_York" },
-        { name: "Newark (EWR)", tz: "America/New_York" },
         { name: "Los Angeles (LAX)", tz: "America/Los_Angeles" },
         { name: "Chicago (ORD)", tz: "America/Chicago" },
-        { name: "Dallas/Fort Worth (DFW)", tz: "America/Chicago" },
-        { name: "Denver (DEN)", tz: "America/Denver" },
+        { name: "Atlanta (ATL)", tz: "America/New_York" },
+        { name: "Dallas (DFW)", tz: "America/Chicago" },
         { name: "San Francisco (SFO)", tz: "America/Los_Angeles" },
-        { name: "Seattle/Tacoma (SEA)", tz: "America/Los_Angeles" },
-        { name: "Las Vegas (LAS)", tz: "America/Los_Angeles" },
-        { name: "Orlando (MCO)", tz: "America/New_York" },
         { name: "Miami (MIA)", tz: "America/New_York" },
-        { name: "Phoenix (PHX)", tz: "America/Phoenix" },
-        { name: "Houston (IAH)", tz: "America/Chicago" },
-        { name: "Boston (BOS)", tz: "America/New_York" },
-        { name: "Minneapolis (MSP)", tz: "America/Chicago" },
-        { name: "Detroit (DTW)", tz: "America/New_York" },
-        { name: "Philadelphia (PHL)", tz: "America/New_York" },
-        { name: "Washington Dulles (IAD)", tz: "America/New_York" },
-        { name: "Salt Lake City (SLC)", tz: "America/Denver" },
+        { name: "Seattle (SEA)", tz: "America/Los_Angeles" },
         { name: "El Paso (ELP)", tz: "America/Denver" },
         { name: "Honolulu (HNL)", tz: "Pacific/Honolulu" },
-        { name: "Anchorage (ANC)", tz: "America/Anchorage" }
+        { name: "Las Vegas (LAS)", tz: "America/Los_Angeles" },
+        { name: "Boston (BOS)", tz: "America/New_York" }
     ],
     "Japan": [
         { name: "Tokyo Narita (NRT)", tz: "Asia/Tokyo" },
         { name: "Tokyo Haneda (HND)", tz: "Asia/Tokyo" },
-        { name: "Osaka Kansai (KIX)", tz: "Asia/Tokyo" },
-        { name: "Osaka Itami (ITM)", tz: "Asia/Tokyo" },
+        { name: "Osaka (KIX)", tz: "Asia/Tokyo" },
         { name: "Fukuoka (FUK)", tz: "Asia/Tokyo" },
         { name: "Sapporo (CTS)", tz: "Asia/Tokyo" },
-        { name: "Nagoya (NGO)", tz: "Asia/Tokyo" },
         { name: "Okinawa (OKA)", tz: "Asia/Tokyo" }
     ],
     "United Kingdom": [
         { name: "London Heathrow (LHR)", tz: "Europe/London" },
         { name: "London Gatwick (LGW)", tz: "Europe/London" },
-        { name: "London Stansted (STN)", tz: "Europe/London" },
         { name: "Manchester (MAN)", tz: "Europe/London" },
-        { name: "Edinburgh (EDI)", tz: "Europe/London" },
-        { name: "Birmingham (BHX)", tz: "Europe/London" },
-        { name: "Glasgow (GLA)", tz: "Europe/London" }
+        { name: "Edinburgh (EDI)", tz: "Europe/London" }
     ],
     "France": [
-        { name: "Paris CDG (CDG)", tz: "Europe/Paris" },
+        { name: "Paris (CDG)", tz: "Europe/Paris" },
         { name: "Paris Orly (ORY)", tz: "Europe/Paris" },
         { name: "Nice (NCE)", tz: "Europe/Paris" },
-        { name: "Lyon (LYS)", tz: "Europe/Paris" },
-        { name: "Marseille (MRS)", tz: "Europe/Paris" },
-        { name: "Toulouse (TLS)", tz: "Europe/Paris" }
+        { name: "Lyon (LYS)", tz: "Europe/Paris" }
     ],
     "Germany": [
         { name: "Frankfurt (FRA)", tz: "Europe/Berlin" },
         { name: "Munich (MUC)", tz: "Europe/Berlin" },
         { name: "Berlin (BER)", tz: "Europe/Berlin" },
-        { name: "Dusseldorf (DUS)", tz: "Europe/Berlin" },
-        { name: "Hamburg (HAM)", tz: "Europe/Berlin" },
-        { name: "Stuttgart (STR)", tz: "Europe/Berlin" }
+        { name: "Hamburg (HAM)", tz: "Europe/Berlin" }
     ],
     "Canada": [
-        { name: "Toronto Pearson (YYZ)", tz: "America/Toronto" },
+        { name: "Toronto (YYZ)", tz: "America/Toronto" },
         { name: "Vancouver (YVR)", tz: "America/Vancouver" },
         { name: "Montreal (YUL)", tz: "America/Toronto" },
-        { name: "Calgary (YYC)", tz: "America/Edmonton" },
-        { name: "Ottawa (YOW)", tz: "America/Toronto" },
-        { name: "Edmonton (YEG)", tz: "America/Edmonton" }
+        { name: "Calgary (YYC)", tz: "America/Edmonton" }
     ],
     "Australia": [
         { name: "Sydney (SYD)", tz: "Australia/Sydney" },
         { name: "Melbourne (MEL)", tz: "Australia/Melbourne" },
         { name: "Brisbane (BNE)", tz: "Australia/Brisbane" },
-        { name: "Perth (PER)", tz: "Australia/Perth" },
-        { name: "Adelaide (ADL)", tz: "Australia/Adelaide" },
-        { name: "Gold Coast (OOL)", tz: "Australia/Brisbane" }
+        { name: "Perth (PER)", tz: "Australia/Perth" }
     ],
     "China": [
-        { name: "Beijing Capital (PEK)", tz: "Asia/Shanghai" },
-        { name: "Beijing Daxing (PKX)", tz: "Asia/Shanghai" },
-        { name: "Shanghai Pudong (PVG)", tz: "Asia/Shanghai" },
-        { name: "Shanghai Hongqiao (SHA)", tz: "Asia/Shanghai" },
+        { name: "Beijing (PEK)", tz: "Asia/Shanghai" },
+        { name: "Shanghai (PVG)", tz: "Asia/Shanghai" },
         { name: "Guangzhou (CAN)", tz: "Asia/Shanghai" },
-        { name: "Shenzhen (SZX)", tz: "Asia/Shanghai" },
-        { name: "Chengdu (CTU)", tz: "Asia/Shanghai" }
+        { name: "Shenzhen (SZX)", tz: "Asia/Shanghai" }
     ],
-    "Singapore": [{ name: "Changi (SIN)", tz: "Asia/Singapore" }],
     "Taiwan": [
-        { name: "Taipei Taoyuan (TPE)", tz: "Asia/Taipei" },
-        { name: "Taipei Songshan (TSA)", tz: "Asia/Taipei" },
+        { name: "Taipei (TPE)", tz: "Asia/Taipei" },
         { name: "Kaohsiung (KHH)", tz: "Asia/Taipei" }
     ],
+    "Singapore": [{ name: "Changi (SIN)", tz: "Asia/Singapore" }],
     "Thailand": [
-        { name: "Bangkok Suvarnabhumi (BKK)", tz: "Asia/Bangkok" },
-        { name: "Bangkok Don Mueang (DMK)", tz: "Asia/Bangkok" },
-        { name: "Phuket (HKT)", tz: "Asia/Bangkok" },
-        { name: "Chiang Mai (CNX)", tz: "Asia/Bangkok" }
+        { name: "Bangkok (BKK)", tz: "Asia/Bangkok" },
+        { name: "Phuket (HKT)", tz: "Asia/Bangkok" }
     ],
     "Vietnam": [
         { name: "Ho Chi Minh City (SGN)", tz: "Asia/Ho_Chi_Minh" },
-        { name: "Hanoi (HAN)", tz: "Asia/Ho_Chi_Minh" },
-        { name: "Da Nang (DAD)", tz: "Asia/Ho_Chi_Minh" }
+        { name: "Hanoi (HAN)", tz: "Asia/Ho_Chi_Minh" }
     ],
     "United Arab Emirates": [
         { name: "Dubai (DXB)", tz: "Asia/Dubai" },
@@ -119,56 +84,28 @@ const locationData = {
     ],
     "Turkey": [
         { name: "Istanbul (IST)", tz: "Europe/Istanbul" },
-        { name: "Istanbul Sabiha Gökçen (SAW)", tz: "Europe/Istanbul" },
         { name: "Antalya (AYT)", tz: "Europe/Istanbul" }
     ],
     "Italy": [
-        { name: "Rome Fiumicino (FCO)", tz: "Europe/Rome" },
-        { name: "Milan Malpensa (MXP)", tz: "Europe/Rome" },
-        { name: "Venice (VCE)", tz: "Europe/Rome" }
+        { name: "Rome (FCO)", tz: "Europe/Rome" },
+        { name: "Milan (MXP)", tz: "Europe/Rome" }
     ],
     "Spain": [
-        { name: "Madrid Barajas (MAD)", tz: "Europe/Madrid" },
-        { name: "Barcelona (BCN)", tz: "Europe/Madrid" },
-        { name: "Palma de Mallorca (PMI)", tz: "Europe/Madrid" }
+        { name: "Madrid (MAD)", tz: "Europe/Madrid" },
+        { name: "Barcelona (BCN)", tz: "Europe/Madrid" }
     ],
-    "Netherlands": [{ name: "Amsterdam Schiphol (AMS)", tz: "Europe/Amsterdam" }],
-    "Switzerland": [
-        { name: "Zurich (ZRH)", tz: "Europe/Zurich" },
-        { name: "Geneva (GVA)", tz: "Europe/Zurich" }
-    ],
+    "Netherlands": [{ name: "Amsterdam (AMS)", tz: "Europe/Amsterdam" }],
+    "Switzerland": [{ name: "Zurich (ZRH)", tz: "Europe/Zurich" }],
     "India": [
         { name: "Delhi (DEL)", tz: "Asia/Kolkata" },
-        { name: "Mumbai (BOM)", tz: "Asia/Kolkata" },
-        { name: "Bangalore (BLR)", tz: "Asia/Kolkata" }
+        { name: "Mumbai (BOM)", tz: "Asia/Kolkata" }
     ],
-    "Brazil": [
-        { name: "Sao Paulo (GRU)", tz: "America/Sao_Paulo" },
-        { name: "Rio de Janeiro (GIG)", tz: "America/Sao_Paulo" }
-    ],
-    "Mexico": [
-        { name: "Mexico City (MEX)", tz: "America/Mexico_City" },
-        { name: "Cancun (CUN)", tz: "America/Cancun" }
-    ],
-    "Philippines": [
-        { name: "Manila (MNL)", tz: "Asia/Manila" },
-        { name: "Cebu (CEB)", tz: "Asia/Manila" }
-    ],
-    "Indonesia": [
-        { name: "Jakarta (CGK)", tz: "Asia/Jakarta" },
-        { name: "Bali (DPS)", tz: "Asia/Makassar" }
-    ],
-    "Malaysia": [
-        { name: "Kuala Lumpur (KUL)", tz: "Asia/Kuala_Lumpur" },
-        { name: "Kota Kinabalu (BKI)", tz: "Asia/Kuching" }
-    ],
-    "Others": [
-        { name: "UTC/GMT", tz: "UTC" },
-        { name: "Qatar/Doha (DOH)", tz: "Asia/Qatar" },
-        { name: "Russia/Moscow (SVO)", tz: "Europe/Moscow" },
-        { name: "South Africa/Johannesburg (JNB)", tz: "Africa/Johannesburg" },
-        { name: "Egypt/Cairo (CAI)", tz: "Africa/Cairo" }
-    ]
+    "Brazil": [{ name: "Sao Paulo (GRU)", tz: "America/Sao_Paulo" }],
+    "Mexico": [{ name: "Mexico City (MEX)", tz: "America/Mexico_City" }],
+    "Russia": [{ name: "Moscow (SVO)", tz: "Europe/Moscow" }],
+    "South Africa": [{ name: "Johannesburg (JNB)", tz: "Africa/Johannesburg" }],
+    "New Zealand": [{ name: "Auckland (AKL)", tz: "Pacific/Auckland" }],
+    "Others": [{ name: "UTC/GMT", tz: "UTC" }]
 };
 
 // Translation data
@@ -196,6 +133,7 @@ const translations = {
         'label-meeting': '다음 만남:',
         'label-country': '나라:',
         'label-airport': '공항:',
+        'label-location': '위치:',
         'timezone-info': '만남 장소:',
         'change-partner-tz': '시간대 설정',
         'label-partner-timezone': '상대방 시간대:'
@@ -223,6 +161,7 @@ const translations = {
         'label-meeting': 'Next Meeting:',
         'label-country': 'Country:',
         'label-airport': 'Airport:',
+        'label-location': 'Location:',
         'timezone-info': 'Meeting Point:',
         'change-partner-tz': 'Set Timezone',
         'label-partner-timezone': "Partner's Timezone:"
@@ -232,9 +171,13 @@ const translations = {
 let currentLanguage = localStorage.getItem('language') || 'ko';
 let anniversaryDate = localStorage.getItem('anniversaryDate') || '2022-01-01';
 let nextMeetingDate = localStorage.getItem('nextMeetingDate') || '2024-12-25T12:00';
+
 let meetingCountry = localStorage.getItem('meetingCountry') || 'South Korea';
-let meetingAirport = localStorage.getItem('meetingAirport') || "Incheon Int'l (ICN)";
+let meetingAirport = localStorage.getItem('meetingAirport') || "Incheon (ICN)";
 let meetingTimezone = localStorage.getItem('meetingTimezone') || 'Asia/Seoul';
+
+let partnerCountry = localStorage.getItem('partnerCountry') || 'USA';
+let partnerLocation = localStorage.getItem('partnerLocation') || "New York (JFK)";
 let partnerTimezone = localStorage.getItem('partnerTimezone') || 'America/New_York';
 
 function toggleMiniSettings(id) {
@@ -246,6 +189,7 @@ function saveSettings() {
     anniversaryDate = document.getElementById('input-anniversary').value;
     nextMeetingDate = document.getElementById('input-meeting').value;
     
+    // Save Meeting Location
     meetingCountry = document.getElementById('input-country').value;
     const airportSelect = document.getElementById('input-airport');
     if (airportSelect.selectedIndex >= 0) {
@@ -253,13 +197,21 @@ function saveSettings() {
         meetingTimezone = airportSelect.value;
     }
 
-    partnerTimezone = document.getElementById('input-partner-timezone').value;
+    // Save Partner Location
+    partnerCountry = document.getElementById('input-partner-country').value;
+    const partnerLocSelect = document.getElementById('input-partner-location');
+    if (partnerLocSelect.selectedIndex >= 0) {
+        partnerLocation = partnerLocSelect.options[partnerLocSelect.selectedIndex].text;
+        partnerTimezone = partnerLocSelect.value;
+    }
 
     localStorage.setItem('anniversaryDate', anniversaryDate);
     localStorage.setItem('nextMeetingDate', nextMeetingDate);
     localStorage.setItem('meetingCountry', meetingCountry);
     localStorage.setItem('meetingAirport', meetingAirport);
     localStorage.setItem('meetingTimezone', meetingTimezone);
+    localStorage.setItem('partnerCountry', partnerCountry);
+    localStorage.setItem('partnerLocation', partnerLocation);
     localStorage.setItem('partnerTimezone', partnerTimezone);
 
     updateDisplays();
@@ -277,6 +229,23 @@ function updateAirportList() {
             opt.textContent = ap.name;
             if (ap.name === meetingAirport) opt.selected = true;
             airportSelect.appendChild(opt);
+        });
+    }
+    saveSettings();
+}
+
+function updatePartnerLocationList() {
+    const country = document.getElementById('input-partner-country').value;
+    const locSelect = document.getElementById('input-partner-location');
+    locSelect.innerHTML = '';
+
+    if (locationData[country]) {
+        locationData[country].forEach(ap => {
+            const opt = document.createElement('option');
+            opt.value = ap.tz;
+            opt.textContent = ap.name;
+            if (ap.name === partnerLocation) opt.selected = true;
+            locSelect.appendChild(opt);
         });
     }
     saveSettings();
@@ -304,7 +273,7 @@ function updateDisplays() {
     updateClocks();
     document.getElementById('display-location').textContent = `${meetingCountry}, ${meetingAirport}`;
     document.getElementById('my-tz').textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    document.getElementById('partner-tz').textContent = partnerTimezone;
+    document.getElementById('partner-tz').textContent = `${partnerCountry}, ${partnerLocation}`;
 }
 
 function updateDaysTogether() {
@@ -363,39 +332,24 @@ function convertToUTC(dateStr, tz) {
 }
 
 function initializeForm() {
+    const countries = Object.keys(locationData).sort();
     const countrySelect = document.getElementById('input-country');
-    countrySelect.innerHTML = '';
+    const partnerCountrySelect = document.getElementById('input-partner-country');
     
-    Object.keys(locationData).sort().forEach(country => {
-        const opt = document.createElement('option');
-        opt.value = country;
-        opt.textContent = country;
-        if (country === meetingCountry) opt.selected = true;
-        countrySelect.appendChild(opt);
-    });
-
-    const partnerTzSelect = document.getElementById('input-partner-timezone');
-    partnerTzSelect.innerHTML = '';
-    
-    // Create a unique set of timezones paired with a friendly label
-    let allTzOptions = [];
-    Object.entries(locationData).forEach(([country, airports]) => {
-        airports.forEach(ap => {
-            allTzOptions.push({ tz: ap.tz, label: `${country} - ${ap.name}` });
+    [countrySelect, partnerCountrySelect].forEach(select => {
+        select.innerHTML = '';
+        countries.forEach(country => {
+            const opt = document.createElement('option');
+            opt.value = country;
+            opt.textContent = country;
+            if (select.id === 'input-country' && country === meetingCountry) opt.selected = true;
+            if (select.id === 'input-partner-country' && country === partnerCountry) opt.selected = true;
+            select.appendChild(opt);
         });
-    });
-    
-    // Deduplicate and sort
-    const uniqueTzs = [...new Map(allTzOptions.map(item => [item.tz, item])).values()];
-    uniqueTzs.sort((a, b) => a.label.localeCompare(b.label)).forEach(item => {
-        const opt = document.createElement('option');
-        opt.value = item.tz;
-        opt.textContent = item.label;
-        if (item.tz === partnerTimezone) opt.selected = true;
-        partnerTzSelect.appendChild(opt);
     });
 
     updateAirportList();
+    updatePartnerLocationList();
 }
 
 // Initialization
