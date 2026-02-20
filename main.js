@@ -13,6 +13,7 @@ const locationData = {
         { name: "Atlanta (ATL)", tz: "America/New_York", lat: 33.6407, lon: -84.4277 },
         { name: "Dallas (DFW)", tz: "America/Chicago", lat: 32.8998, lon: -97.0403 },
         { name: "San Francisco (SFO)", tz: "America/Los_Angeles", lat: 37.6213, lon: -122.3790 },
+        { name: "Miami (MIA)", tz: "America/New_York", lat: 25.7959, lon: -80.2870 },
         { name: "Seattle (SEA)", tz: "America/Los_Angeles", lat: 47.4502, lon: -122.3088 },
         { name: "El Paso (ELP)", tz: "America/Denver", lat: 31.8066, lon: -106.3778 },
         { name: "Honolulu (HNL)", tz: "Pacific/Honolulu", lat: 21.3156, lon: -157.9242 }
@@ -49,59 +50,10 @@ const locationData = {
         { name: "Melbourne (MEL)", tz: "Australia/Melbourne", lat: -37.6690, lon: 144.8410 },
         { name: "Brisbane (BNE)", tz: "Australia/Brisbane", lat: -27.3942, lon: 153.1218 }
     ],
-    "China": [
-        { name: "Beijing (PEK)", tz: "Asia/Shanghai", lat: 40.0799, lon: 116.6031 },
-        { name: "Shanghai (PVG)", tz: "Asia/Shanghai", lat: 31.1443, lon: 121.8083 },
-        { name: "Guangzhou (CAN)", tz: "Asia/Shanghai", lat: 23.3924, lon: 113.2988 }
-    ],
-    "Italy": [
-        { name: "Rome (FCO)", tz: "Europe/Rome", lat: 41.8003, lon: 12.2389 },
-        { name: "Milan (MXP)", tz: "Europe/Rome", lat: 45.6301, lon: 8.7231 }
-    ],
-    "Spain": [
-        { name: "Madrid (MAD)", tz: "Europe/Madrid", lat: 40.4983, lon: -3.5676 },
-        { name: "Barcelona (BCN)", tz: "Europe/Madrid", lat: 41.2974, lon: 2.0833 }
-    ],
-    "Switzerland": [
-        { name: "Zurich (ZRH)", tz: "Europe/Zurich", lat: 47.4582, lon: 8.5555 },
-        { name: "Geneva (GVA)", tz: "Europe/Zurich", lat: 46.2370, lon: 6.1091 }
-    ],
-    "Netherlands": [{ name: "Amsterdam (AMS)", tz: "Europe/Amsterdam", lat: 52.3105, lon: 4.7683 }],
     "Singapore": [{ name: "Singapore (SIN)", tz: "Asia/Singapore", lat: 1.3644, lon: 103.9915 }],
-    "Taiwan": [{ name: "Taipei (TPE)", tz: "Asia/Taipei", lat: 25.0797, lon: 121.2342 }],
-    "Thailand": [
-        { name: "Bangkok (BKK)", tz: "Asia/Bangkok", lat: 13.6900, lon: 100.7501 },
-        { name: "Phuket (HKT)", tz: "Asia/Bangkok", lat: 8.1132, lon: 98.3064 }
-    ],
-    "Vietnam": [
-        { name: "Ho Chi Minh (SGN)", tz: "Asia/Ho_Chi_Minh", lat: 10.8185, lon: 106.6588 },
-        { name: "Hanoi (HAN)", tz: "Asia/Ho_Chi_Minh", lat: 21.2212, lon: 105.8072 }
-    ],
-    "Malaysia": [{ name: "Kuala Lumpur (KUL)", tz: "Asia/Kuala_Lumpur", lat: 2.7456, lon: 101.7072 }],
-    "Indonesia": [
-        { name: "Jakarta (CGK)", tz: "Asia/Jakarta", lat: -6.1256, lon: 106.6559 },
-        { name: "Bali (DPS)", tz: "Asia/Makassar", lat: -8.7482, lon: 115.1674 }
-    ],
-    "Philippines": [{ name: "Manila (MNL)", tz: "Asia/Manila", lat: 14.5086, lon: 121.0194 }],
-    "India": [
-        { name: "Delhi (DEL)", tz: "Asia/Kolkata", lat: 28.5562, lon: 77.1000 },
-        { name: "Mumbai (BOM)", tz: "Asia/Kolkata", lat: 19.0896, lon: 72.8656 }
-    ],
-    "UAE": [{ name: "Dubai (DXB)", tz: "Asia/Dubai", lat: 25.2532, lon: 55.3657 }],
-    "Qatar": [{ name: "Doha (DOH)", tz: "Asia/Qatar", lat: 25.2731, lon: 51.6081 }],
-    "Turkey": [{ name: "Istanbul (IST)", tz: "Europe/Istanbul", lat: 41.2753, lon: 28.7519 }],
-    "Russia": [{ name: "Moscow (SVO)", tz: "Europe/Moscow", lat: 55.9726, lon: 37.4146 }],
-    "Brazil": [{ name: "Sao Paulo (GRU)", tz: "America/Sao_Paulo", lat: -23.4356, lon: -46.4731 }],
-    "Mexico": [{ name: "Mexico City (MEX)", tz: "America/Mexico_City", lat: 19.4361, lon: -99.0719 }],
-    "Argentina": [{ name: "Buenos Aires (EZE)", tz: "America/Argentina/Buenos_Aires", lat: -34.8222, lon: -58.5358 }],
-    "New Zealand": [{ name: "Auckland (AKL)", tz: "Pacific/Auckland", lat: -37.0081, lon: 174.7850 }],
-    "South Africa": [{ name: "Johannesburg (JNB)", tz: "Africa/Johannesburg", lat: -26.1392, lon: 28.2460 }],
-    "Morocco": [{ name: "Casablanca (CMN)", tz: "Africa/Casablanca", lat: 33.3675, lon: -7.5899 }],
-    "Egypt": [{ name: "Cairo (CAI)", tz: "Africa/Cairo", lat: 30.1219, lon: 31.4056 }],
     "Others": [{ name: "UTC/GMT", tz: "UTC", lat: 0, lon: 0 }]
 };
 
-// Translation data
 const translations = {
     'ko': {
         'header-title': 'Now and Us',
@@ -135,7 +87,18 @@ const translations = {
         'change-my-loc': '나의 위치는?',
         'change-partner-tz': '너의 위치는?',
         'my-loc-title': '나의 현재 위치',
-        'partner-loc-title': '상대방의 현재 위치'
+        'partner-loc-title': '상대방의 현재 위치',
+        'ps-header': 'Partnership',
+        'ps-subtitle': 'Now and Us와 함께 따뜻한 가치를 만들어가요',
+        'ps-label-name': '성함 / 회사명',
+        'ps-label-email': '회신받을 이메일',
+        'ps-label-subject': '문의 제목',
+        'ps-label-message': '문의 내용',
+        'ps-btn': '문의 보내기',
+        'ps-back': '← 메인으로 돌아가기',
+        'ps-name-ph': '이름을 입력해주세요',
+        'ps-subject-ph': '제휴 문의 드립니다',
+        'ps-message-ph': '상세한 내용을 적어주세요'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -169,7 +132,18 @@ const translations = {
         'change-my-loc': 'Set My Location',
         'change-partner-tz': 'Set Partner Location',
         'my-loc-title': 'My Current Location',
-        'partner-loc-title': "Partner's Current Location"
+        'partner-loc-title': "Partner's Current Location",
+        'ps-header': 'Partnership',
+        'ps-subtitle': 'Let\'s create warm values with Now and Us',
+        'ps-label-name': 'Name / Company',
+        'ps-label-email': 'Reply Email',
+        'ps-label-subject': 'Subject',
+        'ps-label-message': 'Inquiry Details',
+        'ps-btn': 'Send Inquiry',
+        'ps-back': '← Back to Main',
+        'ps-name-ph': 'Enter your name',
+        'ps-subject-ph': 'Inquiry about partnership',
+        'ps-message-ph': 'Please enter detailed information'
     }
 };
 
@@ -197,6 +171,10 @@ function setLanguage(lang) {
         const key = el.getAttribute('data-i18n');
         if (translations[lang][key]) el.textContent = translations[lang][key];
     });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (translations[lang][key]) el.placeholder = translations[lang][key];
+    });
     updateDisplays();
 }
 
@@ -211,12 +189,16 @@ async function fetchWeather(lat, lon, elementId) {
         const desc = getWeatherDescription(code);
         const icon = getWeatherIcon(code);
         
-        document.getElementById(elementId).innerHTML = `
-            <div class="temp">${temp}°C</div>
-            <div class="desc">${icon} ${desc}</div>
-        `;
+        const el = document.getElementById(elementId);
+        if (el) {
+            el.innerHTML = `
+                <div class="temp">${temp}°C</div>
+                <div class="desc">${icon} ${desc}</div>
+            `;
+        }
     } catch (e) {
-        document.getElementById(elementId).textContent = "---";
+        const el = document.getElementById(elementId);
+        if (el) el.textContent = "---";
     }
 }
 
@@ -241,34 +223,42 @@ function getWeatherDescription(code) {
 
 async function updateWeather() {
     const myData = locationData[myCountry]?.find(l => l.name === myLocation);
-    if (myData) fetchWeather(myData.lat, myData.lon, 'my-weather-info');
+    if (myData && document.getElementById('my-weather-info')) fetchWeather(myData.lat, myData.lon, 'my-weather-info');
 
     const partnerData = locationData[partnerCountry]?.find(l => l.name === partnerLocation);
-    if (partnerData) fetchWeather(partnerData.lat, partnerData.lon, 'partner-weather-info');
+    if (partnerData && document.getElementById('partner-weather-info')) fetchWeather(partnerData.lat, partnerData.lon, 'partner-weather-info');
 }
 
 function updateDisplays() {
-    updateDaysTogether();
-    updateCountdown();
-    updateClocks();
+    if (document.getElementById('days-together')) updateDaysTogether();
+    if (document.getElementById('countdown-timer')) updateCountdown();
+    if (document.getElementById('my-time')) updateClocks();
     updateWeather();
     
-    document.getElementById('display-location').textContent = `${meetingCountry}, ${meetingAirport}`;
-    document.getElementById('my-tz').textContent = `${myCountry}, ${myLocation}`;
-    document.getElementById('partner-tz').textContent = `${partnerCountry}, ${partnerLocation}`;
+    const dLoc = document.getElementById('display-location');
+    if (dLoc) dLoc.textContent = `${meetingCountry}, ${meetingAirport}`;
+    
+    const myTzEl = document.getElementById('my-tz');
+    if (myTzEl) myTzEl.textContent = `${myCountry}, ${myLocation}`;
+    
+    const pTzEl = document.getElementById('partner-tz');
+    if (pTzEl) pTzEl.textContent = `${partnerCountry}, ${partnerLocation}`;
 }
 
 function updateDaysTogether() {
     const today = new Date();
     const anniv = new Date(anniversaryDate);
     const diff = Math.floor((today.getTime() - anniv.getTime()) / (1000 * 3600 * 24));
-    document.getElementById('days-together').textContent = Math.max(0, diff);
+    const el = document.getElementById('days-together');
+    if (el) el.textContent = Math.max(0, diff);
 }
 
 function updateCountdown() {
     const targetUTC = convertToUTC(nextMeetingDate, meetingTimezone);
     const remaining = targetUTC - new Date().getTime();
     const timer = document.getElementById('countdown-timer');
+    if (!timer) return;
+
     if (remaining > 0) {
         const d = Math.floor(remaining / (1000 * 60 * 60 * 24));
         const h = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -283,10 +273,15 @@ function updateCountdown() {
 
 function updateClocks() {
     const now = new Date();
-    document.getElementById('my-time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: myTimezone });
-    try {
-        document.getElementById('partner-time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: partnerTimezone });
-    } catch (e) { document.getElementById('partner-time').textContent = "TZ Error"; }
+    const myEl = document.getElementById('my-time');
+    if (myEl) myEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: myTimezone });
+    
+    const pEl = document.getElementById('partner-time');
+    if (pEl) {
+        try {
+            pEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: partnerTimezone });
+        } catch (e) { pEl.textContent = "TZ Error"; }
+    }
 }
 
 function convertToUTC(dateStr, tz) {
@@ -297,33 +292,30 @@ function convertToUTC(dateStr, tz) {
 
 function toggleMiniSettings(id) {
     const el = document.getElementById(id);
-    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
 }
 
 function saveSettings() {
-    anniversaryDate = document.getElementById('input-anniversary').value;
-    nextMeetingDate = document.getElementById('input-meeting').value;
+    if (document.getElementById('input-anniversary')) anniversaryDate = document.getElementById('input-anniversary').value;
+    if (document.getElementById('input-meeting')) nextMeetingDate = document.getElementById('input-meeting').value;
     
-    // Meeting Location
-    meetingCountry = document.getElementById('input-country').value;
     const airportSelect = document.getElementById('input-airport');
-    if (airportSelect.selectedIndex >= 0) {
+    if (airportSelect && airportSelect.selectedIndex >= 0) {
+        meetingCountry = document.getElementById('input-country').value;
         meetingAirport = airportSelect.options[airportSelect.selectedIndex].text;
         meetingTimezone = airportSelect.value;
     }
 
-    // My Location
-    myCountry = document.getElementById('input-my-country').value;
     const myLocSelect = document.getElementById('input-my-location');
-    if (myLocSelect.selectedIndex >= 0) {
+    if (myLocSelect && myLocSelect.selectedIndex >= 0) {
+        myCountry = document.getElementById('input-my-country').value;
         myLocation = myLocSelect.options[myLocSelect.selectedIndex].text;
         myTimezone = myLocSelect.value;
     }
 
-    // Partner Location
-    partnerCountry = document.getElementById('input-partner-country').value;
     const partnerLocSelect = document.getElementById('input-partner-location');
-    if (partnerLocSelect.selectedIndex >= 0) {
+    if (partnerLocSelect && partnerLocSelect.selectedIndex >= 0) {
+        partnerCountry = document.getElementById('input-partner-country').value;
         partnerLocation = partnerLocSelect.options[partnerLocSelect.selectedIndex].text;
         partnerTimezone = partnerLocSelect.value;
     }
@@ -344,8 +336,9 @@ function saveSettings() {
 }
 
 function updateAirportList() {
-    const country = document.getElementById('input-country').value;
+    const country = document.getElementById('input-country')?.value;
     const select = document.getElementById('input-airport');
+    if (!select || !country) return;
     select.innerHTML = '';
     if (locationData[country]) {
         locationData[country].forEach(ap => {
@@ -359,8 +352,9 @@ function updateAirportList() {
 }
 
 function updateMyCityList() {
-    const country = document.getElementById('input-my-country').value;
+    const country = document.getElementById('input-my-country')?.value;
     const select = document.getElementById('input-my-location');
+    if (!select || !country) return;
     select.innerHTML = '';
     if (locationData[country]) {
         locationData[country].forEach(ap => {
@@ -374,8 +368,9 @@ function updateMyCityList() {
 }
 
 function updatePartnerLocationList() {
-    const country = document.getElementById('input-partner-country').value;
+    const country = document.getElementById('input-partner-country')?.value;
     const select = document.getElementById('input-partner-location');
+    if (!select || !country) return;
     select.innerHTML = '';
     if (locationData[country]) {
         locationData[country].forEach(ap => {
@@ -395,6 +390,7 @@ function initializeForm() {
     const pCSelect = document.getElementById('input-partner-country');
     
     [cSelect, myCSelect, pCSelect].forEach(select => {
+        if (!select) return;
         select.innerHTML = '';
         countries.forEach(country => {
             const opt = document.createElement('option');
@@ -412,8 +408,8 @@ function initializeForm() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('input-anniversary').value = anniversaryDate;
-    document.getElementById('input-meeting').value = nextMeetingDate;
+    if (document.getElementById('input-anniversary')) document.getElementById('input-anniversary').value = anniversaryDate;
+    if (document.getElementById('input-meeting')) document.getElementById('input-meeting').value = nextMeetingDate;
     initializeForm();
     setLanguage(currentLanguage);
     setInterval(() => { updateCountdown(); updateClocks(); }, 1000);

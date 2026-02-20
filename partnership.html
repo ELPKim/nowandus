@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         .partnership-container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 50px auto;
             padding: 40px;
             background: rgba(255, 255, 255, 0.9);
@@ -19,34 +19,41 @@
         .partnership-form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
             text-align: left;
         }
         .partnership-form label {
             font-weight: bold;
             color: var(--accent-color);
-            font-size: 0.9rem;
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 8px;
         }
         .partnership-form input, .partnership-form textarea {
+            width: 100%;
             padding: 15px;
             border: 2px solid var(--secondary-color);
             border-radius: 15px;
             outline: none;
             font-family: inherit;
+            box-sizing: border-box;
+            background: white;
         }
         .partnership-form textarea {
-            height: 150px;
+            height: 300px; /* 넓고 크게 수정 */
             resize: vertical;
         }
         .submit-btn {
             background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             color: white;
             border: none;
-            padding: 15px;
-            border-radius: 30px;
+            padding: 18px;
+            border-radius: 35px;
             font-weight: bold;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            margin-top: 10px;
         }
         .submit-btn:hover {
             transform: translateY(-3px);
@@ -58,6 +65,10 @@
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 500;
+            transition: color 0.3s;
+        }
+        .back-link:hover {
+            color: var(--accent-color);
         }
     </style>
 </head>
@@ -68,41 +79,46 @@
     </div>
 
     <header>
-        <h1 style="font-size: 2.5rem;">Partnership</h1>
-        <p>Now and Us와 함께 따뜻한 가치를 만들어가요</p>
+        <div class="language-switcher">
+            <button onclick="setLanguage('ko')">KR</button>
+            <button onclick="setLanguage('en')">EN</button>
+        </div>
+        <h1 data-i18n="ps-header" style="font-size: 3rem;">Partnership</h1>
+        <p data-i18n="ps-subtitle">Now and Us와 함께 따뜻한 가치를 만들어가요</p>
     </header>
 
     <main>
         <div class="partnership-container">
             <form action="https://formspree.io/f/xaqddjla" method="POST" class="partnership-form">
-                <div class="input-group" style="margin:0;">
-                    <label>성함 / 회사명</label>
-                    <input type="text" name="name" placeholder="이름을 입력해주세요" required>
+                <div>
+                    <label data-i18n="ps-label-name">성함 / 회사명</label>
+                    <input type="text" name="name" data-i18n-ph="ps-name-ph" placeholder="이름을 입력해주세요" required>
                 </div>
                 
-                <div class="input-group" style="margin:0;">
-                    <label>회신받을 이메일</label>
+                <div>
+                    <label data-i18n="ps-label-email">회신받을 이메일</label>
                     <input type="email" name="_replyto" placeholder="example@email.com" required>
                 </div>
 
-                <div class="input-group" style="margin:0;">
-                    <label>문의 제목</label>
-                    <input type="text" name="subject" placeholder="제휴 문의 드립니다" required>
+                <div>
+                    <label data-i18n="ps-label-subject">문의 제목</label>
+                    <input type="text" name="subject" data-i18n-ph="ps-subject-ph" placeholder="제휴 문의 드립니다" required>
                 </div>
 
-                <div class="input-group" style="margin:0;">
-                    <label>문의 내용</label>
-                    <textarea name="message" placeholder="상세한 내용을 적어주세요" required></textarea>
+                <div>
+                    <label data-i18n="ps-label-message">문의 내용</label>
+                    <textarea name="message" data-i18n-ph="ps-message-ph" placeholder="상세한 내용을 적어주세요" required></textarea>
                 </div>
 
-                <button type="submit" class="submit-btn">문의 보내기</button>
+                <button type="submit" class="submit-btn" data-i18n="ps-btn">문의 보내기</button>
             </form>
-            <a href="index.html" class="back-link">← 메인으로 돌아가기</a>
+            <a href="index.html" class="back-link" data-i18n="ps-back">← 메인으로 돌아가기</a>
         </div>
     </main>
 
     <footer>
         <p>© 2026 Now and Us. All rights reserved.</p>
     </footer>
+    <script src="main.js"></script>
 </body>
 </html>
