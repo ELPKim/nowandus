@@ -224,7 +224,11 @@ main {
 
 .clock-divider, .weather-divider {
     font-size: 1.5rem;
-    opacity: 0.5;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
 }
 
 .weather-update-info {
