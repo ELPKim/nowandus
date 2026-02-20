@@ -198,9 +198,15 @@ main {
 /* Container Layouts */
 .clock-container, .weather-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     margin: 20px 0;
+    gap: 10px;
+}
+
+.clock-box, .weather-box {
+    flex: 1;
+    text-align: center;
 }
 
 .clock-box h3, .weather-box h3 {
@@ -228,7 +234,8 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
+    width: 60px; /* 아이콘 너비 확보 */
+    flex-shrink: 0;
 }
 
 .weather-update-info {
