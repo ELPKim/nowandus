@@ -251,22 +251,29 @@ let partnerLocation = localStorage.getItem('partnerLocation') || "New York (JFK)
 let partnerTimezone = localStorage.getItem('partnerTimezone') || 'America/New_York';
 
 // --- Floating Dictionary Logic ---
+let dictLanguage = localStorage.getItem('dictLanguage') || (currentLanguage === 'ko' ? 'ko' : 'en');
+
 function injectDictionary() {
     if (document.querySelector('.dict-widget')) return;
+    
     const dictHTML = `
         <div class="dict-widget">
             <div id="dict-window" class="dict-window">
                 <div class="dict-header">
-                    <h4 data-i18n="dict-header">${translations[currentLanguage]['dict-header']}</h4>
+                    <div class="dict-lang-switch" style="display: flex; gap: 5px;">
+                        <button onclick="setDictLang('ko')" id="btn-dict-ko" style="padding: 2px 8px; border-radius: 10px; border: 1px solid var(--primary-color); font-size: 0.7rem; cursor: pointer; font-weight: bold;">KO</button>
+                        <button onclick="setDictLang('en')" id="btn-dict-en" style="padding: 2px 8px; border-radius: 10px; border: 1px solid var(--primary-color); font-size: 0.7rem; cursor: pointer; font-weight: bold;">EN</button>
+                    </div>
                     <span class="dict-close" onclick="toggleDictionary()">✖</span>
                 </div>
                 <div class="dict-body">
+                    <h4 id="dict-title" style="margin: 0 0 10px 0; color: var(--accent-color); font-size: 1rem;"></h4>
                     <div class="dict-search">
-                        <input type="text" id="dict-input" data-i18n-ph="dict-ph" placeholder="${translations[currentLanguage]['dict-ph']}">
-                        <button onclick="searchWord()" data-i18n="dict-btn">${translations[currentLanguage]['dict-btn']}</button>
+                        <input type="text" id="dict-input" placeholder="">
+                        <button onclick="searchWord()" id="btn-dict-search"></button>
                     </div>
                     <div id="dict-result" class="dict-result">
-                        <p data-i18n="dict-intro">${translations[currentLanguage]['dict-intro']}</p>
+                        <p id="dict-intro-text"></p>
                     </div>
                 </div>
             </div>
@@ -275,6 +282,36 @@ function injectDictionary() {
     `;
     document.body.insertAdjacentHTML('beforeend', dictHTML);
     document.getElementById('dict-input').addEventListener('keypress', (e) => { if (e.key === 'Enter') searchWord(); });
+    updateDictUI();
+}
+
+function setDictLang(lang) {
+    dictLanguage = lang;
+    localStorage.setItem('dictLanguage', lang);
+    updateDictUI();
+}
+
+function updateDictUI() {
+    const isKo = dictLanguage === 'ko';
+    const t = translations[isKo ? 'ko' : 'en'];
+    
+    document.getElementById('dict-title').textContent = t['dict-header'];
+    document.getElementById('dict-input').placeholder = t['dict-ph'];
+    document.getElementById('btn-dict-search').textContent = t['dict-btn'];
+    document.getElementById('dict-intro-text').textContent = t['dict-intro'];
+    
+    // 버튼 스타일 업데이트
+    const btnKo = document.getElementById('btn-dict-ko');
+    const btnEn = document.getElementById('btn-dict-en');
+    
+    [btnKo, btnEn].forEach(btn => {
+        btn.style.background = 'transparent';
+        btn.style.color = 'var(--primary-color)';
+    });
+    
+    const activeBtn = isKo ? btnKo : btnEn;
+    activeBtn.style.background = 'var(--primary-color)';
+    activeBtn.style.color = 'white';
 }
 
 function toggleDictionary() {
@@ -287,8 +324,8 @@ function searchWord() {
     const word = input.value.trim();
     if (!word) return;
     
-    // 위키낱말사전(Wiktionary) URL 생성 및 이동
-    const wikiUrl = `https://ko.wiktionary.org/wiki/${encodeURIComponent(word)}`;
+    const domain = dictLanguage === 'ko' ? 'ko' : 'en';
+    const wikiUrl = `https://${domain}.wiktionary.org/wiki/${encodeURIComponent(word)}`;
     window.open(wikiUrl, '_blank');
 }
 
