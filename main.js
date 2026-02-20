@@ -1,111 +1,72 @@
-// Comprehensive Location Data
+// Comprehensive Location Data with Coordinates for Weather
 const locationData = {
     "South Korea": [
-        { name: "Incheon (ICN)", tz: "Asia/Seoul" },
-        { name: "Seoul/Gimpo (GMP)", tz: "Asia/Seoul" },
-        { name: "Busan (PUS)", tz: "Asia/Seoul" },
-        { name: "Jeju (CJU)", tz: "Asia/Seoul" },
-        { name: "Daegu (TAE)", tz: "Asia/Seoul" }
+        { name: "Incheon (ICN)", tz: "Asia/Seoul", lat: 37.4602, lon: 126.4407 },
+        { name: "Seoul/Gimpo (GMP)", tz: "Asia/Seoul", lat: 37.5583, lon: 126.7906 },
+        { name: "Busan (PUS)", tz: "Asia/Seoul", lat: 35.1796, lon: 129.0756 },
+        { name: "Jeju (CJU)", tz: "Asia/Seoul", lat: 33.5113, lon: 126.4930 },
+        { name: "Daegu (TAE)", tz: "Asia/Seoul", lat: 35.8714, lon: 128.6014 }
     ],
     "USA": [
-        { name: "New York (JFK)", tz: "America/New_York" },
-        { name: "Los Angeles (LAX)", tz: "America/Los_Angeles" },
-        { name: "Chicago (ORD)", tz: "America/Chicago" },
-        { name: "Atlanta (ATL)", tz: "America/New_York" },
-        { name: "Dallas (DFW)", tz: "America/Chicago" },
-        { name: "San Francisco (SFO)", tz: "America/Los_Angeles" },
-        { name: "Miami (MIA)", tz: "America/New_York" },
-        { name: "Seattle (SEA)", tz: "America/Los_Angeles" },
-        { name: "El Paso (ELP)", tz: "America/Denver" },
-        { name: "Honolulu (HNL)", tz: "Pacific/Honolulu" },
-        { name: "Las Vegas (LAS)", tz: "America/Los_Angeles" },
-        { name: "Boston (BOS)", tz: "America/New_York" }
+        { name: "New York (JFK)", tz: "America/New_York", lat: 40.6413, lon: -73.7781 },
+        { name: "Los Angeles (LAX)", tz: "America/Los_Angeles", lat: 33.9416, lon: -118.4085 },
+        { name: "Chicago (ORD)", tz: "America/Chicago", lat: 41.9742, lon: -87.9073 },
+        { name: "Atlanta (ATL)", tz: "America/New_York", lat: 33.6407, lon: -84.4277 },
+        { name: "Dallas (DFW)", tz: "America/Chicago", lat: 32.8998, lon: -97.0403 },
+        { name: "San Francisco (SFO)", tz: "America/Los_Angeles", lat: 37.6213, lon: -122.3790 },
+        { name: "Miami (MIA)", tz: "America/New_York", lat: 25.7959, lon: -80.2870 },
+        { name: "Seattle (SEA)", tz: "America/Los_Angeles", lat: 47.4502, lon: -122.3088 },
+        { name: "El Paso (ELP)", tz: "America/Denver", lat: 31.8066, lon: -106.3778 },
+        { name: "Honolulu (HNL)", tz: "Pacific/Honolulu", lat: 21.3156, lon: -157.9242 },
+        { name: "Las Vegas (LAS)", tz: "America/Los_Angeles", lat: 36.0840, lon: -115.1537 },
+        { name: "Boston (BOS)", tz: "America/New_York", lat: 42.3656, lon: -71.0096 }
     ],
     "Japan": [
-        { name: "Tokyo Narita (NRT)", tz: "Asia/Tokyo" },
-        { name: "Tokyo Haneda (HND)", tz: "Asia/Tokyo" },
-        { name: "Osaka (KIX)", tz: "Asia/Tokyo" },
-        { name: "Fukuoka (FUK)", tz: "Asia/Tokyo" },
-        { name: "Sapporo (CTS)", tz: "Asia/Tokyo" },
-        { name: "Okinawa (OKA)", tz: "Asia/Tokyo" }
+        { name: "Tokyo Narita (NRT)", tz: "Asia/Tokyo", lat: 35.7720, lon: 140.3929 },
+        { name: "Tokyo Haneda (HND)", tz: "Asia/Tokyo", lat: 35.5494, lon: 139.7798 },
+        { name: "Osaka (KIX)", tz: "Asia/Tokyo", lat: 34.4320, lon: 135.2304 },
+        { name: "Fukuoka (FUK)", tz: "Asia/Tokyo", lat: 33.5859, lon: 130.4507 },
+        { name: "Sapporo (CTS)", tz: "Asia/Tokyo", lat: 42.7752, lon: 141.6923 },
+        { name: "Okinawa (OKA)", tz: "Asia/Tokyo", lat: 26.2064, lon: 127.6465 }
     ],
     "United Kingdom": [
-        { name: "London Heathrow (LHR)", tz: "Europe/London" },
-        { name: "London Gatwick (LGW)", tz: "Europe/London" },
-        { name: "Manchester (MAN)", tz: "Europe/London" },
-        { name: "Edinburgh (EDI)", tz: "Europe/London" }
+        { name: "London Heathrow (LHR)", tz: "Europe/London", lat: 51.4700, lon: -0.4543 },
+        { name: "London Gatwick (LGW)", tz: "Europe/London", lat: 51.1537, lon: -0.1821 },
+        { name: "Manchester (MAN)", tz: "Europe/London", lat: 53.3588, lon: -2.2727 },
+        { name: "Edinburgh (EDI)", tz: "Europe/London", lat: 55.9508, lon: -3.3615 }
     ],
     "France": [
-        { name: "Paris (CDG)", tz: "Europe/Paris" },
-        { name: "Paris Orly (ORY)", tz: "Europe/Paris" },
-        { name: "Nice (NCE)", tz: "Europe/Paris" },
-        { name: "Lyon (LYS)", tz: "Europe/Paris" }
+        { name: "Paris (CDG)", tz: "Europe/Paris", lat: 49.0097, lon: 2.5479 },
+        { name: "Paris Orly (ORY)", tz: "Europe/Paris", lat: 48.7262, lon: 2.3652 },
+        { name: "Nice (NCE)", tz: "Europe/Paris", lat: 43.6653, lon: 7.2150 },
+        { name: "Lyon (LYS)", tz: "Europe/Paris", lat: 45.7256, lon: 5.0811 }
     ],
     "Germany": [
-        { name: "Frankfurt (FRA)", tz: "Europe/Berlin" },
-        { name: "Munich (MUC)", tz: "Europe/Berlin" },
-        { name: "Berlin (BER)", tz: "Europe/Berlin" },
-        { name: "Hamburg (HAM)", tz: "Europe/Berlin" }
+        { name: "Frankfurt (FRA)", tz: "Europe/Berlin", lat: 50.0379, lon: 8.5622 },
+        { name: "Munich (MUC)", tz: "Europe/Berlin", lat: 48.3537, lon: 11.7750 },
+        { name: "Berlin (BER)", tz: "Europe/Berlin", lat: 52.3667, lon: 13.5033 },
+        { name: "Hamburg (HAM)", tz: "Europe/Berlin", lat: 53.6304, lon: 9.9882 }
     ],
     "Canada": [
-        { name: "Toronto (YYZ)", tz: "America/Toronto" },
-        { name: "Vancouver (YVR)", tz: "America/Vancouver" },
-        { name: "Montreal (YUL)", tz: "America/Toronto" },
-        { name: "Calgary (YYC)", tz: "America/Edmonton" }
+        { name: "Toronto (YYZ)", tz: "America/Toronto", lat: 43.6777, lon: -79.6248 },
+        { name: "Vancouver (YVR)", tz: "America/Vancouver", lat: 49.1967, lon: -123.1815 },
+        { name: "Montreal (YUL)", tz: "America/Toronto", lat: 45.4657, lon: -73.7455 },
+        { name: "Calgary (YYC)", tz: "America/Edmonton", lat: 51.1139, lon: -114.0203 }
     ],
     "Australia": [
-        { name: "Sydney (SYD)", tz: "Australia/Sydney" },
-        { name: "Melbourne (MEL)", tz: "Australia/Melbourne" },
-        { name: "Brisbane (BNE)", tz: "Australia/Brisbane" },
-        { name: "Perth (PER)", tz: "Australia/Perth" }
+        { name: "Sydney (SYD)", tz: "Australia/Sydney", lat: -33.9399, lon: 151.1753 },
+        { name: "Melbourne (MEL)", tz: "Australia/Melbourne", lat: -37.6690, lon: 144.8410 },
+        { name: "Brisbane (BNE)", tz: "Australia/Brisbane", lat: -27.3942, lon: 153.1218 },
+        { name: "Perth (PER)", tz: "Australia/Perth", lat: -31.9385, lon: 115.9672 }
     ],
     "China": [
-        { name: "Beijing (PEK)", tz: "Asia/Shanghai" },
-        { name: "Shanghai (PVG)", tz: "Asia/Shanghai" },
-        { name: "Guangzhou (CAN)", tz: "Asia/Shanghai" },
-        { name: "Shenzhen (SZX)", tz: "Asia/Shanghai" }
+        { name: "Beijing (PEK)", tz: "Asia/Shanghai", lat: 40.0799, lon: 116.6031 },
+        { name: "Shanghai (PVG)", tz: "Asia/Shanghai", lat: 31.1443, lon: 121.8083 },
+        { name: "Guangzhou (CAN)", tz: "Asia/Shanghai", lat: 23.3924, lon: 113.2988 },
+        { name: "Shenzhen (SZX)", tz: "Asia/Shanghai", lat: 22.6393, lon: 113.8107 }
     ],
-    "Taiwan": [
-        { name: "Taipei (TPE)", tz: "Asia/Taipei" },
-        { name: "Kaohsiung (KHH)", tz: "Asia/Taipei" }
-    ],
-    "Singapore": [{ name: "Changi (SIN)", tz: "Asia/Singapore" }],
-    "Thailand": [
-        { name: "Bangkok (BKK)", tz: "Asia/Bangkok" },
-        { name: "Phuket (HKT)", tz: "Asia/Bangkok" }
-    ],
-    "Vietnam": [
-        { name: "Ho Chi Minh City (SGN)", tz: "Asia/Ho_Chi_Minh" },
-        { name: "Hanoi (HAN)", tz: "Asia/Ho_Chi_Minh" }
-    ],
-    "United Arab Emirates": [
-        { name: "Dubai (DXB)", tz: "Asia/Dubai" },
-        { name: "Abu Dhabi (AUH)", tz: "Asia/Dubai" }
-    ],
-    "Turkey": [
-        { name: "Istanbul (IST)", tz: "Europe/Istanbul" },
-        { name: "Antalya (AYT)", tz: "Europe/Istanbul" }
-    ],
-    "Italy": [
-        { name: "Rome (FCO)", tz: "Europe/Rome" },
-        { name: "Milan (MXP)", tz: "Europe/Rome" }
-    ],
-    "Spain": [
-        { name: "Madrid (MAD)", tz: "Europe/Madrid" },
-        { name: "Barcelona (BCN)", tz: "Europe/Madrid" }
-    ],
-    "Netherlands": [{ name: "Amsterdam (AMS)", tz: "Europe/Amsterdam" }],
-    "Switzerland": [{ name: "Zurich (ZRH)", tz: "Europe/Zurich" }],
-    "India": [
-        { name: "Delhi (DEL)", tz: "Asia/Kolkata" },
-        { name: "Mumbai (BOM)", tz: "Asia/Kolkata" }
-    ],
-    "Brazil": [{ name: "Sao Paulo (GRU)", tz: "America/Sao_Paulo" }],
-    "Mexico": [{ name: "Mexico City (MEX)", tz: "America/Mexico_City" }],
-    "Russia": [{ name: "Moscow (SVO)", tz: "Europe/Moscow" }],
-    "South Africa": [{ name: "Johannesburg (JNB)", tz: "Africa/Johannesburg" }],
-    "New Zealand": [{ name: "Auckland (AKL)", tz: "Pacific/Auckland" }],
-    "Others": [{ name: "UTC/GMT", tz: "UTC" }]
+    "Singapore": [{ name: "Changi (SIN)", tz: "Asia/Singapore", lat: 1.3644, lon: 103.9915 }],
+    "Others": [{ name: "UTC/GMT", tz: "UTC", lat: 0, lon: 0 }]
 };
 
 // Translation data
@@ -122,6 +83,10 @@ const translations = {
         'world-clock-title': '다른 공간, 연결된 시간',
         'my-time-label': '지금 여기, 나의 시간',
         'partner-time-label': '그곳에 있는 너의 시간',
+        'weather-title': '우리의 오늘 날씨',
+        'my-weather-label': '내가 있는 곳은',
+        'partner-weather-label': '네가 있는 곳은',
+        'weather-update-text': '실시간 날씨 정보를 가져오고 있어요...',
         'footer-text': '먼 거리를 사랑으로 채워가는 모든 분들을 응원합니다 ❤️',
         'met-message': '드디어 만났어요!',
         'days-unit': '일',
@@ -134,9 +99,7 @@ const translations = {
         'label-country': '나라:',
         'label-airport': '공항:',
         'label-location': '위치:',
-        'timezone-info': '우리가 만날 곳:',
-        'change-partner-tz': '너의 위치는?',
-        'label-partner-timezone': '상대방 시간대:'
+        'timezone-info': '우리가 만날 곳:'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -150,6 +113,10 @@ const translations = {
         'world-clock-title': 'Two Places, One Connection',
         'my-time-label': 'My Time Here',
         'partner-time-label': "Your Time There",
+        'weather-title': 'Our Weather Today',
+        'my-weather-label': 'Where I am',
+        'partner-weather-label': 'Where you are',
+        'weather-update-text': 'Fetching live weather updates...',
         'footer-text': 'Celebrating every mile covered by love ❤️',
         'met-message': "Finally together!",
         'days-unit': 'd',
@@ -162,9 +129,7 @@ const translations = {
         'label-country': 'Country:',
         'label-airport': 'Airport:',
         'label-location': 'Location:',
-        'timezone-info': 'Where we meet:',
-        'change-partner-tz': 'Sync Your Time',
-        'label-partner-timezone': "Partner's Location:"
+        'timezone-info': 'Where we meet:'
     }
 };
 
@@ -184,31 +149,82 @@ function setLanguage(lang) {
     currentLanguage = lang;
     localStorage.setItem('language', lang);
     document.documentElement.lang = lang;
-
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-            element.textContent = translations[lang][key];
-        }
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) el.textContent = translations[lang][key];
     });
-    
     updateDisplays();
+}
+
+async function fetchWeather(lat, lon, elementId) {
+    try {
+        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+        const data = await response.json();
+        const weather = data.current_weather;
+        const temp = Math.round(weather.temperature);
+        const code = weather.weathercode;
+        
+        const desc = getWeatherDescription(code);
+        const icon = getWeatherIcon(code);
+        
+        document.getElementById(elementId).innerHTML = `
+            <div class="temp">${temp}°C</div>
+            <div class="desc">${icon} ${desc}</div>
+        `;
+    } catch (e) {
+        document.getElementById(elementId).textContent = "---";
+    }
+}
+
+function getWeatherIcon(code) {
+    if (code <= 1) return "☀️";
+    if (code <= 3) return "☁️";
+    if (code <= 48) return "🌫️";
+    if (code <= 67) return "🌧️";
+    if (code <= 77) return "❄️";
+    if (code <= 82) return "🌦️";
+    if (code <= 99) return "⛈️";
+    return "✨";
+}
+
+function getWeatherDescription(code) {
+    const descs = {
+        0: "Clear", 1: "Mainly Clear", 2: "Partly Cloudy", 3: "Overcast",
+        45: "Fog", 48: "Depositing Rime Fog", 51: "Light Drizzle",
+        61: "Slight Rain", 71: "Slight Snow", 95: "Thunderstorm"
+    };
+    return descs[code] || "Cloudy";
+}
+
+async function updateWeather() {
+    // 1. Get My Location Weather (Auto-detect)
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(pos => {
+            fetchWeather(pos.coords.latitude, pos.coords.longitude, 'my-weather-info');
+        }, () => {
+            // Fallback to SEOUL if denied
+            fetchWeather(37.5665, 126.9780, 'my-weather-info');
+        });
+    }
+
+    // 2. Get Partner Location Weather
+    const partnerData = locationData[partnerCountry]?.find(l => l.name === partnerLocation);
+    if (partnerData) {
+        fetchWeather(partnerData.lat, partnerData.lon, 'partner-weather-info');
+    }
 }
 
 function updateDisplays() {
     updateDaysTogether();
     updateCountdown();
     updateClocks();
+    updateWeather();
     
     const myTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     let myLocationLabel = myTz;
-    
     for (const [country, locations] of Object.entries(locationData)) {
         const match = locations.find(loc => loc.tz === myTz);
-        if (match) {
-            myLocationLabel = `${country}, ${match.name.split(' (')[0]}`;
-            break;
-        }
+        if (match) { myLocationLabel = `${country}, ${match.name.split(' (')[0]}`; break; }
     }
     
     document.getElementById('display-location').textContent = `${meetingCountry}, ${meetingAirport}`;
@@ -219,56 +235,38 @@ function updateDisplays() {
 function updateDaysTogether() {
     const today = new Date();
     const anniv = new Date(anniversaryDate);
-    const differenceInTime = today.getTime() - anniv.getTime();
-    const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
-    document.getElementById('days-together').textContent = Math.max(0, differenceInDays);
+    const diff = Math.floor((today.getTime() - anniv.getTime()) / (1000 * 3600 * 24));
+    document.getElementById('days-together').textContent = Math.max(0, diff);
 }
 
 function updateCountdown() {
-    const today = new Date();
     const targetUTC = convertToUTC(nextMeetingDate, meetingTimezone);
-    const remaining = targetUTC - today.getTime();
-
-    const timerElement = document.getElementById('countdown-timer');
-
+    const remaining = targetUTC - new Date().getTime();
+    const timer = document.getElementById('countdown-timer');
     if (remaining > 0) {
-        const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
-
-        const d = translations[currentLanguage]['days-unit'];
-        const h = translations[currentLanguage]['hours-unit'];
-        const m = translations[currentLanguage]['minutes-unit'];
-        const s = translations[currentLanguage]['seconds-unit'];
-
-        timerElement.textContent = `${days}${d} ${hours}${h} ${minutes}${m} ${seconds}${s}`;
+        const d = Math.floor(remaining / (1000 * 60 * 60 * 24));
+        const h = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((remaining % (1000 * 60)) / 1000);
+        const units = translations[currentLanguage];
+        timer.textContent = `${d}${units['days-unit']} ${h}${units['hours-unit']} ${m}${units['minutes-unit']} ${s}${units['seconds-unit']}`;
     } else {
-        timerElement.textContent = translations[currentLanguage]['met-message'];
+        timer.textContent = translations[currentLanguage]['met-message'];
     }
 }
 
 function updateClocks() {
     const now = new Date();
-    const myOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-    document.getElementById('my-time').textContent = now.toLocaleTimeString([], myOptions);
-
-    const partnerOptions = { 
-        hour: '2-digit', minute: '2-digit', second: '2-digit', 
-        hour12: false, timeZone: partnerTimezone 
-    };
+    document.getElementById('my-time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
     try {
-        document.getElementById('partner-time').textContent = now.toLocaleTimeString([], partnerOptions);
-    } catch (e) {
-        document.getElementById('partner-time').textContent = "TZ Error";
-    }
+        document.getElementById('partner-time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: partnerTimezone });
+    } catch (e) { document.getElementById('partner-time').textContent = "TZ Error"; }
 }
 
 function convertToUTC(dateStr, tz) {
     const date = new Date(dateStr);
     const invDate = new Date(date.toLocaleString('en-US', { timeZone: tz }));
-    const diff = date.getTime() - invDate.getTime();
-    return date.getTime() + diff;
+    return date.getTime() + (date.getTime() - invDate.getTime());
 }
 
 function toggleMiniSettings(id) {
@@ -279,21 +277,18 @@ function toggleMiniSettings(id) {
 function saveSettings() {
     anniversaryDate = document.getElementById('input-anniversary').value;
     nextMeetingDate = document.getElementById('input-meeting').value;
-    
     meetingCountry = document.getElementById('input-country').value;
     const airportSelect = document.getElementById('input-airport');
     if (airportSelect.selectedIndex >= 0) {
         meetingAirport = airportSelect.options[airportSelect.selectedIndex].text;
         meetingTimezone = airportSelect.value;
     }
-
     partnerCountry = document.getElementById('input-partner-country').value;
     const partnerLocSelect = document.getElementById('input-partner-location');
     if (partnerLocSelect.selectedIndex >= 0) {
         partnerLocation = partnerLocSelect.options[partnerLocSelect.selectedIndex].text;
         partnerTimezone = partnerLocSelect.value;
     }
-
     localStorage.setItem('anniversaryDate', anniversaryDate);
     localStorage.setItem('nextMeetingDate', nextMeetingDate);
     localStorage.setItem('meetingCountry', meetingCountry);
@@ -302,7 +297,6 @@ function saveSettings() {
     localStorage.setItem('partnerCountry', partnerCountry);
     localStorage.setItem('partnerLocation', partnerLocation);
     localStorage.setItem('partnerTimezone', partnerTimezone);
-
     updateDisplays();
 }
 
@@ -310,12 +304,10 @@ function updateAirportList() {
     const country = document.getElementById('input-country').value;
     const airportSelect = document.getElementById('input-airport');
     airportSelect.innerHTML = '';
-
     if (locationData[country]) {
         locationData[country].forEach(ap => {
             const opt = document.createElement('option');
-            opt.value = ap.tz;
-            opt.textContent = ap.name;
+            opt.value = ap.tz; opt.textContent = ap.name;
             if (ap.name === meetingAirport) opt.selected = true;
             airportSelect.appendChild(opt);
         });
@@ -327,12 +319,10 @@ function updatePartnerLocationList() {
     const country = document.getElementById('input-partner-country').value;
     const locSelect = document.getElementById('input-partner-location');
     locSelect.innerHTML = '';
-
     if (locationData[country]) {
         locationData[country].forEach(ap => {
             const opt = document.createElement('option');
-            opt.value = ap.tz;
-            opt.textContent = ap.name;
+            opt.value = ap.tz; opt.textContent = ap.name;
             if (ap.name === partnerLocation) opt.selected = true;
             locSelect.appendChild(opt);
         });
@@ -344,19 +334,16 @@ function initializeForm() {
     const countries = Object.keys(locationData).sort();
     const countrySelect = document.getElementById('input-country');
     const partnerCountrySelect = document.getElementById('input-partner-country');
-    
     [countrySelect, partnerCountrySelect].forEach(select => {
         select.innerHTML = '';
         countries.forEach(country => {
             const opt = document.createElement('option');
-            opt.value = country;
-            opt.textContent = country;
+            opt.value = country; opt.textContent = country;
             if (select.id === 'input-country' && country === meetingCountry) opt.selected = true;
             if (select.id === 'input-partner-country' && country === partnerCountry) opt.selected = true;
             select.appendChild(opt);
         });
     });
-
     updateAirportList();
     updatePartnerLocationList();
 }
@@ -364,12 +351,8 @@ function initializeForm() {
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('input-anniversary').value = anniversaryDate;
     document.getElementById('input-meeting').value = nextMeetingDate;
-    
     initializeForm();
     setLanguage(currentLanguage);
-    
-    setInterval(() => {
-        updateCountdown();
-        updateClocks();
-    }, 1000);
+    setInterval(() => { updateCountdown(); updateClocks(); }, 1000);
+    setInterval(updateWeather, 30 * 60 * 1000); // 30 mins weather sync
 });

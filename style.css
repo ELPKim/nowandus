@@ -10,6 +10,7 @@
     --anniversary-accent: #ef476f; /* Rose Pink */
     --countdown-accent: #f78c6b;   /* Sunset Coral */
     --clock-accent: #8e7dbe;       /* Soft Lavender */
+    --weather-accent: #4cc9f0;     /* Sky Blue */
 }
 
 body {
@@ -138,7 +139,7 @@ main {
     margin-bottom: 25px;
 }
 
-/* Category Accents */
+/* Category Specific Styles */
 #anniversary-section h2 { color: var(--anniversary-accent); border-color: #ffccd5; }
 #anniversary-section #days-together { color: var(--anniversary-accent); }
 #anniversary-section .settings-btn { color: var(--anniversary-accent); border-color: var(--anniversary-accent); }
@@ -148,13 +149,15 @@ main {
 #countdown-section #countdown-timer { color: var(--countdown-accent); }
 #countdown-section .settings-btn { color: var(--countdown-accent); border-color: var(--countdown-accent); }
 #countdown-section .settings-btn:hover { background-color: var(--countdown-accent); color: white; }
-#countdown-section #display-location { color: var(--countdown-accent); font-weight: bold; }
 
 #world-clock-section h2 { color: var(--clock-accent); border-color: #e2cfea; }
 #world-clock-section .time-display { color: var(--clock-accent); }
 #world-clock-section .settings-btn { color: var(--clock-accent); border-color: var(--clock-accent); }
 #world-clock-section .settings-btn:hover { background-color: var(--clock-accent); color: white; }
-#world-clock-section .tz-label { color: var(--clock-accent); }
+
+#weather-section h2 { color: var(--weather-accent); border-color: #caf0f8; }
+#weather-section .temp { color: var(--weather-accent); font-size: 2rem; font-weight: 900; }
+#weather-section .desc { color: var(--weather-accent); font-size: 1rem; margin-top: 5px; }
 
 #days-together, #countdown-timer {
     font-weight: 900;
@@ -163,12 +166,18 @@ main {
     margin: 10px 0;
 }
 
-/* Clock Styling */
-.clock-container {
+/* Container Layouts */
+.clock-container, .weather-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin: 20px 0;
+}
+
+.clock-box h3, .weather-box h3 {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    opacity: 0.7;
 }
 
 .time-display {
@@ -184,11 +193,24 @@ main {
     font-weight: 500;
 }
 
-.clock-divider {
+.clock-divider, .weather-divider {
     font-size: 1.5rem;
+    opacity: 0.5;
 }
 
-/* Settings Button */
+.weather-update-info {
+    font-size: 0.7rem;
+    opacity: 0.5;
+    margin-top: 20px;
+}
+
+/* Settings Forms */
+.mini-settings {
+    margin-top: 20px;
+    border-top: 1px dashed var(--secondary-color);
+    padding-top: 15px;
+}
+
 .settings-btn {
     background-color: var(--white);
     padding: 8px 20px;
@@ -198,17 +220,6 @@ main {
     font-size: 0.9rem;
     font-weight: bold;
     transition: all 0.3s ease;
-}
-
-.settings-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.mini-settings {
-    margin-top: 20px;
-    border-top: 1px dashed var(--secondary-color);
-    padding-top: 15px;
 }
 
 .mini-form {
@@ -231,10 +242,6 @@ main {
     margin-bottom: 5px;
 }
 
-#anniversary-section label { color: var(--anniversary-accent); }
-#countdown-section label { color: var(--countdown-accent); }
-#world-clock-section label { color: var(--clock-accent); }
-
 .input-group input, .input-group select {
     width: 100%;
     padding: 10px;
@@ -250,6 +257,6 @@ footer {
 
 @media (max-width: 600px) {
     h1 { font-size: 2.5rem; }
-    .clock-container { flex-direction: column; gap: 20px; }
-    .clock-divider { transform: rotate(90deg); }
+    .clock-container, .weather-container { flex-direction: column; gap: 20px; }
+    .clock-divider, .weather-divider { transform: rotate(90deg); }
 }
