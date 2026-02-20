@@ -29,6 +29,9 @@ function addPost() {
     const cat = document.getElementById('post-category').value;
     const content = document.getElementById('post-content').value.trim();
 
+    const isAdminNick = nick.toLowerCase() === 'admin' || nick === '관리자';
+    const adminPw = '0000'; // 관리자 전용 비밀번호 (필요시 변경)
+
     if (!nick || !pw || !content) {
         alert(currentLanguage === 'ko' ? "모든 필드를 입력해주세요." : "Please fill in all fields.");
         return;
@@ -39,15 +42,21 @@ function addPost() {
         return;
     }
 
+    // 관리자 닉네임 사용 시 비밀번호 체크
+    if (isAdminNick && pw !== adminPw) {
+        alert(currentLanguage === 'ko' ? "관리자 닉네임은 지정된 비밀번호로만 사용할 수 있습니다." : "Admin nickname is reserved. Please use the correct password.");
+        return;
+    }
+
     const newPost = {
         id: Date.now(),
         nickname: nick,
         password: pw,
         category: cat,
         content: content,
-        flag: userFlag,
+        flag: isAdminNick ? '👑' : userFlag,
         date: new Date().toISOString(),
-        isAdmin: nick.toLowerCase() === 'admin' && pw === '0000' // 임시 어드민 로직
+        isAdmin: isAdminNick
     };
 
     posts.unshift(newPost);
@@ -67,7 +76,10 @@ function deletePost(id) {
 
     const postIndex = posts.findIndex(p => p.id === id);
     if (postIndex > -1) {
-        if (posts[postIndex].password === inputPw) {
+        // 관리자 글은 관리자 비번으로만, 일반 글은 본인 비번으로 삭제
+        const requiredPw = posts[postIndex].isAdmin ? '0000' : posts[postIndex].password;
+        
+        if (inputPw === requiredPw || inputPw === '0000') { // 관리자는 모든 글 삭제 권한 부여
             posts.splice(postIndex, 1);
             localStorage.setItem('loungePosts', JSON.stringify(posts));
             renderPosts();
@@ -113,13 +125,13 @@ function renderPosts() {
         });
 
         const card = document.createElement('div');
-        card.className = 'post-card';
+        card.className = `post-card ${p.isAdmin ? 'admin-post' : ''}`;
         card.innerHTML = `
             <div class="post-header">
                 <div class="user-info">
                     <span class="flag-icon">${p.flag}</span>
-                    <span>${p.nickname}</span>
-                    ${p.isAdmin ? '<span style="color:var(--primary-color); font-size:0.7rem; border:1px solid var(--primary-color); padding:1px 4px; border-radius:4px;">ADMIN</span>' : ''}
+                    <span class="${p.isAdmin ? 'admin-nick' : ''}">${p.nickname}</span>
+                    ${p.isAdmin ? '<span class="admin-badge">ADMIN</span>' : ''}
                 </div>
                 <div style="display:flex; align-items:center; gap:10px;">
                     <span class="category-tag">${p.category}</span>
