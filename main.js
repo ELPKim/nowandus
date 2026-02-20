@@ -109,7 +109,10 @@ const translations = {
         'ps-btn': '보내기', 'ps-back': '← 메인으로 돌아가기',
         'ps-name-ph': '이름을 입력해주세요', 'ps-subject-ph': '제휴 문의 드립니다', 'ps-message-ph': '상세한 내용을 적어주세요',
         'board-header': '고객 소리함',
-        'board-subtitle': '여러분의 소중한 의견을 들려주세요'
+        'board-subtitle': '여러분의 소중한 의견을 들려주세요',
+        'board-label-name': '닉네임', 'board-label-subject': '문의 제목', 'board-label-message': '문의 내용',
+        'board-name-ph': '닉네임을 입력해주세요', 'board-subject-ph': '문의 제목을 입력해주세요', 'board-message-ph': '상세한 내용을 적어주세요',
+        'board-btn': '보내기'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -139,7 +142,10 @@ const translations = {
         'ps-btn': 'Send', 'ps-back': '← Back to Main',
         'ps-name-ph': 'Enter your name', 'ps-subject-ph': 'Inquiry about partnership', 'ps-message-ph': 'Please enter detailed information',
         'board-header': 'Customer Center',
-        'board-subtitle': 'Your voice for a better Now and Us'
+        'board-subtitle': 'Your voice for a better Now and Us',
+        'board-label-name': 'Nickname', 'board-label-subject': 'Subject', 'board-label-message': 'Inquiry Details',
+        'board-name-ph': 'Enter your nickname', 'board-subject-ph': 'Enter inquiry subject', 'board-message-ph': 'Please enter detailed information',
+        'board-btn': 'Send'
     }
 };
 
