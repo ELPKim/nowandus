@@ -175,7 +175,14 @@ const translations = {
         'cat-all': 'All',
         'cat-greeting': '인사 (Greeting)',
         'cat-support': '응원 (Support)',
-        'cat-advice': '조언 (Advice)'
+        'cat-advice': '조언 (Advice)',
+        'pw-guide': '※ 비밀번호는 글 삭제 시에만 사용되며 안전하게 암호화 처리됩니다.',
+        'time-just-now': '방금 전',
+        'time-minutes': '분 전',
+        'time-hours': '시간 전',
+        'time-days': '일 전',
+        'change-flag': '국기 변경',
+        'like-btn': '공감'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -271,7 +278,14 @@ const translations = {
         'cat-all': 'All',
         'cat-greeting': 'Greeting',
         'cat-support': 'Support',
-        'cat-advice': 'Advice'
+        'cat-advice': 'Advice',
+        'pw-guide': '※ Password is only used for deleting posts and is kept secure.',
+        'time-just-now': 'Just now',
+        'time-minutes': 'm ago',
+        'time-hours': 'h ago',
+        'time-days': 'd ago',
+        'change-flag': 'Change Flag',
+        'like-btn': 'Like'
     }
 };
 

@@ -1,14 +1,16 @@
 let userFlag = '🌍';
 let posts = JSON.parse(localStorage.getItem('loungePosts')) || [];
+let likedPosts = JSON.parse(localStorage.getItem('likedPosts')) || [];
 let currentFilter = 'All';
 
-// 가상 국가 감지 (실제 서비스에서는 IP API 활용)
+// 가상 국가 감지
 async function detectUserCountry() {
     try {
         const res = await fetch('https://ipapi.co/json/');
         const data = await res.json();
         if (data.country_code) {
             userFlag = getFlagEmoji(data.country_code);
+            updateFlagUI();
         }
     } catch (e) {
         console.log("Country detection failed, using default.");
@@ -23,6 +25,46 @@ function getFlagEmoji(countryCode) {
     return String.fromCodePoint(...codePoints);
 }
 
+function updateFlagUI() {
+    const el = document.getElementById('current-flag-display');
+    if (el) el.innerText = userFlag;
+}
+
+function manualChangeFlag() {
+    const input = prompt(currentLanguage === 'ko' ? "국가 코드(2자리)를 입력하거나 이모지를 직접 입력하세요 (예: KR, US, 🇰🇷):" : "Enter 2-letter country code or emoji (e.g. KR, US, 🇺🇸):");
+    if (!input) return;
+    
+    if (input.length === 2) {
+        userFlag = getFlagEmoji(input);
+    } else {
+        userFlag = input;
+    }
+    updateFlagUI();
+}
+
+// 상대 시간 계산 함수
+function getTimeAgo(dateIso) {
+    const seconds = Math.floor((new Date() - new Date(dateIso)) / 1000);
+    const t = translations[currentLanguage];
+    
+    let interval = Math.floor(seconds / 31536000);
+    if (interval >= 1) return interval + (currentLanguage === 'ko' ? '년 전' : 'y ago');
+    
+    interval = Math.floor(seconds / 2592000);
+    if (interval >= 1) return interval + (currentLanguage === 'ko' ? '개월 전' : 'mo ago');
+    
+    interval = Math.floor(seconds / 86400);
+    if (interval >= 1) return interval + t['time-days'];
+    
+    interval = Math.floor(seconds / 3600);
+    if (interval >= 1) return interval + t['time-hours'];
+    
+    interval = Math.floor(seconds / 60);
+    if (interval >= 1) return interval + t['time-minutes'];
+    
+    return t['time-just-now'];
+}
+
 function addPost() {
     const nick = document.getElementById('post-nickname').value.trim();
     const pw = document.getElementById('post-password').value.trim();
@@ -30,7 +72,7 @@ function addPost() {
     const content = document.getElementById('post-content').value.trim();
 
     const isAdminNick = nick.toLowerCase() === 'admin' || nick === '관리자';
-    const adminPw = 'admin102938'; // 관리자 전용 비밀번호
+    const adminPw = 'admin102938'; 
 
     if (!nick || !pw || !content) {
         alert(currentLanguage === 'ko' ? "모든 필드를 입력해주세요." : "Please fill in all fields.");
@@ -42,7 +84,6 @@ function addPost() {
         return;
     }
 
-    // 관리자 닉네임 사용 시 비밀번호 체크
     if (isAdminNick && pw !== adminPw) {
         alert(currentLanguage === 'ko' ? "관리자 닉네임은 지정된 비밀번호로만 사용할 수 있습니다." : "Admin nickname is reserved. Please use the correct password.");
         return;
@@ -56,17 +97,34 @@ function addPost() {
         content: content,
         flag: isAdminNick ? '👑' : userFlag,
         date: new Date().toISOString(),
-        isAdmin: isAdminNick
+        isAdmin: isAdminNick,
+        likes: 0
     };
 
     posts.unshift(newPost);
     localStorage.setItem('loungePosts', JSON.stringify(posts));
     
-    // 필드 초기화
     document.getElementById('post-nickname').value = '';
     document.getElementById('post-password').value = '';
     document.getElementById('post-content').value = '';
     
+    renderPosts();
+}
+
+function toggleLike(id) {
+    const post = posts.find(p => p.id === id);
+    if (!post) return;
+
+    if (likedPosts.includes(id)) {
+        likedPosts = likedPosts.filter(item => item !== id);
+        post.likes = Math.max(0, (post.likes || 0) - 1);
+    } else {
+        likedPosts.push(id);
+        post.likes = (post.likes || 0) + 1;
+    }
+    
+    localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
+    localStorage.setItem('loungePosts', JSON.stringify(posts));
     renderPosts();
 }
 
@@ -77,10 +135,9 @@ function deletePost(id) {
     const postIndex = posts.findIndex(p => p.id === id);
     if (postIndex > -1) {
         const adminPw = 'admin102938';
-        // 관리자 글은 관리자 비번으로만, 일반 글은 본인 비번으로 삭제
         const requiredPw = posts[postIndex].isAdmin ? adminPw : posts[postIndex].password;
         
-        if (inputPw === requiredPw || inputPw === adminPw) { // 관리자는 모든 글 삭제 권한 부여
+        if (inputPw === requiredPw || inputPw === adminPw) {
             posts.splice(postIndex, 1);
             localStorage.setItem('loungePosts', JSON.stringify(posts));
             renderPosts();
@@ -94,9 +151,11 @@ function filterPosts(category) {
     currentFilter = category;
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('active');
-        if (btn.innerText.includes(category) || (category === 'All' && btn.getAttribute('data-i18n') === 'cat-all')) {
-            btn.classList.add('active');
-        }
+        const btnText = btn.getAttribute('data-i18n');
+        if (category === 'All' && btnText === 'cat-all') btn.classList.add('active');
+        else if (category === 'Greeting' && btnText === 'cat-greeting') btn.classList.add('active');
+        else if (category === 'Support' && btnText === 'cat-support') btn.classList.add('active');
+        else if (category === 'Advice' && btnText === 'cat-advice') btn.classList.add('active');
     });
     renderPosts();
 }
@@ -111,19 +170,19 @@ function translateText(id) {
 
 function renderPosts() {
     const container = document.getElementById('post-list');
+    if (!container) return;
     container.innerHTML = '';
 
     const filtered = currentFilter === 'All' ? posts : posts.filter(p => p.category === currentFilter);
 
     if (filtered.length === 0) {
-        container.innerHTML = `<p style="text-align:center; color:#999; padding:40px;">${currentLanguage === 'ko' ? '작성된 글이 없습니다.' : 'No posts yet.'}</p>`;
+        container.innerHTML = `<p style="text-align:center; color:#999; padding:60px;">${currentLanguage === 'ko' ? '작성된 글이 없습니다.' : 'No posts yet.'}</p>`;
         return;
     }
 
     filtered.forEach(p => {
-        const dateStr = new Date(p.date).toLocaleString(currentLanguage === 'ko' ? 'ko-KR' : 'en-US', {
-            month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
-        });
+        const timeLabel = getTimeAgo(p.date);
+        const isLiked = likedPosts.includes(p.id);
 
         const card = document.createElement('div');
         card.className = `post-card ${p.isAdmin ? 'admin-post' : ''}`;
@@ -134,15 +193,20 @@ function renderPosts() {
                     <span class="${p.isAdmin ? 'admin-nick' : ''}">${p.nickname}</span>
                     ${p.isAdmin ? '<span class="admin-badge">ADMIN</span>' : ''}
                 </div>
-                <div style="display:flex; align-items:center; gap:10px;">
+                <div style="display:flex; align-items:center;">
                     <span class="category-tag">${p.category}</span>
                     <button class="translate-btn" onclick="translateText(${p.id})">Translate</button>
                 </div>
             </div>
             <div class="post-content">${p.content}</div>
             <div class="post-footer">
-                <span>${dateStr}</span>
-                <span class="delete-btn" onclick="deletePost(${p.id})">Delete</span>
+                <div class="interaction-box">
+                    <div class="like-btn" onclick="toggleLike(${p.id})">
+                        ${isLiked ? '❤️' : '🤍'} <span>${p.likes || 0}</span>
+                    </div>
+                    <span class="delete-btn" onclick="deletePost(${p.id})">Delete</span>
+                </div>
+                <span>${timeLabel}</span>
             </div>
         `;
         container.appendChild(card);
@@ -152,4 +216,6 @@ function renderPosts() {
 document.addEventListener('DOMContentLoaded', () => {
     detectUserCountry();
     renderPosts();
+    // 1분마다 시간 업데이트를 위해 리렌더링
+    setInterval(renderPosts, 60000);
 });
