@@ -163,7 +163,13 @@ const translations = {
         'cal-partner-title': '상대방의 공휴일',
         'cal-help-btn': '도움말',
         'cal-help-title': '💡 공휴일 캘린더 이용 안내',
-        'cal-help-text': '공휴일 정보는 메인 페이지에서 설정한 국가를 기준으로 자동으로 표시됩니다. 상대방 국가의 공휴일을 미리 확인하여 서운함 없는 특별한 날을 계획해 보세요! 데이터는 매주 일요일 자동으로 업데이트됩니다.'
+        'cal-help-text': '공휴일 정보는 메인 페이지에서 설정한 국가를 기준으로 자동으로 표시됩니다. 상대방 국가의 공휴일을 미리 확인하여 서운함 없는 특별한 날을 계획해 보세요! 데이터는 매주 일요일 자동으로 업데이트됩니다.',
+        'dict-header': '단어 사전',
+        'dict-ph': '단어를 입력하세요...',
+        'dict-btn': '검색',
+        'dict-loading': '찾는 중...',
+        'dict-not-found': '단어를 찾을 수 없습니다.',
+        'dict-intro': '모르는 영단어가 있다면 검색해보세요!'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -247,7 +253,13 @@ const translations = {
         'cal-partner-title': "Partner's Holidays",
         'cal-help-btn': 'Help',
         'cal-help-title': '💡 Holiday Calendar Guide',
-        'cal-help-text': 'Holiday information is automatically displayed based on the countries set on the main page. Plan special days without disappointment by checking your partner\'s holidays in advance! Data is updated automatically every Sunday.'
+        'cal-help-text': 'Holiday information is automatically displayed based on the countries set on the main page. Plan special days without disappointment by checking your partner\'s holidays in advance! Data is updated automatically every Sunday.',
+        'dict-header': 'Dictionary',
+        'dict-ph': 'Enter a word...',
+        'dict-btn': 'Search',
+        'dict-loading': 'Searching...',
+        'dict-not-found': 'Word not found.',
+        'dict-intro': 'Look up any English words you don\'t know!'
     }
 };
 
@@ -263,6 +275,78 @@ let myTimezone = localStorage.getItem('myTimezone') || 'Asia/Seoul';
 let partnerCountry = localStorage.getItem('partnerCountry') || 'USA';
 let partnerLocation = localStorage.getItem('partnerLocation') || "New York (JFK)";
 let partnerTimezone = localStorage.getItem('partnerTimezone') || 'America/New_York';
+
+// Floating Dictionary Logic
+function injectDictionary() {
+    if (document.querySelector('.dict-widget')) return;
+
+    const dictHTML = `
+        <div class="dict-widget">
+            <div id="dict-window" class="dict-window">
+                <div class="dict-header">
+                    <h4 data-i18n="dict-header">${translations[currentLanguage]['dict-header']}</h4>
+                    <span class="dict-close" onclick="toggleDictionary()">✖</span>
+                </div>
+                <div class="dict-body">
+                    <div class="dict-search">
+                        <input type="text" id="dict-input" data-i18n-ph="dict-ph" placeholder="${translations[currentLanguage]['dict-ph']}">
+                        <button onclick="searchWord()" data-i18n="dict-btn">${translations[currentLanguage]['dict-btn']}</button>
+                    </div>
+                    <div id="dict-result" class="dict-result">
+                        <p data-i18n="dict-intro">${translations[currentLanguage]['dict-intro']}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="dict-button" onclick="toggleDictionary()">📖</div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', dictHTML);
+
+    document.getElementById('dict-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') searchWord();
+    });
+}
+
+function toggleDictionary() {
+    const win = document.getElementById('dict-window');
+    if (win) win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
+}
+
+async function searchWord() {
+    const input = document.getElementById('dict-input');
+    const result = document.getElementById('dict-result');
+    const word = input.value.trim();
+
+    if (!word) return;
+
+    result.innerHTML = `<p data-i18n="dict-loading">${translations[currentLanguage]['dict-loading']}</p>`;
+
+    try {
+        const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        const entry = data[0];
+
+        let html = `
+            <div class="dict-word-title">${entry.word}</div>
+            <div class="dict-phonetic">${entry.phonetic || ''}</div>
+        `;
+
+        entry.meanings.slice(0, 2).forEach(m => {
+            html += `
+                <div class="dict-meaning">
+                    <div class="dict-part">${m.partOfSpeech}</div>
+                    <div>${m.definitions[0].definition}</div>
+                    ${m.definitions[0].example ? `<div style="font-size: 0.8rem; color: #888; font-style: italic; margin-top: 5px;">" ${m.definitions[0].example} "</div>` : ''}
+                </div>
+            `;
+        });
+
+        result.innerHTML = html;
+    } catch (e) {
+        result.innerHTML = `<p data-i18n="dict-not-found">${translations[currentLanguage]['dict-not-found']}</p>`;
+    }
+}
 
 // World News Logic (Reading from local static JSON updated by GitHub Actions)
 async function fetchNews(countryName, elementId) {
@@ -433,6 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(document.getElementById('input-anniversary')) document.getElementById('input-anniversary').value = anniversaryDate;
     if(document.getElementById('input-meeting')) document.getElementById('input-meeting').value = nextMeetingDate;
     initializeForm();
+    injectDictionary();
     setLanguage(currentLanguage);
     setInterval(updateDisplays, 1000);
 });
@@ -443,3 +528,5 @@ window.updatePartnerLocationList = () => updateList('input-partner-country','inp
 window.setLanguage = setLanguage;
 window.toggleMiniSettings = toggleMiniSettings;
 window.saveSettings = saveSettings;
+window.toggleDictionary = toggleDictionary;
+window.searchWord = searchWord;
