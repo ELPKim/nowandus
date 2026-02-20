@@ -304,6 +304,38 @@ footer {
     .clock-divider, .weather-divider { transform: none; margin: 10px 0; }
 }
 
+/* Sub-page Navigation Links */
+.nav-content-link {
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.9rem;
+    display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Non-active links (transparent) */
+.nav-content-link:not([style*="background: white"]) {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.nav-content-link:hover {
+    transform: translateY(-3px);
+    background: white !important;
+    color: var(--primary-color) !important;
+    box-shadow: 0 8px 20px rgba(255, 143, 163, 0.4);
+    border-color: white;
+}
+
+/* Active link (white background) pulse effect */
+.nav-content-link[style*="background: white"] {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 /* Floating Dictionary Styles */
 .dict-widget {
     position: fixed;
