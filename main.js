@@ -154,9 +154,19 @@ const translations = {
         'dict-header': '단어 사전',
         'dict-ph': '단어를 입력하세요...',
         'dict-btn': '검색',
-        'dict-loading': '이동 중...',
+        'dict-loading': '찾는 중...',
         'dict-not-found': '단어를 찾을 수 없습니다.',
-        'dict-intro': '궁금한 단어가 있다면 검색해보세요! (전 세계 언어 지원)'
+        'dict-intro': '궁금한 단어가 있다면 검색해보세요! (전 세계 언어 지원)',
+        'welcome-title': '👋 환영합니다!',
+        'welcome-subtitle': '\'Now and Us\'는 어떤 곳인가요?',
+        'welcome-f1': '💖 <b>기념일 기록</b>: 우리가 사랑한 시간을 소중히 기록합니다.',
+        'welcome-f2': '✈️ <b>만남 카운트다운</b>: 다시 만날 날을 설레며 기다립니다.',
+        'welcome-f3': '🕰️ <b>함께하는 시간</b>: 다른 공간에서도 연결된 시간을 확인하세요.',
+        'welcome-f4': '☁️ <b>오늘의 날씨</b>: 상대방이 있는 곳의 날씨를 실시간 공유합니다.',
+        'welcome-f5': '🌍 <b>확장 기능</b>: 세계 뉴스, 환율, 공휴일 정보를 제공합니다.',
+        'welcome-f6': '📖 <b>단어 사전</b>: 궁금한 단어는 위키 사전으로 바로 검색하세요.',
+        'welcome-hide': '오늘 하루 보지 않기',
+        'welcome-close': '닫기'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -233,7 +243,17 @@ const translations = {
         'dict-btn': 'Search',
         'dict-loading': 'Redirecting...',
         'dict-not-found': 'Word not found.',
-        'dict-intro': 'Look up any word you don\'t know! (Supports all languages)'
+        'dict-intro': 'Look up any word you don\'t know! (Supports all languages)',
+        'welcome-title': '👋 Welcome!',
+        'welcome-subtitle': 'What is \'Now and Us\'?',
+        'welcome-f1': '💖 <b>Love Journey</b>: Cherish the days you\'ve shared together.',
+        'welcome-f2': '✈️ <b>Meeting Countdown</b>: Look forward to the day you meet again.',
+        'welcome-f3': '🕰️ <b>Our Times</b>: Stay connected by checking each other\'s local time.',
+        'welcome-f4': '☁️ <b>Our Weather</b>: Share the atmosphere of where your partner is.',
+        'welcome-f5': '🌍 <b>More Features</b>: Explore World News, Exchange Rates, and Holidays.',
+        'welcome-f6': '📖 <b>Dictionary</b>: Look up any word instantly with Wiktionary.',
+        'welcome-hide': 'Don\'t show again today',
+        'welcome-close': 'Close'
     }
 };
 
@@ -249,6 +269,52 @@ let myTimezone = localStorage.getItem('myTimezone') || 'Asia/Seoul';
 let partnerCountry = localStorage.getItem('partnerCountry') || 'USA';
 let partnerLocation = localStorage.getItem('partnerLocation') || "New York (JFK)";
 let partnerTimezone = localStorage.getItem('partnerTimezone') || 'America/New_York';
+
+// --- Welcome Popup Logic ---
+function injectWelcomePopup() {
+    const lastHideDate = localStorage.getItem('welcomeHideDate');
+    const today = new Date().toDateString();
+    
+    if (lastHideDate === today) return; 
+
+    const popupHTML = `
+        <div id="welcome-overlay" class="welcome-overlay">
+            <div class="welcome-box">
+                <div class="welcome-header">
+                    <h3 id="pop-title">${translations[currentLanguage]['welcome-title']}</h3>
+                    <p id="pop-subtitle" style="margin:0; opacity:0.7; font-weight:bold;">${translations[currentLanguage]['welcome-subtitle']}</p>
+                </div>
+                <ul class="welcome-list" id="pop-list">
+                    <li>${translations[currentLanguage]['welcome-f1']}</li>
+                    <li>${translations[currentLanguage]['welcome-f2']}</li>
+                    <li>${translations[currentLanguage]['welcome-f3']}</li>
+                    <li>${translations[currentLanguage]['welcome-f4']}</li>
+                    <li>${translations[currentLanguage]['welcome-f5']}</li>
+                    <li>${translations[currentLanguage]['welcome-f6']}</li>
+                </ul>
+                <div class="welcome-footer">
+                    <button onclick="hideWelcomeToday()" id="pop-hide-btn">${translations[currentLanguage]['welcome-hide']}</button>
+                    <button onclick="closeWelcome()" class="welcome-close-btn" id="pop-close-btn">${translations[currentLanguage]['welcome-close']}</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', popupHTML);
+    setTimeout(() => {
+        const el = document.getElementById('welcome-overlay');
+        if (el) el.style.display = 'flex';
+    }, 500);
+}
+
+window.closeWelcome = () => {
+    const el = document.getElementById('welcome-overlay');
+    if (el) el.style.display = 'none';
+};
+
+window.hideWelcomeToday = () => {
+    localStorage.setItem('welcomeHideDate', new Date().toDateString());
+    window.closeWelcome();
+};
 
 // --- Floating Dictionary Logic ---
 let dictLanguage = localStorage.getItem('dictLanguage') || (currentLanguage === 'ko' ? 'ko' : 'en');
@@ -295,23 +361,28 @@ function updateDictUI() {
     const isKo = dictLanguage === 'ko';
     const t = translations[isKo ? 'ko' : 'en'];
     
-    document.getElementById('dict-title').textContent = t['dict-header'];
-    document.getElementById('dict-input').placeholder = t['dict-ph'];
-    document.getElementById('btn-dict-search').textContent = t['dict-btn'];
-    document.getElementById('dict-intro-text').textContent = t['dict-intro'];
+    const titleEl = document.getElementById('dict-title');
+    const inputEl = document.getElementById('dict-input');
+    const btnEl = document.getElementById('btn-dict-search');
+    const introEl = document.getElementById('dict-intro-text');
     
-    // 버튼 스타일 업데이트
+    if (titleEl) titleEl.textContent = t['dict-header'];
+    if (inputEl) inputEl.placeholder = t['dict-ph'];
+    if (btnEl) btnEl.textContent = t['dict-btn'];
+    if (introEl) introEl.textContent = t['dict-intro'];
+    
     const btnKo = document.getElementById('btn-dict-ko');
     const btnEn = document.getElementById('btn-dict-en');
     
-    [btnKo, btnEn].forEach(btn => {
-        btn.style.background = 'transparent';
-        btn.style.color = 'var(--primary-color)';
-    });
-    
-    const activeBtn = isKo ? btnKo : btnEn;
-    activeBtn.style.background = 'var(--primary-color)';
-    activeBtn.style.color = 'white';
+    if (btnKo && btnEn) {
+        [btnKo, btnEn].forEach(btn => {
+            btn.style.background = 'transparent';
+            btn.style.color = 'var(--primary-color)';
+        });
+        const activeBtn = isKo ? btnKo : btnEn;
+        activeBtn.style.background = 'var(--primary-color)';
+        activeBtn.style.color = 'white';
+    }
 }
 
 function toggleDictionary() {
@@ -323,17 +394,15 @@ function searchWord() {
     const input = document.getElementById('dict-input');
     const word = input.value.trim();
     if (!word) return;
-    
     const domain = dictLanguage === 'ko' ? 'ko' : 'en';
-    const wikiUrl = `https://${domain}.wiktionary.org/wiki/${encodeURIComponent(word)}`;
-    window.open(wikiUrl, '_blank');
+    window.open(`https://${domain}.wiktionary.org/wiki/${encodeURIComponent(word)}`, '_blank');
 }
 
 // --- World News Logic ---
 async function fetchNews(countryName, elementId) {
     const el = document.getElementById(elementId);
     if (!el) return;
-    el.innerHTML = `<p data-i18n="news-loading">${translations[currentLanguage]['news-loading']}</p>`;
+    el.innerHTML = `<p>${translations[currentLanguage]['news-loading']}</p>`;
     try {
         const res = await fetch('news-data.json');
         const allNews = await res.json();
@@ -346,8 +415,8 @@ async function fetchNews(countryName, elementId) {
                     <a href="${n.url}" target="_blank" style="color: var(--primary-color); font-weight: bold; text-decoration: none; font-size: 0.85rem;">${translations[currentLanguage]['news-read-more']} →</a>
                 </div>
             `).join('');
-        } else { el.innerHTML = `<p data-i18n="news-no-data">${translations[currentLanguage]['news-no-data']}</p>`; }
-    } catch (e) { el.innerHTML = `<p data-i18n="news-no-data">${translations[currentLanguage]['news-no-data']}</p>`; }
+        } else { el.innerHTML = `<p>${translations[currentLanguage]['news-no-data']}</p>`; }
+    } catch (e) { el.innerHTML = `<p>${translations[currentLanguage]['news-no-data']}</p>`; }
 }
 
 // --- Global Functions ---
@@ -363,6 +432,30 @@ function setLanguage(lang) {
         const key = el.getAttribute('data-i18n-ph');
         if (translations[lang][key]) el.placeholder = translations[lang][key];
     });
+    
+    // 팝업 내용 실시간 번역
+    const popTitle = document.getElementById('pop-title');
+    const popSub = document.getElementById('pop-subtitle');
+    const popList = document.getElementById('pop-list');
+    const popHide = document.getElementById('pop-hide-btn');
+    const popClose = document.getElementById('pop-close-btn');
+    
+    if (popTitle) popTitle.textContent = translations[lang]['welcome-title'];
+    if (popSub) popSub.textContent = translations[lang]['welcome-subtitle'];
+    if (popList) {
+        popList.innerHTML = `
+            <li>${translations[lang]['welcome-f1']}</li>
+            <li>${translations[lang]['welcome-f2']}</li>
+            <li>${translations[lang]['welcome-f3']}</li>
+            <li>${translations[lang]['welcome-f4']}</li>
+            <li>${translations[lang]['welcome-f5']}</li>
+            <li>${translations[lang]['welcome-f6']}</li>
+        `;
+    }
+    if (popHide) popHide.textContent = translations[lang]['welcome-hide'];
+    if (popClose) popClose.textContent = translations[lang]['welcome-close'];
+
+    updateDictUI();
     updateDisplays();
 }
 
@@ -480,6 +573,7 @@ function initializeForm() {
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeForm();
+    injectWelcomePopup();
     injectDictionary();
     setLanguage(currentLanguage);
     setInterval(updateDisplays, 1000);
@@ -494,3 +588,4 @@ window.updatePartnerLocationList = () => updateList('input-partner-country','inp
 window.fetchNews = fetchNews;
 window.toggleDictionary = toggleDictionary;
 window.searchWord = searchWord;
+window.setDictLang = setDictLang;
