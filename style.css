@@ -251,8 +251,11 @@ main {
 }
 
 footer {
-    padding: 40px 20px;
+    padding: 60px 20px;
     color: var(--accent-color);
+    border-top: 2px dashed var(--secondary-color);
+    margin-top: 40px;
+    background: rgba(255, 255, 255, 0.3);
 }
 
 @media (max-width: 600px) {
