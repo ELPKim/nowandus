@@ -20,7 +20,7 @@
             <button onclick="setLanguage('ko')">KR</button>
             <button onclick="setLanguage('en')">EN</button>
         </div>
-        <h1 data-i18n="header-title">Nowandus</h1>
+        <h1 data-i18n="header-title">Now and Us</h1>
         <p data-i18n="header-subtitle">A space for long-distance couples</p>
     </header>
 
@@ -36,7 +36,7 @@
                 </p>
             </div>
             <div class="mini-settings">
-                <button class="icon-btn" onclick="toggleMiniSettings('anniversary-settings')">⚙️ <span data-i18n="settings-button">Change Date</span></button>
+                <button class="settings-btn" onclick="toggleMiniSettings('anniversary-settings')" data-i18n="settings-button">Change Date</button>
                 <div id="anniversary-settings" class="mini-form" style="display: none;">
                     <div class="input-group">
                         <label data-i18n="label-anniversary">Anniversary:</label>
@@ -58,7 +58,7 @@
                 <p class="tz-info"><span data-i18n="timezone-info">Target Timezone:</span> <span id="display-timezone"></span></p>
             </div>
             <div class="mini-settings">
-                <button class="icon-btn" onclick="toggleMiniSettings('countdown-settings')">⚙️ <span data-i18n="settings-button">Change Date</span></button>
+                <button class="settings-btn" onclick="toggleMiniSettings('countdown-settings')" data-i18n="settings-button">Change Date</button>
                 <div id="countdown-settings" class="mini-form" style="display: none;">
                     <div class="input-group">
                         <label data-i18n="label-meeting">Next Meeting:</label>
@@ -91,7 +91,7 @@
                 </div>
             </div>
             <div class="mini-settings">
-                <button class="icon-btn" onclick="toggleMiniSettings('clock-settings')">⚙️ <span data-i18n="change-partner-tz">Set Partner Timezone</span></button>
+                <button class="settings-btn" onclick="toggleMiniSettings('clock-settings')" data-i18n="change-partner-tz">Set Partner Timezone</button>
                 <div id="clock-settings" class="mini-form" style="display: none;">
                     <div class="input-group">
                         <label data-i18n="label-partner-timezone">Partner's Timezone:</label>

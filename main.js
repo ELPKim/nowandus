@@ -1,7 +1,7 @@
 // Translation data
 const translations = {
     'ko': {
-        'header-title': 'Nowandus',
+        'header-title': 'Now and Us',
         'header-subtitle': '장거리 커플을 위한 공간',
         'anniversary-title': '우리가 만난 시간',
         'anniversary-text-before': '우리는',
@@ -27,7 +27,7 @@ const translations = {
         'label-partner-timezone': '상대방 시간대:'
     },
     'en': {
-        'header-title': 'Nowandus',
+        'header-title': 'Now and Us',
         'header-subtitle': 'A space for long-distance couples',
         'anniversary-title': 'Time Since We Met',
         'anniversary-text-before': "We've been in love for",
