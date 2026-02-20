@@ -30,7 +30,7 @@ function addPost() {
     const content = document.getElementById('post-content').value.trim();
 
     const isAdminNick = nick.toLowerCase() === 'admin' || nick === '관리자';
-    const adminPw = '0000'; // 관리자 전용 비밀번호 (필요시 변경)
+    const adminPw = 'admin102938'; // 관리자 전용 비밀번호
 
     if (!nick || !pw || !content) {
         alert(currentLanguage === 'ko' ? "모든 필드를 입력해주세요." : "Please fill in all fields.");
@@ -38,7 +38,7 @@ function addPost() {
     }
 
     if (pw.length < 4) {
-        alert(currentLanguage === 'ko' ? "비밀번호는 4자리 숫자로 입력해주세요." : "Password must be 4 digits.");
+        alert(currentLanguage === 'ko' ? "비밀번호는 4자리 이상으로 입력해주세요." : "Password must be at least 4 characters.");
         return;
     }
 
@@ -76,10 +76,11 @@ function deletePost(id) {
 
     const postIndex = posts.findIndex(p => p.id === id);
     if (postIndex > -1) {
+        const adminPw = 'admin102938';
         // 관리자 글은 관리자 비번으로만, 일반 글은 본인 비번으로 삭제
-        const requiredPw = posts[postIndex].isAdmin ? '0000' : posts[postIndex].password;
+        const requiredPw = posts[postIndex].isAdmin ? adminPw : posts[postIndex].password;
         
-        if (inputPw === requiredPw || inputPw === '0000') { // 관리자는 모든 글 삭제 권한 부여
+        if (inputPw === requiredPw || inputPw === adminPw) { // 관리자는 모든 글 삭제 권한 부여
             posts.splice(postIndex, 1);
             localStorage.setItem('loungePosts', JSON.stringify(posts));
             renderPosts();
