@@ -15,7 +15,7 @@ const translations = {
         'hours-unit': '시간',
         'minutes-unit': '분',
         'seconds-unit': '초',
-        'settings-button': '설정 변경',
+        'settings-button': '날짜 변경',
         'settings-title': '날짜 설정',
         'label-anniversary': '기념일:',
         'label-meeting': '다음 만남:',
