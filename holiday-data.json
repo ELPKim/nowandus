@@ -1,0 +1,1887 @@
+{
+    "South Korea": [
+        {
+            "date": "2026-01-01",
+            "localName": "새해",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-02-16",
+            "localName": "설날",
+            "name": "Lunar New Year"
+        },
+        {
+            "date": "2026-02-17",
+            "localName": "설날",
+            "name": "Lunar New Year"
+        },
+        {
+            "date": "2026-02-18",
+            "localName": "설날",
+            "name": "Lunar New Year"
+        },
+        {
+            "date": "2026-03-01",
+            "localName": "3·1절",
+            "name": "Independence Movement Day"
+        },
+        {
+            "date": "2026-05-05",
+            "localName": "어린이날",
+            "name": "Children's Day"
+        },
+        {
+            "date": "2026-05-24",
+            "localName": "부처님 오신 날",
+            "name": "Buddha's Birthday"
+        },
+        {
+            "date": "2026-06-06",
+            "localName": "현충일",
+            "name": "Memorial Day"
+        },
+        {
+            "date": "2026-08-15",
+            "localName": "광복절",
+            "name": "Liberation Day"
+        },
+        {
+            "date": "2026-09-24",
+            "localName": "추석",
+            "name": "Chuseok"
+        },
+        {
+            "date": "2026-09-25",
+            "localName": "추석",
+            "name": "Chuseok"
+        },
+        {
+            "date": "2026-09-26",
+            "localName": "추석",
+            "name": "Chuseok"
+        },
+        {
+            "date": "2026-10-03",
+            "localName": "개천절",
+            "name": "National Foundation Day"
+        },
+        {
+            "date": "2026-10-09",
+            "localName": "한글날",
+            "name": "Hangul Day"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "크리스마스",
+            "name": "Christmas Day"
+        }
+    ],
+    "USA": [
+        {
+            "date": "2026-01-01",
+            "localName": "New Year's Day",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-01-19",
+            "localName": "Martin Luther King, Jr. Day",
+            "name": "Martin Luther King, Jr. Day"
+        },
+        {
+            "date": "2026-02-12",
+            "localName": "Lincoln's Birthday",
+            "name": "Lincoln's Birthday"
+        },
+        {
+            "date": "2026-02-16",
+            "localName": "Washington's Birthday",
+            "name": "Presidents Day"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Good Friday",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Good Friday",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-05-08",
+            "localName": "Truman Day",
+            "name": "Truman Day"
+        },
+        {
+            "date": "2026-05-25",
+            "localName": "Memorial Day",
+            "name": "Memorial Day"
+        },
+        {
+            "date": "2026-06-19",
+            "localName": "Juneteenth National Independence Day",
+            "name": "Juneteenth National Independence Day"
+        },
+        {
+            "date": "2026-07-03",
+            "localName": "Independence Day",
+            "name": "Independence Day"
+        },
+        {
+            "date": "2026-09-07",
+            "localName": "Labor Day",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-10-12",
+            "localName": "Columbus Day",
+            "name": "Columbus Day"
+        },
+        {
+            "date": "2026-10-12",
+            "localName": "Indigenous Peoples' Day",
+            "name": "Indigenous Peoples' Day"
+        },
+        {
+            "date": "2026-11-11",
+            "localName": "Veterans Day",
+            "name": "Veterans Day"
+        },
+        {
+            "date": "2026-11-26",
+            "localName": "Thanksgiving Day",
+            "name": "Thanksgiving Day"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Christmas Day",
+            "name": "Christmas Day"
+        }
+    ],
+    "Japan": [
+        {
+            "date": "2026-01-01",
+            "localName": "元日",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-01-12",
+            "localName": "成人の日",
+            "name": "Coming of Age Day"
+        },
+        {
+            "date": "2026-02-11",
+            "localName": "建国記念の日",
+            "name": "Foundation Day"
+        },
+        {
+            "date": "2026-02-23",
+            "localName": "天皇誕生日",
+            "name": "The Emperor's Birthday"
+        },
+        {
+            "date": "2026-03-20",
+            "localName": "春分の日",
+            "name": "Vernal Equinox Day"
+        },
+        {
+            "date": "2026-04-29",
+            "localName": "昭和の日",
+            "name": "Shōwa Day"
+        },
+        {
+            "date": "2026-05-04",
+            "localName": "憲法記念日",
+            "name": "Constitution Memorial Day"
+        },
+        {
+            "date": "2026-05-04",
+            "localName": "みどりの日",
+            "name": "Greenery Day"
+        },
+        {
+            "date": "2026-05-05",
+            "localName": "こどもの日",
+            "name": "Children's Day"
+        },
+        {
+            "date": "2026-07-20",
+            "localName": "海の日",
+            "name": "Marine Day"
+        },
+        {
+            "date": "2026-08-11",
+            "localName": "山の日",
+            "name": "Mountain Day"
+        },
+        {
+            "date": "2026-09-21",
+            "localName": "敬老の日",
+            "name": "Respect for the Aged Day"
+        },
+        {
+            "date": "2026-09-23",
+            "localName": "秋分の日",
+            "name": "Autumnal Equinox Day"
+        },
+        {
+            "date": "2026-10-12",
+            "localName": "スポーツの日",
+            "name": "Sports Day"
+        },
+        {
+            "date": "2026-11-03",
+            "localName": "文化の日",
+            "name": "Culture Day"
+        },
+        {
+            "date": "2026-11-23",
+            "localName": "勤労感謝の日",
+            "name": "Labour Thanksgiving Day"
+        }
+    ],
+    "China": [
+        {
+            "date": "2026-01-01",
+            "localName": "元旦",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-02-17",
+            "localName": "春节",
+            "name": "Chinese New Year (Spring Festival)"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "劳动节",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-06-19",
+            "localName": "端午节",
+            "name": "Dragon Boat Festival"
+        },
+        {
+            "date": "2026-09-25",
+            "localName": "中秋节",
+            "name": "Mid-Autumn Festival"
+        },
+        {
+            "date": "2026-10-01",
+            "localName": "国庆节",
+            "name": "National Day"
+        }
+    ],
+    "UK": [
+        {
+            "date": "2026-01-01",
+            "localName": "New Year's Day",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-01-02",
+            "localName": "2 January",
+            "name": "2 January"
+        },
+        {
+            "date": "2026-03-17",
+            "localName": "Saint Patrick's Day",
+            "name": "Saint Patrick's Day"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Good Friday",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-04-06",
+            "localName": "Easter Monday",
+            "name": "Easter Monday"
+        },
+        {
+            "date": "2026-05-04",
+            "localName": "Early May Bank Holiday",
+            "name": "Early May Bank Holiday"
+        },
+        {
+            "date": "2026-05-25",
+            "localName": "Spring Bank Holiday",
+            "name": "Spring Bank Holiday"
+        },
+        {
+            "date": "2026-06-15",
+            "localName": "World Cup Bank Holiday",
+            "name": "World Cup Bank Holiday"
+        },
+        {
+            "date": "2026-07-13",
+            "localName": "Battle of the Boyne",
+            "name": "Battle of the Boyne"
+        },
+        {
+            "date": "2026-08-03",
+            "localName": "Summer Bank Holiday",
+            "name": "Summer Bank Holiday"
+        },
+        {
+            "date": "2026-08-31",
+            "localName": "Summer Bank Holiday",
+            "name": "Summer Bank Holiday"
+        },
+        {
+            "date": "2026-11-30",
+            "localName": "Saint Andrew's Day",
+            "name": "Saint Andrew's Day"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Christmas Day",
+            "name": "Christmas Day"
+        },
+        {
+            "date": "2026-12-28",
+            "localName": "Boxing Day",
+            "name": "St. Stephen's Day"
+        }
+    ],
+    "France": [
+        {
+            "date": "2026-01-01",
+            "localName": "Jour de l'an",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-04-06",
+            "localName": "Lundi de Pâques",
+            "name": "Easter Monday"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "Fête du Travail",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-05-08",
+            "localName": "Victoire 1945",
+            "name": "Victory in Europe Day"
+        },
+        {
+            "date": "2026-05-14",
+            "localName": "Ascension",
+            "name": "Ascension Day"
+        },
+        {
+            "date": "2026-05-25",
+            "localName": "Lundi de Pentecôte",
+            "name": "Whit Monday"
+        },
+        {
+            "date": "2026-07-14",
+            "localName": "Fête nationale",
+            "name": "Bastille Day"
+        },
+        {
+            "date": "2026-08-15",
+            "localName": "Assomption",
+            "name": "Assumption Day"
+        },
+        {
+            "date": "2026-11-01",
+            "localName": "Toussaint",
+            "name": "All Saints' Day"
+        },
+        {
+            "date": "2026-11-11",
+            "localName": "Armistice 1918",
+            "name": "Armistice Day"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Noël",
+            "name": "Christmas Day"
+        }
+    ],
+    "Germany": [
+        {
+            "date": "2026-01-01",
+            "localName": "Neujahr",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-01-06",
+            "localName": "Heilige Drei Könige",
+            "name": "Epiphany"
+        },
+        {
+            "date": "2026-03-08",
+            "localName": "Internationaler Frauentag",
+            "name": "International Women's Day"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Karfreitag",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-04-05",
+            "localName": "Ostersonntag",
+            "name": "Easter Sunday"
+        },
+        {
+            "date": "2026-04-06",
+            "localName": "Ostermontag",
+            "name": "Easter Monday"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "Tag der Arbeit",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-05-14",
+            "localName": "Christi Himmelfahrt",
+            "name": "Ascension Day"
+        },
+        {
+            "date": "2026-05-24",
+            "localName": "Pfingstsonntag",
+            "name": "Pentecost"
+        },
+        {
+            "date": "2026-05-25",
+            "localName": "Pfingstmontag",
+            "name": "Whit Monday"
+        },
+        {
+            "date": "2026-06-04",
+            "localName": "Fronleichnam",
+            "name": "Corpus Christi"
+        },
+        {
+            "date": "2026-08-15",
+            "localName": "Mariä Himmelfahrt",
+            "name": "Assumption Day"
+        },
+        {
+            "date": "2026-09-20",
+            "localName": "Weltkindertag",
+            "name": "World Children's Day"
+        },
+        {
+            "date": "2026-10-03",
+            "localName": "Tag der Deutschen Einheit",
+            "name": "German Unity Day"
+        },
+        {
+            "date": "2026-10-31",
+            "localName": "Reformationstag",
+            "name": "Reformation Day"
+        },
+        {
+            "date": "2026-11-01",
+            "localName": "Allerheiligen",
+            "name": "All Saints' Day"
+        },
+        {
+            "date": "2026-11-18",
+            "localName": "Buß- und Bettag",
+            "name": "Repentance and Prayer Day"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Erster Weihnachtstag",
+            "name": "Christmas Day"
+        },
+        {
+            "date": "2026-12-26",
+            "localName": "Zweiter Weihnachtstag",
+            "name": "St. Stephen's Day"
+        }
+    ],
+    "Canada": [
+        {
+            "date": "2026-01-01",
+            "localName": "New Year's Day",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-02-16",
+            "localName": "Louis Riel Day",
+            "name": "Louis Riel Day"
+        },
+        {
+            "date": "2026-02-16",
+            "localName": "Islander Day",
+            "name": "Islander Day"
+        },
+        {
+            "date": "2026-02-16",
+            "localName": "Heritage Day",
+            "name": "Heritage Day"
+        },
+        {
+            "date": "2026-02-16",
+            "localName": "Family Day",
+            "name": "Family Day"
+        },
+        {
+            "date": "2026-03-17",
+            "localName": "Saint Patrick's Day",
+            "name": "Saint Patrick's Day"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Good Friday",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-04-06",
+            "localName": "Easter Monday",
+            "name": "Easter Monday"
+        },
+        {
+            "date": "2026-04-23",
+            "localName": "Saint George's Day",
+            "name": "Saint George's Day"
+        },
+        {
+            "date": "2026-05-18",
+            "localName": "National Patriots' Day",
+            "name": "National Patriots' Day"
+        },
+        {
+            "date": "2026-05-18",
+            "localName": "Victoria Day",
+            "name": "Victoria Day"
+        },
+        {
+            "date": "2026-06-21",
+            "localName": "National Aboriginal Day",
+            "name": "National Aboriginal Day"
+        },
+        {
+            "date": "2026-06-24",
+            "localName": "Discovery Day",
+            "name": "Discovery Day"
+        },
+        {
+            "date": "2026-06-24",
+            "localName": "Fête nationale du Québec",
+            "name": "National Holiday"
+        },
+        {
+            "date": "2026-07-01",
+            "localName": "Canada Day",
+            "name": "Canada Day"
+        },
+        {
+            "date": "2026-07-12",
+            "localName": "Orangemen's Day",
+            "name": "Orangemen's Day"
+        },
+        {
+            "date": "2026-08-03",
+            "localName": "Civic Holiday",
+            "name": "Civic Holiday"
+        },
+        {
+            "date": "2026-08-03",
+            "localName": "British Columbia Day",
+            "name": "British Columbia Day"
+        },
+        {
+            "date": "2026-08-03",
+            "localName": "Heritage Day",
+            "name": "Heritage Day"
+        },
+        {
+            "date": "2026-08-03",
+            "localName": "New Brunswick Day",
+            "name": "New Brunswick Day"
+        },
+        {
+            "date": "2026-08-03",
+            "localName": "Natal Day",
+            "name": "Natal Day"
+        },
+        {
+            "date": "2026-08-03",
+            "localName": "Saskatchewan Day",
+            "name": "Saskatchewan Day"
+        },
+        {
+            "date": "2026-08-17",
+            "localName": "Gold Cup Parade Day",
+            "name": "Gold Cup Parade Day"
+        },
+        {
+            "date": "2026-08-17",
+            "localName": "Discovery Day",
+            "name": "Discovery Day"
+        },
+        {
+            "date": "2026-09-07",
+            "localName": "Labour Day",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-09-30",
+            "localName": "National Day for Truth and Reconciliation",
+            "name": "National Day for Truth and Reconciliation"
+        },
+        {
+            "date": "2026-10-12",
+            "localName": "Thanksgiving",
+            "name": "Thanksgiving"
+        },
+        {
+            "date": "2026-11-11",
+            "localName": "Armistice Day",
+            "name": "Armistice Day"
+        },
+        {
+            "date": "2026-11-11",
+            "localName": "Remembrance Day",
+            "name": "Remembrance Day"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Christmas Day",
+            "name": "Christmas Day"
+        },
+        {
+            "date": "2026-12-26",
+            "localName": "Boxing Day",
+            "name": "St. Stephen's Day"
+        }
+    ],
+    "Australia": [
+        {
+            "date": "2026-01-01",
+            "localName": "New Year's Day",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-01-26",
+            "localName": "Australia Day",
+            "name": "Australia Day"
+        },
+        {
+            "date": "2026-03-02",
+            "localName": "Labour Day",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-03-09",
+            "localName": "Canberra Day",
+            "name": "Canberra Day"
+        },
+        {
+            "date": "2026-03-09",
+            "localName": "Adelaide Cup Day",
+            "name": "Adelaide Cup Day"
+        },
+        {
+            "date": "2026-03-09",
+            "localName": "Eight Hours Day",
+            "name": "Eight Hours Day"
+        },
+        {
+            "date": "2026-03-09",
+            "localName": "Labour Day",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Good Friday",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-04-04",
+            "localName": "Easter Eve",
+            "name": "Holy Saturday"
+        },
+        {
+            "date": "2026-04-05",
+            "localName": "Easter Sunday",
+            "name": "Easter Sunday"
+        },
+        {
+            "date": "2026-04-06",
+            "localName": "Easter Monday",
+            "name": "Easter Monday"
+        },
+        {
+            "date": "2026-04-25",
+            "localName": "Anzac Day",
+            "name": "Anzac Day"
+        },
+        {
+            "date": "2026-04-27",
+            "localName": "Anzac Day",
+            "name": "Anzac Day"
+        },
+        {
+            "date": "2026-05-04",
+            "localName": "May Day",
+            "name": "May Day"
+        },
+        {
+            "date": "2026-05-04",
+            "localName": "Labour Day",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-06-01",
+            "localName": "Reconciliation Day",
+            "name": "Reconciliation Day"
+        },
+        {
+            "date": "2026-06-01",
+            "localName": "Western Australia Day",
+            "name": "Western Australia Day"
+        },
+        {
+            "date": "2026-06-08",
+            "localName": "King's Birthday",
+            "name": "King's Birthday"
+        },
+        {
+            "date": "2026-08-03",
+            "localName": "Picnic Day",
+            "name": "Picnic Day"
+        },
+        {
+            "date": "2026-09-28",
+            "localName": "King's Birthday",
+            "name": "King's Birthday"
+        },
+        {
+            "date": "2026-10-05",
+            "localName": "Labour Day",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-10-05",
+            "localName": "King's Birthday",
+            "name": "King's Birthday"
+        },
+        {
+            "date": "2026-11-03",
+            "localName": "Melbourne Cup",
+            "name": "Melbourne Cup"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Christmas Day",
+            "name": "Christmas Day"
+        },
+        {
+            "date": "2026-12-28",
+            "localName": "Boxing Day",
+            "name": "St. Stephen's Day"
+        }
+    ],
+    "Italy": [
+        {
+            "date": "2026-01-01",
+            "localName": "Capodanno",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-01-06",
+            "localName": "Epifania",
+            "name": "Epiphany"
+        },
+        {
+            "date": "2026-04-05",
+            "localName": "Pasqua",
+            "name": "Easter Sunday"
+        },
+        {
+            "date": "2026-04-06",
+            "localName": "Lunedì dell'Angelo",
+            "name": "Easter Monday"
+        },
+        {
+            "date": "2026-04-25",
+            "localName": "Festa della Liberazione",
+            "name": "Liberation Day"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "Festa del Lavoro",
+            "name": "International Workers Day"
+        },
+        {
+            "date": "2026-05-25",
+            "localName": "Lunedì di Pentecoste",
+            "name": "Whit Monday"
+        },
+        {
+            "date": "2026-06-02",
+            "localName": "Festa della Repubblica",
+            "name": "Republic Day"
+        },
+        {
+            "date": "2026-08-15",
+            "localName": "Ferragosto o Assunzione",
+            "name": "Assumption Day"
+        },
+        {
+            "date": "2026-10-04",
+            "localName": "San Francesco d'Assisi",
+            "name": "St. Francis of Assisi's Day"
+        },
+        {
+            "date": "2026-11-01",
+            "localName": "Tutti i santi",
+            "name": "All Saints Day"
+        },
+        {
+            "date": "2026-12-08",
+            "localName": "Immacolata Concezione",
+            "name": "Immaculate Conception"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Natale",
+            "name": "Christmas Day"
+        },
+        {
+            "date": "2026-12-26",
+            "localName": "Santo Stefano",
+            "name": "St. Stephen's Day"
+        }
+    ],
+    "Spain": [
+        {
+            "date": "2026-01-01",
+            "localName": "Año Nuevo",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-01-06",
+            "localName": "Día de Reyes / Epifanía del Señor",
+            "name": "Epiphany"
+        },
+        {
+            "date": "2026-02-28",
+            "localName": "Día de Andalucía",
+            "name": "Day of Andalucía"
+        },
+        {
+            "date": "2026-03-01",
+            "localName": "Dia de les Illes Balears",
+            "name": "Day of the Balearic Islands"
+        },
+        {
+            "date": "2026-04-02",
+            "localName": "Jueves Santo",
+            "name": "Maundy Thursday"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Viernes Santo",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-04-06",
+            "localName": "Lunes de Pascua",
+            "name": "Easter Monday"
+        },
+        {
+            "date": "2026-04-23",
+            "localName": "Día de Castilla y León",
+            "name": "Castile and León Day"
+        },
+        {
+            "date": "2026-04-23",
+            "localName": "San Jorge (Día de Aragón)",
+            "name": "Day of Aragón"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "Fiesta del trabajo",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-05-02",
+            "localName": "Fiesta de la Comunidad de Madrid",
+            "name": "Day of Madrid"
+        },
+        {
+            "date": "2026-05-17",
+            "localName": "Día das Letras Galegas",
+            "name": "Galician Literature Day"
+        },
+        {
+            "date": "2026-05-30",
+            "localName": "Día de Canarias",
+            "name": "Day of the Canary Islands"
+        },
+        {
+            "date": "2026-05-31",
+            "localName": "Día de la Región Castilla-La Mancha",
+            "name": "Day of Castilla-La Mancha"
+        },
+        {
+            "date": "2026-06-04",
+            "localName": "Corpus Christi",
+            "name": "Corpus Christi"
+        },
+        {
+            "date": "2026-06-09",
+            "localName": "Día de La Rioja",
+            "name": "Day of La Rioja"
+        },
+        {
+            "date": "2026-06-09",
+            "localName": "Día de la Región de Murcia",
+            "name": "Day of Murcia"
+        },
+        {
+            "date": "2026-06-24",
+            "localName": "Sant Joan",
+            "name": "St. John's Day"
+        },
+        {
+            "date": "2026-07-25",
+            "localName": "Santiago Apóstol",
+            "name": "Santiago Apóstol"
+        },
+        {
+            "date": "2026-07-28",
+            "localName": "Día de las Instituciones de Cantabria",
+            "name": "Day of the Cantabrian Institutions"
+        },
+        {
+            "date": "2026-08-15",
+            "localName": "Asunción",
+            "name": "Assumption"
+        },
+        {
+            "date": "2026-09-08",
+            "localName": "Día de Asturias",
+            "name": "Day of Asturias"
+        },
+        {
+            "date": "2026-09-08",
+            "localName": "Día de Extremadura",
+            "name": "Day of Extremadura"
+        },
+        {
+            "date": "2026-09-11",
+            "localName": "Diada Nacional de Catalunya",
+            "name": "National Day of Catalonia"
+        },
+        {
+            "date": "2026-09-15",
+            "localName": "Festividad de la Bien Aparecida",
+            "name": "Feast of Our Lady of Bien Aparecida"
+        },
+        {
+            "date": "2026-10-09",
+            "localName": "Dia de la Comunitat Valenciana",
+            "name": "Day of the Valencian Community"
+        },
+        {
+            "date": "2026-10-12",
+            "localName": "Fiesta Nacional de España",
+            "name": "National Day of Spain"
+        },
+        {
+            "date": "2026-11-01",
+            "localName": "Día de todos los Santos",
+            "name": "All Saints Day"
+        },
+        {
+            "date": "2026-12-06",
+            "localName": "Día de la Constitución",
+            "name": "Constitution Day"
+        },
+        {
+            "date": "2026-12-08",
+            "localName": "Inmaculada Concepción",
+            "name": "Immaculate Conception"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Navidad",
+            "name": "Christmas Day"
+        },
+        {
+            "date": "2026-12-26",
+            "localName": "Feast of Saint Stephen",
+            "name": "St. Stephen's Day"
+        }
+    ],
+    "Switzerland": [
+        {
+            "date": "2026-01-01",
+            "localName": "Neujahr",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-01-02",
+            "localName": "Berchtoldstag",
+            "name": "St. Berchtold's Day"
+        },
+        {
+            "date": "2026-01-06",
+            "localName": "Heilige Drei Könige",
+            "name": "Epiphany"
+        },
+        {
+            "date": "2026-01-06",
+            "localName": "Heilige Drei Könige",
+            "name": "Epiphany"
+        },
+        {
+            "date": "2026-03-01",
+            "localName": "Jahrestag der Ausrufung der Republik",
+            "name": "Republic Day"
+        },
+        {
+            "date": "2026-03-19",
+            "localName": "Josefstag",
+            "name": "Saint Joseph's Day"
+        },
+        {
+            "date": "2026-03-19",
+            "localName": "Josefstag",
+            "name": "Saint Joseph's Day"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Karfreitag",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-04-04",
+            "localName": "Näfelser Fahrt",
+            "name": "Näfels procession"
+        },
+        {
+            "date": "2026-04-06",
+            "localName": "Ostermontag",
+            "name": "Easter Monday"
+        },
+        {
+            "date": "2026-04-06",
+            "localName": "Ostermontag",
+            "name": "Easter Monday"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "Tag der Arbeit",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "Tag der Arbeit",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-05-14",
+            "localName": "Auffahrt",
+            "name": "Ascension Day"
+        },
+        {
+            "date": "2026-05-25",
+            "localName": "Pfingstmontag",
+            "name": "Whit Monday"
+        },
+        {
+            "date": "2026-05-25",
+            "localName": "Pfingstmontag",
+            "name": "Whit Monday"
+        },
+        {
+            "date": "2026-06-04",
+            "localName": "Fronleichnam",
+            "name": "Corpus Christi"
+        },
+        {
+            "date": "2026-06-04",
+            "localName": "Fronleichnam",
+            "name": "Corpus Christi"
+        },
+        {
+            "date": "2026-06-29",
+            "localName": "Peter und Paul",
+            "name": "Saint Peter and Saint Paul"
+        },
+        {
+            "date": "2026-08-01",
+            "localName": "Bundesfeier",
+            "name": "Swiss National Day"
+        },
+        {
+            "date": "2026-08-15",
+            "localName": "Maria Himmelfahrt",
+            "name": "Assumption of the Virgin Mary"
+        },
+        {
+            "date": "2026-08-15",
+            "localName": "Maria Himmelfahrt",
+            "name": "Assumption of the Virgin Mary"
+        },
+        {
+            "date": "2026-09-10",
+            "localName": "Jeûne genevois",
+            "name": "Geneva Prayday"
+        },
+        {
+            "date": "2026-09-20",
+            "localName": "Eidgenössischer Dank-, Buss- und Bettag",
+            "name": "Federal Day of Thanksgiving"
+        },
+        {
+            "date": "2026-09-21",
+            "localName": "Bettagsmontag",
+            "name": "Federal Fast Monday"
+        },
+        {
+            "date": "2026-11-01",
+            "localName": "Allerheiligen",
+            "name": "All Saints' Day"
+        },
+        {
+            "date": "2026-11-01",
+            "localName": "Allerheiligen",
+            "name": "All Saints' Day"
+        },
+        {
+            "date": "2026-12-08",
+            "localName": "Mariä Empfängnis",
+            "name": "Immaculate Conception"
+        },
+        {
+            "date": "2026-12-08",
+            "localName": "Mariä Empfängnis",
+            "name": "Immaculate Conception"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Weihnachten",
+            "name": "Christmas Day"
+        },
+        {
+            "date": "2026-12-26",
+            "localName": "Stephanstag",
+            "name": "St. Stephen's Day"
+        },
+        {
+            "date": "2026-12-26",
+            "localName": "Stephanstag",
+            "name": "St. Stephen's Day"
+        },
+        {
+            "date": "2026-12-31",
+            "localName": "Restauration de la République",
+            "name": "Restoration Day"
+        }
+    ],
+    "Singapore": [
+        {
+            "date": "2026-01-01",
+            "localName": "New Year's Day",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-02-17",
+            "localName": "Chinese New Year",
+            "name": "Chinese New Year"
+        },
+        {
+            "date": "2026-02-18",
+            "localName": "Chinese New Year",
+            "name": "Chinese New Year"
+        },
+        {
+            "date": "2026-03-20",
+            "localName": "Hari Raya Puasa",
+            "name": "Hari Raya Puasa"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Good Friday",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "Labour Day",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-05-27",
+            "localName": "Hari Raya Haji (Tentative Date)",
+            "name": "Hari Raya Haji (Tentative Date)"
+        },
+        {
+            "date": "2026-08-10",
+            "localName": "National Day",
+            "name": "National Day"
+        },
+        {
+            "date": "2026-11-09",
+            "localName": "Deepavali",
+            "name": "Deepavali"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Christmas Day",
+            "name": "Christmas Day"
+        }
+    ],
+    "Taiwan": [],
+    "Thailand": [],
+    "Vietnam": [
+        {
+            "date": "2026-01-01",
+            "localName": "Tết dương lịch",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-04-30",
+            "localName": "Ngày Giải phóng miền Nam, thống nhất đất nước",
+            "name": "Reunification Day"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "Ngày Quốc tế lao động",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-09-02",
+            "localName": "Quốc khánh",
+            "name": "National Day"
+        }
+    ],
+    "Malaysia": [],
+    "Indonesia": [
+        {
+            "date": "2026-01-01",
+            "localName": "Tahun Baru Masehi",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Wafat Isa Almasih",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-04-05",
+            "localName": "Paskah",
+            "name": "Easter Sunday"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "Hari Buruh Internasional",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-05-14",
+            "localName": "Kenaikan Isa Almasih",
+            "name": "Ascension Day"
+        },
+        {
+            "date": "2026-06-01",
+            "localName": "Hari Lahir Pancasila",
+            "name": "Pancasila Day"
+        },
+        {
+            "date": "2026-08-17",
+            "localName": "Hari Ulang Tahun Kemerdekaan Republik Indonesia",
+            "name": "Independence Day"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Hari Raya Natal",
+            "name": "Christmas Day"
+        }
+    ],
+    "Philippines": [
+        {
+            "date": "2026-01-01",
+            "localName": "Bagong Taon",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-02-17",
+            "localName": "Chinese New Year",
+            "name": "Chinese New Year"
+        },
+        {
+            "date": "2026-04-02",
+            "localName": "Huwebes Santo",
+            "name": "Maundy Thursday"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Biyernes Santo",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-04-04",
+            "localName": "Sabado de Gloria",
+            "name": "Holy Saturday"
+        },
+        {
+            "date": "2026-04-09",
+            "localName": "Araw ng Kagitingan",
+            "name": "Day of Valor"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "Araw ng Paggawa",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-06-12",
+            "localName": "Araw ng Kalayaan",
+            "name": "Independence Day"
+        },
+        {
+            "date": "2026-08-21",
+            "localName": "Araw ng Kamatayan ni Senador Benigno Simeon \"Ninoy\" Aquino Jr.",
+            "name": "Ninoy Aquino Day"
+        },
+        {
+            "date": "2026-08-31",
+            "localName": "Araw ng mga Bayani",
+            "name": "National Heroes Day"
+        },
+        {
+            "date": "2026-10-31",
+            "localName": "All Saints' Day Eve",
+            "name": "All Saints' Day Eve"
+        },
+        {
+            "date": "2026-11-01",
+            "localName": "Araw ng mga Santo",
+            "name": "All Saints' Day"
+        },
+        {
+            "date": "2026-11-30",
+            "localName": "Araw ni Gat Andres Bonifacio",
+            "name": "Bonifacio Day"
+        },
+        {
+            "date": "2026-12-08",
+            "localName": "Kapistahan ng Immaculada Concepcion",
+            "name": "Feast of the Immaculate Conception of Mary"
+        },
+        {
+            "date": "2026-12-24",
+            "localName": "Christmas Eve",
+            "name": "Christmas Eve"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Araw ng Pasko",
+            "name": "Christmas Day"
+        },
+        {
+            "date": "2026-12-30",
+            "localName": "Araw ng Kamatayan ni Dr. Jose Rizal",
+            "name": "Rizal Day"
+        },
+        {
+            "date": "2026-12-31",
+            "localName": "Huling Araw ng Taon",
+            "name": "Last Day of The Year"
+        }
+    ],
+    "UAE": [],
+    "Turkey": [
+        {
+            "date": "2026-01-01",
+            "localName": "Yılbaşı",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-04-23",
+            "localName": "Ulusal Egemenlik ve Çocuk Bayramı",
+            "name": "National Independence & Children's Day"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "İşçi Bayramı",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-05-19",
+            "localName": "Atatürk'ü Anma, Gençlik ve Spor Bayramı",
+            "name": "Atatürk Commemoration & Youth Day"
+        },
+        {
+            "date": "2026-07-15",
+            "localName": "Demokrasi ve Millî Birlik Günü",
+            "name": "Democracy and National Unity Day"
+        },
+        {
+            "date": "2026-08-30",
+            "localName": "Zafer Bayramı",
+            "name": "Victory Day"
+        },
+        {
+            "date": "2026-10-29",
+            "localName": "Cumhuriyet Bayramı",
+            "name": "Republic Day"
+        }
+    ],
+    "Russia": [
+        {
+            "date": "2026-01-01",
+            "localName": "Новый год",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-01-02",
+            "localName": "Новогодние каникулы",
+            "name": "New Year holiday"
+        },
+        {
+            "date": "2026-01-03",
+            "localName": "Новогодние каникулы",
+            "name": "New Year holiday"
+        },
+        {
+            "date": "2026-01-04",
+            "localName": "Новогодние каникулы",
+            "name": "New Year holiday"
+        },
+        {
+            "date": "2026-01-05",
+            "localName": "Новогодние каникулы",
+            "name": "New Year holiday"
+        },
+        {
+            "date": "2026-01-06",
+            "localName": "Новогодние каникулы",
+            "name": "New Year holiday"
+        },
+        {
+            "date": "2026-01-07",
+            "localName": "Рождество Христово",
+            "name": "Christmas Day (Orthodox)"
+        },
+        {
+            "date": "2026-02-23",
+            "localName": "День защитника Отечества",
+            "name": "Defender of the Fatherland Day"
+        },
+        {
+            "date": "2026-03-08",
+            "localName": "Международный женский день",
+            "name": "International Women's Day"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "День труда",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-05-09",
+            "localName": "День Победы",
+            "name": "Victory Day"
+        },
+        {
+            "date": "2026-06-12",
+            "localName": "День России",
+            "name": "Russia Day"
+        },
+        {
+            "date": "2026-11-04",
+            "localName": "День народного единства",
+            "name": "Unity Day"
+        }
+    ],
+    "Brazil": [
+        {
+            "date": "2026-01-01",
+            "localName": "Confraternização Universal",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-02-16",
+            "localName": "Carnaval",
+            "name": "Carnival"
+        },
+        {
+            "date": "2026-02-17",
+            "localName": "Carnaval",
+            "name": "Carnival"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Sexta-feira Santa",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-04-05",
+            "localName": "Domingo de Páscoa",
+            "name": "Easter Sunday"
+        },
+        {
+            "date": "2026-04-21",
+            "localName": "Dia de Tiradentes",
+            "name": "Tiradentes"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "Dia do Trabalhador",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-06-04",
+            "localName": "Corpus Christi",
+            "name": "Corpus Christi"
+        },
+        {
+            "date": "2026-07-09",
+            "localName": "Revolução Constitucionalista de 1932",
+            "name": "Constitutionalist Revolution of 1932"
+        },
+        {
+            "date": "2026-09-07",
+            "localName": "Dia da Independência",
+            "name": "Independence Day"
+        },
+        {
+            "date": "2026-10-12",
+            "localName": "Nossa Senhora Aparecida",
+            "name": "Our Lady of Aparecida"
+        },
+        {
+            "date": "2026-11-02",
+            "localName": "Dia de Finados",
+            "name": "All Souls' Day"
+        },
+        {
+            "date": "2026-11-15",
+            "localName": "Proclamação da República",
+            "name": "Republic Proclamation Day"
+        },
+        {
+            "date": "2026-11-20",
+            "localName": "Dia da Consciência Negra",
+            "name": "Black Awareness Day"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Natal",
+            "name": "Christmas Day"
+        }
+    ],
+    "Mexico": [
+        {
+            "date": "2026-01-01",
+            "localName": "Año Nuevo",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-02-02",
+            "localName": "Día de la Constitución",
+            "name": "Constitution Day"
+        },
+        {
+            "date": "2026-03-16",
+            "localName": "Natalicio de Benito Juárez",
+            "name": "Benito Juárez's birthday"
+        },
+        {
+            "date": "2026-04-02",
+            "localName": "Jueves Santo",
+            "name": "Maundy Thursday"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Viernes Santo",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "Día del Trabajo",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-09-16",
+            "localName": "Día de la Independencia",
+            "name": "Independence Day"
+        },
+        {
+            "date": "2026-11-16",
+            "localName": "Día de la Revolución",
+            "name": "Revolution Day"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Navidad",
+            "name": "Christmas Day"
+        }
+    ],
+    "Argentina": [
+        {
+            "date": "2026-01-01",
+            "localName": "Año Nuevo",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-02-16",
+            "localName": "Carnaval",
+            "name": "Carnival"
+        },
+        {
+            "date": "2026-02-17",
+            "localName": "Carnaval",
+            "name": "Carnival"
+        },
+        {
+            "date": "2026-03-24",
+            "localName": "Día Nacional de la Memoria por la Verdad y la Justicia",
+            "name": "Day of Remembrance for Truth and Justice"
+        },
+        {
+            "date": "2026-04-02",
+            "localName": "Día del Veterano y de los Caídos en la Guerra de Malvinas",
+            "name": "Day of the Veterans and Fallen of the Malvinas War"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Viernes Santo",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "Día del Trabajador",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-05-25",
+            "localName": "Día de la Revolución de Mayo",
+            "name": "May Revolution"
+        },
+        {
+            "date": "2026-06-15",
+            "localName": "Paso a la Inmortalidad del General Martín Miguel de Güemes",
+            "name": "Anniversary of the Passing of General Martín Miguel de Güemes"
+        },
+        {
+            "date": "2026-06-20",
+            "localName": "Paso a la Inmortalidad del General Manuel Belgrano",
+            "name": "General Manuel Belgrano Memorial Day"
+        },
+        {
+            "date": "2026-07-09",
+            "localName": "Día de la Independencia",
+            "name": "Independence Day"
+        },
+        {
+            "date": "2026-08-17",
+            "localName": "Paso a la Inmortalidad del General José de San Martín",
+            "name": "General José de San Martín Memorial Day"
+        },
+        {
+            "date": "2026-10-12",
+            "localName": "Día del Respeto a la Diversidad Cultural",
+            "name": "Day of Respect for Cultural Diversity"
+        },
+        {
+            "date": "2026-11-23",
+            "localName": "Día de la Soberanía Nacional",
+            "name": "National Sovereignty Day"
+        },
+        {
+            "date": "2026-12-08",
+            "localName": "Día de la Inmaculada Concepción de María",
+            "name": "Immaculate Conception Day"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Navidad",
+            "name": "Christmas Day"
+        }
+    ],
+    "New Zealand": [
+        {
+            "date": "2026-01-01",
+            "localName": "New Year's Day",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-01-02",
+            "localName": "Day after New Year's Day",
+            "name": "Day after New Year's Day"
+        },
+        {
+            "date": "2026-01-19",
+            "localName": "Wellington Anniversary Day",
+            "name": "Wellington Anniversary Day"
+        },
+        {
+            "date": "2026-01-26",
+            "localName": "Auckland/Northland Anniversary Day",
+            "name": "Auckland Anniversary Day"
+        },
+        {
+            "date": "2026-02-02",
+            "localName": "Nelson Anniversary Day",
+            "name": "Nelson Anniversary Day"
+        },
+        {
+            "date": "2026-02-06",
+            "localName": "Waitangi Day",
+            "name": "Waitangi Day"
+        },
+        {
+            "date": "2026-03-09",
+            "localName": "Taranaki Anniversary Day",
+            "name": "Taranaki Anniversary Day"
+        },
+        {
+            "date": "2026-03-23",
+            "localName": "Otago Anniversary Day",
+            "name": "Otago Anniversary Day"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Good Friday",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-04-06",
+            "localName": "Easter Monday",
+            "name": "Easter Monday"
+        },
+        {
+            "date": "2026-04-07",
+            "localName": "Southland Anniversary Day",
+            "name": "Southland Anniversary Day"
+        },
+        {
+            "date": "2026-04-27",
+            "localName": "Anzac Day",
+            "name": "Anzac Day"
+        },
+        {
+            "date": "2026-06-01",
+            "localName": "King's Birthday",
+            "name": "King's Birthday"
+        },
+        {
+            "date": "2026-07-10",
+            "localName": "Matariki",
+            "name": "Matariki"
+        },
+        {
+            "date": "2026-09-28",
+            "localName": "Dominion Day",
+            "name": "Canterbury (South) Anniversary Day"
+        },
+        {
+            "date": "2026-10-23",
+            "localName": "Hawke's Bay Anniversary Day",
+            "name": "Hawke's Bay Anniversary Day"
+        },
+        {
+            "date": "2026-10-26",
+            "localName": "Labour Day",
+            "name": "Labour Day"
+        },
+        {
+            "date": "2026-11-02",
+            "localName": "Marlborough Anniversary Day",
+            "name": "Marlborough Anniversary Day"
+        },
+        {
+            "date": "2026-11-13",
+            "localName": "Canterbury (North & Central) Anniversary Day",
+            "name": "Canterbury Anniversary Day"
+        },
+        {
+            "date": "2026-11-30",
+            "localName": "Chatham Islands Anniversary Day",
+            "name": "Chatham Islands Anniversary Day"
+        },
+        {
+            "date": "2026-11-30",
+            "localName": "Westland Anniversary Day",
+            "name": "Westland Anniversary Day"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Christmas Day",
+            "name": "Christmas Day"
+        },
+        {
+            "date": "2026-12-28",
+            "localName": "Boxing Day",
+            "name": "Boxing Day"
+        }
+    ],
+    "South Africa": [
+        {
+            "date": "2026-01-01",
+            "localName": "New Year's Day",
+            "name": "New Year's Day"
+        },
+        {
+            "date": "2026-03-21",
+            "localName": "Human Rights Day",
+            "name": "Human Rights Day"
+        },
+        {
+            "date": "2026-04-03",
+            "localName": "Good Friday",
+            "name": "Good Friday"
+        },
+        {
+            "date": "2026-04-06",
+            "localName": "Family Day",
+            "name": "Family Day"
+        },
+        {
+            "date": "2026-04-27",
+            "localName": "Freedom Day",
+            "name": "Freedom Day"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "Workers' Day",
+            "name": "Workers' Day"
+        },
+        {
+            "date": "2026-06-16",
+            "localName": "Youth Day",
+            "name": "Youth Day"
+        },
+        {
+            "date": "2026-08-10",
+            "localName": "National Women's Day",
+            "name": "National Women's Day"
+        },
+        {
+            "date": "2026-09-24",
+            "localName": "Heritage Day",
+            "name": "Heritage Day"
+        },
+        {
+            "date": "2026-12-16",
+            "localName": "Day of Reconciliation",
+            "name": "Day of Reconciliation"
+        },
+        {
+            "date": "2026-12-25",
+            "localName": "Christmas Day",
+            "name": "Christmas Day"
+        },
+        {
+            "date": "2026-12-26",
+            "localName": "St. Stephen's Day",
+            "name": "Day of Goodwill"
+        }
+    ]
+}
