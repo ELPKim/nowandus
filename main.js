@@ -1,4 +1,4 @@
-// Final Consolidated & Verified JavaScript for Now and Us
+// Verified Final Worldwide Location Data
 const locationData = {
     "South Korea": [
         { name: "Seoul/Incheon (ICN)", tz: "Asia/Seoul", lat: 37.4602, lon: 126.4407 },
@@ -18,7 +18,7 @@ const locationData = {
         { name: "El Paso (ELP)", tz: "America/Denver", lat: 31.8066, lon: -106.3778 },
         { name: "Honolulu (HNL)", tz: "Pacific/Honolulu", lat: 21.3156, lon: -157.9242 },
         { name: "Miami (MIA)", tz: "America/New_York", lat: 25.7959, lon: -80.2870 },
-        { name: "Las Vegas (LAS)", tz: "America/Los_Angeles", lat: 36.0840, lon: -115.1537 }
+        { name: "Washington (IAD)", tz: "America/New_York", lat: 38.9531, lon: -77.4565 }
     ],
     "Japan": [
         { name: "Tokyo Narita (NRT)", tz: "Asia/Tokyo", lat: 35.7720, lon: 140.3929 },
@@ -34,44 +34,28 @@ const locationData = {
     ],
     "UK": [
         { name: "London (LHR)", tz: "Europe/London", lat: 51.4700, lon: -0.4543 },
-        { name: "Manchester (MAN)", tz: "Europe/London", lat: 53.3588, lon: -2.2727 },
-        { name: "Edinburgh (EDI)", tz: "Europe/London", lat: 55.9508, lon: -3.3615 }
+        { name: "Manchester (MAN)", tz: "Europe/London", lat: 53.3588, lon: -2.2727 }
     ],
     "France": [
         { name: "Paris (CDG)", tz: "Europe/Paris", lat: 49.0097, lon: 2.5479 },
-        { name: "Nice (NCE)", tz: "Europe/Paris", lat: 43.6653, lon: 7.2150 },
-        { name: "Lyon (LYS)", tz: "Europe/Paris", lat: 45.7256, lon: 5.0811 }
+        { name: "Nice (NCE)", tz: "Europe/Paris", lat: 43.6653, lon: 7.2150 }
     ],
     "Germany": [
         { name: "Frankfurt (FRA)", tz: "Europe/Berlin", lat: 50.0379, lon: 8.5622 },
-        { name: "Munich (MUC)", tz: "Europe/Berlin", lat: 48.3537, lon: 11.7750 },
-        { name: "Berlin (BER)", tz: "Europe/Berlin", lat: 52.3667, lon: 13.5033 }
+        { name: "Munich (MUC)", tz: "Europe/Berlin", lat: 48.3537, lon: 11.7750 }
     ],
     "Canada": [
         { name: "Toronto (YYZ)", tz: "America/Toronto", lat: 43.6777, lon: -79.6248 },
-        { name: "Vancouver (YVR)", tz: "America/Vancouver", lat: 49.1967, lon: -123.1815 },
-        { name: "Montreal (YUL)", tz: "America/Toronto", lat: 45.4657, lon: -73.7455 }
+        { name: "Vancouver (YVR)", tz: "America/Vancouver", lat: 49.1967, lon: -123.1815 }
     ],
     "Australia": [
         { name: "Sydney (SYD)", tz: "Australia/Sydney", lat: -33.9399, lon: 151.1753 },
-        { name: "Melbourne (MEL)", tz: "Australia/Melbourne", lat: -37.6690, lon: 144.8410 },
-        { name: "Brisbane (BNE)", tz: "Australia/Brisbane", lat: -27.3942, lon: 153.1218 }
+        { name: "Melbourne (MEL)", tz: "Australia/Melbourne", lat: -37.6690, lon: 144.8410 }
     ],
     "Italy": [{ name: "Rome (FCO)", tz: "Europe/Rome", lat: 41.8003, lon: 12.2389 }],
     "Spain": [{ name: "Madrid (MAD)", tz: "Europe/Madrid", lat: 40.4983, lon: -3.5676 }],
-    "Switzerland": [{ name: "Zurich (ZRH)", tz: "Europe/Zurich", lat: 47.4582, lon: 8.5555 }],
     "Singapore": [{ name: "Singapore (SIN)", tz: "Asia/Singapore", lat: 1.3644, lon: 103.9915 }],
-    "Taiwan": [{ name: "Taipei (TPE)", tz: "Asia/Taipei", lat: 25.0797, lon: 121.2342 }],
-    "Thailand": [{ name: "Bangkok (BKK)", tz: "Asia/Bangkok", lat: 13.6900, lon: 100.7501 }],
     "Vietnam": [{ name: "Ho Chi Minh (SGN)", tz: "Asia/Ho_Chi_Minh", lat: 10.8185, lon: 106.6588 }],
-    "Malaysia": [{ name: "Kuala Lumpur (KUL)", tz: "Asia/Kuala_Lumpur", lat: 2.7456, lon: 101.7072 }],
-    "Indonesia": [{ name: "Jakarta (CGK)", tz: "Asia/Jakarta", lat: -6.1256, lon: 106.6559 }],
-    "Philippines": [{ name: "Manila (MNL)", tz: "Asia/Manila", lat: 14.5086, lon: 121.0194 }],
-    "UAE": [{ name: "Dubai (DXB)", tz: "Asia/Dubai", lat: 25.2532, lon: 55.3657 }],
-    "Turkey": [{ name: "Istanbul (IST)", tz: "Europe/Istanbul", lat: 41.2753, lon: 28.7519 }],
-    "Russia": [{ name: "Moscow (SVO)", tz: "Europe/Moscow", lat: 55.9726, lon: 37.4146 }],
-    "Brazil": [{ name: "Sao Paulo (GRU)", tz: "America/Sao_Paulo", lat: -23.4356, lon: -46.4731 }],
-    "Mexico": [{ name: "Mexico City (MEX)", tz: "America/Mexico_City", lat: 19.4361, lon: -99.0719 }],
     "Others": [{ name: "UTC/GMT", tz: "UTC", lat: 0, lon: 0 }]
 };
 
@@ -91,7 +75,6 @@ const translations = {
         'weather-title': '우리의 오늘 날씨',
         'my-weather-label': '내가 있는 곳',
         'partner-weather-label': '네가 있는 곳',
-        'weather-update-text': '실시간 날씨 정보를 가져오는 중...',
         'footer-text': '먼 거리를 사랑으로 채워가는 모든 분들을 응원합니다 ❤️',
         'met-message': '드디어 만났어요!',
         'days-unit': '일', 'hours-unit': '시간', 'minutes-unit': '분', 'seconds-unit': '초',
@@ -100,7 +83,6 @@ const translations = {
         'timezone-info': '만남 장소:', 'change-my-loc': '나의 위치 설정', 'change-partner-tz': '상대방 위치 설정',
         'ps-header': 'Partnership',
         'ps-subtitle': 'Now and Us와 함께 따뜻한 가치를 만들어가요',
-        'ps-label-name': '성함 / 회사명', 'ps-label-email': '회신받을 이메일', 'ps-label-subject': '문의 제목', 'ps-label-message': '문의 내용',
         'ps-btn': '보내기', 'ps-back': '← 메인으로 돌아가기',
         'ps-name-ph': '이름을 입력해주세요', 'ps-subject-ph': '제휴 문의 드립니다', 'ps-message-ph': '상세한 내용을 적어주세요',
         'board-header': '게시판 (Board)',
@@ -122,7 +104,6 @@ const translations = {
         'weather-title': 'Our Weather',
         'my-weather-label': 'Where I am',
         'partner-weather-label': 'Where you are',
-        'weather-update-text': 'Fetching weather...',
         'footer-text': 'Celebrating every mile covered by love ❤️',
         'met-message': "Finally together!",
         'days-unit': 'd', 'hours-unit': 'h', 'minutes-unit': 'm', 'seconds-unit': 's',
@@ -131,7 +112,6 @@ const translations = {
         'timezone-info': 'Meeting At:', 'change-my-loc': 'Set My Loc', 'change-partner-tz': 'Set Partner Loc',
         'ps-header': 'Partnership',
         'ps-subtitle': 'Create values with Now and Us',
-        'ps-label-name': 'Name/Company', 'ps-label-email': 'Email', 'ps-label-subject': 'Subject', 'ps-label-message': 'Message',
         'ps-btn': 'Send', 'ps-back': '← Back to Home',
         'ps-name-ph': 'Your name', 'ps-subject-ph': 'Partnership inquiry', 'ps-message-ph': 'Details...',
         'board-header': 'Board',
@@ -185,11 +165,9 @@ function getWIcon(c) {
 }
 
 function updateDisplays() {
-    // Days together
     const dEl = document.getElementById('days-together');
     if(dEl) dEl.textContent = Math.max(0, Math.floor((new Date().getTime() - new Date(anniversaryDate).getTime()) / 86400000));
     
-    // Countdown
     const timer = document.getElementById('countdown-timer');
     if(timer) {
         const target = new Date(nextMeetingDate).getTime() + (new Date().getTime() - new Date(new Date().toLocaleString('en-US',{timeZone:meetingTimezone})).getTime());
@@ -202,19 +180,16 @@ function updateDisplays() {
         } else { timer.textContent = translations[currentLanguage]['met-message']; }
     }
 
-    // Clocks
     const myT = document.getElementById('my-time');
     if(myT) myT.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,timeZone:myTimezone});
     const pT = document.getElementById('partner-time');
     if(pT) pT.textContent = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,timeZone:partnerTimezone});
 
-    // Weather
     const myD = locationData[myCountry]?.find(l=>l.name===myLocation);
     if(myD && document.getElementById('my-weather-info')) fetchWeather(myD.lat,myD.lon,'my-weather-info');
     const pD = locationData[partnerCountry]?.find(l=>l.name===partnerLocation);
     if(pD && document.getElementById('partner-weather-info')) fetchWeather(pD.lat,pD.lon,'partner-weather-info');
 
-    // Labels
     if(document.getElementById('display-location')) document.getElementById('display-location').textContent = `${meetingCountry}, ${meetingAirport}`;
     if(document.getElementById('my-tz')) document.getElementById('my-tz').textContent = `${myCountry}, ${myLocation}`;
     if(document.getElementById('partner-tz')) document.getElementById('partner-tz').textContent = `${partnerCountry}, ${partnerLocation}`;
@@ -302,7 +277,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateDisplays, 1000);
 });
 
-// Event listeners for dropdowns
 window.updateAirportList = () => updateList('input-country','input-airport',meetingAirport);
 window.updateMyCityList = () => updateList('input-my-country','input-my-location',myLocation);
 window.updatePartnerLocationList = () => updateList('input-partner-country','input-partner-location',partnerLocation);
+window.setLanguage = setLanguage;
+window.toggleMiniSettings = toggleMiniSettings;
+window.saveSettings = saveSettings;
