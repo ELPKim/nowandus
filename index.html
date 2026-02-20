@@ -142,39 +142,6 @@
         </section>
     </main>
 
-    <!-- Floating Comment Section -->
-    <div id="comment-container">
-        <button id="comment-toggle" class="floating-btn" onclick="toggleComments()">
-            <span class="icon">💌</span>
-            <span class="badge" id="comment-count">0</span>
-        </button>
-        
-        <div id="comment-panel" class="comment-panel" style="display: none;">
-            <div class="comment-header">
-                <h3 data-i18n="comment-title">Message Wall</h3>
-                <button class="close-btn" onclick="toggleComments()">×</button>
-            </div>
-            
-            <!-- Warning Message -->
-            <div class="chat-notice">
-                <span class="notice-icon">📢</span>
-                <span data-i18n="chat-warning">This is a public shelter. Please use kind words. Bad language is filtered.</span>
-            </div>
-
-            <div id="comment-list" class="comment-list">
-                <!-- Messages will appear here -->
-            </div>
-            <div class="comment-input-area">
-                <input type="text" id="comment-input" data-i18n-placeholder="comment-placeholder" placeholder="Write a message...">
-                <button onclick="addComment()" id="send-btn">➔</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Firebase SDKs (Ready for integration) -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-
     <footer>
         <p data-i18n="footer-text">Made with ❤️ for long-distance lovers</p>
     </footer>

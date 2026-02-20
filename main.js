@@ -136,12 +136,7 @@ const translations = {
         'label-location': '위치:',
         'timezone-info': '우리가 만날 곳:',
         'change-partner-tz': '너의 위치는?',
-        'label-partner-timezone': '상대방 시간대:',
-        'comment-title': '모두의 쉼터 (Live)',
-        'comment-placeholder': '따뜻한 한마디를 남겨주세요...',
-        'chat-warning': '모두가 함께하는 쉼터입니다. 고운 말을 사용해주세요. 욕설은 자동으로 필터링됩니다.',
-        'alert-profanity': '고운 말을 사용해주세요! 욕설은 전송되지 않습니다.',
-        'translate-link': '번역'
+        'label-partner-timezone': '상대방 시간대:'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -169,12 +164,7 @@ const translations = {
         'label-location': 'Location:',
         'timezone-info': 'Where we meet:',
         'change-partner-tz': 'Sync Your Time',
-        'label-partner-timezone': "Partner's Location:",
-        'comment-title': 'Community Shelter (Live)',
-        'comment-placeholder': 'Write a warm message...',
-        'chat-warning': 'This is a public shelter. Please use kind words. Bad language is filtered automatically.',
-        'alert-profanity': 'Please use kind words! Profanity is not allowed.',
-        'translate-link': 'Translate'
+        'label-partner-timezone': "Partner's Location:"
     }
 };
 
@@ -190,158 +180,97 @@ let partnerCountry = localStorage.getItem('partnerCountry') || 'USA';
 let partnerLocation = localStorage.getItem('partnerLocation') || "New York (JFK)";
 let partnerTimezone = localStorage.getItem('partnerTimezone') || 'America/New_York';
 
-// --- FIREBASE PLACEHOLDER ---
-// Create project at https://console.firebase.google.com/
-const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "your-id.firebaseapp.com",
-    projectId: "your-id",
-    storageBucket: "your-id.appspot.com",
-    messagingSenderId: "...",
-    appId: "..."
-};
+function setLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('language', lang);
+    document.documentElement.lang = lang;
 
-let db;
-let isFirebaseActive = false;
-if (firebaseConfig.apiKey !== "YOUR_API_KEY" && typeof firebase !== 'undefined') {
-    try {
-        firebase.initializeApp(firebaseConfig);
-        db = firebase.firestore();
-        isFirebaseActive = true;
-    } catch (e) { console.error(e); }
-}
-
-// --- PROFANITY FILTER ---
-const badWords = ['fuck', 'shit', 'bitch', 'asshole', '시발', '씨발', '개새끼', '병신', '지랄', '미친', '좆'];
-
-function checkProfanity(text) {
-    const lower = text.toLowerCase();
-    return badWords.some(word => lower.includes(word));
-}
-
-// --- CHAT LOGIC ---
-let userId = localStorage.getItem('userId') || ('user_' + Math.random().toString(36).substr(2, 9));
-localStorage.setItem('userId', userId);
-let localComments = JSON.parse(localStorage.getItem('comments')) || [];
-
-const MSG_EXPIRATION_HOURS = 24; // 메시지 유지 시간 (24시간)
-let lastSentTime = 0; // 도배 방지를 위한 마지막 전송 시간 기록
-const COOLDOWN_MS = 3000; // 3초 쿨타임
-
-function toggleComments() {
-    const panel = document.getElementById('comment-panel');
-    panel.style.display = panel.style.display === 'none' ? 'flex' : 'none';
-    if (panel.style.display === 'flex') {
-        cleanOldMessages(); 
-        scrollToBottom();
-    }
-}
-
-function addComment() {
-    const now = Date.now();
-    const input = document.getElementById('comment-input');
-    const text = input.value.trim();
-    
-    if (!text) return;
-
-    // 1. 도배 방지 (쿨타임 체크)
-    if (now - lastSentTime < COOLDOWN_MS) {
-        const remaining = Math.ceil((COOLDOWN_MS - (now - lastSentTime)) / 1000);
-        alert(currentLanguage === 'ko' ? `${remaining}초 후에 다시 보낼 수 있어요.` : `Wait ${remaining}s before sending again.`);
-        return;
-    }
-
-    // 2. 욕설 필터링
-    if (checkProfanity(text)) {
-        alert(translations[currentLanguage]['alert-profanity']);
-        input.value = '';
-        return;
-    }
-
-    const msg = {
-        text: text,
-        uid: userId,
-        date: new Date().toISOString(),
-        lang: currentLanguage
-    };
-
-    lastSentTime = now; // 전송 시간 업데이트
-
-    if (isFirebaseActive) {
-        db.collection("messages").add({ ...msg, timestamp: firebase.firestore.FieldValue.serverTimestamp() });
-        input.value = '';
-    } else {
-        localComments.push(msg);
-        localStorage.setItem('comments', JSON.stringify(localComments));
-        input.value = '';
-        renderLocalComments();
-    }
-}
-
-function displayMessage(data, container) {
-    const item = document.createElement('div');
-    const isMine = data.uid === userId;
-    item.className = `comment-item ${isMine ? 'my-msg' : 'other-msg'}`;
-    
-    // Create translation link
-    const targetLang = currentLanguage === 'ko' ? 'en' : 'ko';
-    const googleTranslateUrl = `https://translate.google.com/?sl=auto&tl=${targetLang}&text=${encodeURIComponent(data.text)}&op=translate`;
-
-    item.innerHTML = `
-        <div class="msg-bubble">${data.text}</div>
-        <div class="msg-meta">
-            <span>${new Date(data.date).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</span>
-            ${!isMine ? `<a href="${googleTranslateUrl}" target="_blank" class="translate-btn">${translations[currentLanguage]['translate-link']}</a>` : ''}
-        </div>
-    `;
-    container.appendChild(item);
-}
-
-function renderLocalComments() {
-    const list = document.getElementById('comment-list');
-    list.innerHTML = '';
-    localComments.slice(-50).forEach(c => displayMessage(c, list));
-    document.getElementById('comment-count').textContent = localComments.length;
-    scrollToBottom();
-}
-
-function scrollToBottom() {
-    const list = document.getElementById('comment-list');
-    list.scrollTop = list.scrollHeight;
-}
-
-// --- INITIALIZATION & EVENT LISTENERS ---
-document.addEventListener('DOMContentLoaded', () => {
-    // Existing Date Inits
-    document.getElementById('input-anniversary').value = anniversaryDate;
-    document.getElementById('input-meeting').value = nextMeetingDate;
-    
-    initializeForm();
-    setLanguage(currentLanguage);
-    
-    if (isFirebaseActive) {
-        db.collection("messages").orderBy("timestamp", "asc").limitToLast(50).onSnapshot(snap => {
-            const list = document.getElementById('comment-list');
-            list.innerHTML = '';
-            snap.forEach(doc => displayMessage(doc.data(), list));
-            document.getElementById('comment-count').textContent = snap.size;
-            scrollToBottom();
-        });
-    } else {
-        renderLocalComments();
-    }
-
-    document.getElementById('comment-input').addEventListener('keypress', e => {
-        if (e.key === 'Enter') addComment();
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+            element.textContent = translations[lang][key];
+        }
     });
+    
+    updateDisplays();
+}
 
-    setInterval(() => {
-        updateCountdown();
-        updateClocks();
-    }, 1000);
-});
+function updateDisplays() {
+    updateDaysTogether();
+    updateCountdown();
+    updateClocks();
+    
+    const myTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    let myLocationLabel = myTz;
+    
+    for (const [country, locations] of Object.entries(locationData)) {
+        const match = locations.find(loc => loc.tz === myTz);
+        if (match) {
+            myLocationLabel = `${country}, ${match.name.split(' (')[0]}`;
+            break;
+        }
+    }
+    
+    document.getElementById('display-location').textContent = `${meetingCountry}, ${meetingAirport}`;
+    document.getElementById('my-tz').textContent = myLocationLabel;
+    document.getElementById('partner-tz').textContent = `${partnerCountry}, ${partnerLocation}`;
+}
 
-// --- EXISTING DATE HELPER FUNCTIONS ---
+function updateDaysTogether() {
+    const today = new Date();
+    const anniv = new Date(anniversaryDate);
+    const differenceInTime = today.getTime() - anniv.getTime();
+    const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
+    document.getElementById('days-together').textContent = Math.max(0, differenceInDays);
+}
+
+function updateCountdown() {
+    const today = new Date();
+    const targetUTC = convertToUTC(nextMeetingDate, meetingTimezone);
+    const remaining = targetUTC - today.getTime();
+
+    const timerElement = document.getElementById('countdown-timer');
+
+    if (remaining > 0) {
+        const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+        const d = translations[currentLanguage]['days-unit'];
+        const h = translations[currentLanguage]['hours-unit'];
+        const m = translations[currentLanguage]['minutes-unit'];
+        const s = translations[currentLanguage]['seconds-unit'];
+
+        timerElement.textContent = `${days}${d} ${hours}${h} ${minutes}${m} ${seconds}${s}`;
+    } else {
+        timerElement.textContent = translations[currentLanguage]['met-message'];
+    }
+}
+
+function updateClocks() {
+    const now = new Date();
+    const myOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+    document.getElementById('my-time').textContent = now.toLocaleTimeString([], myOptions);
+
+    const partnerOptions = { 
+        hour: '2-digit', minute: '2-digit', second: '2-digit', 
+        hour12: false, timeZone: partnerTimezone 
+    };
+    try {
+        document.getElementById('partner-time').textContent = now.toLocaleTimeString([], partnerOptions);
+    } catch (e) {
+        document.getElementById('partner-time').textContent = "TZ Error";
+    }
+}
+
+function convertToUTC(dateStr, tz) {
+    const date = new Date(dateStr);
+    const invDate = new Date(date.toLocaleString('en-US', { timeZone: tz }));
+    const diff = date.getTime() - invDate.getTime();
+    return date.getTime() + diff;
+}
+
 function toggleMiniSettings(id) {
     const el = document.getElementById(id);
     el.style.display = el.style.display === 'none' ? 'block' : 'none';
@@ -350,18 +279,21 @@ function toggleMiniSettings(id) {
 function saveSettings() {
     anniversaryDate = document.getElementById('input-anniversary').value;
     nextMeetingDate = document.getElementById('input-meeting').value;
+    
     meetingCountry = document.getElementById('input-country').value;
     const airportSelect = document.getElementById('input-airport');
     if (airportSelect.selectedIndex >= 0) {
         meetingAirport = airportSelect.options[airportSelect.selectedIndex].text;
         meetingTimezone = airportSelect.value;
     }
+
     partnerCountry = document.getElementById('input-partner-country').value;
     const partnerLocSelect = document.getElementById('input-partner-location');
     if (partnerLocSelect.selectedIndex >= 0) {
         partnerLocation = partnerLocSelect.options[partnerLocSelect.selectedIndex].text;
         partnerTimezone = partnerLocSelect.value;
     }
+
     localStorage.setItem('anniversaryDate', anniversaryDate);
     localStorage.setItem('nextMeetingDate', nextMeetingDate);
     localStorage.setItem('meetingCountry', meetingCountry);
@@ -370,6 +302,7 @@ function saveSettings() {
     localStorage.setItem('partnerCountry', partnerCountry);
     localStorage.setItem('partnerLocation', partnerLocation);
     localStorage.setItem('partnerTimezone', partnerTimezone);
+
     updateDisplays();
 }
 
@@ -377,10 +310,12 @@ function updateAirportList() {
     const country = document.getElementById('input-country').value;
     const airportSelect = document.getElementById('input-airport');
     airportSelect.innerHTML = '';
+
     if (locationData[country]) {
         locationData[country].forEach(ap => {
             const opt = document.createElement('option');
-            opt.value = ap.tz; opt.textContent = ap.name;
+            opt.value = ap.tz;
+            opt.textContent = ap.name;
             if (ap.name === meetingAirport) opt.selected = true;
             airportSelect.appendChild(opt);
         });
@@ -392,10 +327,12 @@ function updatePartnerLocationList() {
     const country = document.getElementById('input-partner-country').value;
     const locSelect = document.getElementById('input-partner-location');
     locSelect.innerHTML = '';
+
     if (locationData[country]) {
         locationData[country].forEach(ap => {
             const opt = document.createElement('option');
-            opt.value = ap.tz; opt.textContent = ap.name;
+            opt.value = ap.tz;
+            opt.textContent = ap.name;
             if (ap.name === partnerLocation) opt.selected = true;
             locSelect.appendChild(opt);
         });
@@ -403,87 +340,36 @@ function updatePartnerLocationList() {
     saveSettings();
 }
 
-function setLanguage(lang) {
-    currentLanguage = lang;
-    localStorage.setItem('language', lang);
-    document.documentElement.lang = lang;
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) el.textContent = translations[lang][key];
-    });
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-        const key = el.getAttribute('data-i18n-placeholder');
-        if (translations[lang][key]) el.placeholder = translations[lang][key];
-    });
-    updateDisplays();
-}
-
-function updateDisplays() {
-    updateDaysTogether();
-    updateCountdown();
-    updateClocks();
-    const myTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    let myLocationLabel = myTz;
-    for (const [country, locations] of Object.entries(locationData)) {
-        const match = locations.find(loc => loc.tz === myTz);
-        if (match) { myLocationLabel = `${country}, ${match.name.split(' (')[0]}`; break; }
-    }
-    document.getElementById('display-location').textContent = `${meetingCountry}, ${meetingAirport}`;
-    document.getElementById('my-tz').textContent = myLocationLabel;
-    document.getElementById('partner-tz').textContent = `${partnerCountry}, ${partnerLocation}`;
-}
-
-function updateDaysTogether() {
-    const today = new Date();
-    const anniv = new Date(anniversaryDate);
-    const diff = Math.floor((today.getTime() - anniv.getTime()) / (1000 * 3600 * 24));
-    document.getElementById('days-together').textContent = Math.max(0, diff);
-}
-
-function updateCountdown() {
-    const targetUTC = convertToUTC(nextMeetingDate, meetingTimezone);
-    const remaining = targetUTC - new Date().getTime();
-    const timer = document.getElementById('countdown-timer');
-    if (remaining > 0) {
-        const d = Math.floor(remaining / (1000 * 60 * 60 * 24));
-        const h = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((remaining % (1000 * 60)) / 1000);
-        const units = translations[currentLanguage];
-        timer.textContent = `${d}${units['days-unit']} ${h}${units['hours-unit']} ${m}${units['minutes-unit']} ${s}${units['seconds-unit']}`;
-    } else {
-        timer.textContent = translations[currentLanguage]['met-message'];
-    }
-}
-
-function updateClocks() {
-    const now = new Date();
-    document.getElementById('my-time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-    try {
-        document.getElementById('partner-time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: partnerTimezone });
-    } catch (e) { document.getElementById('partner-time').textContent = "TZ Error"; }
-}
-
-function convertToUTC(dateStr, tz) {
-    const date = new Date(dateStr);
-    const invDate = new Date(date.toLocaleString('en-US', { timeZone: tz }));
-    return date.getTime() + (date.getTime() - invDate.getTime());
-}
-
 function initializeForm() {
     const countries = Object.keys(locationData).sort();
     const countrySelect = document.getElementById('input-country');
     const partnerCountrySelect = document.getElementById('input-partner-country');
+    
     [countrySelect, partnerCountrySelect].forEach(select => {
         select.innerHTML = '';
         countries.forEach(country => {
             const opt = document.createElement('option');
-            opt.value = country; opt.textContent = country;
+            opt.value = country;
+            opt.textContent = country;
             if (select.id === 'input-country' && country === meetingCountry) opt.selected = true;
             if (select.id === 'input-partner-country' && country === partnerCountry) opt.selected = true;
             select.appendChild(opt);
         });
     });
+
     updateAirportList();
     updatePartnerLocationList();
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('input-anniversary').value = anniversaryDate;
+    document.getElementById('input-meeting').value = nextMeetingDate;
+    
+    initializeForm();
+    setLanguage(currentLanguage);
+    
+    setInterval(() => {
+        updateCountdown();
+        updateClocks();
+    }, 1000);
+});
