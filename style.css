@@ -1,1 +1,43 @@
-/* Add styles here */
+body {
+    font-family: sans-serif;
+    background-color: #fce4ec; /* Light pink */
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f8bbd0; /* Pink */
+    padding: 20px;
+}
+
+h1 {
+    color: #c2185b; /* Darker pink */
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+footer {
+    background-color: #f8bbd0; /* Pink */
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#days-together, #countdown-timer {
+    font-weight: bold;
+    color: #c2185b; /* Darker pink */
+}
