@@ -136,7 +136,9 @@ const translations = {
         'label-location': '위치:',
         'timezone-info': '우리가 만날 곳:',
         'change-partner-tz': '너의 위치는?',
-        'label-partner-timezone': '상대방 시간대:'
+        'label-partner-timezone': '상대방 시간대:',
+        'comment-title': '우리의 메시지 함',
+        'comment-placeholder': '따뜻한 한마디를 남겨주세요...'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -164,7 +166,9 @@ const translations = {
         'label-location': 'Location:',
         'timezone-info': 'Where we meet:',
         'change-partner-tz': 'Sync Your Time',
-        'label-partner-timezone': "Partner's Location:"
+        'label-partner-timezone': "Partner's Location:",
+        'comment-title': 'Message Wall',
+        'comment-placeholder': 'Write a warm message...'
     }
 };
 
@@ -180,6 +184,47 @@ let partnerCountry = localStorage.getItem('partnerCountry') || 'USA';
 let partnerLocation = localStorage.getItem('partnerLocation') || "New York (JFK)";
 let partnerTimezone = localStorage.getItem('partnerTimezone') || 'America/New_York';
 
+// Comment Logic
+let comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+function toggleComments() {
+    const panel = document.getElementById('comment-panel');
+    panel.style.display = panel.style.display === 'none' ? 'flex' : 'none';
+}
+
+function addComment() {
+    const input = document.getElementById('comment-input');
+    const text = input.value.trim();
+    if (text) {
+        const newComment = {
+            id: Date.now(),
+            text: text,
+            date: new Date().toISOString()
+        };
+        comments.push(newComment);
+        localStorage.setItem('comments', JSON.stringify(comments));
+        input.value = '';
+        renderComments();
+    }
+}
+
+function renderComments() {
+    const list = document.getElementById('comment-list');
+    const countBadge = document.getElementById('comment-count');
+    list.innerHTML = '';
+    
+    // Show last 50 comments
+    comments.slice(-50).reverse().forEach(comment => {
+        const item = document.createElement('div');
+        item.className = 'comment-item';
+        item.textContent = comment.text;
+        list.appendChild(item);
+    });
+    
+    countBadge.textContent = comments.length;
+}
+
+// Existing Logic
 function toggleMiniSettings(id) {
     const el = document.getElementById(id);
     el.style.display = el.style.display === 'none' ? 'block' : 'none';
@@ -189,7 +234,6 @@ function saveSettings() {
     anniversaryDate = document.getElementById('input-anniversary').value;
     nextMeetingDate = document.getElementById('input-meeting').value;
     
-    // Save Meeting Location
     meetingCountry = document.getElementById('input-country').value;
     const airportSelect = document.getElementById('input-airport');
     if (airportSelect.selectedIndex >= 0) {
@@ -197,7 +241,6 @@ function saveSettings() {
         meetingTimezone = airportSelect.value;
     }
 
-    // Save Partner Location
     partnerCountry = document.getElementById('input-partner-country').value;
     const partnerLocSelect = document.getElementById('input-partner-location');
     if (partnerLocSelect.selectedIndex >= 0) {
@@ -263,6 +306,15 @@ function setLanguage(lang) {
             element.textContent = translations[lang][key];
         }
     });
+    
+    // Update placeholders separately
+    const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
+    placeholders.forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang][key]) {
+            el.placeholder = translations[lang][key];
+        }
+    });
 
     updateDisplays();
 }
@@ -272,15 +324,12 @@ function updateDisplays() {
     updateCountdown();
     updateClocks();
     
-    // Automatic local timezone detection
     const myTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    let myLocationLabel = myTz; // Default to TZ ID
+    let myLocationLabel = myTz;
     
-    // Try to find a friendly name from our location database
     for (const [country, locations] of Object.entries(locationData)) {
         const match = locations.find(loc => loc.tz === myTz);
         if (match) {
-            // Use translation-friendly format if needed, or just standard
             myLocationLabel = `${country}, ${match.name.split(' (')[0]}`;
             break;
         }
@@ -365,6 +414,7 @@ function initializeForm() {
 
     updateAirportList();
     updatePartnerLocationList();
+    renderComments();
 }
 
 // Initialization
@@ -379,4 +429,9 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCountdown();
         updateClocks();
     }, 1000);
+
+    // Enter key for comments
+    document.getElementById('comment-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addComment();
+    });
 });
