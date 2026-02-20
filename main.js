@@ -136,7 +136,15 @@ const translations = {
         'terms-q3': '3. 면책조항',
         'terms-a3': '서비스에서 제공하는 정보(날씨, 시간 등)의 정확성을 보장하지 않으며, 이로 인해 발생한 손해에 대해 책임지지 않습니다. 모든 데이터는 참고용으로만 사용하시기 바랍니다.',
         'terms-q4': '4. 저작권',
-        'terms-a4': '서비스 내 모든 콘텐츠의 저작권은 "Now and Us" 운영자에게 있으며, 무단 복제 및 배포를 금지합니다.'
+        'terms-a4': '서비스 내 모든 콘텐츠의 저작권은 "Now and Us" 운영자에게 있으며, 무단 복제 및 배포를 금지합니다.',
+        'news-header': '세계 뉴스',
+        'news-subtitle': '서로의 나라에서 일어나고 있는 소식을 확인해보세요',
+        'news-label-my': '나의 나라 소식',
+        'news-label-partner': '상대방 나라 소식',
+        'news-load-more': '더 보기',
+        'news-loading': '뉴스를 불러오는 중...',
+        'news-no-data': '뉴스를 불러올 수 없습니다.',
+        'news-read-more': '자세히 보기'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -193,7 +201,15 @@ const translations = {
         'terms-q3': '3. Disclaimer',
         'terms-a3': 'We do not guarantee the accuracy of the information (weather, time, etc.) provided by the service and are not responsible for any damage caused by this. Please use all data for reference only.',
         'terms-q4': '4. Copyright',
-        'terms-a4': 'The copyright for all content within the service belongs to the "Now and Us" operator, and unauthorized reproduction or distribution is prohibited.'
+        'terms-a4': 'The copyright for all content within the service belongs to the "Now and Us" operator, and unauthorized reproduction or distribution is prohibited.',
+        'news-header': 'World News',
+        'news-subtitle': 'Check what is happening in each other\'s country',
+        'news-label-my': 'News from my country',
+        'news-label-partner': 'News from partner\'s country',
+        'news-load-more': 'Load More',
+        'news-loading': 'Loading news...',
+        'news-no-data': 'Could not load news.',
+        'news-read-more': 'Read More'
     }
 };
 
@@ -209,6 +225,55 @@ let myTimezone = localStorage.getItem('myTimezone') || 'Asia/Seoul';
 let partnerCountry = localStorage.getItem('partnerCountry') || 'USA';
 let partnerLocation = localStorage.getItem('partnerLocation') || "New York (JFK)";
 let partnerTimezone = localStorage.getItem('partnerTimezone') || 'America/New_York';
+
+// World News API Logic
+const NEWS_API_KEY = 'YOUR_API_KEY_HERE'; // User will provide this later
+
+async function fetchNews(countryName, elementId) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    
+    el.innerHTML = `<p data-i18n="news-loading">${translations[currentLanguage]['news-loading']}</p>`;
+    
+    if (NEWS_API_KEY === 'YOUR_API_KEY_HERE') {
+        el.innerHTML = `<p style="color: var(--accent-color);">API Key가 설정되지 않았습니다. (API Key not set)</p>`;
+        return;
+    }
+
+    // Map country names to ISO codes if needed, but worldnewsapi supports country names or text search
+    // For simplicity, we search by country name in the 'source-countries' parameter
+    // You might need a mapping for accurate results (e.g., South Korea -> kr, USA -> us)
+    const countryMap = {
+        "South Korea": "kr", "USA": "us", "Japan": "jp", "China": "cn", "UK": "gb", 
+        "France": "fr", "Germany": "de", "Canada": "ca", "Australia": "au", "Italy": "it",
+        "Spain": "es", "Switzerland": "ch", "Singapore": "sg", "Taiwan": "tw", "Thailand": "th",
+        "Vietnam": "vn", "Malaysia": "my", "Indonesia": "id", "Philippines": "ph", "UAE": "ae",
+        "Turkey": "tr", "Russia": "ru", "Brazil": "br", "Mexico": "mx", "Argentina": "ar",
+        "New Zealand": "nz", "South Africa": "za"
+    };
+    
+    const countryCode = countryMap[countryName] || "";
+    
+    try {
+        const url = `https://api.worldnewsapi.com/search-news?api-key=${NEWS_API_KEY}&source-countries=${countryCode}&language=${currentLanguage === 'ko' ? 'ko' : 'en'}&number=5`;
+        const res = await fetch(url);
+        const data = await res.json();
+        
+        if (data.news && data.news.length > 0) {
+            el.innerHTML = data.news.map(n => `
+                <div class="news-card" style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: left;">
+                    <h4 style="margin: 0 0 10px 0; color: var(--accent-color);">${n.title}</h4>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">${n.text ? n.text.substring(0, 150) + '...' : ''}</p>
+                    <a href="${n.url}" target="_blank" style="color: var(--primary-color); font-weight: bold; text-decoration: none; font-size: 0.85rem;">${translations[currentLanguage]['news-read-more']} →</a>
+                </div>
+            `).join('');
+        } else {
+            el.innerHTML = `<p data-i18n="news-no-data">${translations[currentLanguage]['news-no-data']}</p>`;
+        }
+    } catch (e) {
+        el.innerHTML = `<p data-i18n="news-no-data">${translations[currentLanguage]['news-no-data']}</p>`;
+    }
+}
 
 function setLanguage(lang) {
     currentLanguage = lang;
