@@ -112,7 +112,12 @@ const translations = {
         'board-subtitle': '여러분의 소중한 의견을 들려주세요',
         'board-label-name': '닉네임', 'board-label-subject': '문의 제목', 'board-label-message': '문의 내용',
         'board-name-ph': '닉네임을 입력해주세요', 'board-subject-ph': '문의 제목을 입력해주세요', 'board-message-ph': '상세한 내용을 적어주세요',
-        'board-btn': '보내기'
+        'board-btn': '보내기',
+        'guide-title': '장거리 연애, 마음의 거리를 줄이는 방법',
+        'guide-text-1': '장거리 연애는 물리적인 거리가 멀어져 있지만, 서로의 일상을 공유하며 마음의 거리를 좁힐 수 있습니다. Now and Us는 서로의 시간과 날씨를 실시간으로 확인하며, 마치 같은 공간에 있는 듯한 연결감을 제공합니다.',
+        'guide-text-2': '다음 만남을 기다리는 설렘을 카운트다운 기능으로 함께 나누세요. 기념일을 잊지 않고 챙기는 것은 서로에 대한 소중한 배려입니다.',
+        'privacy-link': '개인정보처리방침',
+        'terms-link': '이용약관'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -145,7 +150,12 @@ const translations = {
         'board-subtitle': 'Your voice for a better Now and Us',
         'board-label-name': 'Nickname', 'board-label-subject': 'Subject', 'board-label-message': 'Inquiry Details',
         'board-name-ph': 'Enter your nickname', 'board-subject-ph': 'Enter inquiry subject', 'board-message-ph': 'Please enter detailed information',
-        'board-btn': 'Send'
+        'board-btn': 'Send',
+        'guide-title': 'How to Bridge the Distance in LDR',
+        'guide-text-1': 'Long-distance relationships are physically far apart, but you can narrow the distance of your heart by sharing your daily life. Now and Us allows you to check each other\'s time and weather in real-time, providing a sense of connection as if you were in the same space.',
+        'guide-text-2': 'Share the excitement of waiting for the next meeting with the countdown function. Remembering anniversaries is a precious consideration for each other.',
+        'privacy-link': 'Privacy Policy',
+        'terms-link': 'Terms of Service'
     }
 };
 
