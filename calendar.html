@@ -38,19 +38,22 @@
             <p data-i18n="cal-help-text" style="margin-bottom: 0; line-height: 1.7; color: #555; font-size: 0.95rem;"></p>
         </div>
 
+        <div class="calendar-controls" style="margin-bottom: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <div class="select-box" style="background: rgba(255,255,255,0.7); padding: 15px 25px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 10px;">
+                <label data-i18n="cal-my-title" style="font-weight: bold; color: var(--primary-color);">나의 공휴일</label>
+                <select id="select-my-cal" onchange="renderSpecificHolidays(this.value, 'my-holidays-list')" style="padding: 8px 15px; border-radius: 10px; border: 2px solid var(--secondary-color); outline: none; font-family: inherit; cursor: pointer;"></select>
+            </div>
+            <div class="select-box" style="background: rgba(255,255,255,0.7); padding: 15px 25px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 10px;">
+                <label data-i18n="cal-partner-title" style="font-weight: bold; color: var(--clock-accent);">상대방의 공휴일</label>
+                <select id="select-partner-cal" onchange="renderSpecificHolidays(this.value, 'partner-holidays-list')" style="padding: 8px 15px; border-radius: 10px; border: 2px solid #e2cfea; outline: none; font-family: inherit; cursor: pointer;"></select>
+            </div>
+        </div>
+
         <div class="calendar-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
             <div class="holiday-section">
-                <h2 style="color: var(--primary-color); margin-bottom: 20px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px;">
-                    <span data-i18n="cal-my-title">나의 공휴일</span> 
-                    <span id="my-country-name" style="font-size: 0.9rem; opacity: 0.6; font-weight: normal;"></span>
-                </h2>
                 <div id="my-holidays-list" class="holiday-list"></div>
             </div>
             <div class="holiday-section">
-                <h2 style="color: var(--clock-accent); margin-bottom: 20px; border-bottom: 2px solid #e2cfea; padding-bottom: 10px;">
-                    <span data-i18n="cal-partner-title">상대방의 공휴일</span>
-                    <span id="partner-country-name" style="font-size: 0.9rem; opacity: 0.6; font-weight: normal;"></span>
-                </h2>
                 <div id="partner-holidays-list" class="holiday-list"></div>
             </div>
         </div>
@@ -70,22 +73,34 @@
 
     <script src="main.js"></script>
     <script>
+        let allHolidayData = null;
+
         function toggleHelp() {
             const el = document.getElementById('cal-help-box');
             if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
         }
 
         async function initCalendarPage() {
-            document.getElementById('my-country-name').textContent = `(${myCountry})`;
-            document.getElementById('partner-country-name').textContent = `(${partnerCountry})`;
-
             try {
                 const res = await fetch('holiday-data.json');
                 if (!res.ok) throw new Error("Data not ready");
-                const allHolidays = await res.json();
+                allHolidayData = await res.json();
                 
-                renderHolidays(allHolidays[myCountry], 'my-holidays-list');
-                renderHolidays(allHolidays[partnerCountry], 'partner-holidays-list');
+                const availableCountries = Object.keys(allHolidayData).sort();
+                const mySelect = document.getElementById('select-my-cal');
+                const partnerSelect = document.getElementById('select-partner-cal');
+                
+                availableCountries.forEach(country => {
+                    const opt1 = new Option(country, country);
+                    const opt2 = new Option(country, country);
+                    if (country === myCountry) opt1.selected = true;
+                    if (country === partnerCountry) opt2.selected = true;
+                    mySelect.add(opt1);
+                    partnerSelect.add(opt2);
+                });
+
+                renderSpecificHolidays(myCountry, 'my-holidays-list');
+                renderSpecificHolidays(partnerCountry, 'partner-holidays-list');
             } catch (e) {
                 const msg = `<p style="color: #999; padding: 20px;">데이터를 불러오는 중입니다... (잠시 후 다시 확인해주세요)</p>`;
                 document.getElementById('my-holidays-list').innerHTML = msg;
@@ -93,8 +108,11 @@
             }
         }
 
-        function renderHolidays(holidays, elementId) {
+        function renderSpecificHolidays(countryName, elementId) {
+            if (!allHolidayData) return;
+            const holidays = allHolidayData[countryName];
             const el = document.getElementById(elementId);
+            
             if (!holidays || holidays.length === 0) {
                 el.innerHTML = `<p style="color: #999; padding: 20px;">정보를 찾을 수 없습니다.</p>`;
                 return;
@@ -120,6 +138,13 @@
             setTimeout(initCalendarPage, 100);
         });
     </script>
+    <style>
+        @media (max-width: 768px) {
+            .calendar-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</body>
+</html>
     <style>
         @media (max-width: 768px) {
             .calendar-container { grid-template-columns: 1fr; }
