@@ -31,8 +31,7 @@ const locationData = {
     "China": [
         { name: "Beijing (PEK)", tz: "Asia/Shanghai", lat: 40.0799, lon: 116.6031 },
         { name: "Shanghai (PVG)", tz: "Asia/Shanghai", lat: 31.1443, lon: 121.8083 },
-        { name: "Guangzhou (CAN)", tz: "Asia/Shanghai", lat: 23.3924, lon: 113.2988 },
-        { name: "Shenzhen (SZX)", tz: "Asia/Shanghai", lat: 22.6393, lon: 113.8107 }
+        { name: "Guangzhou (CAN)", tz: "Asia/Shanghai", lat: 23.3924, lon: 113.2988 }
     ],
     "United Kingdom": [
         { name: "London Heathrow (LHR)", tz: "Europe/London", lat: 51.4700, lon: -0.4543 },
@@ -59,51 +58,7 @@ const locationData = {
         { name: "Melbourne (MEL)", tz: "Australia/Melbourne", lat: -37.6690, lon: 144.8410 },
         { name: "Brisbane (BNE)", tz: "Australia/Brisbane", lat: -27.3942, lon: 153.1218 }
     ],
-    "Italy": [
-        { name: "Rome (FCO)", tz: "Europe/Rome", lat: 41.8003, lon: 12.2389 },
-        { name: "Milan (MXP)", tz: "Europe/Rome", lat: 45.6301, lon: 8.7231 }
-    ],
-    "Spain": [
-        { name: "Madrid (MAD)", tz: "Europe/Madrid", lat: 40.4983, lon: -3.5676 },
-        { name: "Barcelona (BCN)", tz: "Europe/Madrid", lat: 41.2974, lon: 2.0833 }
-    ],
-    "Switzerland": [
-        { name: "Zurich (ZRH)", tz: "Europe/Zurich", lat: 47.4582, lon: 8.5555 },
-        { name: "Geneva (GVA)", tz: "Europe/Zurich", lat: 46.2370, lon: 6.1091 }
-    ],
-    "Netherlands": [{ name: "Amsterdam (AMS)", tz: "Europe/Amsterdam", lat: 52.3105, lon: 4.7683 }],
     "Singapore": [{ name: "Singapore (SIN)", tz: "Asia/Singapore", lat: 1.3644, lon: 103.9915 }],
-    "Taiwan": [{ name: "Taipei (TPE)", tz: "Asia/Taipei", lat: 25.0797, lon: 121.2342 }],
-    "Hong Kong": [{ name: "Hong Kong (HKG)", tz: "Asia/Hong_Kong", lat: 22.3080, lon: 113.9185 }],
-    "Thailand": [
-        { name: "Bangkok (BKK)", tz: "Asia/Bangkok", lat: 13.6900, lon: 100.7501 },
-        { name: "Phuket (HKT)", tz: "Asia/Bangkok", lat: 8.1132, lon: 98.3064 }
-    ],
-    "Vietnam": [
-        { name: "Ho Chi Minh (SGN)", tz: "Asia/Ho_Chi_Minh", lat: 10.8185, lon: 106.6588 },
-        { name: "Hanoi (HAN)", tz: "Asia/Ho_Chi_Minh", lat: 21.2212, lon: 105.8072 }
-    ],
-    "Malaysia": [{ name: "Kuala Lumpur (KUL)", tz: "Asia/Kuala_Lumpur", lat: 2.7456, lon: 101.7072 }],
-    "Indonesia": [
-        { name: "Jakarta (CGK)", tz: "Asia/Jakarta", lat: -6.1256, lon: 106.6559 },
-        { name: "Bali (DPS)", tz: "Asia/Makassar", lat: -8.7482, lon: 115.1674 }
-    ],
-    "Philippines": [{ name: "Manila (MNL)", tz: "Asia/Manila", lat: 14.5086, lon: 121.0194 }],
-    "India": [
-        { name: "Delhi (DEL)", tz: "Asia/Kolkata", lat: 28.5562, lon: 77.1000 },
-        { name: "Mumbai (BOM)", tz: "Asia/Kolkata", lat: 19.0896, lon: 72.8656 }
-    ],
-    "UAE": [{ name: "Dubai (DXB)", tz: "Asia/Dubai", lat: 25.2532, lon: 55.3657 }],
-    "Qatar": [{ name: "Doha (DOH)", tz: "Asia/Qatar", lat: 25.2731, lon: 51.6081 }],
-    "Turkey": [{ name: "Istanbul (IST)", tz: "Europe/Istanbul", lat: 41.2753, lon: 28.7519 }],
-    "Russia": [{ name: "Moscow (SVO)", tz: "Europe/Moscow", lat: 55.9726, lon: 37.4146 }],
-    "Brazil": [{ name: "Sao Paulo (GRU)", tz: "America/Sao_Paulo", lat: -23.4356, lon: -46.4731 }],
-    "Mexico": [{ name: "Mexico City (MEX)", tz: "America/Mexico_City", lat: 19.4361, lon: -99.0719 }],
-    "Argentina": [{ name: "Buenos Aires (EZE)", tz: "America/Argentina/Buenos_Aires", lat: -34.8222, lon: -58.5358 }],
-    "New Zealand": [{ name: "Auckland (AKL)", tz: "Pacific/Auckland", lat: -37.0081, lon: 174.7850 }],
-    "South Africa": [{ name: "Johannesburg (JNB)", tz: "Africa/Johannesburg", lat: -26.1392, lon: 28.2460 }],
-    "Morocco": [{ name: "Casablanca (CMN)", tz: "Africa/Casablanca", lat: 33.3675, lon: -7.5899 }],
-    "Egypt": [{ name: "Cairo (CAI)", tz: "Africa/Cairo", lat: 30.1219, lon: 31.4056 }],
     "Others": [{ name: "UTC/GMT", tz: "UTC", lat: 0, lon: 0 }]
 };
 
@@ -111,45 +66,45 @@ const translations = {
     'ko': {
         'header-title': 'Now and Us',
         'header-subtitle': '멀리 있어도 마음은 곁에, 장거리 연애를 위한 따뜻한 기록',
-        'anniversary-title': '우리가 사랑한 지',
-        'anniversary-text-before': '함께한 지 어느덧',
-        'anniversary-text-after': '일이 되었어요.',
-        'countdown-title': '다시 마주 보게 될 날',
-        'countdown-text-before': '설레는 마음으로',
-        'countdown-text-after': '만남을 기다려요.',
-        'world-clock-title': '다른 공간, 연결된 시간',
-        'my-time-label': '지금 여기, 나의 시간',
-        'partner-time-label': '그곳에 있는 너의 시간',
-        'weather-title': '우리의 오늘 날씨',
-        'my-weather-label': '내가 있는 곳은',
-        'partner-weather-label': '네가 있는 곳은',
-        'weather-update-text': '실시간 날씨 정보를 가져오고 있어요...',
-        'footer-text': '먼 거리를 사랑으로 채워가는 모든 분들을 응원합니다 ❤️',
-        'met-message': '드디어 만났어요!',
-        'days-unit': '일', 'hours-unit': '시간', 'minutes-unit': '분', 'seconds-unit': '초',
-        'settings-button': '기록 수정하기',
-        'label-anniversary': '처음 만난 날:', 'label-meeting': '다시 만날 날:', 'label-country': '나라:', 'label-airport': '공항:', 'label-location': '위치:',
-        'timezone-info': '우리가 만날 곳:', 'change-my-loc': '나의 위치는?', 'change-partner-tz': '너의 위치는?',
-        'my-loc-title': '나의 현재 위치', 'partner-loc-title': '상대방의 현재 위치',
+        'anniversary-title': 'Time Since We Met',
+        'anniversary-text-before': 'We\'ve been in love for',
+        'anniversary-text-after': 'days.',
+        'countdown-title': 'Until We Meet Again',
+        'countdown-text-before': 'Only',
+        'countdown-text-after': 'left!',
+        'world-clock-title': 'Our Times',
+        'my-time-label': 'My Time',
+        'partner-time-label': 'Partner\'s Time',
+        'weather-title': 'Our Weather',
+        'my-weather-label': 'My Weather',
+        'partner-weather-label': 'Partner\'s Weather',
+        'weather-update-text': 'Updating live based on your locations...',
+        'footer-text': 'Made with ❤️ for long-distance lovers',
+        'met-message': 'Finally together!',
+        'days-unit': 'd', 'hours-unit': 'h', 'minutes-unit': 'm', 'seconds-unit': 's',
+        'settings-button': 'Change Date',
+        'label-anniversary': 'Anniversary:', 'label-meeting': 'Next Meeting:', 'label-country': 'Country:', 'label-airport': 'Airport:', 'label-location': 'Location:',
+        'timezone-info': 'Target Location:', 'change-my-loc': 'Set My Location', 'change-partner-tz': 'Set Partner Location',
+        'my-loc-title': 'My Location', 'partner-loc-title': 'Partner\'s Location',
         'ps-header': 'Partnership',
         'ps-subtitle': 'Now and Us와 함께 따뜻한 가치를 만들어가요',
         'ps-label-name': '성함 / 회사명', 'ps-label-email': '회신받을 이메일', 'ps-label-subject': '문의 제목', 'ps-label-message': '문의 내용',
         'ps-btn': '보내기', 'ps-back': '← 메인으로 돌아가기',
         'ps-name-ph': '이름을 입력해주세요', 'ps-subject-ph': '제휴 문의 드립니다', 'ps-message-ph': '상세한 내용을 적어주세요',
-        'board-header': '게시판 (Board)',
-        'board-subtitle': '더 나은 Now and Us를 위한 여러분의 목소리',
-        'board-login-title': '소리함 입장하기', 'board-enter-btn': '입장하기', 'board-notice': '* 입력하신 정보로 작성된 글만 볼 수 있습니다.',
-        'board-write-title': '의견 남기기', 'board-my-list': '나의 문의 내역'
+        'board-header': 'Board',
+        'board-subtitle': '우리의 소중한 이야기와 의견을 남겨주세요',
+        'board-write-title': '새 글 남기기',
+        'board-my-list': '게시글 목록'
     },
     'en': {
         'header-title': 'Now and Us',
         'header-subtitle': 'Distance is just a test of how far love can travel.',
-        'anniversary-title': 'Our Love Journey',
+        'anniversary-title': 'Time Since We Met',
         'anniversary-text-before': "It has been",
         'anniversary-text-after': "beautiful days together.",
         'countdown-title': 'Until We Meet Again',
         'countdown-text-before': 'Only',
-        'countdown-text-after': 'left until your hug!',
+        'countdown-text-after': 'left!',
         'world-clock-title': 'Two Places, One Connection',
         'my-time-label': 'My Time Here',
         'partner-time-label': "Your Time There",
@@ -171,8 +126,8 @@ const translations = {
         'ps-name-ph': 'Enter your name', 'ps-subject-ph': 'Inquiry about partnership', 'ps-message-ph': 'Please enter detailed information',
         'board-header': 'Board',
         'board-subtitle': 'Your voice for a better Now and Us',
-        'board-login-title': 'Enter Feedback Box', 'board-enter-btn': 'Enter', 'board-notice': '* You can only see posts created with your info.',
-        'board-write-title': 'Leave an Opinion', 'board-my-list': 'My Inquiry History'
+        'board-write-title': 'Leave an Opinion',
+        'board-my-list': 'Inquiry History'
     }
 };
 

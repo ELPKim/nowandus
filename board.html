@@ -3,71 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Center - Now and Us</title>
-    
-    <!-- Favicon 통일 -->
+    <title>Board - Now and Us</title>
     <link rel="icon" type="image/png" href="favicon1.png">
-
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, push, onValue, update, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        // Cloudflare 빌드 시 Secret 변수로 자동 교체됨
+        const firebaseConfig = {
+            apiKey: "__FIREBASE_API_KEY__", 
+            authDomain: "nowandus-84652.firebaseapp.com",
+            projectId: "nowandus-84652",
+            databaseURL: "https://nowandus-84652-default-rtdb.firebaseio.com", 
+            storageBucket: "nowandus-84652.appspot.com",
+            messagingSenderId: "1062456335332",
+            appId: "1:1062456335332:web:..."
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        window.db = db;
+        window.dbRef = ref;
+        window.dbPush = push;
+        window.dbOnValue = onValue;
+        window.dbUpdate = update;
+        window.dbRemove = remove;
+    </script>
+
     <style>
-        .board-container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-        }
-        .login-box, .write-box {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-        .post-list {
-            text-align: left;
-            margin-top: 30px;
-        }
-        .post-item {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            border-left: 5px solid var(--primary-color);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .post-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: #888;
-            margin-bottom: 10px;
-        }
-        .post-title {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: var(--accent-color);
-        }
-        .input-field {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid var(--secondary-color);
-            border-radius: 12px;
-            box-sizing: border-box;
-        }
-        .btn-action {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        #board-content { display: none; }
+        .board-container { max-width: 800px; margin: 30px auto; padding: 20px; }
+        .write-section { background: white; padding: 25px; border-radius: 20px; margin-bottom: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .post-card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; text-align: left; border: 1px solid #eee; }
+        .post-header { display: flex; justify-content: space-between; font-size: 0.8rem; color: #999; margin-bottom: 10px; }
+        .post-title { font-weight: bold; font-size: 1.1rem; color: var(--accent-color); cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
+        .post-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #eee; font-size: 0.95rem; line-height: 1.6; }
+        .admin-reply { margin-top: 15px; padding: 15px; background: #fff0f3; border-radius: 10px; color: var(--accent-color); border-left: 4px solid var(--primary-color); }
+        .admin-panel { margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 10px; border: 1px solid #ddd; }
+        .secret-badge { font-size: 0.7rem; background: #f1f1f1; padding: 2px 8px; border-radius: 10px; color: #888; }
     </style>
 </head>
 <body>
@@ -81,109 +58,121 @@
             <button onclick="setLanguage('ko')">KR</button>
             <button onclick="setLanguage('en')">EN</button>
         </div>
-        <h1 data-i18n="board-header">Customer Center</h1>
-        <p data-i18n="board-subtitle">더 나은 Now and Us를 위한 여러분의 목소리</p>
+        <h1 data-i18n="board-header">Board</h1>
+        <p data-i18n="board-subtitle">우리의 소중한 이야기와 의견을 남겨주세요</p>
     </header>
 
     <main class="board-container">
-        <!-- 로그인 구역 -->
-        <div id="login-section" class="login-box">
-            <h3 data-i18n="board-login-title">소리함 입장하기</h3>
-            <input type="text" id="user-nickname" class="input-field" data-i18n-ph="ps-name-ph" placeholder="닉네임">
-            <input type="password" id="user-pw" class="input-field" placeholder="비밀번호 (글 확인용)">
-            <button onclick="loginToBoard()" class="btn-action" data-i18n="board-enter-btn">입장하기</button>
-            <p style="font-size: 0.8rem; color: #888; margin-top: 15px;" data-i18n="board-notice">* 입력하신 정보로 작성된 글만 볼 수 있습니다.</p>
+        <div class="write-section">
+            <h3 data-i18n="board-write-title">새 글 남기기</h3>
+            <div style="display:flex; gap:10px; margin-bottom:10px;">
+                <input type="text" id="post-nick" class="input-field" placeholder="닉네임">
+                <input type="password" id="post-pw" class="input-field" placeholder="비밀번호">
+            </div>
+            <input type="text" id="post-title" class="input-field" placeholder="제목을 입력하세요">
+            <textarea id="post-msg" class="input-field" style="height: 100px;" placeholder="내용을 입력하세요. 관리자와 작성자만 볼 수 있습니다."></textarea>
+            <button onclick="submitPost()" class="btn-action">등록하기</button>
         </div>
 
-        <!-- 게시판 본문 (로그인 후 노출) -->
-        <div id="board-content">
-            <div class="write-box">
-                <h3 data-i18n="board-write-title">의견 남기기</h3>
-                <form id="feedback-form" action="https://formspree.io/f/xaqddjla" method="POST" onsubmit="return handlePostSubmit(event)">
-                    <input type="hidden" name="nickname" id="hidden-nickname">
-                    <input type="text" name="title" id="post-title" class="input-field" placeholder="제목" required>
-                    <textarea name="message" id="post-message" class="input-field" style="height: 150px;" placeholder="관리자에게 하고 싶은 말을 적어주세요." required></textarea>
-                    <button type="submit" class="btn-action" data-i18n="ps-btn">글 등록하기</button>
-                </form>
-            </div>
-
-            <div class="post-list">
-                <h3 data-i18n="board-my-list">나의 문의 내역</h3>
-                <div id="my-posts">
-                    <!-- 글 목록이 여기에 표시됨 -->
-                </div>
-            </div>
-            
-            <button onclick="logoutBoard()" class="settings-btn" style="width: 100%; margin-top: 20px;">로그아웃 (Logout)</button>
+        <div id="posts-list">
+            <p style="text-align:center; color:#999;">데이터를 불러오는 중...</p>
         </div>
 
-        <a href="index.html" class="back-link" data-i18n="ps-back">← 메인으로 돌아가기</a>
+        <div style="margin-top: 50px; text-align:center;">
+            <button onclick="toggleAdminPanel()" style="background:none; border:none; color:#eee; cursor:pointer; font-size:0.7rem;">Admin</button>
+            <div id="admin-login-ui" style="display:none; margin-top:10px;">
+                <input type="password" id="admin-master-pw" class="input-field" style="width:200px;" placeholder="Admin PW" onchange="verifyAdmin()">
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link" data-i18n="ps-back" style="display:block; margin-top:30px;">← 메인으로 돌아가기</a>
     </main>
 
     <script src="main.js"></script>
     <script>
-        let loggedInUser = null;
+        let isSystemAdmin = false;
 
-        function loginToBoard() {
-            const nick = document.getElementById('user-nickname').value;
-            const pw = document.getElementById('user-pw').value;
-            if(!nick || !pw) return alert("닉네임과 비밀번호를 입력해주세요.");
-            
-            loggedInUser = { nick, pw };
-            document.getElementById('hidden-nickname').value = nick;
-            document.getElementById('login-section').style.display = 'none';
-            document.getElementById('board-content').style.display = 'block';
-            loadMyPosts();
-        }
-
-        function logoutBoard() {
-            loggedInUser = null;
-            document.getElementById('login-section').style.display = 'block';
-            document.getElementById('board-content').style.display = 'none';
-        }
-
-        function handlePostSubmit(e) {
+        function submitPost() {
+            const nick = document.getElementById('post-nick').value;
+            const pw = document.getElementById('post-pw').value;
             const title = document.getElementById('post-title').value;
-            const message = document.getElementById('post-message').value;
-            
-            // 로컬 저장 (사용자 확인용)
-            const posts = JSON.parse(localStorage.getItem('nowandus_board') || '[]');
-            posts.push({
-                user: loggedInUser.nick,
-                pw: loggedInUser.pw,
-                title: title,
-                message: message,
-                date: new Date().toLocaleString()
-            });
-            localStorage.setItem('nowandus_board', JSON.stringify(posts));
-            
-            // Formspree 전송은 폼의 기본 동작으로 실행됨
-            alert("의견이 소중하게 전달되었습니다!");
-            setTimeout(loadMyPosts, 500); 
-            return true;
-        }
+            const msg = document.getElementById('post-msg').value;
 
-        function loadMyPosts() {
-            const listContainer = document.getElementById('my-posts');
-            const posts = JSON.parse(localStorage.getItem('nowandus_board') || '[]');
-            const myPosts = posts.filter(p => p.user === loggedInUser.nick && p.pw === loggedInUser.pw);
-            
-            if(myPosts.length === 0) {
-                listContainer.innerHTML = '<p style="text-align:center; color:#888;">작성된 글이 없습니다.</p>';
-                return;
+            if(!nick || !pw || !title || !msg) return alert("빈칸을 모두 채워주세요.");
+
+            if(window.dbPush) {
+                window.dbPush(window.dbRef(window.db, 'posts'), {
+                    nick, pw, title, msg, timestamp: Date.now(), reply: ""
+                }).then(() => {
+                    alert("등록되었습니다.");
+                    location.reload();
+                });
+            } else {
+                alert("Firebase 연결 설정이 필요합니다.");
             }
-
-            listContainer.innerHTML = myPosts.reverse().map(p => `
-                <div class="post-item">
-                    <div class="post-header">
-                        <span>${p.user}</span>
-                        <span>${p.date}</span>
-                    </div>
-                    <div class="post-title">${p.title}</div>
-                    <div style="margin-top:10px; font-size:0.95rem; line-height:1.5;">${p.message}</div>
-                </div>
-            `).join('');
         }
+
+        function loadPosts() {
+            if(!window.dbOnValue) return;
+            window.dbOnValue(window.dbRef(window.db, 'posts'), (snapshot) => {
+                const data = snapshot.val();
+                const list = document.getElementById('posts-list');
+                if(!data) { list.innerHTML = "<p style='text-align:center; color:#999;'>글이 없습니다.</p>"; return; }
+
+                const items = Object.entries(data).reverse();
+                list.innerHTML = items.map(([id, p]) => `
+                    <div class="post-card">
+                        <div class="post-header"><span>👤 ${p.nick}</span><span>${new Date(p.timestamp).toLocaleDateString()}</span></div>
+                        <div class="post-title" onclick="unlockPost('${id}', '${p.pw}')">
+                            <span>${p.title}</span>
+                            <span class="secret-badge">🔒 비밀글</span>
+                        </div>
+                        <div class="post-content" id="msg-${id}">
+                            <div style="white-space:pre-wrap;">${p.msg}</div>
+                            ${p.reply ? `<div class="admin-reply"><strong>답변:</strong> ${p.reply}</div>` : ''}
+                            ${isSystemAdmin ? `
+                                <div class="admin-panel">
+                                    <textarea id="reply-text-${id}" class="input-field" placeholder="답변 내용">${p.reply || ''}</textarea>
+                                    <button onclick="saveReply('${id}')" class="settings-btn">답변 저장</button>
+                                    <button onclick="deletePost('${id}')" style="color:red; background:none; border:none; margin-left:10px; cursor:pointer;">삭제</button>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            });
+        }
+
+        function unlockPost(id, correctPw) {
+            if(isSystemAdmin) { document.getElementById(`msg-${id}`).style.display = 'block'; return; }
+            const pw = prompt("비밀번호를 입력하세요:");
+            if(pw === correctPw) document.getElementById(`msg-${id}`).style.display = 'block';
+            else if(pw !== null) alert("틀렸습니다.");
+        }
+
+        function toggleAdminPanel() {
+            const ui = document.getElementById('admin-login-ui');
+            ui.style.display = ui.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function verifyAdmin() {
+            if(document.getElementById('admin-master-pw').value === "admin1234") {
+                isSystemAdmin = true; alert("관리자 인증 성공"); loadPosts();
+            }
+        }
+
+        function saveReply(id) {
+            const txt = document.getElementById(`reply-text-${id}`).value;
+            window.dbUpdate(window.dbRef(window.db, `posts/${id}`), { reply: txt }).then(() => alert("답변 완료"));
+        }
+
+        function deletePost(id) {
+            if(confirm("정말 삭제할까요?")) window.dbRemove(window.dbRef(window.db, `posts/${id}`));
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(loadPosts, 1500);
+        });
     </script>
 </body>
 </html>
