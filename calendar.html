@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holiday Calendar - Now and Us</title>
+    <link rel="icon" type="image/png" href="favicon1.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-decor">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+
+    <header>
+        <div class="language-switcher">
+            <button onclick="setLanguage('ko')">KR</button>
+            <button onclick="setLanguage('en')">EN</button>
+        </div>
+        <h1 data-i18n="cal-header">공휴일 캘린더</h1>
+        <p data-i18n="cal-subtitle">서로의 쉬는 날을 미리 체크하고 함께 계획을 세워보세요</p>
+        <nav class="content-nav" style="margin-top: 25px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="news.html" data-i18n="news-header" class="nav-content-link" style="background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 10px 25px; border-radius: 25px; font-weight: bold; border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(5px); transition: all 0.3s; font-size: 0.9rem;">세계 뉴스</a>
+            <a href="exchange.html" data-i18n="ex-header" class="nav-content-link" style="background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 10px 25px; border-radius: 25px; font-weight: bold; border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(5px); transition: all 0.3s; font-size: 0.9rem;">실시간 환율</a>
+            <a href="calendar.html" data-i18n="cal-header" class="nav-content-link" style="background: white; color: var(--primary-color); text-decoration: none; padding: 10px 25px; border-radius: 25px; font-weight: bold; border: 1px solid white; backdrop-filter: blur(5px); transition: all 0.3s; font-size: 0.9rem;">공휴일 캘린더</a>
+        </nav>
+    </header>
+
+    <main style="max-width: 1000px; margin: 0 auto; padding: 40px 20px;">
+        <div style="text-align: right; margin-bottom: 20px;">
+            <button onclick="toggleHelp()" data-i18n="cal-help-btn" style="background: var(--clock-accent); color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 0.85rem; opacity: 0.9; transition: opacity 0.3s;">도움말</button>
+        </div>
+
+        <div id="cal-help-box" style="display: none; background: #fdf2f5; border: 2px dashed var(--clock-accent); padding: 25px; border-radius: 20px; margin-bottom: 30px; text-align: left; animation: fadeIn 0.5s;">
+            <h3 data-i18n="cal-help-title" style="margin-top: 0; color: var(--clock-accent); font-size: 1.1rem;">💡 공휴일 캘린더 이용 안내</h3>
+            <p data-i18n="cal-help-text" style="margin-bottom: 0; line-height: 1.7; color: #555; font-size: 0.95rem;"></p>
+        </div>
+
+        <div class="calendar-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+            <div class="holiday-section">
+                <h2 style="color: var(--primary-color); margin-bottom: 20px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px;">
+                    <span data-i18n="cal-my-title">나의 공휴일</span> 
+                    <span id="my-country-name" style="font-size: 0.9rem; opacity: 0.6; font-weight: normal;"></span>
+                </h2>
+                <div id="my-holidays-list" class="holiday-list"></div>
+            </div>
+            <div class="holiday-section">
+                <h2 style="color: var(--clock-accent); margin-bottom: 20px; border-bottom: 2px solid #e2cfea; padding-bottom: 10px;">
+                    <span data-i18n="cal-partner-title">상대방의 공휴일</span>
+                    <span id="partner-country-name" style="font-size: 0.9rem; opacity: 0.6; font-weight: normal;"></span>
+                </h2>
+                <div id="partner-holidays-list" class="holiday-list"></div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link" data-i18n="ps-back" style="display:block; margin-top:40px; text-align:center; color: var(--primary-color); text-decoration: none; font-weight: 500;">← 메인으로 돌아가기</a>
+    </main>
+
+    <footer>
+        <p data-i18n="footer-text">먼 거리를 사랑으로 채워가는 모든 분들을 응원합니다 ❤️</p>
+        <div class="footer-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 25px; align-items: center; flex-wrap: wrap;">
+            <a href="board.html" data-i18n="board-header" style="color: var(--accent-color); text-decoration: none; font-size: 0.85rem; font-weight: bold; border-right: 1px solid #ddd; padding-right: 25px;">고객 소리함 (Customer Center)</a>
+            <a href="partnership.html" data-i18n="ps-header" style="color: var(--primary-color); text-decoration: none; font-size: 0.85rem; font-weight: 500; border-right: 1px solid #ddd; padding-right: 25px;">Partnership</a>
+            <a href="privacy.html" data-i18n="privacy-link" style="color: #666; text-decoration: none; font-size: 0.85rem;">개인정보처리방침</a>
+            <a href="terms.html" data-i18n="terms-link" style="color: #666; text-decoration: none; font-size: 0.85rem;">이용약관</a>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        function toggleHelp() {
+            const el = document.getElementById('cal-help-box');
+            if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+        }
+
+        async function initCalendarPage() {
+            document.getElementById('my-country-name').textContent = `(${myCountry})`;
+            document.getElementById('partner-country-name').textContent = `(${partnerCountry})`;
+
+            try {
+                const res = await fetch('holiday-data.json');
+                if (!res.ok) throw new Error("Data not ready");
+                const allHolidays = await res.json();
+                
+                renderHolidays(allHolidays[myCountry], 'my-holidays-list');
+                renderHolidays(allHolidays[partnerCountry], 'partner-holidays-list');
+            } catch (e) {
+                const msg = `<p style="color: #999; padding: 20px;">데이터를 불러오는 중입니다... (잠시 후 다시 확인해주세요)</p>`;
+                document.getElementById('my-holidays-list').innerHTML = msg;
+                document.getElementById('partner-holidays-list').innerHTML = msg;
+            }
+        }
+
+        function renderHolidays(holidays, elementId) {
+            const el = document.getElementById(elementId);
+            if (!holidays || holidays.length === 0) {
+                el.innerHTML = `<p style="color: #999; padding: 20px;">정보를 찾을 수 없습니다.</p>`;
+                return;
+            }
+
+            const today = new Date().toISOString().split('T')[0];
+
+            el.innerHTML = holidays.map(h => {
+                const isPast = h.date < today;
+                return `
+                    <div class="holiday-card" style="background: white; padding: 15px 20px; border-radius: 15px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; opacity: ${isPast ? '0.5' : '1'};">
+                        <div style="text-align: left;">
+                            <div style="font-weight: bold; color: var(--text-color);">${currentLanguage === 'ko' ? h.localName : h.name}</div>
+                            <div style="font-size: 0.8rem; color: #999;">${h.name !== h.localName ? h.name : ''}</div>
+                        </div>
+                        <div style="font-weight: 900; color: var(--primary-color); font-size: 0.95rem;">${h.date.replace(/-/g, '.')}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(initCalendarPage, 100);
+        });
+    </script>
+    <style>
+        @media (max-width: 768px) {
+            .calendar-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</body>
+</html>

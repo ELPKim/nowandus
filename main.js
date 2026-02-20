@@ -156,7 +156,14 @@ const translations = {
         'ex-popular-title': '주요 통화 환율 (1,000원 기준)',
         'ex-help-btn': '도움말',
         'ex-help-title': '💡 실시간 환율 이용 안내',
-        'ex-help-text': '본 서비스의 환율 데이터는 <strong>매일 1회 업데이트</strong>되는 고시 환율을 기준으로 합니다. 데이터는 GitHub Actions를 통해 6시간마다 자동으로 점검하여 최신 정보를 유지하도록 설계되었습니다.'
+        'ex-help-text': '본 서비스의 환율 데이터는 <strong>매일 1회 업데이트</strong>되는 고시 환율을 기준으로 합니다. 데이터는 GitHub Actions를 통해 6시간마다 자동으로 점검하여 최신 정보를 유지하도록 설계되었습니다.',
+        'cal-header': '공휴일 캘린더',
+        'cal-subtitle': '서로의 쉬는 날을 미리 체크하고 함께 계획을 세워보세요',
+        'cal-my-title': '나의 공휴일',
+        'cal-partner-title': '상대방의 공휴일',
+        'cal-help-btn': '도움말',
+        'cal-help-title': '💡 공휴일 캘린더 이용 안내',
+        'cal-help-text': '공휴일 정보는 메인 페이지에서 설정한 국가를 기준으로 자동으로 표시됩니다. 상대방 국가의 공휴일을 미리 확인하여 서운함 없는 특별한 날을 계획해 보세요! 데이터는 매주 일요일 자동으로 업데이트됩니다.'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -233,7 +240,14 @@ const translations = {
         'ex-popular-title': 'Major Rates (Based on 1,000 KRW)',
         'ex-help-btn': 'Help',
         'ex-help-title': '💡 Exchange Rate Guide',
-        'ex-help-text': 'Exchange rate data is based on <strong>daily updated rates</strong> provided by the API. The data is automatically checked every 6 hours via GitHub Actions to maintain reliability.'
+        'ex-help-text': 'Exchange rate data is based on <strong>daily updated rates</strong> provided by the API. The data is automatically checked every 6 hours via GitHub Actions to maintain reliability.',
+        'cal-header': 'Holiday Calendar',
+        'cal-subtitle': 'Check each other\'s days off and plan together',
+        'cal-my-title': 'My Holidays',
+        'cal-partner-title': "Partner's Holidays",
+        'cal-help-btn': 'Help',
+        'cal-help-title': '💡 Holiday Calendar Guide',
+        'cal-help-text': 'Holiday information is automatically displayed based on the countries set on the main page. Plan special days without disappointment by checking your partner\'s holidays in advance! Data is updated automatically every Sunday.'
     }
 };
 

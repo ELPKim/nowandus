@@ -1,0 +1,35 @@
+name: Update Holiday Calendar
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # 매주 일요일 자정 실행
+  workflow_dispatch:
+
+jobs:
+  update-holidays:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run holiday update script
+        run: python update_holidays.py
+
+      - name: Commit and push holiday data
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git pull origin main --rebase
+          git add holiday-data.json
+          git commit -m "chore: update holiday data" || echo "No changes to commit"
+          git push
