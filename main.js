@@ -112,7 +112,7 @@ const locationData = {
 const translations = {
     'ko': {
         'header-title': 'Now and Us',
-        'header-subtitle': '장거리 커플을 위한 공간',
+        'header-subtitle': '장거리 연애를 위한 모든 정보와 기록',
         'anniversary-title': '우리가 만난 시간',
         'anniversary-text-before': '우리는',
         'anniversary-text-after': '일 동안 사랑해왔습니다.',
@@ -140,7 +140,7 @@ const translations = {
     },
     'en': {
         'header-title': 'Now and Us',
-        'header-subtitle': 'A space for long-distance couples',
+        'header-subtitle': 'Everything for Long-Distance Relationships',
         'anniversary-title': 'Time Since We Met',
         'anniversary-text-before': "We've been in love for",
         'anniversary-text-after': 'days.',
