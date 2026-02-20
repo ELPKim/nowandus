@@ -147,7 +147,13 @@ const translations = {
         'news-read-more': '자세히 보기',
         'news-help-btn': '도움말',
         'news-help-title': '💡 세계 뉴스 이용 안내',
-        'news-help-text': '세계 뉴스는 메인 페이지의 <strong>[다른 공간, 연결된 시간]</strong> 섹션에서 설정한 나의 위치와 상대방 위치의 국가를 기반으로 자동으로 표시됩니다. 다른 나라의 소식이 궁금하다면 아래 선택창에서 직접 국가를 변경하여 확인할 수도 있습니다.'
+        'news-help-text': '세계 뉴스는 메인 페이지의 <strong>[다른 공간, 연결된 시간]</strong> 섹션에서 설정한 나의 위치와 상대방 위치의 국가를 기반으로 자동으로 표시됩니다. 다른 나라의 소식이 궁금하다면 아래 선택창에서 직접 국가를 변경하여 확인할 수도 있습니다.',
+        'ex-header': '실시간 환율',
+        'ex-subtitle': '서로의 나라의 화폐 가치를 실시간으로 계산해보세요',
+        'ex-from-label': '보내는 통화',
+        'ex-to-label': '받는 통화',
+        'ex-rate-label': '현재 환율:',
+        'ex-popular-title': '주요 통화 환율 (1,000원 기준)'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -215,7 +221,13 @@ const translations = {
         'news-read-more': 'Read More',
         'news-help-btn': 'Help',
         'news-help-title': '💡 World News Guide',
-        'news-help-text': 'World news is automatically displayed based on the countries you set in the <strong>[Our Times]</strong> section on the main page. You can also manually change countries in the dropdown menus below to see news from other regions.'
+        'news-help-text': 'World news is automatically displayed based on the countries you set in the <strong>[Our Times]</strong> section on the main page. You can also manually change countries in the dropdown menus below to see news from other regions.',
+        'ex-header': 'Exchange Rate',
+        'ex-subtitle': 'Real-time currency converter between countries',
+        'ex-from-label': 'From',
+        'ex-to-label': 'To',
+        'ex-rate-label': 'Current Rate:',
+        'ex-popular-title': 'Major Rates (Based on 1,000 KRW)'
     }
 };
 

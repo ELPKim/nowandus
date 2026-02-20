@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange - Now and Us</title>
+    <link rel="icon" type="image/png" href="favicon1.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-decor">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+
+    <header>
+        <div class="language-switcher">
+            <button onclick="setLanguage('ko')">KR</button>
+            <button onclick="setLanguage('en')">EN</button>
+        </div>
+        <h1 data-i18n="ex-header">실시간 환율</h1>
+        <p data-i18n="ex-subtitle">서로의 나라의 화폐 가치를 실시간으로 계산해보세요</p>
+        <nav class="content-nav" style="margin-top: 25px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="news.html" data-i18n="news-header" class="nav-content-link" style="background: rgba(255,255,255,0.2); color: white; text-decoration: none; padding: 10px 25px; border-radius: 25px; font-weight: bold; border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(5px); transition: all 0.3s; font-size: 0.9rem;">세계 뉴스</a>
+            <a href="exchange.html" data-i18n="ex-header" class="nav-content-link" style="background: white; color: var(--primary-color); text-decoration: none; padding: 10px 25px; border-radius: 25px; font-weight: bold; border: 1px solid white; backdrop-filter: blur(5px); transition: all 0.3s; font-size: 0.9rem;">실시간 환율</a>
+        </nav>
+    </header>
+
+    <main style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
+        <div class="exchange-card" style="background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(255, 143, 163, 0.2); text-align: center;">
+            <div class="calculator-ui" style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+                
+                <div class="input-group" style="width: 100%; max-width: 400px; text-align: left;">
+                    <label data-i18n="ex-from-label" style="display: block; margin-bottom: 8px; font-weight: bold; color: var(--primary-color);">보내는 통화</label>
+                    <div style="display: flex; gap: 10px;">
+                        <select id="from-currency" onchange="calculateExchange()" style="flex: 1; padding: 12px; border-radius: 12px; border: 2px solid var(--secondary-color); outline: none; font-family: inherit; cursor: pointer;"></select>
+                        <input type="number" id="from-amount" value="1" oninput="calculateExchange()" style="width: 120px; padding: 12px; border-radius: 12px; border: 2px solid var(--secondary-color); outline: none; font-family: inherit; font-weight: bold;">
+                    </div>
+                </div>
+
+                <div class="swap-icon" style="font-size: 1.5rem; color: var(--accent-color); cursor: pointer;" onclick="swapCurrencies()">🔄</div>
+
+                <div class="input-group" style="width: 100%; max-width: 400px; text-align: left;">
+                    <label data-i18n="ex-to-label" style="display: block; margin-bottom: 8px; font-weight: bold; color: var(--clock-accent);">받는 통화</label>
+                    <div style="display: flex; gap: 10px;">
+                        <select id="to-currency" onchange="calculateExchange()" style="flex: 1; padding: 12px; border-radius: 12px; border: 2px solid #e2cfea; outline: none; font-family: inherit; cursor: pointer;"></select>
+                        <div id="result-amount" style="width: 120px; padding: 12px; border-radius: 12px; border: 2px solid #e2cfea; background: #fdf2f5; font-weight: bold; text-align: right; display: flex; align-items: center; justify-content: flex-end;">0</div>
+                    </div>
+                </div>
+
+                <div class="rate-info" style="margin-top: 20px; font-size: 0.9rem; color: #666;">
+                    <span data-i18n="ex-rate-label">현재 환율:</span> 
+                    <span id="current-rate-text">1 --- = --- ---</span>
+                </div>
+                <div id="last-update-text" style="font-size: 0.75rem; color: #999; margin-top: 5px;"></div>
+            </div>
+        </div>
+
+        <div class="popular-rates" style="margin-top: 40px;">
+            <h3 data-i18n="ex-popular-title" style="color: var(--primary-color); margin-bottom: 20px; border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px; display: inline-block;">주요 통화 환율 (1,000원 기준)</h3>
+            <div id="popular-rates-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px;">
+                <!-- Popular rates will be injected here -->
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link" data-i18n="ps-back" style="display:block; margin-top:40px; text-align:center; color: var(--primary-color); text-decoration: none; font-weight: 500;">← 메인으로 돌아가기</a>
+    </main>
+
+    <footer>
+        <p data-i18n="footer-text">먼 거리를 사랑으로 채워가는 모든 분들을 응원합니다 ❤️</p>
+        <div class="footer-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 25px; align-items: center; flex-wrap: wrap;">
+            <a href="board.html" data-i18n="board-header" style="color: var(--accent-color); text-decoration: none; font-size: 0.85rem; font-weight: bold; border-right: 1px solid #ddd; padding-right: 25px;">고객 소리함 (Customer Center)</a>
+            <a href="partnership.html" data-i18n="ps-header" style="color: var(--primary-color); text-decoration: none; font-size: 0.85rem; font-weight: 500; border-right: 1px solid #ddd; padding-right: 25px;">Partnership</a>
+            <a href="privacy.html" data-i18n="privacy-link" style="color: #666; text-decoration: none; font-size: 0.85rem;">개인정보처리방침</a>
+            <a href="terms.html" data-i18n="terms-link" style="color: #666; text-decoration: none; font-size: 0.85rem;">이용약관</a>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        let exchangeData = null;
+
+        async function initExchangePage() {
+            try {
+                const res = await fetch('exchange-data.json');
+                if (!res.ok) throw new Error("Data not ready");
+                exchangeData = await res.json();
+                
+                const fromSelect = document.getElementById('from-currency');
+                const toSelect = document.getElementById('to-currency');
+                const currencies = Object.keys(exchangeData.conversion_rates).sort();
+                
+                currencies.forEach(cur => {
+                    const opt1 = new Option(cur, cur);
+                    const opt2 = new Option(cur, cur);
+                    if (cur === 'KRW') opt1.selected = true;
+                    if (cur === 'USD') opt2.selected = true;
+                    fromSelect.add(opt1);
+                    toSelect.add(opt2);
+                });
+
+                document.getElementById('last-update-text').textContent = `Last update: ${exchangeData.time_last_update_utc}`;
+                updatePopularRates();
+                calculateExchange();
+            } catch (e) {
+                document.querySelector('.calculator-ui').innerHTML = `<p style="color: var(--accent-color);">데이터를 불러오는 중입니다. 잠시만 기다려주세요 (GitHub Actions 실행 중)</p>`;
+            }
+        }
+
+        function calculateExchange() {
+            if (!exchangeData) return;
+            const from = document.getElementById('from-currency').value;
+            const to = document.getElementById('to-currency').value;
+            const amount = document.getElementById('from-amount').value;
+            
+            const fromRate = exchangeData.conversion_rates[from];
+            const toRate = exchangeData.conversion_rates[to];
+            
+            const result = (amount / fromRate) * toRate;
+            document.getElementById('result-amount').textContent = result.toLocaleString(undefined, {maximumFractionDigits: 2});
+            
+            const unitRate = (1 / fromRate) * toRate;
+            document.getElementById('current-rate-text').textContent = `1 ${from} = ${unitRate.toFixed(4)} ${to}`;
+        }
+
+        function swapCurrencies() {
+            const from = document.getElementById('from-currency');
+            const to = document.getElementById('to-currency');
+            const temp = from.value;
+            from.value = to.value;
+            to.value = temp;
+            calculateExchange();
+        }
+
+        function updatePopularRates() {
+            const grid = document.getElementById('popular-rates-grid');
+            const majors = ['USD', 'JPY', 'EUR', 'CNY', 'GBP', 'CAD', 'AUD', 'VND'];
+            const krwRate = 1000;
+            
+            grid.innerHTML = majors.map(cur => {
+                const rate = (krwRate / exchangeData.conversion_rates['KRW']) * exchangeData.conversion_rates[cur];
+                return `
+                    <div style="background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                        <div style="font-weight: bold; color: var(--primary-color); margin-bottom: 5px;">${cur}</div>
+                        <div style="font-size: 1.1rem; font-weight: 900;">${rate.toLocaleString(undefined, {maximumFractionDigits: 2})}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(initExchangePage, 100);
+        });
+    </script>
+</body>
+</html>
