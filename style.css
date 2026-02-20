@@ -118,7 +118,7 @@ main {
     padding: 40px 20px;
     max-width: 800px;
     margin: 0 auto;
-    padding-bottom: 100px;
+    padding-bottom: 20px;
 }
 
 .card {
@@ -251,10 +251,10 @@ main {
 }
 
 footer {
-    padding: 60px 20px;
+    padding: 30px 20px;
     color: var(--accent-color);
     border-top: 2px dashed var(--secondary-color);
-    margin-top: 40px;
+    margin-top: 20px;
     background: rgba(255, 255, 255, 0.3);
 }
 
