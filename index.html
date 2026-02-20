@@ -3,36 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Basic Tags -->
-    <title>Now and Us - Long-Distance Relationship Records & Tools</title>
-    <meta name="description" content="Now and Us is a warm space for long-distance relationships. Track your love journey, countdown to your next meeting, and stay connected with shared local times.">
-    <meta name="keywords" content="Long Distance Relationship, LDR, Love Journey, Meeting Countdown, World Clock for Lovers, Now and Us, Relationship Tracker">
-    <meta name="author" content="ELPKim">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://elpkim.github.io/nowandus/">
-    
-    <!-- Google Search Console Verification -->
-    <meta name="google-site-verification" content="RNjxHCd9n8mm6rfL1axtYhDwS8pGBxtSfx1ebBwPCk8" />
-
-    <!-- Open Graph / Facebook / KakaoTalk -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://elpkim.github.io/nowandus/">
-    
-    <meta property="og:title" content="Now and Us - A Warm Space for Long-Distance Love">
-    <meta property="og:description" content="Every moment matters. Track your journey together, countdown to your next meeting, and sync your times.">
-    <meta property="og:image" content="https://elpkim.github.io/nowandus/og-image.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://elpkim.github.io/nowandus/">
-    <meta property="twitter:title" content="Now and Us">
-    <meta property="twitter:description" content="Essential records and tools for long-distance love. Stay connected through time and distance.">
-    <meta property="twitter:image" content="https://elpkim.github.io/nowandus/og-image.png">
-
-    <!-- Favicon -->
+    <title>Now and Us - Long-Distance Relationship Toolkit</title>
     <link rel="icon" type="image/png" href="favicon1.png">
-
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
@@ -51,151 +23,121 @@
         </div>
         <h1 data-i18n="header-title">Now and Us</h1>
         <p data-i18n="header-subtitle">멀리 있어도 마음은 곁에, 장거리 연애를 위한 따뜻한 기록</p>
-        <div class="main-nav">
-            <a href="board.html" class="nav-link" data-i18n="board-header">게시판 (Board)</a>
-        </div>
     </header>
 
     <main>
-        <!-- Category 1: Time Since We Met -->
         <section id="anniversary-section" class="card category">
-            <h2 data-i18n="anniversary-title">Time Since We Met</h2>
+            <h2 data-i18n="anniversary-title">함께한 시간</h2>
             <div class="display-area">
                 <p class="main-stat">
-                    <span data-i18n="anniversary-text-before">We've been in love for</span>
+                    <span data-i18n="anniversary-text-before">우리가 사랑한 지 어느덧</span>
                     <span id="days-together"></span>
-                    <span data-i18n="anniversary-text-after">days.</span>
+                    <span data-i18n="anniversary-text-after">일이 되었어요.</span>
                 </p>
             </div>
             <div class="mini-settings">
-                <button class="settings-btn" onclick="toggleMiniSettings('anniversary-settings')" data-i18n="settings-button">Change Date</button>
+                <button class="settings-btn" onclick="toggleMiniSettings('anniversary-settings')" data-i18n="settings-button">수정하기</button>
                 <div id="anniversary-settings" class="mini-form" style="display: none;">
                     <div class="input-group">
-                        <label data-i18n="label-anniversary">Anniversary:</label>
+                        <label data-i18n="label-anniversary">처음 만난 날:</label>
                         <input type="date" id="input-anniversary" onchange="saveSettings()">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Category 2: Time Until We Meet -->
         <section id="countdown-section" class="card category">
-            <h2 data-i18n="countdown-title">Until We Meet Again</h2>
+            <h2 data-i18n="countdown-title">다시 마주 보게 될 날</h2>
             <div class="display-area">
                 <p class="main-stat">
-                    <span data-i18n="countdown-text-before">Only</span>
+                    <span data-i18n="countdown-text-before">설레는 마음으로</span>
                     <span id="countdown-timer"></span>
-                    <span data-i18n="countdown-text-after">left!</span>
+                    <span data-i18n="countdown-text-after">만남을 기다려요.</span>
                 </p>
-                <p class="tz-info"><span data-i18n="timezone-info">Target Location:</span> <span id="display-location"></span></p>
+                <p class="tz-info"><span data-i18n="timezone-info">만남 장소:</span> <span id="display-location"></span></p>
             </div>
             <div class="mini-settings">
-                <button class="settings-btn" onclick="toggleMiniSettings('countdown-settings')" data-i18n="settings-button">Change Date</button>
+                <button class="settings-btn" onclick="toggleMiniSettings('countdown-settings')" data-i18n="settings-button">수정하기</button>
                 <div id="countdown-settings" class="mini-form" style="display: none;">
                     <div class="input-group">
-                        <label data-i18n="label-meeting">Next Meeting:</label>
+                        <label data-i18n="label-meeting">다시 만날 날:</label>
                         <input type="datetime-local" id="input-meeting" onchange="saveSettings()">
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label-country">Country:</label>
-                        <select id="input-country" onchange="updateAirportList()">
-                            <!-- Will be populated by JS -->
-                        </select>
+                        <label data-i18n="label-country">나라:</label>
+                        <select id="input-country" onchange="updateAirportList()"></select>
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label-airport">Airport:</label>
-                        <select id="input-airport" onchange="saveSettings()">
-                            <!-- Will be populated by JS -->
-                        </select>
+                        <label data-i18n="label-airport">공항:</label>
+                        <select id="input-airport" onchange="saveSettings()"></select>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Category 3: Local Times -->
         <section id="world-clock-section" class="card category">
-            <h2 data-i18n="world-clock-title">Our Times</h2>
+            <h2 data-i18n="world-clock-title">다른 공간, 연결된 시간</h2>
             <div class="clock-container">
                 <div class="clock-box">
-                    <h3 data-i18n="my-time-label">My Time</h3>
+                    <h3 data-i18n="my-time-label">나의 시간</h3>
                     <div id="my-time" class="time-display">--:--:--</div>
                     <div id="my-tz" class="tz-label">---</div>
                 </div>
                 <div class="clock-divider">✈️</div>
                 <div class="clock-box">
-                    <h3 data-i18n="partner-time-label">Partner's Time</h3>
+                    <h3 data-i18n="partner-time-label">상대방의 시간</h3>
                     <div id="partner-time" class="time-display">--:--:--</div>
                     <div id="partner-tz" class="tz-label">---</div>
                 </div>
             </div>
             <div class="mini-settings">
                 <div class="settings-group">
-                    <button class="settings-btn" onclick="toggleMiniSettings('my-clock-settings')" data-i18n="change-my-loc">Set My Location</button>
-                    <button class="settings-btn" onclick="toggleMiniSettings('partner-clock-settings')" data-i18n="change-partner-tz">Set Partner Location</button>
+                    <button class="settings-btn" onclick="toggleMiniSettings('my-clock-settings')" data-i18n="change-my-loc">나의 위치 설정</button>
+                    <button class="settings-btn" onclick="toggleMiniSettings('partner-clock-settings')" data-i18n="change-partner-tz">상대방 위치 설정</button>
                 </div>
-                
                 <div id="my-clock-settings" class="mini-form" style="display: none;">
-                    <h4 data-i18n="my-loc-title">My Location</h4>
                     <div class="input-group">
-                        <label data-i18n="label-country">Country:</label>
-                        <select id="input-my-country" onchange="updateMyCityList()">
-                            <!-- Will be populated by JS -->
-                        </select>
+                        <label data-i18n="label-country">나라:</label>
+                        <select id="input-my-country" onchange="updateMyCityList()"></select>
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label-location">Location:</label>
-                        <select id="input-my-location" onchange="saveSettings()">
-                            <!-- Will be populated by JS -->
-                        </select>
+                        <label data-i18n="label-location">위치:</label>
+                        <select id="input-my-location" onchange="saveSettings()"></select>
                     </div>
                 </div>
-
                 <div id="partner-clock-settings" class="mini-form" style="display: none;">
-                    <h4 data-i18n="partner-loc-title">Partner's Location</h4>
                     <div class="input-group">
-                        <label data-i18n="label-country">Country:</label>
-                        <select id="input-partner-country" onchange="updatePartnerLocationList()">
-                            <!-- Will be populated by JS -->
-                        </select>
+                        <label data-i18n="label-country">나라:</label>
+                        <select id="input-partner-country" onchange="updatePartnerLocationList()"></select>
                     </div>
                     <div class="input-group">
-                        <label data-i18n="label-location">Location:</label>
-                        <select id="input-partner-location" onchange="saveSettings()">
-                            <!-- Will be populated by JS -->
-                        </select>
+                        <label data-i18n="label-location">위치:</label>
+                        <select id="input-partner-location" onchange="saveSettings()"></select>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Category 4: Our Weather -->
+
         <section id="weather-section" class="card category">
-            <h2 data-i18n="weather-title">Our Weather</h2>
+            <h2 data-i18n="weather-title">우리의 오늘 날씨</h2>
             <div class="weather-container">
                 <div class="weather-box">
-                    <h3 data-i18n="my-weather-label">My Weather</h3>
-                    <div id="my-weather-info" class="weather-info">
-                        <span class="temp">--°C</span>
-                        <span class="desc">--</span>
-                    </div>
+                    <h3 data-i18n="my-weather-label">내가 있는 곳</h3>
+                    <div id="my-weather-info" class="weather-info">--°C</div>
                 </div>
                 <div class="weather-divider">☁️</div>
                 <div class="weather-box">
-                    <h3 data-i18n="partner-weather-label">Partner's Weather</h3>
-                    <div id="partner-weather-info" class="weather-info">
-                        <span class="temp">--°C</span>
-                        <span class="desc">--</span>
-                    </div>
+                    <h3 data-i18n="partner-weather-label">네가 있는 곳</h3>
+                    <div id="partner-weather-info" class="weather-info">--°C</div>
                 </div>
             </div>
-            <p class="weather-update-info" data-i18n="weather-update-text">Updating live based on your locations...</p>
         </section>
     </main>
 
     <footer>
-        <p data-i18n="footer-text">Made with ❤️ for long-distance lovers</p>
-        <div class="footer-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 20px;">
-            <a href="board.html" style="color: var(--accent-color); text-decoration: none; font-size: 0.85rem; font-weight: bold;">고객 소리함 (Customer Center)</a>
-            <a href="partnership.html" style="color: var(--primary-color); text-decoration: none; font-size: 0.85rem; font-weight: 500;">제휴 문의 (Partnership)</a>
+        <p data-i18n="footer-text">먼 거리를 사랑으로 채워가는 모든 분들을 응원합니다 ❤️</p>
+        <div class="footer-links">
+            <a href="partnership.html" data-i18n="ps-header">Partnership</a>
         </div>
     </footer>
     <script src="main.js"></script>

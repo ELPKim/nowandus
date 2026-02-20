@@ -84,10 +84,7 @@ const translations = {
         'ps-header': 'Partnership',
         'ps-subtitle': 'Now and Us와 함께 따뜻한 가치를 만들어가요',
         'ps-btn': '보내기', 'ps-back': '← 메인으로 돌아가기',
-        'ps-name-ph': '이름을 입력해주세요', 'ps-subject-ph': '제휴 문의 드립니다', 'ps-message-ph': '상세한 내용을 적어주세요',
-        'board-header': '게시판 (Board)',
-        'board-subtitle': '우리의 소중한 이야기와 의견을 남겨주세요',
-        'board-write-title': '새 글 남기기', 'board-my-list': '게시글 목록'
+        'ps-name-ph': '이름을 입력해주세요', 'ps-subject-ph': '제휴 문의 드립니다', 'ps-message-ph': '상세한 내용을 적어주세요'
     },
     'en': {
         'header-title': 'Now and Us',
@@ -112,11 +109,9 @@ const translations = {
         'timezone-info': 'Meeting At:', 'change-my-loc': 'Set My Loc', 'change-partner-tz': 'Set Partner Loc',
         'ps-header': 'Partnership',
         'ps-subtitle': 'Create values with Now and Us',
+        'ps-label-name': 'Name/Company', 'ps-label-email': 'Email', 'ps-label-subject': 'Subject', 'ps-label-message': 'Message',
         'ps-btn': 'Send', 'ps-back': '← Back to Home',
-        'ps-name-ph': 'Your name', 'ps-subject-ph': 'Partnership inquiry', 'ps-message-ph': 'Details...',
-        'board-header': 'Board',
-        'board-subtitle': 'Your voice for Now and Us',
-        'board-write-title': 'Write Post', 'board-my-list': 'Posts List'
+        'ps-name-ph': 'Your name', 'ps-subject-ph': 'Partnership inquiry', 'ps-message-ph': 'Details...'
     }
 };
 
@@ -261,7 +256,7 @@ function initializeForm() {
     });
     updateList('input-country','input-airport',meetingAirport);
     updateList('input-my-country','input-my-location',myLocation);
-    updateList('input-partner-country','input-partner-location',partnerLocation);
+    updateList('input-partner-location','input-partner-location',partnerLocation);
 }
 
 function toggleMiniSettings(id) {
