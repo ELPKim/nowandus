@@ -1,10 +1,12 @@
-// Comprehensive Worldwide Location Data
+// Comprehensive Worldwide Location Data (Permanent Expansion)
 const locationData = {
     "South Korea": [
         { name: "Seoul/Incheon (ICN)", tz: "Asia/Seoul", lat: 37.4602, lon: 126.4407 },
         { name: "Seoul/Gimpo (GMP)", tz: "Asia/Seoul", lat: 37.5583, lon: 126.7906 },
         { name: "Busan (PUS)", tz: "Asia/Seoul", lat: 35.1796, lon: 129.0756 },
-        { name: "Jeju (CJU)", tz: "Asia/Seoul", lat: 33.5113, lon: 126.4930 }
+        { name: "Jeju (CJU)", tz: "Asia/Seoul", lat: 33.5113, lon: 126.4930 },
+        { name: "Daegu (TAE)", tz: "Asia/Seoul", lat: 35.8714, lon: 128.6014 },
+        { name: "Cheongju (CJJ)", tz: "Asia/Seoul", lat: 36.7166, lon: 127.4958 }
     ],
     "USA": [
         { name: "New York (JFK)", tz: "America/New_York", lat: 40.6413, lon: -73.7781 },
@@ -13,47 +15,145 @@ const locationData = {
         { name: "Atlanta (ATL)", tz: "America/New_York", lat: 33.6407, lon: -84.4277 },
         { name: "Dallas (DFW)", tz: "America/Chicago", lat: 32.8998, lon: -97.0403 },
         { name: "San Francisco (SFO)", tz: "America/Los_Angeles", lat: 37.6213, lon: -122.3790 },
-        { name: "Miami (MIA)", tz: "America/New_York", lat: 25.7959, lon: -80.2870 },
         { name: "Seattle (SEA)", tz: "America/Los_Angeles", lat: 47.4502, lon: -122.3088 },
         { name: "El Paso (ELP)", tz: "America/Denver", lat: 31.8066, lon: -106.3778 },
-        { name: "Honolulu (HNL)", tz: "Pacific/Honolulu", lat: 21.3156, lon: -157.9242 }
+        { name: "Honolulu (HNL)", tz: "Pacific/Honolulu", lat: 21.3156, lon: -157.9242 },
+        { name: "Miami (MIA)", tz: "America/New_York", lat: 25.7959, lon: -80.2870 },
+        { name: "Las Vegas (LAS)", tz: "America/Los_Angeles", lat: 36.0840, lon: -115.1537 },
+        { name: "Boston (BOS)", tz: "America/New_York", lat: 42.3656, lon: -71.0096 },
+        { name: "Washington (IAD)", tz: "America/New_York", lat: 38.9531, lon: -77.4565 },
+        { name: "Houston (IAH)", tz: "America/Chicago", lat: 29.9902, lon: -95.3368 }
     ],
     "Japan": [
-        { name: "Tokyo (NRT)", tz: "Asia/Tokyo", lat: 35.7720, lon: 140.3929 },
-        { name: "Tokyo (HND)", tz: "Asia/Tokyo", lat: 35.5494, lon: 139.7798 },
+        { name: "Tokyo Narita (NRT)", tz: "Asia/Tokyo", lat: 35.7720, lon: 140.3929 },
+        { name: "Tokyo Haneda (HND)", tz: "Asia/Tokyo", lat: 35.5494, lon: 139.7798 },
         { name: "Osaka (KIX)", tz: "Asia/Tokyo", lat: 34.4320, lon: 135.2304 },
         { name: "Fukuoka (FUK)", tz: "Asia/Tokyo", lat: 33.5859, lon: 130.4507 },
-        { name: "Sapporo (CTS)", tz: "Asia/Tokyo", lat: 42.7752, lon: 141.6923 }
+        { name: "Sapporo (CTS)", tz: "Asia/Tokyo", lat: 42.7752, lon: 141.6923 },
+        { name: "Okinawa (OKA)", tz: "Asia/Tokyo", lat: 26.2064, lon: 127.6465 },
+        { name: "Nagoya (NGO)", tz: "Asia/Tokyo", lat: 34.8584, lon: 136.8054 }
     ],
     "United Kingdom": [
-        { name: "London (LHR)", tz: "Europe/London", lat: 51.4700, lon: -0.4543 },
+        { name: "London Heathrow (LHR)", tz: "Europe/London", lat: 51.4700, lon: -0.4543 },
+        { name: "London Gatwick (LGW)", tz: "Europe/London", lat: 51.1537, lon: -0.1821 },
         { name: "Manchester (MAN)", tz: "Europe/London", lat: 53.3588, lon: -2.2727 },
-        { name: "Edinburgh (EDI)", tz: "Europe/London", lat: 55.9508, lon: -3.3615 }
+        { name: "Edinburgh (EDI)", tz: "Europe/London", lat: 55.9508, lon: -3.3615 },
+        { name: "Birmingham (BHX)", tz: "Europe/London", lat: 52.4539, lon: -1.7481 }
     ],
     "France": [
         { name: "Paris (CDG)", tz: "Europe/Paris", lat: 49.0097, lon: 2.5479 },
+        { name: "Paris Orly (ORY)", tz: "Europe/Paris", lat: 48.7262, lon: 2.3652 },
         { name: "Nice (NCE)", tz: "Europe/Paris", lat: 43.6653, lon: 7.2150 },
-        { name: "Lyon (LYS)", tz: "Europe/Paris", lat: 45.7256, lon: 5.0811 }
+        { name: "Lyon (LYS)", tz: "Europe/Paris", lat: 45.7256, lon: 5.0811 },
+        { name: "Marseille (MRS)", tz: "Europe/Paris", lat: 43.4367, lon: 5.2150 }
     ],
     "Germany": [
-        { name: "Frankfurt (FRA)", tz: "Europe/Berlin", lat: 50.0379, lon: 8.5622 },
+        { name: Germany = "Frankfurt (FRA)", tz: "Europe/Berlin", lat: 50.0379, lon: 8.5622 },
         { name: "Munich (MUC)", tz: "Europe/Berlin", lat: 48.3537, lon: 11.7750 },
-        { name: "Berlin (BER)", tz: "Europe/Berlin", lat: 52.3667, lon: 13.5033 }
+        { name: "Berlin (BER)", tz: "Europe/Berlin", lat: 52.3667, lon: 13.5033 },
+        { name: "Hamburg (HAM)", tz: "Europe/Berlin", lat: 53.6304, lon: 9.9882 },
+        { name: "Dusseldorf (DUS)", tz: "Europe/Berlin", lat: 51.2895, lon: 6.7668 }
     ],
     "Canada": [
         { name: "Toronto (YYZ)", tz: "America/Toronto", lat: 43.6777, lon: -79.6248 },
         { name: "Vancouver (YVR)", tz: "America/Vancouver", lat: 49.1967, lon: -123.1815 },
-        { name: "Montreal (YUL)", tz: "America/Toronto", lat: 45.4657, lon: -73.7455 }
+        { name: "Montreal (YUL)", tz: "America/Toronto", lat: 45.4657, lon: -73.7455 },
+        { name: "Calgary (YYC)", tz: "America/Edmonton", lat: 51.1139, lon: -114.0203 },
+        { name: "Ottawa (YOW)", tz: "America/Toronto", lat: 45.3225, lon: -75.6672 }
     ],
     "Australia": [
         { name: "Sydney (SYD)", tz: "Australia/Sydney", lat: -33.9399, lon: 151.1753 },
         { name: "Melbourne (MEL)", tz: "Australia/Melbourne", lat: -37.6690, lon: 144.8410 },
-        { name: "Brisbane (BNE)", tz: "Australia/Brisbane", lat: -27.3942, lon: 153.1218 }
+        { name: "Brisbane (BNE)", tz: "Australia/Brisbane", lat: -27.3942, lon: 153.1218 },
+        { name: "Perth (PER)", tz: "Australia/Perth", lat: -31.9385, lon: 115.9672 },
+        { name: "Adelaide (ADL)", tz: "Australia/Adelaide", lat: -34.9462, lon: 138.5404 }
     ],
+    "China": [
+        { name: "Beijing (PEK)", tz: "Asia/Shanghai", lat: 40.0799, lon: 116.6031 },
+        { name: "Shanghai (PVG)", tz: "Asia/Shanghai", lat: 31.1443, lon: 121.8083 },
+        { name: "Guangzhou (CAN)", tz: "Asia/Shanghai", lat: 23.3924, lon: 113.2988 },
+        { name: "Shenzhen (SZX)", tz: "Asia/Shanghai", lat: 22.6393, lon: 113.8107 },
+        { name: "Chengdu (CTU)", tz: "Asia/Shanghai", lat: 30.5785, lon: 103.9471 }
+    ],
+    "Italy": [
+        { name: "Rome (FCO)", tz: "Europe/Rome", lat: 41.8003, lon: 12.2389 },
+        { name: "Milan (MXP)", tz: "Europe/Rome", lat: 45.6301, lon: 8.7231 },
+        { name: "Venice (VCE)", tz: "Europe/Rome", lat: 45.5053, lon: 12.3519 }
+    ],
+    "Spain": [
+        { name: "Madrid (MAD)", tz: "Europe/Madrid", lat: 40.4983, lon: -3.5676 },
+        { name: "Barcelona (BCN)", tz: "Europe/Madrid", lat: 41.2974, lon: 2.0833 },
+        { name: "Palma (PMI)", tz: "Europe/Madrid", lat: 39.5517, lon: 2.7388 }
+    ],
+    "Switzerland": [
+        { name: "Zurich (ZRH)", tz: "Europe/Zurich", lat: 47.4582, lon: 8.5555 },
+        { name: "Geneva (GVA)", tz: "Europe/Zurich", lat: 46.2370, lon: 6.1091 }
+    ],
+    "Netherlands": [{ name: "Amsterdam (AMS)", tz: "Europe/Amsterdam", lat: 52.3105, lon: 4.7683 }],
     "Singapore": [{ name: "Singapore (SIN)", tz: "Asia/Singapore", lat: 1.3644, lon: 103.9915 }],
+    "Taiwan": [
+        { name: "Taipei (TPE)", tz: "Asia/Taipei", lat: 25.0797, lon: 121.2342 },
+        { name: "Kaohsiung (KHH)", tz: "Asia/Taipei", lat: 22.5771, lon: 120.3500 }
+    ],
+    "Thailand": [
+        { name: "Bangkok (BKK)", tz: "Asia/Bangkok", lat: 13.6900, lon: 100.7501 },
+        { name: "Phuket (HKT)", tz: "Asia/Bangkok", lat: 8.1132, lon: 98.3064 },
+        { name: "Chiang Mai (CNX)", tz: "Asia/Bangkok", lat: 18.7752, lon: 98.9674 }
+    ],
+    "Vietnam": [
+        { name: "Ho Chi Minh (SGN)", tz: "Asia/Ho_Chi_Minh", lat: 10.8185, lon: 106.6588 },
+        { name: "Hanoi (HAN)", tz: "Asia/Ho_Chi_Minh", lat: 21.2212, lon: 105.8072 },
+        { name: "Da Nang (DAD)", tz: "Asia/Ho_Chi_Minh", lat: 16.0439, lon: 108.1994 }
+    ],
+    "Malaysia": [
+        { name: "Kuala Lumpur (KUL)", tz: "Asia/Kuala_Lumpur", lat: 2.7456, lon: 101.7072 },
+        { name: "Kota Kinabalu (BKI)", tz: "Asia/Kuching", lat: 5.9372, lon: 116.0511 }
+    ],
+    "Indonesia": [
+        { name: "Jakarta (CGK)", tz: "Asia/Jakarta", lat: -6.1256, lon: 106.6559 },
+        { name: "Bali (DPS)", tz: "Asia/Makassar", lat: -8.7482, lon: 115.1674 }
+    ],
+    "Philippines": [
+        { name: "Manila (MNL)", tz: "Asia/Manila", lat: 14.5086, lon: 121.0194 },
+        { name: "Cebu (CEB)", tz: "Asia/Manila", lat: 10.3075, lon: 123.9794 }
+    ],
+    "India": [
+        { name: "Delhi (DEL)", tz: "Asia/Kolkata", lat: 28.5562, lon: 77.1000 },
+        { name: "Mumbai (BOM)", tz: "Asia/Kolkata", lat: 19.0896, lon: 72.8656 },
+        { name: "Bangalore (BLR)", tz: "Asia/Kolkata", lat: 12.9539, lon: 77.7067 }
+    ],
+    "UAE": [
+        { name: "Dubai (DXB)", tz: "Asia/Dubai", lat: 25.2532, lon: 55.3657 },
+        { name: "Abu Dhabi (AUH)", tz: "Asia/Dubai", lat: 24.4330, lon: 54.6511 }
+    ],
+    "Qatar": [{ name: "Doha (DOH)", tz: "Asia/Qatar", lat: 25.2731, lon: 51.6081 }],
+    "Turkey": [
+        { name: "Istanbul (IST)", tz: "Europe/Istanbul", lat: 41.2753, lon: 28.7519 },
+        { name: "Antalya (AYT)", tz: "Europe/Istanbul", lat: 36.8987, lon: 30.8005 }
+    ],
+    "Russia": [
+        { name: "Moscow (SVO)", tz: "Europe/Moscow", lat: 55.9726, lon: 37.4146 },
+        { name: "St. Petersburg (LED)", tz: "Europe/Moscow", lat: 59.8003, lon: 30.2625 }
+    ],
+    "Brazil": [
+        { name: "Sao Paulo (GRU)", tz: "America/Sao_Paulo", lat: -23.4356, lon: -46.4731 },
+        { name: "Rio de Janeiro (GIG)", tz: "America/Sao_Paulo", lat: -22.8100, lon: -43.2505 }
+    ],
+    "Mexico": [
+        { name: "Mexico City (MEX)", tz: "America/Mexico_City", lat: 19.4361, lon: -99.0719 },
+        { name: "Cancun (CUN)", tz: "America/Cancun", lat: 21.0365, lon: -86.8771 }
+    ],
+    "Argentina": [{ name: "Buenos Aires (EZE)", tz: "America/Argentina/Buenos_Aires", lat: -34.8222, lon: -58.5358 }],
+    "New Zealand": [
+        { name: "Auckland (AKL)", tz: "Pacific/Auckland", lat: -37.0081, lon: 174.7850 },
+        { name: "Christchurch (CHC)", tz: "Pacific/Auckland", lat: -43.4894, lon: 172.5322 }
+    ],
+    "South Africa": [{ name: "Johannesburg (JNB)", tz: "Africa/Johannesburg", lat: -26.1392, lon: 28.2460 }],
+    "Egypt": [{ name: "Cairo (CAI)", tz: "Africa/Cairo", lat: 30.1219, lon: 31.4056 }],
     "Others": [{ name: "UTC/GMT", tz: "UTC", lat: 0, lon: 0 }]
 };
 
+// Translation data
 const translations = {
     'ko': {
         'header-title': 'Now and Us',
