@@ -1,4 +1,4 @@
-// Verified Final Worldwide Location Data (Permanent Full Expansion)
+// Verified Final Worldwide Location Data
 const locationData = {
     "South Korea": [
         { name: "Seoul/Incheon (ICN)", tz: "Asia/Seoul", lat: 37.4602, lon: 126.4407 },
@@ -118,36 +118,23 @@ const translations = {
         'guide-text-2': '💖 <strong>다음 만남을 기다리는 설렘</strong>을 카운트다운 기능으로 함께 나누세요. 기념일을 잊지 않고 챙기는 것은 서로에 대한 소중한 배려입니다.',
         'privacy-link': '개인정보처리방침',
         'terms-link': '이용약관',
-        'privacy-title': '개인정보 처리방침 (Privacy Policy)',
-        'privacy-intro': 'Now and Us(이하 "서비스")는 이용자의 개인정보를 중요시하며, "정보통신망 이용촉진 및 정보보호"에 관한 법률을 준수하고 있습니다.',
-        'privacy-q1': '1. 수집하는 개인정보 항목',
-        'privacy-a1': '본 서비스는 회원가입 없이 이용 가능하며, 별도의 서버에 개인정보를 저장하지 않습니다. 모든 설정값(기념일, 위치 등)은 사용자의 브라우저 로컬 스토리지(Local Storage)에만 저장됩니다.',
-        'privacy-q2': '2. 쿠키(Cookie) 및 로컬 스토리지 사용',
-        'privacy-a2': '서비스 이용 편의를 위해 쿠키 및 로컬 스토리지를 사용합니다. 이는 웹사이트 접속 시 사용자의 설정 정보를 유지하기 위함이며, 언제든지 브라우저 설정을 통해 거부할 수 있습니다.',
-        'privacy-q3': '3. Google AdSense',
-        'privacy-a3': '본 사이트는 광고 게재를 위해 Google AdSense를 사용합니다. Google은 사용자의 웹사이트 방문 기록을 바탕으로 맞춤형 광고를 제공하기 위해 쿠키를 사용할 수 있습니다. 사용자는 Google 광고 설정에서 맞춤형 광고를 해제할 수 있습니다.',
-        'privacy-q4': '4. 문의사항',
-        'privacy-a4': '개인정보 관련 문의사항은 고객 소리함 또는 제휴 문의를 통해 접수해 주시기 바랍니다.',
-        'terms-title': '이용약관 (Terms of Service)',
-        'terms-q1': '1. 목적',
-        'terms-a1': '본 약관은 "Now and Us"(이하 "서비스")의 이용 조건 및 절차에 관한 사항을 규정함을 목적으로 합니다.',
-        'terms-q2': '2. 서비스의 제공 및 변경',
-        'terms-a2': '서비스는 무료로 제공되며, 운영상 필요에 따라 사전 고지 없이 변경되거나 중단될 수 있습니다.',
-        'terms-q3': '3. 면책조항',
-        'terms-a3': '서비스에서 제공하는 정보(날씨, 시간 등)의 정확성을 보장하지 않으며, 이로 인해 발생한 손해에 대해 책임지지 않습니다. 모든 데이터는 참고용으로만 사용하시기 바랍니다.',
-        'terms-q4': '4. 저작권',
-        'terms-a4': '서비스 내 모든 콘텐츠의 저작권은 "Now and Us" 운영자에게 있으며, 무단 복제 및 배포를 금지합니다.',
+        'privacy-title': '개인정보 처리방침',
+        'privacy-intro': 'Now and Us(이하 "서비스")는 이용자의 개인정보를 중요시하며, 관련 법령을 준수하고 있습니다.',
+        'privacy-q1': '1. 개인정보의 수집 및 이용',
+        'privacy-a1': '본 서비스는 별도의 회원가입 절차 없이 모든 기능을 무료로 이용할 수 있습니다. 이용자가 설정한 모든 데이터는 이용자의 브라우저 로컬 저장소(Local Storage)에만 저장되며 외부로 전송되지 않습니다.',
+        'privacy-q2': '2. 쿠키(Cookie)의 사용 및 Google AdSense',
+        'privacy-a2': '본 사이트는 광고 게재를 위해 Google AdSense를 활용합니다. Google은 이용자의 웹사이트 방문 기록을 바탕으로 맞춤형 광고를 제공하기 위해 쿠키를 사용할 수 있습니다.',
+        'terms-title': '이용약관',
         'news-header': '세계 뉴스',
         'news-subtitle': '서로의 나라에서 일어나고 있는 소식을 확인해보세요',
         'news-label-my': '나의 나라',
         'news-label-partner': '상대방 나라',
-        'news-load-more': '더 보기',
         'news-loading': '뉴스를 불러오는 중...',
         'news-no-data': '뉴스를 불러올 수 없습니다.',
         'news-read-more': '자세히 보기',
         'news-help-btn': '도움말',
         'news-help-title': '💡 세계 뉴스 이용 안내',
-        'news-help-text': '세계 뉴스는 메인 페이지의 <strong>[다른 공간, 연결된 시간]</strong> 섹션에서 설정한 나의 위치와 상대방 위치의 국가를 기반으로 자동으로 표시됩니다. 다른 나라의 소식이 궁금하다면 아래 선택창에서 직접 국가를 변경하여 확인할 수도 있습니다.',
+        'news-help-text': '세계 뉴스는 메인 페이지 설정에 따라 자동으로 표시됩니다. 다른 나라의 소식이 궁금하다면 선택창에서 국가를 변경할 수 있습니다.',
         'ex-header': '실시간 환율',
         'ex-subtitle': '서로의 나라의 화폐 가치를 실시간으로 계산해보세요',
         'ex-from-label': '보내는 통화',
@@ -156,19 +143,19 @@ const translations = {
         'ex-popular-title': '주요 통화 환율 (1,000원 기준)',
         'ex-help-btn': '도움말',
         'ex-help-title': '💡 실시간 환율 이용 안내',
-        'ex-help-text': '본 서비스의 환율 데이터는 <strong>매일 1회 업데이트</strong>되는 고시 환율을 기준으로 합니다. 데이터는 GitHub Actions를 통해 6시간마다 자동으로 점검하여 최신 정보를 유지하도록 설계되었습니다.',
+        'ex-help-text': '본 서비스의 환율 데이터는 매일 1회 업데이트되는 고시 환율을 기준으로 합니다.',
         'cal-header': '공휴일 캘린더',
         'cal-subtitle': '서로의 쉬는 날을 미리 체크하고 함께 계획을 세워보세요',
         'cal-my-title': '나의 공휴일',
         'cal-partner-title': '상대방의 공휴일',
         'cal-help-btn': '도움말',
         'cal-help-title': '💡 공휴일 캘린더 이용 안내',
-        'cal-help-text': '공휴일 정보는 메인 페이지에서 설정한 국가를 기준으로 자동으로 표시됩니다. 상대방 국가의 공휴일을 미리 확인하여 서운함 없는 특별한 날을 계획해 보세요! 데이터는 매주 일요일 자동으로 업데이트됩니다.',
-        'dict-header': '단어 사전',
-        'dict-ph': '단어를 입력하세요...',
+        'cal-help-text': '공휴일 정보는 메인 페이지 설정 국가 기준입니다. 매주 일요일 자동 업데이트됩니다.',
+        'dict-header': '영단어 사전',
+        'dict-ph': '영단어를 입력하세요...',
         'dict-btn': '검색',
         'dict-loading': '찾는 중...',
-        'dict-not-found': '단어를 찾을 수 없습니다.',
+        'dict-not-found': '단어를 찾을 수 없습니다. (영단어만 가능)',
         'dict-intro': '모르는 영단어가 있다면 검색해보세요!'
     },
     'en': {
@@ -204,61 +191,48 @@ const translations = {
         'board-name-ph': 'Enter your nickname', 'board-subject-ph': 'Enter inquiry subject', 'board-message-ph': 'Please enter detailed information',
         'board-btn': 'Send',
         'guide-title': 'How to Bridge the Distance in LDR',
-        'guide-text-1': '✈️ Long-distance relationships are physically far apart, but you can <strong>narrow the distance of your heart by sharing your daily life.</strong> Now and Us allows you to check each other\'s time and weather in real-time, providing a sense of connection as if you were in the same space.',
-        'guide-text-2': '💖 Share the <strong>excitement of waiting for the next meeting</strong> with the countdown function. Remembering anniversaries is a precious consideration for each other.',
+        'guide-text-1': '✈️ Long-distance relationships are physically far apart, but you can <strong>narrow the distance of your heart by sharing your daily life.</strong>',
+        'guide-text-2': '💖 Share the <strong>excitement of waiting for the next meeting</strong> with the countdown function.',
         'privacy-link': 'Privacy Policy',
         'terms-link': 'Terms of Service',
         'privacy-title': 'Privacy Policy',
-        'privacy-intro': 'Now and Us ("the Service") values your privacy and complies with relevant data protection laws.',
-        'privacy-q1': '1. Information We Collect',
-        'privacy-a1': 'This service is available without registration and does not store personal information on any separate server. All settings (anniversaries, locations, etc.) are stored only in the user\'s browser Local Storage.',
-        'privacy-q2': '2. Use of Cookies and Local Storage',
-        'privacy-a2': 'We use cookies and local storage for your convenience. This is to maintain your settings when you access the website, and you can refuse it at any time through your browser settings.',
-        'privacy-q3': '3. Google AdSense',
-        'privacy-a3': 'This site uses Google AdSense to display advertisements. Google may use cookies to provide tailored advertisements based on a user\'s visit history to websites. Users can opt out of personalized advertising in Google Ad Settings.',
-        'privacy-q4': '4. Inquiries',
-        'privacy-a4': 'For privacy-related inquiries, please contact us through the Customer Center or Partnership inquiry form.',
+        'privacy-intro': 'Now and Us values your privacy and complies with data laws.',
+        'privacy-q1': '1. Data Collection',
+        'privacy-a1': 'All settings are stored only in your browser\'s Local Storage.',
+        'privacy-q2': '2. Cookies and Ads',
+        'privacy-a2': 'This site uses Google AdSense. Google may use cookies for personalized advertising.',
         'terms-title': 'Terms of Service',
-        'terms-q1': '1. Purpose',
-        'terms-a1': 'These terms aim to stipulate the conditions and procedures for using "Now and Us" ("the Service").',
-        'terms-q2': '2. Provision and Modification of Service',
-        'terms-a2': 'The service is provided for free and may be changed or suspended without prior notice depending on operational needs.',
-        'terms-q3': '3. Disclaimer',
-        'terms-a3': 'We do not guarantee the accuracy of the information (weather, time, etc.) provided by the service and are not responsible for any damage caused by this. Please use all data for reference only.',
-        'terms-q4': '4. Copyright',
-        'terms-a4': 'The copyright for all content within the service belongs to the "Now and Us" operator, and unauthorized reproduction or distribution is prohibited.',
         'news-header': 'World News',
         'news-subtitle': 'Check what is happening in each other\'s country',
         'news-label-my': 'My Country',
         'news-label-partner': 'Partner\'s Country',
-        'news-load-more': 'Load More',
         'news-loading': 'Loading news...',
         'news-no-data': 'Could not load news.',
         'news-read-more': 'Read More',
         'news-help-btn': 'Help',
         'news-help-title': '💡 World News Guide',
-        'news-help-text': 'World news is automatically displayed based on the countries you set in the <strong>[Our Times]</strong> section on the main page. You can also manually change countries in the dropdown menus below to see news from other regions.',
+        'news-help-text': 'World news is displayed based on your main settings. You can also manually change countries.',
         'ex-header': 'Exchange Rate',
-        'ex-subtitle': 'Real-time currency converter between countries',
+        'ex-subtitle': 'Real-time currency converter',
         'ex-from-label': 'From',
         'ex-to-label': 'To',
         'ex-rate-label': 'Current Rate:',
         'ex-popular-title': 'Major Rates (Based on 1,000 KRW)',
         'ex-help-btn': 'Help',
         'ex-help-title': '💡 Exchange Rate Guide',
-        'ex-help-text': 'Exchange rate data is based on <strong>daily updated rates</strong> provided by the API. The data is automatically checked every 6 hours via GitHub Actions to maintain reliability.',
+        'ex-help-text': 'Exchange rate data is based on daily updated rates.',
         'cal-header': 'Holiday Calendar',
         'cal-subtitle': 'Check each other\'s days off and plan together',
         'cal-my-title': 'My Holidays',
         'cal-partner-title': "Partner's Holidays",
         'cal-help-btn': 'Help',
         'cal-help-title': '💡 Holiday Calendar Guide',
-        'cal-help-text': 'Holiday information is automatically displayed based on the countries set on the main page. Plan special days without disappointment by checking your partner\'s holidays in advance! Data is updated automatically every Sunday.',
+        'cal-help-text': 'Holiday information is automatically updated every Sunday.',
         'dict-header': 'Dictionary',
         'dict-ph': 'Enter a word...',
         'dict-btn': 'Search',
         'dict-loading': 'Searching...',
-        'dict-not-found': 'Word not found.',
+        'dict-not-found': 'Word not found. (English only)',
         'dict-intro': 'Look up any English words you don\'t know!'
     }
 };
@@ -276,10 +250,9 @@ let partnerCountry = localStorage.getItem('partnerCountry') || 'USA';
 let partnerLocation = localStorage.getItem('partnerLocation') || "New York (JFK)";
 let partnerTimezone = localStorage.getItem('partnerTimezone') || 'America/New_York';
 
-// Floating Dictionary Logic
+// --- Floating Dictionary Logic ---
 function injectDictionary() {
     if (document.querySelector('.dict-widget')) return;
-
     const dictHTML = `
         <div class="dict-widget">
             <div id="dict-window" class="dict-window">
@@ -301,10 +274,7 @@ function injectDictionary() {
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', dictHTML);
-
-    document.getElementById('dict-input').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') searchWord();
-    });
+    document.getElementById('dict-input').addEventListener('keypress', (e) => { if (e.key === 'Enter') searchWord(); });
 }
 
 function toggleDictionary() {
@@ -315,53 +285,33 @@ function toggleDictionary() {
 async function searchWord() {
     const input = document.getElementById('dict-input');
     const result = document.getElementById('dict-result');
-    const word = input.value.trim();
-
+    const word = input.value.trim().toLowerCase();
     if (!word) return;
-
     result.innerHTML = `<p data-i18n="dict-loading">${translations[currentLanguage]['dict-loading']}</p>`;
-
     try {
         const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
         if (!res.ok) throw new Error();
         const data = await res.json();
         const entry = data[0];
-
-        let html = `
-            <div class="dict-word-title">${entry.word}</div>
-            <div class="dict-phonetic">${entry.phonetic || ''}</div>
-        `;
-
+        let html = `<div class="dict-word-title">${entry.word}</div><div class="dict-phonetic">${entry.phonetic || ''}</div>`;
         entry.meanings.slice(0, 2).forEach(m => {
-            html += `
-                <div class="dict-meaning">
-                    <div class="dict-part">${m.partOfSpeech}</div>
-                    <div>${m.definitions[0].definition}</div>
-                    ${m.definitions[0].example ? `<div style="font-size: 0.8rem; color: #888; font-style: italic; margin-top: 5px;">" ${m.definitions[0].example} "</div>` : ''}
-                </div>
-            `;
+            html += `<div class="dict-meaning"><div class="dict-part">${m.partOfSpeech}</div><div>${m.definitions[0].definition}</div></div>`;
         });
-
         result.innerHTML = html;
     } catch (e) {
         result.innerHTML = `<p data-i18n="dict-not-found">${translations[currentLanguage]['dict-not-found']}</p>`;
     }
 }
 
-// World News Logic (Reading from local static JSON updated by GitHub Actions)
+// --- World News Logic ---
 async function fetchNews(countryName, elementId) {
     const el = document.getElementById(elementId);
     if (!el) return;
-    
     el.innerHTML = `<p data-i18n="news-loading">${translations[currentLanguage]['news-loading']}</p>`;
-    
     try {
-        // GitHub Actions가 업데이트하는 정적 JSON 파일 로드
         const res = await fetch('news-data.json');
         const allNews = await res.json();
-        
         const newsItems = allNews[countryName] || [];
-        
         if (newsItems.length > 0) {
             el.innerHTML = newsItems.map(n => `
                 <div class="news-card" style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: left;">
@@ -370,14 +320,11 @@ async function fetchNews(countryName, elementId) {
                     <a href="${n.url}" target="_blank" style="color: var(--primary-color); font-weight: bold; text-decoration: none; font-size: 0.85rem;">${translations[currentLanguage]['news-read-more']} →</a>
                 </div>
             `).join('');
-        } else {
-            el.innerHTML = `<p data-i18n="news-no-data">${translations[currentLanguage]['news-no-data']}</p>`;
-        }
-    } catch (e) {
-        el.innerHTML = `<p data-i18n="news-no-data">${translations[currentLanguage]['news-no-data']}</p>`;
-    }
+        } else { el.innerHTML = `<p data-i18n="news-no-data">${translations[currentLanguage]['news-no-data']}</p>`; }
+    } catch (e) { el.innerHTML = `<p data-i18n="news-no-data">${translations[currentLanguage]['news-no-data']}</p>`; }
 }
 
+// --- Global Functions ---
 function setLanguage(lang) {
     currentLanguage = lang;
     localStorage.setItem('language', lang);
@@ -405,9 +352,7 @@ async function fetchWeather(lat, lon, elementId) {
     } catch (e) { if(document.getElementById(elementId)) document.getElementById(elementId).textContent = "---"; }
 }
 
-function getWIcon(c) {
-    if(c<=1) return "☀️"; if(c<=3) return "☁️"; if(c<=67) return "🌧️"; if(c<=77) return "❄️"; return "⛈️";
-}
+function getWIcon(c) { if(c<=1) return "☀️"; if(c<=3) return "☁️"; if(c<=67) return "🌧️"; if(c<=77) return "❄️"; return "⛈️"; }
 
 function updateDisplays() {
     if(document.getElementById('days-together')) {
@@ -487,7 +432,6 @@ function updateList(cId, sId, currentVal) {
         if(l.name === currentVal) o.selected = true;
         s.appendChild(o);
     });
-    saveSettings();
 }
 
 function initializeForm() {
@@ -508,25 +452,19 @@ function initializeForm() {
     updateList('input-partner-country','input-partner-location',partnerLocation);
 }
 
-function toggleMiniSettings(id) {
-    const el = document.getElementById(id);
-    if(el) el.style.display = el.style.display==='none'?'block':'none';
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-    if(document.getElementById('input-anniversary')) document.getElementById('input-anniversary').value = anniversaryDate;
-    if(document.getElementById('input-meeting')) document.getElementById('input-meeting').value = nextMeetingDate;
     initializeForm();
     injectDictionary();
     setLanguage(currentLanguage);
     setInterval(updateDisplays, 1000);
 });
 
+window.setLanguage = setLanguage;
+window.saveSettings = saveSettings;
+window.toggleMiniSettings = (id) => { const el = document.getElementById(id); if(el) el.style.display = el.style.display==='none'?'block':'none'; };
 window.updateAirportList = () => updateList('input-country','input-airport',meetingAirport);
 window.updateMyCityList = () => updateList('input-my-country','input-my-location',myLocation);
 window.updatePartnerLocationList = () => updateList('input-partner-country','input-partner-location',partnerLocation);
-window.setLanguage = setLanguage;
-window.toggleMiniSettings = toggleMiniSettings;
-window.saveSettings = saveSettings;
+window.fetchNews = fetchNews;
 window.toggleDictionary = toggleDictionary;
 window.searchWord = searchWord;
