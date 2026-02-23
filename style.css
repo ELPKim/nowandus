@@ -546,3 +546,52 @@ footer {
 @media (max-width: 400px) {
     .dict-window { width: calc(100vw - 60px); right: -10px; }
 }
+
+/* 세계 뉴스 카드 스타일 강화 */
+.news-card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 143, 163, 0.15);
+    border-color: var(--primary-color);
+}
+
+.news-card h4 {
+    margin: 0 0 12px 0;
+    color: var(--accent-color);
+    font-size: 1.15rem;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+.news-card p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.news-card a {
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-block;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.news-card a:hover {
+    border-color: var(--primary-color);
+}
+
