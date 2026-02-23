@@ -316,21 +316,12 @@ window.hideWelcomeToday = () => {
     window.closeWelcome();
 };
 
-// --- Close Popup with Escape Key ---
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         const welcomeOverlay = document.getElementById('welcome-overlay');
         const dictWindow = document.getElementById('dict-window');
-        
-        // 안내창이 열려 있으면 닫기
-        if (welcomeOverlay && welcomeOverlay.style.display === 'flex') {
-            window.closeWelcome();
-        }
-        
-        // 사전창이 열려 있으면 닫기 (추가 편의성)
-        if (dictWindow && dictWindow.style.display === 'flex') {
-            window.toggleDictionary();
-        }
+        if (welcomeOverlay && welcomeOverlay.style.display === 'flex') window.closeWelcome();
+        if (dictWindow && dictWindow.style.display === 'flex') window.toggleDictionary();
     }
 });
 
@@ -339,26 +330,23 @@ let dictLanguage = localStorage.getItem('dictLanguage') || (currentLanguage === 
 
 function injectDictionary() {
     if (document.querySelector('.dict-widget')) return;
-    
     const dictHTML = `
         <div class="dict-widget">
             <div id="dict-window" class="dict-window">
                 <div class="dict-header">
                     <div class="dict-lang-switch" style="display: flex; gap: 5px;">
-                        <button onclick="setDictLang('ko')" id="btn-dict-ko" style="padding: 2px 8px; border-radius: 10px; border: 1px solid var(--primary-color); font-size: 0.7rem; cursor: pointer; font-weight: bold;">KO</button>
-                        <button onclick="setDictLang('en')" id="btn-dict-en" style="padding: 2px 8px; border-radius: 10px; border: 1px solid var(--primary-color); font-size: 0.7rem; cursor: pointer; font-weight: bold;">EN</button>
+                        <button onclick="setDictLang('ko')" id="btn-dict-ko">KO</button>
+                        <button onclick="setDictLang('en')" id="btn-dict-en">EN</button>
                     </div>
                     <span class="dict-close" onclick="toggleDictionary()">✖</span>
                 </div>
                 <div class="dict-body">
-                    <h4 id="dict-title" style="margin: 0 0 10px 0; color: var(--accent-color); font-size: 1rem;"></h4>
+                    <h4 id="dict-title"></h4>
                     <div class="dict-search">
                         <input type="text" id="dict-input" placeholder="">
                         <button onclick="searchWord()" id="btn-dict-search"></button>
                     </div>
-                    <div id="dict-result" class="dict-result">
-                        <p id="dict-intro-text"></p>
-                    </div>
+                    <div id="dict-result" class="dict-result"><p id="dict-intro-text"></p></div>
                 </div>
             </div>
             <div class="dict-button" onclick="toggleDictionary()">📖</div>
@@ -378,28 +366,18 @@ function setDictLang(lang) {
 function updateDictUI() {
     const isKo = dictLanguage === 'ko';
     const t = translations[isKo ? 'ko' : 'en'];
-    
-    const titleEl = document.getElementById('dict-title');
-    const inputEl = document.getElementById('dict-input');
-    const btnEl = document.getElementById('btn-dict-search');
-    const introEl = document.getElementById('dict-intro-text');
-    
-    if (titleEl) titleEl.textContent = t['dict-header'];
-    if (inputEl) inputEl.placeholder = t['dict-ph'];
-    if (btnEl) btnEl.textContent = t['dict-btn'];
-    if (introEl) introEl.textContent = t['dict-intro'];
+    if (document.getElementById('dict-title')) document.getElementById('dict-title').textContent = t['dict-header'];
+    if (document.getElementById('dict-input')) document.getElementById('dict-input').placeholder = t['dict-ph'];
+    if (document.getElementById('btn-dict-search')) document.getElementById('btn-dict-search').textContent = t['dict-btn'];
+    if (document.getElementById('dict-intro-text')) document.getElementById('dict-intro-text').textContent = t['dict-intro'];
     
     const btnKo = document.getElementById('btn-dict-ko');
     const btnEn = document.getElementById('btn-dict-en');
-    
     if (btnKo && btnEn) {
-        [btnKo, btnEn].forEach(btn => {
-            btn.style.background = 'transparent';
-            btn.style.color = 'var(--primary-color)';
-        });
-        const activeBtn = isKo ? btnKo : btnEn;
-        activeBtn.style.background = 'var(--primary-color)';
-        activeBtn.style.color = 'white';
+        [btnKo, btnEn].forEach(b => { b.style.background = 'transparent'; b.style.color = 'var(--primary-color)'; });
+        const active = isKo ? btnKo : btnEn;
+        active.style.background = 'var(--primary-color)';
+        active.style.color = 'white';
     }
 }
 
@@ -409,90 +387,35 @@ function toggleDictionary() {
 }
 
 function searchWord() {
-    const input = document.getElementById('dict-input');
-    const word = input.value.trim();
+    const word = document.getElementById('dict-input').value.trim();
     if (!word) return;
-    const domain = dictLanguage === 'ko' ? 'ko' : 'en';
-    window.open(`https://${domain}.wiktionary.org/wiki/${encodeURIComponent(word)}`, '_blank');
+    window.open(`https://${dictLanguage}.wiktionary.org/wiki/${encodeURIComponent(word)}`, '_blank');
 }
 
-// --- World News Logic ---
+// --- World News & Weather ---
 let cachedNewsData = null;
-
 async function fetchNews(countryName, elementId) {
     const el = document.getElementById(elementId);
     if (!el) return;
     el.innerHTML = `<p>${translations[currentLanguage]['news-loading']}</p>`;
     try {
-        if (!cachedNewsData) {
-            const res = await fetch('news-data.json');
-            cachedNewsData = await res.json();
-        }
-        
-        // "Others" 처리: 데이터에 없으면 일반 월드 뉴스나 빈 배열 처리
-        const newsItems = cachedNewsData[countryName] || cachedNewsData["Others"] || [];
-        
-        if (newsItems.length > 0) {
-            el.innerHTML = newsItems.map(n => `
-                <div class="news-card" style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: left;">
-                    <h4 style="margin: 0 0 10px 0; color: var(--accent-color);">${n.title || ''}</h4>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">${n.text || ''}</p>
-                    <a href="${n.url}" target="_blank" style="color: var(--primary-color); font-weight: bold; text-decoration: none; font-size: 0.85rem;">${translations[currentLanguage]['news-read-more']} →</a>
+        if (!cachedNewsData) cachedNewsData = await (await fetch('news-data.json')).json();
+        const news = cachedNewsData[countryName] || cachedNewsData["Others"] || [];
+        if (news.length > 0) {
+            el.innerHTML = news.map(n => `
+                <div class="news-card">
+                    <h4>${n.title || ''}</h4>
+                    <p>${n.text || ''}</p>
+                    <a href="${n.url}" target="_blank">${translations[currentLanguage]['news-read-more']} →</a>
                 </div>
             `).join('');
-        } else { 
-            el.innerHTML = `<p>${translations[currentLanguage]['news-no-data']}</p>`; 
-        }
-    } catch (e) { 
-        console.error("News fetch error:", e);
-        el.innerHTML = `<p>${translations[currentLanguage]['news-no-data']}</p>`; 
-    }
-}
-
-// --- Global Functions ---
-function setLanguage(lang) {
-    currentLanguage = lang;
-    localStorage.setItem('language', lang);
-    document.documentElement.lang = lang;
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) el.innerHTML = translations[lang][key];
-    });
-    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
-        const key = el.getAttribute('data-i18n-ph');
-        if (translations[lang][key]) el.placeholder = translations[lang][key];
-    });
-    
-    // 팝업 내용 실시간 번역
-    const popTitle = document.getElementById('pop-title');
-    const popSub = document.getElementById('pop-subtitle');
-    const popList = document.getElementById('pop-list');
-    const popHide = document.getElementById('pop-hide-btn');
-    const popClose = document.getElementById('pop-close-btn');
-    
-    if (popTitle) popTitle.textContent = translations[lang]['welcome-title'];
-    if (popSub) popSub.textContent = translations[lang]['welcome-subtitle'];
-    if (popList) {
-        popList.innerHTML = `
-            <li>${translations[lang]['welcome-f1']}</li>
-            <li>${translations[lang]['welcome-f2']}</li>
-            <li>${translations[lang]['welcome-f3']}</li>
-            <li>${translations[lang]['welcome-f4']}</li>
-            <li>${translations[lang]['welcome-f5']}</li>
-            <li>${translations[lang]['welcome-f6']}</li>
-        `;
-    }
-    if (popHide) popHide.textContent = translations[lang]['welcome-hide'];
-    if (popClose) popClose.textContent = translations[lang]['welcome-close'];
-
-    updateDictUI();
-    updateDisplays();
+        } else el.innerHTML = `<p>${translations[currentLanguage]['news-no-data']}</p>`;
+    } catch (e) { el.innerHTML = `<p>${translations[currentLanguage]['news-no-data']}</p>`; }
 }
 
 async function fetchWeather(lat, lon, elementId) {
     try {
-        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
-        const data = await res.json();
+        const data = await (await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)).json();
         const el = document.getElementById(elementId);
         if (el && data.current_weather) {
             const w = data.current_weather;
@@ -500,9 +423,9 @@ async function fetchWeather(lat, lon, elementId) {
         }
     } catch (e) { if(document.getElementById(elementId)) document.getElementById(elementId).textContent = "---"; }
 }
-
 function getWIcon(c) { if(c<=1) return "☀️"; if(c<=3) return "☁️"; if(c<=67) return "🌧️"; if(c<=77) return "❄️"; return "⛈️"; }
 
+// --- Display & Logic ---
 function updateDisplays() {
     if(document.getElementById('days-together')) {
         document.getElementById('days-together').textContent = Math.max(0, Math.floor((new Date().getTime() - new Date(anniversaryDate).getTime()) / 86400000));
@@ -512,19 +435,14 @@ function updateDisplays() {
         const target = new Date(nextMeetingDate).getTime() + (new Date().getTime() - new Date(new Date().toLocaleString('en-US',{timeZone:meetingTimezone})).getTime());
         const rem = target - new Date().getTime();
         if(rem > 0) {
-            const d = Math.floor(rem/86400000); const h = Math.floor((rem%86400000)/3600000);
-            const m = Math.floor((rem%3600000)/60000); const s = Math.floor((rem%60000)/1000);
-            const u = translations[currentLanguage];
-            timer.textContent = `${d}${u['days-unit']} ${h}${u['hours-unit']} ${m}${u['minutes-unit']} ${s}${u['seconds-unit']}`;
-        } else { timer.textContent = translations[currentLanguage]['met-message']; }
+            const d = Math.floor(rem/86400000), h = Math.floor((rem%86400000)/3600000), m = Math.floor((rem%3600000)/60000), s = Math.floor((rem%60000)/1000);
+            timer.textContent = `${d}${translations[currentLanguage]['days-unit']} ${h}${translations[currentLanguage]['hours-unit']} ${m}${translations[currentLanguage]['minutes-unit']} ${s}${translations[currentLanguage]['seconds-unit']}`;
+        } else timer.textContent = translations[currentLanguage]['met-message'];
     }
     if(document.getElementById('my-time')) {
         const now = new Date();
         document.getElementById('my-time').textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,timeZone:myTimezone});
-        if(document.getElementById('partner-time')) {
-            try { document.getElementById('partner-time').textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,timeZone:partnerTimezone}); } 
-            catch (e) { document.getElementById('partner-time').textContent = "TZ Error"; }
-        }
+        if(document.getElementById('partner-time')) document.getElementById('partner-time').textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,timeZone:partnerTimezone});
     }
     const myD = locationData[myCountry]?.find(l=>l.name===myLocation);
     if(myD && document.getElementById('my-weather-info')) fetchWeather(myD.lat,myD.lon,'my-weather-info');
@@ -539,40 +457,18 @@ function saveSettings() {
     if(document.getElementById('input-anniversary')) anniversaryDate = document.getElementById('input-anniversary').value;
     if(document.getElementById('input-meeting')) nextMeetingDate = document.getElementById('input-meeting').value;
     const apS = document.getElementById('input-airport');
-    if(apS && apS.selectedIndex>=0) {
-        meetingCountry = document.getElementById('input-country').value;
-        meetingAirport = apS.options[apS.selectedIndex].text;
-        meetingTimezone = apS.value;
-    }
+    if(apS && apS.selectedIndex>=0) { meetingCountry = document.getElementById('input-country').value; meetingAirport = apS.options[apS.selectedIndex].text; meetingTimezone = apS.value; }
     const myS = document.getElementById('input-my-location');
-    if(myS && myS.selectedIndex>=0) {
-        myCountry = document.getElementById('input-my-country').value;
-        myLocation = myS.options[myS.selectedIndex].text;
-        myTimezone = myS.value;
-    }
+    if(myS && myS.selectedIndex>=0) { myCountry = document.getElementById('input-my-country').value; myLocation = myS.options[myS.selectedIndex].text; myTimezone = myS.value; }
     const pS = document.getElementById('input-partner-location');
-    if(pS && pS.selectedIndex>=0) {
-        partnerCountry = document.getElementById('input-partner-country').value;
-        partnerLocation = pS.options[pS.selectedIndex].text;
-        partnerTimezone = pS.value;
-    }
-    localStorage.setItem('anniversaryDate', anniversaryDate);
-    localStorage.setItem('nextMeetingDate', nextMeetingDate);
-    localStorage.setItem('meetingCountry', meetingCountry);
-    localStorage.setItem('meetingAirport', meetingAirport);
-    localStorage.setItem('meetingTimezone', meetingTimezone);
-    localStorage.setItem('myCountry', myCountry);
-    localStorage.setItem('myLocation', myLocation);
-    localStorage.setItem('myTimezone', myTimezone);
-    localStorage.setItem('partnerCountry', partnerCountry);
-    localStorage.setItem('partnerLocation', partnerLocation);
-    localStorage.setItem('partnerTimezone', partnerTimezone);
+    if(pS && pS.selectedIndex>=0) { partnerCountry = document.getElementById('input-partner-country').value; partnerLocation = pS.options[pS.selectedIndex].text; partnerTimezone = pS.value; }
+    
+    ['anniversaryDate','nextMeetingDate','meetingCountry','meetingAirport','meetingTimezone','myCountry','myLocation','myTimezone','partnerCountry','partnerLocation','partnerTimezone'].forEach(k => localStorage.setItem(k, eval(k)));
     updateDisplays();
 }
 
 function updateList(cId, sId, currentVal) {
-    const c = document.getElementById(cId)?.value;
-    const s = document.getElementById(sId);
+    const c = document.getElementById(cId)?.value, s = document.getElementById(sId);
     if(!s || !c || !locationData[c]) return;
     s.innerHTML = '';
     locationData[c].forEach(l => {
@@ -584,14 +480,12 @@ function updateList(cId, sId, currentVal) {
 }
 
 function initializeForm() {
-    const countries = Object.keys(locationData).sort();
     ['input-country','input-my-country','input-partner-country'].forEach(id => {
         const s = document.getElementById(id);
         if(!s) return;
         s.innerHTML = '';
-        countries.forEach(c => {
-            const o = document.createElement('option');
-            o.value = c; o.textContent = c;
+        Object.keys(locationData).sort().forEach(c => {
+            const o = document.createElement('option'); o.value = c; o.textContent = c;
             if((id==='input-country'&&c===meetingCountry)||(id==='input-my-country'&&c===myCountry)||(id==='input-partner-country'&&c===partnerCountry)) o.selected = true;
             s.appendChild(o);
         });
@@ -601,121 +495,60 @@ function initializeForm() {
     updateList('input-partner-country','input-partner-location',partnerLocation);
 }
 
-window.triggerPhotoUpload = (type) => {
-    document.getElementById(`upload-${type}`).click();
-};
-
-window.handlePhotoUpload = (event, type) => {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    // 용량 제한 (약 2MB)
-    if (file.size > 2 * 1024 * 1024) {
-        alert("사진 용량이 너무 큽니다. 2MB 이하의 사진을 선택해 주세요.");
-        return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-        const base64Image = e.target.result;
-        localStorage.setItem(`card-bg-${type}`, base64Image);
-        applyCardBackground(type, base64Image);
-    };
-    reader.readAsDataURL(file);
-};
-
+// --- Photo Background Logic ---
 function applyCardBackground(type, imageData) {
-    const bgElement = document.getElementById(`bg-${type}`);
-    const cardElement = bgElement?.parentElement;
-    if (bgElement && imageData) {
-        bgElement.style.backgroundImage = `url(${imageData})`;
-        bgElement.classList.add('has-photo');
-        cardElement.classList.add('has-photo');
+    const bg = document.getElementById(`bg-${type}`);
+    if (bg && imageData) {
+        bg.style.backgroundImage = `url(${imageData})`;
+        bg.classList.add('has-photo');
+        bg.parentElement.classList.add('has-photo');
     }
 }
 
-function loadCardBackgrounds() {
-    ['anniversary', 'countdown'].forEach(type => {
-        const savedImage = localStorage.getItem(`card-bg-${type}`);
-        if (savedImage) applyCardBackground(type, savedImage);
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    initializeForm();
-    injectWelcomePopup();
-    injectDictionary();
-    setLanguage(currentLanguage);
-    loadCardBackgrounds(); // 저장된 배경 불러오기
-    setInterval(updateDisplays, 1000);
-});
-
-window.setLanguage = setLanguage;
-window.saveSettings = saveSettings;
-window.toggleMiniSettings = (id) => { const el = document.getElementById(id); if(el) el.style.display = el.style.display==='none'?'block':'none'; };
-window.updateAirportList = () => updateList('input-country','input-airport',meetingAirport);
-window.updateMyCityList = () => updateList('input-my-country','input-my-location',myLocation);
-window.updatePartnerLocationList = () => updateList('input-partner-country','input-partner-location',partnerLocation);
-window.fetchNews = fetchNews;
-window.toggleDictionary = toggleDictionary;
-window.searchWord = searchWord;
-window.setDictLang = setDictLang;
 window.triggerPhotoUpload = (t) => document.getElementById(`upload-${t}`).click();
+window.resetPhoto = (t) => {
+    if (confirm("배경 사진을 삭제할까요?")) {
+        localStorage.removeItem(`card-bg-${t}`);
+        const bg = document.getElementById(`bg-${t}`);
+        if (bg) { bg.style.backgroundImage = ''; bg.classList.remove('has-photo'); bg.parentElement.classList.remove('has-photo'); }
+    }
+};
 
 window.handlePhotoUpload = (e, t) => {
     const file = e.target.files[0];
     if (!file) return;
-
-    // 최대 20MB까지 허용 (이후 압축 처리)
-    if (file.size > 20 * 1024 * 1024) {
-        alert("사진이 너무 큽니다. 다른 사진을 선택해 주세요.");
-        return;
-    }
-
+    if (file.size > 20 * 1024 * 1024) { alert("사진이 너무 큽니다."); return; }
     const reader = new FileReader();
     reader.onload = (event) => {
         const img = new Image();
         img.onload = () => {
-            // 이미지 압축 및 리사이징 (최대 너비 1200px 기준)
             const canvas = document.createElement('canvas');
-            let width = img.width;
-            let height = img.height;
-            const max_size = 1200;
-
-            if (width > height) {
-                if (width > max_size) {
-                    height *= max_size / width;
-                    width = max_size;
-                }
-            } else {
-                if (height > max_size) {
-                    width *= max_size / height;
-                    height = max_size;
-                }
-            }
-
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, width, height);
-
-            // WebP 또는 JPEG로 압축하여 용량 최소화
-            const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
-            
+            let w = img.width, h = img.height, max = 1200;
+            if (w > h) { if (w > max) { h *= max/w; w = max; } } else { if (h > max) { w *= max/h; h = max; } }
+            canvas.width = w; canvas.height = h;
+            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+            const compressed = canvas.toDataURL('image/jpeg', 0.7);
             try {
-                localStorage.setItem(`card-bg-${t}`, compressedBase64);
-                const bg = document.getElementById(`bg-${t}`);
-                if (bg) {
-                    bg.style.backgroundImage = `url(${compressedBase64})`;
-                    bg.classList.add('has-photo');
-                    bg.parentElement.classList.add('has-photo');
-                }
-            } catch (err) {
-                alert("저장 공간이 부족합니다. 다른 사진을 사용해 보세요.");
-                console.error("Storage error:", err);
-            }
+                localStorage.setItem(`card-bg-${t}`, compressed);
+                applyCardBackground(t, compressed);
+            } catch (err) { alert("저장 공간 부족"); }
         };
         img.src = event.target.result;
     };
     reader.readAsDataURL(file);
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+    initializeForm(); injectWelcomePopup(); injectDictionary(); setLanguage(currentLanguage);
+    ['anniversary', 'countdown'].forEach(t => { const img = localStorage.getItem(`card-bg-${t}`); if (img) applyCardBackground(t, img); });
+    setInterval(updateDisplays, 1000);
+});
+
+// Window Exports
+Object.assign(window, {
+    setLanguage, saveSettings, fetchNews, toggleDictionary, searchWord, setDictLang,
+    toggleMiniSettings: (id) => { const el = document.getElementById(id); if(el) el.style.display = el.style.display==='none'?'block':'none'; },
+    updateAirportList: () => updateList('input-country','input-airport',meetingAirport),
+    updateMyCityList: () => updateList('input-my-country','input-my-location',myLocation),
+    updatePartnerLocationList: () => updateList('input-partner-country','input-partner-location',partnerLocation)
+});
