@@ -168,34 +168,13 @@ main {
     margin-bottom: 25px;
 }
 
-/* Anniversary Emoji Styling */
-.anniversary-number-wrapper {
-    display: inline-flex;
-    align-items: center;
-    gap: 15px;
-    position: relative;
-    vertical-align: middle;
-}
-
-.emoji-left, .emoji-right {
-    font-size: 1.8rem;
-    animation: floatEmoji 3s ease-in-out infinite;
-}
-
-.emoji-right { animation-delay: 1.5s; }
-
-@keyframes floatEmoji {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-8px) scale(1.1); }
-}
-
 /* Category Specific Styles */
 #anniversary-section { 
     background: linear-gradient(135deg, #ffffff 0%, #fff5f7 100%);
     border: 1px solid rgba(255, 143, 163, 0.1);
 }
 #anniversary-section h2 { color: var(--anniversary-accent); border-color: #ffccd5; }
-#anniversary-section #days-together { color: var(--anniversary-accent); display: inline-block; margin: 0; }
+#anniversary-section #days-together { color: var(--anniversary-accent); }
 #anniversary-section .settings-btn { color: var(--anniversary-accent); border-color: var(--anniversary-accent); }
 #anniversary-section .settings-btn:hover { background-color: var(--anniversary-accent); color: white; }
 
