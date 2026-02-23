@@ -660,18 +660,62 @@ window.fetchNews = fetchNews;
 window.toggleDictionary = toggleDictionary;
 window.searchWord = searchWord;
 window.setDictLang = setDictLang;
-window.triggerPhotoUpload = (type) => document.getElementById(`upload-${type}`).click();
+window.triggerPhotoUpload = (t) => document.getElementById(`upload-${t}`).click();
+
 window.handlePhotoUpload = (e, t) => {
     const file = e.target.files[0];
-    if (file && file.size < 2 * 1024 * 1024) {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-            localStorage.setItem(`card-bg-${t}`, ev.target.result);
-            const bg = document.getElementById(`bg-${t}`);
-            bg.style.backgroundImage = `url(${ev.target.result})`;
-            bg.classList.add('has-photo');
-            bg.parentElement.classList.add('has-photo');
+    if (!file) return;
+
+    // 최대 20MB까지 허용 (이후 압축 처리)
+    if (file.size > 20 * 1024 * 1024) {
+        alert("사진이 너무 큽니다. 다른 사진을 선택해 주세요.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+            // 이미지 압축 및 리사이징 (최대 너비 1200px 기준)
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+            const max_size = 1200;
+
+            if (width > height) {
+                if (width > max_size) {
+                    height *= max_size / width;
+                    width = max_size;
+                }
+            } else {
+                if (height > max_size) {
+                    width *= max_size / height;
+                    height = max_size;
+                }
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+
+            // WebP 또는 JPEG로 압축하여 용량 최소화
+            const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
+            
+            try {
+                localStorage.setItem(`card-bg-${t}`, compressedBase64);
+                const bg = document.getElementById(`bg-${t}`);
+                if (bg) {
+                    bg.style.backgroundImage = `url(${compressedBase64})`;
+                    bg.classList.add('has-photo');
+                    bg.parentElement.classList.add('has-photo');
+                }
+            } catch (err) {
+                alert("저장 공간이 부족합니다. 다른 사진을 사용해 보세요.");
+                console.error("Storage error:", err);
+            }
         };
-        reader.readAsDataURL(file);
-    } else if (file) alert("2MB 이하의 사진만 가능합니다.");
+        img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
 };

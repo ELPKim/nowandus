@@ -577,3 +577,41 @@ footer {
 @media (max-width: 400px) {
     .dict-window { width: calc(100vw - 60px); right: -10px; }
 }
+/* 공통 설정 그룹 및 버튼 스타일 */
+.settings-group {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.settings-btn {
+    padding: 8px 18px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(5px);
+}
+
+.settings-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* 사진 배경 시 버튼 색상 반전 (흰색 테두리) */
+.has-photo .settings-btn {
+    color: white !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+}
+
+.has-photo .settings-btn:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
