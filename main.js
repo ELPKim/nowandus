@@ -270,12 +270,9 @@ let partnerCountry = localStorage.getItem('partnerCountry') || 'USA';
 let partnerLocation = localStorage.getItem('partnerLocation') || "New York (JFK)";
 let partnerTimezone = localStorage.getItem('partnerTimezone') || 'America/New_York';
 
-// --- Welcome Popup Logic ---
+// --- Welcome Popup ---
 function injectWelcomePopup() {
-    const lastHideDate = localStorage.getItem('welcomeHideDate');
-    const today = new Date().toDateString();
-    if (lastHideDate === today) return; 
-
+    if (localStorage.getItem('welcomeHideDate') === new Date().toDateString()) return; 
     const popupHTML = `
         <div id="welcome-overlay" class="welcome-overlay">
             <div class="welcome-box">
@@ -299,159 +296,99 @@ function injectWelcomePopup() {
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', popupHTML);
-    setTimeout(() => {
-        const el = document.getElementById('welcome-overlay');
-        if (el) el.style.display = 'flex';
-    }, 500);
+    setTimeout(() => { if(document.getElementById('welcome-overlay')) document.getElementById('welcome-overlay').style.display = 'flex'; }, 500);
 }
 
-window.closeWelcome = () => {
-    const el = document.getElementById('welcome-overlay');
-    if (el) el.style.display = 'none';
-};
-
-window.hideWelcomeToday = () => {
-    localStorage.setItem('welcomeHideDate', new Date().toDateString());
-    window.closeWelcome();
-};
-
+window.closeWelcome = () => { if(document.getElementById('welcome-overlay')) document.getElementById('welcome-overlay').style.display = 'none'; };
+window.hideWelcomeToday = () => { localStorage.setItem('welcomeHideDate', new Date().toDateString()); window.closeWelcome(); };
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        const welcomeOverlay = document.getElementById('welcome-overlay');
-        const dictWindow = document.getElementById('dict-window');
-        if (welcomeOverlay && welcomeOverlay.style.display === 'flex') window.closeWelcome();
-        if (dictWindow && dictWindow.style.display === 'flex') window.toggleDictionary();
+        window.closeWelcome();
+        if(document.getElementById('dict-window')) document.getElementById('dict-window').style.display = 'none';
     }
 });
 
-// --- Floating Dictionary Logic ---
+// --- Dictionary ---
 let dictLanguage = localStorage.getItem('dictLanguage') || (currentLanguage === 'ko' ? 'ko' : 'en');
 function injectDictionary() {
     if (document.querySelector('.dict-widget')) return;
-    const dictHTML = `
+    const html = `
         <div class="dict-widget">
             <div id="dict-window" class="dict-window">
                 <div class="dict-header">
-                    <div class="dict-lang-switch" style="display: flex; gap: 5px;">
-                        <button onclick="setDictLang('ko')" id="btn-dict-ko">KO</button>
-                        <button onclick="setDictLang('en')" id="btn-dict-en">EN</button>
-                    </div>
+                    <div style="display:flex;gap:5px;"><button onclick="setDictLang('ko')" id="btn-dict-ko">KO</button><button onclick="setDictLang('en')" id="btn-dict-en">EN</button></div>
                     <span class="dict-close" onclick="toggleDictionary()">✖</span>
                 </div>
                 <div class="dict-body">
                     <h4 id="dict-title"></h4>
-                    <div class="dict-search">
-                        <input type="text" id="dict-input" placeholder="">
-                        <button onclick="searchWord()" id="btn-dict-search"></button>
-                    </div>
-                    <div id="dict-result" class="dict-result"><p id="dict-intro-text"></p></div>
+                    <div class="dict-search"><input type="text" id="dict-input"><button onclick="searchWord()" id="btn-dict-search"></button></div>
+                    <div id="dict-result"><p id="dict-intro-text"></p></div>
                 </div>
             </div>
             <div class="dict-button" onclick="toggleDictionary()">📖</div>
         </div>
     `;
-    document.body.insertAdjacentHTML('beforeend', dictHTML);
-    document.getElementById('dict-input').addEventListener('keypress', (e) => { if (e.key === 'Enter') searchWord(); });
+    document.body.insertAdjacentHTML('beforeend', html);
+    document.getElementById('dict-input').addEventListener('keypress', (e) => { if(e.key==='Enter') searchWord(); });
     updateDictUI();
 }
-
-function setDictLang(lang) {
-    dictLanguage = lang;
-    localStorage.setItem('dictLanguage', lang);
-    updateDictUI();
-}
-
+function setDictLang(l) { dictLanguage=l; localStorage.setItem('dictLanguage',l); updateDictUI(); }
 function updateDictUI() {
-    const isKo = dictLanguage === 'ko';
-    const t = translations[isKo ? 'ko' : 'en'];
-    const titleEl = document.getElementById('dict-title');
-    const inputEl = document.getElementById('dict-input');
-    const btnEl = document.getElementById('btn-dict-search');
-    const introEl = document.getElementById('dict-intro-text');
-    if (titleEl) titleEl.textContent = t['dict-header'];
-    if (inputEl) inputEl.placeholder = t['dict-ph'];
-    if (btnEl) btnEl.textContent = t['dict-btn'];
-    if (introEl) introEl.textContent = t['dict-intro'];
-    const btnKo = document.getElementById('btn-dict-ko');
-    const btnEn = document.getElementById('btn-dict-en');
-    if (btnKo && btnEn) {
-        [btnKo, btnEn].forEach(b => { b.style.background = 'transparent'; b.style.color = 'var(--primary-color)'; });
-        const active = isKo ? btnKo : btnEn;
-        active.style.background = 'var(--primary-color)';
-        active.style.color = 'white';
-    }
+    const t = translations[dictLanguage==='ko'?'ko':'en'];
+    ['dict-title','dict-input','btn-dict-search','dict-intro-text'].forEach(id => {
+        const el = document.getElementById(id); if(!el) return;
+        if(id==='dict-input') el.placeholder = t['dict-ph'];
+        else el.textContent = t[id==='btn-dict-search'?'dict-btn':(id==='dict-title'?'dict-header':'dict-intro')];
+    });
 }
+function toggleDictionary() { const w = document.getElementById('dict-window'); if(w) w.style.display = w.style.display==='flex'?'none':'flex'; }
+function searchWord() { const v = document.getElementById('dict-input').value.trim(); if(v) window.open(`https://${dictLanguage}.wiktionary.org/wiki/${encodeURIComponent(v)}`, '_blank'); }
 
-function toggleDictionary() {
-    const win = document.getElementById('dict-window');
-    if (win) win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
-}
-
-function searchWord() {
-    const word = document.getElementById('dict-input').value.trim();
-    if (!word) return;
-    window.open(`https://${dictLanguage}.wiktionary.org/wiki/${encodeURIComponent(word)}`, '_blank');
-}
-
-// --- World News & Weather ---
-let cachedNewsData = null;
-async function fetchNews(countryName, elementId) {
-    const el = document.getElementById(elementId);
-    if (!el) return;
-    el.innerHTML = `<p>${translations[currentLanguage]['news-loading']}</p>`;
+// --- Core Logic ---
+async function fetchWeather(lat, lon, id) {
     try {
-        if (!cachedNewsData) cachedNewsData = await (await fetch('news-data.json')).json();
-        const news = cachedNewsData[countryName] || cachedNewsData["Others"] || [];
-        if (news.length > 0) {
-            el.innerHTML = news.map(n => `
-                <div class="news-card">
-                    <h4>${n.title || ''}</h4>
-                    <p>${n.text || ''}</p>
-                    <a href="${n.url}" target="_blank">${translations[currentLanguage]['news-read-more']} →</a>
-                </div>
-            `).join('');
-        } else el.innerHTML = `<p>${translations[currentLanguage]['news-no-data']}</p>`;
-    } catch (e) { el.innerHTML = `<p>${translations[currentLanguage]['news-no-data']}</p>`; }
-}
-
-async function fetchWeather(lat, lon, elementId) {
-    try {
-        const data = await (await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)).json();
-        const el = document.getElementById(elementId);
-        if (el && data.current_weather) {
-            const w = data.current_weather;
-            el.innerHTML = `<div class="temp">${Math.round(w.temperature)}°C</div><div class="desc">${getWIcon(w.weathercode)}</div>`;
+        const d = await (await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)).json();
+        const el = document.getElementById(id);
+        if(el && d.current_weather) {
+            const w = d.current_weather;
+            el.innerHTML = `<div class="temp">${Math.round(w.temperature)}°C</div><div class="desc">${w.weathercode<=1?"☀️":w.weathercode<=3?"☁️":w.weathercode<=67?"🌧️":w.weathercode<=77?"❄️":"⛈️"}</div>`;
         }
-    } catch (e) { if(document.getElementById(elementId)) document.getElementById(elementId).textContent = "---"; }
+    } catch(e) { if(document.getElementById(id)) document.getElementById(id).textContent = "---"; }
 }
-function getWIcon(c) { if(c<=1) return "☀️"; if(c<=3) return "☁️"; if(c<=67) return "🌧️"; if(c<=77) return "❄️"; return "⛈️"; }
 
-// --- Display & Update Logic ---
 function updateDisplays() {
-    if(document.getElementById('days-together')) {
-        document.getElementById('days-together').textContent = Math.max(0, Math.floor((new Date().getTime() - new Date(anniversaryDate).getTime()) / 86400000));
-    }
+    if(document.getElementById('days-together')) document.getElementById('days-together').textContent = Math.max(0, Math.floor((new Date().getTime() - new Date(anniversaryDate).getTime())/86400000));
     const timer = document.getElementById('countdown-timer');
     if(timer) {
-        const target = new Date(nextMeetingDate).getTime() + (new Date().getTime() - new Date(new Date().toLocaleString('en-US',{timeZone:meetingTimezone})).getTime());
-        const rem = target - new Date().getTime();
+        const rem = (new Date(nextMeetingDate).getTime() + (new Date().getTime() - new Date(new Date().toLocaleString('en-US',{timeZone:meetingTimezone})).getTime())) - new Date().getTime();
         if(rem > 0) {
-            const d = Math.floor(rem/86400000), h = Math.floor((rem%86400000)/3600000), m = Math.floor((rem%3600000)/60000), s = Math.floor((rem%60000)/1000);
+            const d=Math.floor(rem/86400000), h=Math.floor((rem%86400000)/3600000), m=Math.floor((rem%3600000)/60000), s=Math.floor((rem%60000)/1000);
             timer.textContent = `${d}${translations[currentLanguage]['days-unit']} ${h}${translations[currentLanguage]['hours-unit']} ${m}${translations[currentLanguage]['minutes-unit']} ${s}${translations[currentLanguage]['seconds-unit']}`;
         } else timer.textContent = translations[currentLanguage]['met-message'];
     }
-    if(document.getElementById('my-time')) {
-        const now = new Date();
-        document.getElementById('my-time').textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,timeZone:myTimezone});
-        if(document.getElementById('partner-time')) document.getElementById('partner-time').textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,timeZone:partnerTimezone});
-    }
+    const now = new Date();
+    if(document.getElementById('my-time')) document.getElementById('my-time').textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,timeZone:myTimezone});
+    if(document.getElementById('partner-time')) document.getElementById('partner-time').textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,timeZone:partnerTimezone});
+    
     const myD = locationData[myCountry]?.find(l=>l.name===myLocation);
-    if(myD && document.getElementById('my-weather-info')) fetchWeather(myD.lat,myD.lon,'my-weather-info');
+    if(myD) fetchWeather(myD.lat, myD.lon, 'my-weather-info');
     const pD = locationData[partnerCountry]?.find(l=>l.name===partnerLocation);
-    if(pD && document.getElementById('partner-weather-info')) fetchWeather(pD.lat,pD.lon,'partner-weather-info');
+    if(pD) fetchWeather(pD.lat, pD.lon, 'partner-weather-info');
+    
     if(document.getElementById('display-location')) document.getElementById('display-location').textContent = `${meetingCountry}, ${meetingAirport}`;
     if(document.getElementById('my-tz')) document.getElementById('my-tz').textContent = `${myCountry}, ${myLocation}`;
     if(document.getElementById('partner-tz')) document.getElementById('partner-tz').textContent = `${partnerCountry}, ${partnerLocation}`;
+}
+
+function updateList(cId, sId, cur) {
+    const c = document.getElementById(cId)?.value, s = document.getElementById(sId);
+    if(!s || !c || !locationData[c]) return;
+    s.innerHTML = '';
+    locationData[c].forEach(l => {
+        const o = document.createElement('option'); o.value = l.tz; o.textContent = l.name;
+        if(l.name === cur) o.selected = true;
+        s.appendChild(o);
+    });
 }
 
 function saveSettings() {
@@ -464,29 +401,13 @@ function saveSettings() {
     const pS = document.getElementById('input-partner-location');
     if(pS && pS.selectedIndex>=0) { partnerCountry = document.getElementById('input-partner-country').value; partnerLocation = pS.options[pS.selectedIndex].text; partnerTimezone = pS.value; }
     
-    ['anniversaryDate','nextMeetingDate','meetingCountry','meetingAirport','meetingTimezone','myCountry','myLocation','myTimezone','partnerCountry','partnerLocation','partnerTimezone'].forEach(k => {
-        const val = eval(k);
-        localStorage.setItem(k, val);
-    });
+    ['anniversaryDate','nextMeetingDate','meetingCountry','meetingAirport','meetingTimezone','myCountry','myLocation','myTimezone','partnerCountry','partnerLocation','partnerTimezone'].forEach(k => localStorage.setItem(k, eval(k)));
     updateDisplays();
-}
-
-function updateList(cId, sId, currentVal) {
-    const c = document.getElementById(cId)?.value, s = document.getElementById(sId);
-    if(!s || !c || !locationData[c]) return;
-    s.innerHTML = '';
-    locationData[c].forEach(l => {
-        const o = document.createElement('option');
-        o.value = l.tz; o.textContent = l.name;
-        if(l.name === currentVal) o.selected = true;
-        s.appendChild(o);
-    });
 }
 
 function initializeForm() {
     ['input-country','input-my-country','input-partner-country'].forEach(id => {
-        const s = document.getElementById(id);
-        if(!s) return;
+        const s = document.getElementById(id); if(!s) return;
         s.innerHTML = '';
         Object.keys(locationData).sort().forEach(c => {
             const o = document.createElement('option'); o.value = c; o.textContent = c;
@@ -499,82 +420,31 @@ function initializeForm() {
     updateList('input-partner-country','input-partner-location',partnerLocation);
 }
 
-// --- Photo Background Logic ---
-function applyCardBackground(type, imageData) {
-    const bg = document.getElementById(`bg-${type}`);
-    if (bg && imageData) {
-        bg.style.backgroundImage = `url(${imageData})`;
-        bg.classList.add('has-photo');
-        bg.parentElement.classList.add('has-photo');
-    }
-}
-
-function loadCardBackgrounds() {
-    ['anniversary', 'countdown'].forEach(t => {
-        const img = localStorage.getItem(`card-bg-${t}`);
-        if (img) applyCardBackground(t, img);
-    });
-}
-
-// --- Lifecycle ---
 document.addEventListener('DOMContentLoaded', () => {
-    initializeForm();
-    injectWelcomePopup();
-    injectDictionary();
-    setLanguage(currentLanguage);
-    loadCardBackgrounds();
-    setInterval(updateDisplays, 1000);
+    initializeForm(); injectWelcomePopup(); injectDictionary();
+    setLanguage(currentLanguage); setInterval(updateDisplays, 1000);
 });
 
-// --- Window Exports ---
-window.setLanguage = setLanguage;
-window.saveSettings = saveSettings;
-window.fetchNews = fetchNews;
-window.toggleDictionary = toggleDictionary;
-window.searchWord = searchWord;
-window.setDictLang = setDictLang;
-window.toggleMiniSettings = (id) => {
-    const el = document.getElementById(id);
-    if(el) el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+// --- Exports ---
+window.setLanguage = (l) => {
+    currentLanguage = l; localStorage.setItem('language', l); document.documentElement.lang = l;
+    document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.getAttribute('data-i18n'); if(translations[l][k]) el.innerHTML = translations[l][k]; });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => { const k = el.getAttribute('data-i18n-ph'); if(translations[l][k]) el.placeholder = translations[l][k]; });
+    updateDictUI(); updateDisplays();
 };
+window.saveSettings = saveSettings;
+window.toggleMiniSettings = (id) => { const el = document.getElementById(id); if(el) el.style.display = (el.style.display==='none'||el.style.display==='')?'block':'none'; };
 window.updateAirportList = () => updateList('input-country','input-airport',meetingAirport);
 window.updateMyCityList = () => updateList('input-my-country','input-my-location',myLocation);
 window.updatePartnerLocationList = () => updateList('input-partner-country','input-partner-location',partnerLocation);
-window.triggerPhotoUpload = (t) => {
-    const input = document.getElementById(`upload-${t}`);
-    if (input) input.click();
-};
-window.resetPhoto = (t) => {
-    if (confirm("배경 사진을 삭제할까요?")) {
-        localStorage.removeItem(`card-bg-${t}`);
-        const bg = document.getElementById(`bg-${t}`);
-        if (bg) {
-            bg.style.backgroundImage = '';
-            bg.classList.remove('has-photo');
-            bg.parentElement.classList.remove('has-photo');
-        }
-    }
-};
-window.handlePhotoUpload = (e, t) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    if (file.size > 20 * 1024 * 1024) { alert("사진이 너무 큽니다."); return; }
-    const reader = new FileReader();
-    reader.onload = (event) => {
-        const img = new Image();
-        img.onload = () => {
-            const canvas = document.createElement('canvas');
-            let w = img.width, h = img.height, max = 1200;
-            if (w > h) { if (w > max) { h *= max/w; w = max; } } else { if (h > max) { w *= max/h; h = max; } }
-            canvas.width = w; canvas.height = h;
-            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-            const compressed = canvas.toDataURL('image/jpeg', 0.7);
-            try {
-                localStorage.setItem(`card-bg-${t}`, compressed);
-                applyCardBackground(t, compressed);
-            } catch (err) { alert("저장 공간 부족"); }
-        };
-        img.src = event.target.result;
-    };
-    reader.readAsDataURL(file);
+window.toggleDictionary = toggleDictionary;
+window.searchWord = searchWord;
+window.setDictLang = setDictLang;
+window.fetchNews = async (countryName, elementId) => {
+    const el = document.getElementById(elementId); if(!el) return;
+    try {
+        const data = await (await fetch('news-data.json')).json();
+        const news = data[countryName] || data["Others"] || [];
+        el.innerHTML = news.length > 0 ? news.map(n => `<div class="news-card"><h4>${n.title}</h4><p>${n.text}</p><a href="${n.url}" target="_blank">Read More →</a></div>`).join('') : "<p>No News Found</p>";
+    } catch(e) { el.innerHTML = "<p>Error loading news</p>"; }
 };

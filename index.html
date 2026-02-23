@@ -55,7 +55,6 @@
 
     <main>
         <section id="anniversary-section" class="card category">
-            <div class="card-bg-photo" id="bg-anniversary"></div>
             <h2 data-i18n="anniversary-title">함께한 시간</h2>
             <div class="display-area">
                 <p class="main-stat">
@@ -65,11 +64,7 @@
                 </p>
             </div>
             <div class="mini-settings">
-                <div class="settings-group">
-                    <button class="settings-btn" onclick="toggleMiniSettings('anniversary-settings')" data-i18n="settings-button">수정하기</button>
-                    <button class="settings-btn" onclick="triggerPhotoUpload('anniversary')">📸 배경 사진</button>
-                </div>
-                <input type="file" id="upload-anniversary" style="display:none" accept="image/*" onchange="handlePhotoUpload(event, 'anniversary')">
+                <button class="settings-btn" onclick="toggleMiniSettings('anniversary-settings')" data-i18n="settings-button">수정하기</button>
                 <div id="anniversary-settings" class="mini-form" style="display: none;">
                     <div class="input-group">
                         <label data-i18n="label-anniversary">처음 만난 날:</label>
@@ -80,7 +75,6 @@
         </section>
 
         <section id="countdown-section" class="card category">
-            <div class="card-bg-photo" id="bg-countdown"></div>
             <h2 data-i18n="countdown-title">다시 마주 보게 될 날</h2>
             <div class="display-area">
                 <p class="main-stat">
@@ -91,11 +85,7 @@
                 <p class="tz-info"><span data-i18n="timezone-info">만남 장소:</span> <span id="display-location"></span></p>
             </div>
             <div class="mini-settings">
-                <div class="settings-group">
-                    <button class="settings-btn" onclick="toggleMiniSettings('countdown-settings')" data-i18n="settings-button">수정하기</button>
-                    <button class="settings-btn" onclick="triggerPhotoUpload('countdown')">📸 배경 사진</button>
-                </div>
-                <input type="file" id="upload-countdown" style="display:none" accept="image/*" onchange="handlePhotoUpload(event, 'countdown')">
+                <button class="settings-btn" onclick="toggleMiniSettings('countdown-settings')" data-i18n="settings-button">수정하기</button>
                 <div id="countdown-settings" class="mini-form" style="display: none;">
                     <div class="input-group">
                         <label data-i18n="label-meeting">다시 만날 날:</label>
