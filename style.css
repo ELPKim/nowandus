@@ -150,63 +150,34 @@ main {
     padding-bottom: 20px;
 }
 
-/* --- Anniversary Section: Refined Typography --- */
-#anniversary-section {
-    background: white;
-    border: 1px solid rgba(255, 143, 163, 0.2);
-    box-shadow: 0 10px 25px rgba(255, 143, 163, 0.08);
+.card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(255, 143, 163, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s;
 }
 
-#anniversary-section #days-together {
-    font-size: 3.5rem; /* 적절한 크기로 축소 */
-    font-weight: 900;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(to right, #ff4d6d, #c2185b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
-    margin: 15px 0;
-    filter: drop-shadow(0 2px 5px rgba(255, 77, 109, 0.2));
-    animation: heartBeat 3s infinite; /* 애니메이션 속도 늦춤 */
+.category h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
 }
 
-@keyframes heartBeat {
-    0% { transform: scale(1); }
-    10% { transform: scale(1.02); } /* 움직임 폭 최소화 */
-    20% { transform: scale(1); }
-    100% { transform: scale(1); }
-}
+/* Category Specific Styles */
+#anniversary-section h2 { color: var(--anniversary-accent); border-color: #ffccd5; }
+#anniversary-section #days-together { color: var(--anniversary-accent); }
+#anniversary-section .settings-btn { color: var(--anniversary-accent); border-color: var(--anniversary-accent); }
+#anniversary-section .settings-btn:hover { background-color: var(--anniversary-accent); color: white; }
 
-/* --- Countdown Section: Subtle Glassmorphism --- */
-#countdown-section {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-radius: 24px; /* 표준 곡률로 조정 */
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    position: relative;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
-}
-
-/* 무지개 테두리 효과를 아주 은은하게 수정 */
-#countdown-section::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: -1px; right: -1px; bottom: -1px;
-    background: linear-gradient(45deg, #ff8fa3, #ffb3c1, #4cc9f0, #8e7dbe, #ff8fa3);
-    background-size: 400%;
-    z-index: -1;
-    border-radius: 25px;
-    filter: blur(4px); /* 블러 반경 축소 */
-    opacity: 0.15; /* 투명도 대폭 낮춤 */
-    animation: rainbowGlow 12s linear infinite;
-}
-
-#countdown-section #countdown-timer {
-    font-size: 2.2rem; /* 크기 최적화 */
-    font-weight: 800;
-    color: #4a4a4a;
-}
+#countdown-section h2 { color: var(--countdown-accent); border-color: #ffe5d9; }
+#countdown-section #countdown-timer { color: var(--countdown-accent); }
+#countdown-section .settings-btn { color: var(--countdown-accent); border-color: var(--countdown-accent); }
+#countdown-section .settings-btn:hover { background-color: var(--countdown-accent); color: white; }
 
 #countdown-section h2 {
     color: #c2185b;
