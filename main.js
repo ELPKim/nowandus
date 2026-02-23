@@ -601,11 +601,52 @@ function initializeForm() {
     updateList('input-partner-country','input-partner-location',partnerLocation);
 }
 
+window.triggerPhotoUpload = (type) => {
+    document.getElementById(`upload-${type}`).click();
+};
+
+window.handlePhotoUpload = (event, type) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // 용량 제한 (약 2MB)
+    if (file.size > 2 * 1024 * 1024) {
+        alert("사진 용량이 너무 큽니다. 2MB 이하의 사진을 선택해 주세요.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        const base64Image = e.target.result;
+        localStorage.setItem(`card-bg-${type}`, base64Image);
+        applyCardBackground(type, base64Image);
+    };
+    reader.readAsDataURL(file);
+};
+
+function applyCardBackground(type, imageData) {
+    const bgElement = document.getElementById(`bg-${type}`);
+    const cardElement = bgElement?.parentElement;
+    if (bgElement && imageData) {
+        bgElement.style.backgroundImage = `url(${imageData})`;
+        bgElement.classList.add('has-photo');
+        cardElement.classList.add('has-photo');
+    }
+}
+
+function loadCardBackgrounds() {
+    ['anniversary', 'countdown'].forEach(type => {
+        const savedImage = localStorage.getItem(`card-bg-${type}`);
+        if (savedImage) applyCardBackground(type, savedImage);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initializeForm();
     injectWelcomePopup();
     injectDictionary();
     setLanguage(currentLanguage);
+    loadCardBackgrounds(); // 저장된 배경 불러오기
     setInterval(updateDisplays, 1000);
 });
 
@@ -619,3 +660,18 @@ window.fetchNews = fetchNews;
 window.toggleDictionary = toggleDictionary;
 window.searchWord = searchWord;
 window.setDictLang = setDictLang;
+window.triggerPhotoUpload = (type) => document.getElementById(`upload-${type}`).click();
+window.handlePhotoUpload = (e, t) => {
+    const file = e.target.files[0];
+    if (file && file.size < 2 * 1024 * 1024) {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+            localStorage.setItem(`card-bg-${t}`, ev.target.result);
+            const bg = document.getElementById(`bg-${t}`);
+            bg.style.backgroundImage = `url(${ev.target.result})`;
+            bg.classList.add('has-photo');
+            bg.parentElement.classList.add('has-photo');
+        };
+        reader.readAsDataURL(file);
+    } else if (file) alert("2MB 이하의 사진만 가능합니다.");
+};
