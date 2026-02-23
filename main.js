@@ -274,7 +274,6 @@ let partnerTimezone = localStorage.getItem('partnerTimezone') || 'America/New_Yo
 function injectWelcomePopup() {
     const lastHideDate = localStorage.getItem('welcomeHideDate');
     const today = new Date().toDateString();
-    
     if (lastHideDate === today) return; 
 
     const popupHTML = `
@@ -327,7 +326,6 @@ window.addEventListener('keydown', (e) => {
 
 // --- Floating Dictionary Logic ---
 let dictLanguage = localStorage.getItem('dictLanguage') || (currentLanguage === 'ko' ? 'ko' : 'en');
-
 function injectDictionary() {
     if (document.querySelector('.dict-widget')) return;
     const dictHTML = `
@@ -366,11 +364,14 @@ function setDictLang(lang) {
 function updateDictUI() {
     const isKo = dictLanguage === 'ko';
     const t = translations[isKo ? 'ko' : 'en'];
-    if (document.getElementById('dict-title')) document.getElementById('dict-title').textContent = t['dict-header'];
-    if (document.getElementById('dict-input')) document.getElementById('dict-input').placeholder = t['dict-ph'];
-    if (document.getElementById('btn-dict-search')) document.getElementById('btn-dict-search').textContent = t['dict-btn'];
-    if (document.getElementById('dict-intro-text')) document.getElementById('dict-intro-text').textContent = t['dict-intro'];
-    
+    const titleEl = document.getElementById('dict-title');
+    const inputEl = document.getElementById('dict-input');
+    const btnEl = document.getElementById('btn-dict-search');
+    const introEl = document.getElementById('dict-intro-text');
+    if (titleEl) titleEl.textContent = t['dict-header'];
+    if (inputEl) inputEl.placeholder = t['dict-ph'];
+    if (btnEl) btnEl.textContent = t['dict-btn'];
+    if (introEl) introEl.textContent = t['dict-intro'];
     const btnKo = document.getElementById('btn-dict-ko');
     const btnEn = document.getElementById('btn-dict-en');
     if (btnKo && btnEn) {
@@ -425,7 +426,7 @@ async function fetchWeather(lat, lon, elementId) {
 }
 function getWIcon(c) { if(c<=1) return "☀️"; if(c<=3) return "☁️"; if(c<=67) return "🌧️"; if(c<=77) return "❄️"; return "⛈️"; }
 
-// --- Display & Logic ---
+// --- Display & Update Logic ---
 function updateDisplays() {
     if(document.getElementById('days-together')) {
         document.getElementById('days-together').textContent = Math.max(0, Math.floor((new Date().getTime() - new Date(anniversaryDate).getTime()) / 86400000));
@@ -463,7 +464,10 @@ function saveSettings() {
     const pS = document.getElementById('input-partner-location');
     if(pS && pS.selectedIndex>=0) { partnerCountry = document.getElementById('input-partner-country').value; partnerLocation = pS.options[pS.selectedIndex].text; partnerTimezone = pS.value; }
     
-    ['anniversaryDate','nextMeetingDate','meetingCountry','meetingAirport','meetingTimezone','myCountry','myLocation','myTimezone','partnerCountry','partnerLocation','partnerTimezone'].forEach(k => localStorage.setItem(k, eval(k)));
+    ['anniversaryDate','nextMeetingDate','meetingCountry','meetingAirport','meetingTimezone','myCountry','myLocation','myTimezone','partnerCountry','partnerLocation','partnerTimezone'].forEach(k => {
+        const val = eval(k);
+        localStorage.setItem(k, val);
+    });
     updateDisplays();
 }
 
@@ -505,15 +509,52 @@ function applyCardBackground(type, imageData) {
     }
 }
 
-window.triggerPhotoUpload = (t) => document.getElementById(`upload-${t}`).click();
+function loadCardBackgrounds() {
+    ['anniversary', 'countdown'].forEach(t => {
+        const img = localStorage.getItem(`card-bg-${t}`);
+        if (img) applyCardBackground(t, img);
+    });
+}
+
+// --- Lifecycle ---
+document.addEventListener('DOMContentLoaded', () => {
+    initializeForm();
+    injectWelcomePopup();
+    injectDictionary();
+    setLanguage(currentLanguage);
+    loadCardBackgrounds();
+    setInterval(updateDisplays, 1000);
+});
+
+// --- Window Exports ---
+window.setLanguage = setLanguage;
+window.saveSettings = saveSettings;
+window.fetchNews = fetchNews;
+window.toggleDictionary = toggleDictionary;
+window.searchWord = searchWord;
+window.setDictLang = setDictLang;
+window.toggleMiniSettings = (id) => {
+    const el = document.getElementById(id);
+    if(el) el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+};
+window.updateAirportList = () => updateList('input-country','input-airport',meetingAirport);
+window.updateMyCityList = () => updateList('input-my-country','input-my-location',myLocation);
+window.updatePartnerLocationList = () => updateList('input-partner-country','input-partner-location',partnerLocation);
+window.triggerPhotoUpload = (t) => {
+    const input = document.getElementById(`upload-${t}`);
+    if (input) input.click();
+};
 window.resetPhoto = (t) => {
     if (confirm("배경 사진을 삭제할까요?")) {
         localStorage.removeItem(`card-bg-${t}`);
         const bg = document.getElementById(`bg-${t}`);
-        if (bg) { bg.style.backgroundImage = ''; bg.classList.remove('has-photo'); bg.parentElement.classList.remove('has-photo'); }
+        if (bg) {
+            bg.style.backgroundImage = '';
+            bg.classList.remove('has-photo');
+            bg.parentElement.classList.remove('has-photo');
+        }
     }
 };
-
 window.handlePhotoUpload = (e, t) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -537,18 +578,3 @@ window.handlePhotoUpload = (e, t) => {
     };
     reader.readAsDataURL(file);
 };
-
-document.addEventListener('DOMContentLoaded', () => {
-    initializeForm(); injectWelcomePopup(); injectDictionary(); setLanguage(currentLanguage);
-    ['anniversary', 'countdown'].forEach(t => { const img = localStorage.getItem(`card-bg-${t}`); if (img) applyCardBackground(t, img); });
-    setInterval(updateDisplays, 1000);
-});
-
-// Window Exports
-Object.assign(window, {
-    setLanguage, saveSettings, fetchNews, toggleDictionary, searchWord, setDictLang,
-    toggleMiniSettings: (id) => { const el = document.getElementById(id); if(el) el.style.display = el.style.display==='none'?'block':'none'; },
-    updateAirportList: () => updateList('input-country','input-airport',meetingAirport),
-    updateMyCityList: () => updateList('input-my-country','input-my-location',myLocation),
-    updatePartnerLocationList: () => updateList('input-partner-country','input-partner-location',partnerLocation)
-});
