@@ -316,6 +316,24 @@ window.hideWelcomeToday = () => {
     window.closeWelcome();
 };
 
+// --- Close Popup with Escape Key ---
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const welcomeOverlay = document.getElementById('welcome-overlay');
+        const dictWindow = document.getElementById('dict-window');
+        
+        // 안내창이 열려 있으면 닫기
+        if (welcomeOverlay && welcomeOverlay.style.display === 'flex') {
+            window.closeWelcome();
+        }
+        
+        // 사전창이 열려 있으면 닫기 (추가 편의성)
+        if (dictWindow && dictWindow.style.display === 'flex') {
+            window.toggleDictionary();
+        }
+    }
+});
+
 // --- Floating Dictionary Logic ---
 let dictLanguage = localStorage.getItem('dictLanguage') || (currentLanguage === 'ko' ? 'ko' : 'en');
 
