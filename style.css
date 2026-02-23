@@ -169,10 +169,22 @@ main {
 }
 
 /* Category Specific Styles */
+#anniversary-section { 
+    background: linear-gradient(135deg, #ffffff 0%, #fff5f7 100%);
+    border: 1px solid rgba(255, 143, 163, 0.1);
+}
 #anniversary-section h2 { color: var(--anniversary-accent); border-color: #ffccd5; }
 #anniversary-section #days-together { color: var(--anniversary-accent); }
 #anniversary-section .settings-btn { color: var(--anniversary-accent); border-color: var(--anniversary-accent); }
 #anniversary-section .settings-btn:hover { background-color: var(--anniversary-accent); color: white; }
+
+.anniversary-sub {
+    font-size: 0.85rem;
+    color: #a0a0a0;
+    margin-top: -5px;
+    margin-bottom: 15px;
+    font-weight: 300;
+}
 
 #countdown-section h2 { color: var(--countdown-accent); border-color: #ffe5d9; }
 #countdown-section #countdown-timer { color: var(--countdown-accent); }
