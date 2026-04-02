@@ -1,0 +1,44 @@
+name: Update All Data
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 매일 00:00 UTC (한국 시간 오전 9시)에 한 번 통합 실행
+  workflow_dispatch:      # 수동 실행 가능
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run all update scripts
+        env:
+          WORLD_NEWS_API_KEY: ${{ secrets.WORLD_NEWS_API_KEY }}
+          EXCHANGE_RATE_API_KEY: ${{ secrets.EXCHANGE_RATE_API_KEY }}
+        run: |
+          echo "Updating Exchange Rates..."
+          python update_exchange.py
+          echo "Updating World News..."
+          python update_news.py
+          echo "Updating Holidays (Weekly update logic included)..."
+          # 공휴일은 매주 일요일(0)에만 실제로 업데이트하거나, 스크립트 내부 로직에 맡김
+          python update_holidays.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add exchange-data.json news-data.json holiday-data.json
+          git commit -m "chore: automated daily data update" || echo "No changes to commit"
+          git push

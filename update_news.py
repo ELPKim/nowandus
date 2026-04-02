@@ -6,22 +6,19 @@ import requests
 API_KEY = os.environ.get('WORLD_NEWS_API_KEY')
 NEWS_DATA_FILE = 'news-data.json'
 
-# 뉴스 수집 대상 국가 코드 (WorldNewsAPI 기준)
+# 뉴스 수집 대상 국가 코드 (할당량 최적화를 위해 주요 10개국으로 제한)
 COUNTRIES = {
     "South Korea": "kr", "USA": "us", "Japan": "jp", "China": "cn", "UK": "gb", 
-    "France": "fr", "Germany": "de", "Canada": "ca", "Australia": "au", "Italy": "it",
-    "Spain": "es", "Switzerland": "ch", "Singapore": "sg", "Taiwan": "tw", "Thailand": "th",
-    "Vietnam": "vn", "Malaysia": "my", "Indonesia": "id", "Philippines": "ph", "UAE": "ae",
-    "Turkey": "tr", "Russia": "ru", "Brazil": "br", "Mexico": "mx", "Argentina": "ar",
-    "New Zealand": "nz", "South Africa": "za",
-    "Others": "" # 빈 문자열은 특정 국가 제한 없이 검색
+    "Canada": "ca", "Australia": "au", "Vietnam": "vn", "Thailand": "th", "Singapore": "sg",
+    "Others": "" # 전 세계 최신 뉴스
 }
 
 def fetch_country_news(country_code, lang):
     if not API_KEY:
         return []
     
-    url = f"https://api.worldnewsapi.com/search-news?api-key={API_KEY}&language={lang}&number=5"
+    # 할당량을 고려하여 요청 뉴스 개수를 3개로 조정
+    url = f"https://api.worldnewsapi.com/search-news?api-key={API_KEY}&language={lang}&number=3"
     if country_code:
         url += f"&source-countries={country_code}"
     else:
