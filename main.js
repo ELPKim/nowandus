@@ -168,6 +168,14 @@ const translations = {
         'welcome-f6': '📖 <b>단어 사전</b>: 궁금한 단어는 위키 사전으로 바로 검색하세요.',
         'welcome-hide': '오늘 하루 보지 않기',
         'welcome-close': '닫기',
+        'about-title': 'Our Vision: Bridging the Distance with Heart',
+        'about-p1': '<strong>Now and Us</strong>는 단순히 숫자를 계산하거나 날씨를 보여주는 웹사이트가 아닙니다. 우리는 전 세계 수만 명의 장거리 연애 커플들이 겪는 <strong>\'물리적 거리\'를 \'정서적 연결\'로 바꾸는 프로젝트</strong>를 진행하고 있습니다. 물리적으로는 수천 킬로미터 떨어져 있을지라도, 상대방의 하늘 아래 어떤 날씨가 펼쳐지는지, 지금 그곳은 어떤 뉴스들로 아침을 맞이하는지 함께 느끼는 것만으로도 두 사람의 마음은 같은 공간에 머물 수 있습니다.',
+        'about-p2': '우리의 서비스는 다음과 같은 철학으로 운영됩니다:',
+        'about-li1': '<strong>공감의 기술:</strong> 상대방의 시간을 실시간으로 확인하며 "지금쯤 일어났겠구나" 혹은 "오늘 하루도 수고했어"라는 따뜻한 메시지를 보낼 수 있는 타이밍을 제안합니다.',
+        'about-li2': '<strong>미래를 향한 기다림:</strong> 다음 만남을 위한 카운트다운은 단순한 숫자 줄이기가 아니라, 우리가 다시 마주 보게 될 날을 향한 소중한 설렘의 기록입니다.',
+        'about-li3': '<strong>생활의 동반자:</strong> 환율 정보와 공휴일 캘린더는 실질적인 여행 계획을 세우는 데 필수적인 데이터를 제공하며, 두 사람의 재회를 더 현실적으로 만들어줍니다.',
+        'about-p3': '우리는 이용자의 프라이버시를 무엇보다 소중하게 여깁니다. 모든 설정 정보가 외부로 유출되지 않도록 설계된 오직 당신과 당신의 소중한 사람만을 위한 공간입니다.',
+        'about-p4': '먼 거리를 사랑으로 채워가는 모든 롱디(LDR) 커플들이 지치지 않고 사랑을 완성해 나갈 수 있도록, Now and Us가 끝까지 함께하겠습니다.',
     },
     'en': {
         'header-title': 'Now and Us',
@@ -256,6 +264,14 @@ const translations = {
         'welcome-f6': '📖 <b>Dictionary</b>: Look up any word instantly with Wiktionary.',
         'welcome-hide': 'Don\'t show again today',
         'welcome-close': 'Close',
+        'about-title': 'Our Vision: Bridging the Distance with Heart',
+        'about-p1': '<strong>Now and Us</strong> is not just a website for calculating dates or showing weather. We are running a project to turn <strong>\'physical distance\' into \'emotional connection\'</strong> for tens of thousands of long-distance couples around the world. Even if you are thousands of kilometers apart, just feeling what the weather is like under your partner\'s sky and what news they start their morning with can keep your hearts in the same space.',
+        'about-p2': 'Our service is operated with the following philosophy:',
+        'about-li1': '<strong>Technology for Empathy:</strong> We check each other\'s time in real-time and suggest the perfect timing to send a warm message like "You must be up by now" or "Good job today."',
+        'about-li2': '<strong>Waiting for the Future:</strong> The countdown to the next meeting is not just about decreasing numbers, but a precious record of excitement toward the day we meet again.',
+        'about-li3': '<strong>Companion for Life:</strong> Exchange rate information and holiday calendars provide essential data for planning actual travel, making your reunion more realistic.',
+        'about-p3': 'We value our users\' privacy above all else. This is a space designed only for you and your loved one, ensuring that no setting information is leaked outside.',
+        'about-p4': 'Now and Us will be with you until the end so that all long-distance (LDR) couples who fill the distance with love can complete their journey without getting tired.',
     }
 };
 
