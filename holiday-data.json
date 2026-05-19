@@ -21,9 +21,14 @@
             "name": "Lunar New Year"
         },
         {
-            "date": "2026-03-01",
+            "date": "2026-03-02",
             "localName": "3·1절",
             "name": "Independence Movement Day"
+        },
+        {
+            "date": "2026-05-01",
+            "localName": "노동절",
+            "name": "Labour Day"
         },
         {
             "date": "2026-05-05",
@@ -41,7 +46,12 @@
             "name": "Memorial Day"
         },
         {
-            "date": "2026-08-15",
+            "date": "2026-07-17",
+            "localName": "제헌절",
+            "name": "Constitution Day"
+        },
+        {
+            "date": "2026-08-17",
             "localName": "광복절",
             "name": "Liberation Day"
         },
@@ -61,7 +71,7 @@
             "name": "Chuseok"
         },
         {
-            "date": "2026-10-03",
+            "date": "2026-10-05",
             "localName": "개천절",
             "name": "National Foundation Day"
         },
