@@ -36,9 +36,14 @@
             "name": "Children's Day"
         },
         {
-            "date": "2026-05-24",
+            "date": "2026-05-25",
             "localName": "부처님 오신 날",
             "name": "Buddha's Birthday"
+        },
+        {
+            "date": "2026-06-03",
+            "localName": "지방 선거일",
+            "name": "Local Election Day"
         },
         {
             "date": "2026-06-06",
