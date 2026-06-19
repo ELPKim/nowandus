@@ -742,6 +742,11 @@
             "name": "Anzac Day"
         },
         {
+            "date": "2026-04-25",
+            "localName": "Anzac Day",
+            "name": "Anzac Day"
+        },
+        {
             "date": "2026-05-04",
             "localName": "May Day",
             "name": "May Day"
@@ -770,6 +775,11 @@
             "date": "2026-08-03",
             "localName": "Picnic Day",
             "name": "Picnic Day"
+        },
+        {
+            "date": "2026-09-25",
+            "localName": "Friday before AFL Grand Final",
+            "name": "Friday before AFL Grand Final"
         },
         {
             "date": "2026-09-28",
